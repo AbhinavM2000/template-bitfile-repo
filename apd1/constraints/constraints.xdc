@@ -1,6 +1,10 @@
-create_clock -period 10.000 -name refclk_c2c_clk [get_ports refclk_c2c_clk_p]
-set_property PACKAGE_PIN AC37  [get_ports refclk_c2c_clk_n]
-set_property PACKAGE_PIN AC36  [get_ports refclk_c2c_clk_p]
+create_clock -period 6.400 -name refclk_c2c_clk [get_ports refclk_c2c_clk_p]
+set_property PACKAGE_PIN AB35 [get_ports refclk_c2c_clk_n]
+set_property PACKAGE_PIN AB34 [get_ports refclk_c2c_clk_p]
+
+create_clock -period 3.118 -name tcdsRefclk -waveform {0.000 1.559} [get_ports tcdsRefclk_p]
+set_property PACKAGE_PIN AC37 [get_ports tcdsRefclk_n]
+set_property PACKAGE_PIN AC36 [get_ports tcdsRefclk_p]
 
 create_clock -period 3.333 -name clk_300_clk_p [get_ports clk_300_clk_p]
 set_property PACKAGE_PIN K29 [get_ports clk_300_clk_p]
@@ -13,7 +17,16 @@ set_property IOSTANDARD LVDS [get_ports clk_300_clk_p]
 set_property PACKAGE_PIN BF30 [get_ports I2C_C2C_scl_io]
 set_property PACKAGE_PIN BE30 [get_ports I2C_C2C_sda_io]
 set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_scl_io]
-set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_sda_io]
+set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_sda_io] 
+
+set_property PACKAGE_PIN H28 [get_ports clk_125_osc_in_p]
+set_property PACKAGE_PIN H29 [get_ports clk_125_osc_in_n]
+
+set_property PACKAGE_PIN N17 [get_ports clk_125_osc_out0_p]
+set_property PACKAGE_PIN M17 [get_ports clk_125_osc_out0_n]
+
+set_property PACKAGE_PIN M30 [get_ports clk_125_osc_out1_p]
+set_property PACKAGE_PIN L30 [get_ports clk_125_osc_out1_n]
 
 
 set_property LOC  GTYE4_CHANNEL_X0Y28 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]

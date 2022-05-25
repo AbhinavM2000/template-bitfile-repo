@@ -24,6 +24,15 @@ entity apd1_top is
     clk_300_clk_n : in std_logic;
     clk_300_clk_p : in std_logic;
 
+    clk_125_osc_in_p : in std_logic;
+    clk_125_osc_in_n : in std_logic;
+
+    clk_125_osc_out0_p : out std_logic;
+    clk_125_osc_out0_n : out std_logic;
+
+    clk_125_osc_out1_p : out std_logic;
+    clk_125_osc_out1_n : out std_logic;
+
     I2C_C2C_scl_io : inout std_logic;
     I2C_C2C_sda_io : inout std_logic;
 
@@ -31,6 +40,9 @@ entity apd1_top is
     gt_c2c_rx_rxp : in  slv (0 to AURORA_LANES-1);
     gt_c2c_tx_txn : out slv (0 to AURORA_LANES-1);
     gt_c2c_tx_txp : out slv (0 to AURORA_LANES-1);
+
+    tcdsRefclk_n : in std_logic;
+    tcdsRefclk_p : in std_logic;
 
     refclk_c2c_clk_n : in std_logic;
     refclk_c2c_clk_p : in std_logic
@@ -79,7 +91,7 @@ architecture rtl of apd1_top is
   signal mAxilReadSlave   : AxiLiteReadSlaveType;
 
 
- signal   secAxiRst :  slv(SECTOR_CNT_C-1 downto 0);
+  signal secAxiRst : slv(SECTOR_CNT_C-1 downto 0);
 
   signal secAxiWriteMasters : AxiLiteWriteMasterArray(SECTOR_CNT_C-1 downto 0) := (others => AXI_LITE_WRITE_MASTER_INIT_C);
   signal secAxiWriteSlaves  : AxiLiteWriteSlaveArray(SECTOR_CNT_C-1 downto 0)  := (others => AXI_LITE_WRITE_SLAVE_EMPTY_DECERR_C);
@@ -87,24 +99,84 @@ architecture rtl of apd1_top is
   signal secAxiReadSlaves   : AxiLiteReadSlaveArray(SECTOR_CNT_C-1 downto 0)   := (others => AXI_LITE_READ_SLAVE_EMPTY_DECERR_C);
 
 
-    constant APX_SECTOR_OFFSETS_C : Slv32Array(0 to 5) :=      ( SECTOR_0_BASE_ADDR_C,
-    SECTOR_1_BASE_ADDR_C,
-    SECTOR_2_BASE_ADDR_C,
-    SECTOR_3_BASE_ADDR_C,
-    SECTOR_4_BASE_ADDR_C,
-    SECTOR_5_BASE_ADDR_C); 
-                                              
+  constant APX_SECTOR_OFFSETS_C : Slv32Array(0 to 5) := (SECTOR_0_BASE_ADDR_C,
+                                                         SECTOR_1_BASE_ADDR_C,
+                                                         SECTOR_2_BASE_ADDR_C,
+                                                         SECTOR_3_BASE_ADDR_C,
+                                                         SECTOR_4_BASE_ADDR_C,
+                                                         SECTOR_5_BASE_ADDR_C);
+
+
+  -- COMMON 
+  -- AXI Chip to Chip
+  signal axic2cgtQpllClk        : sl;
+  signal axic2cgtQpllLock       : sl;
+  signal axic2cgtQpllRefClk     : sl;
+  signal axic2cgtQpllRefClkLost : sl;
+  signal axic2cCommonQpllRst    : sl;
+  signal axic2cRefClk           : sl;
+  signal axic2cSyncClk          : sl;
+  signal axic2cUserClk          : sl;
+  signal gtPllLock, ngtPllLock  : sl;
+  signal txUsrClk               : sl;
+  signal syncCE, syncClr        : sl;
+  signal bufGTClr               : sl;
+  signal mmcmNotLocked          : sl;
+
+
+  signal MgtRefClk0, MgtRefClk0Bufg : sl               := '0';
+  signal MgtRefClk1, MgtRefClk1Bufg : sl               := '0';
+  signal MgtRefClk                  : slv (1 downto 0) := (others => '0');
+  signal gtQPllClk                  : slv (1 downto 0) := (others => '0');
+  signal gtQpllLock                 : slv (1 downto 0) := (others => '0');
+  signal gtQpllRefClk               : slv (1 downto 0) := (others => '0');
+  signal gtQpllRefClkLost           : slv (1 downto 0) := (others => '0');
+  signal gtQpllReset                : slv (1 downto 0) := (others => '0');
+
+
+  --LpGBT 
+  signal TcdsQpll0ClkIn      : sl;
+  signal TcdsQpll0RefClkIn   : sl;
+  signal TcdsQpll1ClkIn      : sl;
+  signal TcdsQpll1RefClkIn   : sl;
+  signal TcdsgtQpll0LockIn   : sl;
+  signal TcdsgtQpll0ResetOut : sl;
+
+  signal clk_125, clk_125_bufg : std_logic;
 
 begin
 
+  U_ibufds_125 : IBUFDS
+    port map (
+      O  => clk_125,
+      I  => clk_125_osc_in_p,
+      IB => clk_125_osc_in_n
+      );
+
+
+  BUFG_inst : BUFG
+    port map (
+      O => clk_125_bufg,
+      I => clk_125
+      );
+
+
+  U_obufds_125_0 : OBUFDS
+    port map (
+      O  => clk_125_osc_out0_p,
+      OB => clk_125_osc_out0_n,
+      I  => clk_125_bufg
+      );
+
+  U_obufds_125_1 : OBUFDS
+    port map (
+      O  => clk_125_osc_out1_p,
+      OB => clk_125_osc_out1_n,
+      I  => clk_125_bufg
+      );
+
+
   U_axiInfra : entity work.axiInfra
-    generic map (
-      I2C_C2C_PHY_ADDR_G => 85,
-      N_AURORA_LANES     => 2,
-      OSC_FREQ           => 300,
-      C2C_MGT_TYPE       => "GTY",
-      LINE_RATE_MHZ      => 10312
-      )
     port map(
       clk10            => clk_10,
       clk100           => clk_100,
@@ -123,12 +195,49 @@ begin
       I2C_C2C_scl_io => I2C_C2C_scl_io,
       I2C_C2C_sda_io => I2C_C2C_sda_io,
 
+      refClkIn             => axic2cRefClk,
+      syncClkIn            => axic2cSyncClk,
+      userClkIn            => axic2cUserClk,
+      bufGtClrOut          => bufGTClr,
+      txUsrClk             => txUsrClk,
+      gtQpllClkIn          => axic2cgtQpllClk,
+      gtQplllockIn         => axic2cgtQpllLock,
+      gtQpllRefClkIn       => axic2cgtQpllRefClk,
+      gtQpllRefClkLostIn   => axic2cgtQpllRefClkLost,
+      gtCommonQpllResetOut => axic2cCommonQpllRst,
+      mmcmNotLocked        => mmcmNotLocked,
+
       mAxilClk         => axi_lite_clk,
       mAxilRst         => axi_lite_reset,
       mAxilWriteMaster => mAxilWriteMaster,
       mAxilWriteSlave  => mAxilWriteSlave,
       mAxilReadMaster  => mAxilReadMaster,
       mAxilReadSlave   => mAxilReadSlave
+      );
+
+  U_QpllServiceBank : entity work.QpllServiceBank
+
+    port map (
+      axi_lite_clk => axi_lite_clk,
+
+      txUsrClk => txUsrClk,
+      bufGTClr => bufGTClr,
+
+      axic2cRefClk  => axic2cRefClk,
+      axic2cSyncClk => axic2cSyncClk,
+      axic2cUserClk => axic2cUserClk,
+      mmcmNotLocked => mmcmNotLocked,
+
+      gtQpllReset      => gtQpllReset,
+      gtQPllClk        => gtQPllClk,
+      gtQpllRefClk     => gtQpllRefClk,
+      gtQpllLock       => gtQpllLock,
+      gtQpllRefClkLost => gtQpllRefClkLost,
+
+      tcdsRefclk_n     => tcdsRefclk_n,
+      tcdsRefclk_p     => tcdsRefclk_p,
+      refclk_c2c_clk_n => refclk_c2c_clk_n,
+      refclk_c2c_clk_p => refclk_c2c_clk_p
       );
 
 ---------------------------
@@ -172,46 +281,46 @@ begin
       axiClk         => axi_lite_clk,
       axiRst         => axi_lite_reset);
 
-U_ApxSectorChassisWrapper : entity work.ApxFsSectorChassisWrapper
-  generic map(
-    SECTOR_CNT_G => SECTOR_CNT_C,
-    CHASSIS_TYPE_G => CHASSIS_TYPE_C
-    )
-  port map(
-  
-        axiClk         => axi_lite_clk,
-      axiRstIn         => axi_lite_reset,
-      
+  U_ApxSectorChassisWrapper : entity work.ApxFsSectorChassisWrapper
+    generic map(
+      SECTOR_CNT_G   => SECTOR_CNT_C,
+      CHASSIS_TYPE_G => CHASSIS_TYPE_C
+      )
+    port map(
+
+      axiClk   => axi_lite_clk,
+      axiRstIn => axi_lite_reset,
+
       sAxiReadMaster  => mAxilReadMasters(APX_SECTOR_CTRL_INDEX_C),
       sAxiReadSlave   => mAxilReadSlaves(APX_SECTOR_CTRL_INDEX_C),
       sAxiWriteMaster => mAxilWriteMasters(APX_SECTOR_CTRL_INDEX_C),
       sAxiWriteSlave  => mAxilWriteSlaves(APX_SECTOR_CTRL_INDEX_C),
 
-axiRstOut => secAxiRst,
-    mAxiWriteMasters => secAxiWriteMasters,
-    mAxiWriteSlaves  => secAxiWriteSlaves,
-    mAxiReadMasters  => secAxiReadMasters,
-    mAxiReadSlaves  => secAxiReadSlaves
-    );
-    
+      axiRstOut        => secAxiRst,
+      mAxiWriteMasters => secAxiWriteMasters,
+      mAxiWriteSlaves  => secAxiWriteSlaves,
+      mAxiReadMasters  => secAxiReadMasters,
+      mAxiReadSlaves   => secAxiReadSlaves
+      );
 
-  gen_sector : for i in 0 to SECTOR_CNT_C-1 generate 
-      U_APxAxiTestIp : entity work.apxTestIp
-    generic map(
-      AXI_CLK_FREQ_G   => AXI_CLK_FREQUENCY_G,
-      SECTOR_NO => i,
-      BUILD_INFO_G     => BUILD_INFO_G,
-      XIL_DEVICE_G     => "ULTRASCALE",
-      AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
-      )
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => secAxiReadMasters(i),
-      axiReadSlave   => secAxiReadSlaves(i),
-      axiWriteMaster => secAxiWriteMasters(i),
-      axiWriteSlave  => secAxiWriteSlaves(i),
-      axiClk         => axi_lite_clk,
-      axiRst         => secAxiRst(i));
-end generate;  
+
+  gen_sector : for i in 0 to SECTOR_CNT_C-1 generate
+    U_APxAxiTestIp : entity work.apxTestIp
+      generic map(
+        AXI_CLK_FREQ_G   => AXI_CLK_FREQUENCY_G,
+        SECTOR_NO        => i,
+        BUILD_INFO_G     => BUILD_INFO_G,
+        XIL_DEVICE_G     => "ULTRASCALE",
+        AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
+        )
+      port map(
+        -- AXI-Lite Bus
+        axiReadMaster  => secAxiReadMasters(i),
+        axiReadSlave   => secAxiReadSlaves(i),
+        axiWriteMaster => secAxiWriteMasters(i),
+        axiWriteSlave  => secAxiWriteSlaves(i),
+        axiClk         => axi_lite_clk,
+        axiRst         => secAxiRst(i));
+  end generate;
 
 end architecture;
