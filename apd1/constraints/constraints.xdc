@@ -28,6 +28,9 @@ set_property PACKAGE_PIN M17 [get_ports clk_125_osc_out0_n]
 set_property PACKAGE_PIN M30 [get_ports clk_125_osc_out1_p]
 set_property PACKAGE_PIN L30 [get_ports clk_125_osc_out1_n]
 
+set_property PACKAGE_PIN AV31 [get_ports dplink_p2p_ecc_p]
+set_property PACKAGE_PIN AW31 [get_ports dplink_p2n_ecc_n]
+
 
 set_property LOC  GTYE4_CHANNEL_X0Y28 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]
 set_property LOC  GTYE4_CHANNEL_X0Y29 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[1].*CHANNEL_PRIM_INST}]

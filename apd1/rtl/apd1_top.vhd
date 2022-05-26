@@ -15,10 +15,11 @@ use UNISIM.vcomponents.all;
 
 entity apd1_top is
   generic (
-    AURORA_LANES : integer := 2;
-    TPD_G        : time    := 1 ns;
-    BUILD_INFO_G : BuildInfoType;
-    XIL_DEVICE_G : string  := "ULTRASCALE"
+    I2C_C2C_PHY_ADDR_G : integer range 0 to 1023 := I2C_C2C_PHY_ADDR_C;
+    AURORA_LANES       : integer                 := 2;
+    TPD_G              : time                    := 1 ns;
+    BUILD_INFO_G       : BuildInfoType;
+    XIL_DEVICE_G       : string                  := "ULTRASCALE"
     );
   port (
     clk_300_clk_n : in std_logic;
@@ -32,6 +33,9 @@ entity apd1_top is
 
     clk_125_osc_out1_p : out std_logic;
     clk_125_osc_out1_n : out std_logic;
+
+    dplink_p2p_ecc_p : out std_logic := '0';
+    dplink_p2n_ecc_n : out std_logic := '1';
 
     I2C_C2C_scl_io : inout std_logic;
     I2C_C2C_sda_io : inout std_logic;
@@ -175,8 +179,18 @@ begin
       I  => clk_125_bufg
       );
 
+--  U_obufds_dplink_ecc : OBUFDS
+--    port map (
+--      O  => dplink_p2p_ecc_p,
+--      OB => dplink_p2n_ecc_n,
+--      I  => clk_125_bufg
+--      ); 
+
 
   U_axiInfra : entity work.axiInfra
+    generic map(
+      I2C_C2C_PHY_ADDR_G => I2C_C2C_PHY_ADDR_G
+      )
     port map(
       clk10            => clk_10,
       clk100           => clk_100,
@@ -240,9 +254,20 @@ begin
       refclk_c2c_clk_p => refclk_c2c_clk_p
       );
 
----------------------------
-  -- AXI-Lite Crossbar Module
-  ---------------------------         
+  axic2cgtQpllClk        <= gtQpllClk(1);
+  axic2cgtQpllLock       <= gtQpllLock(1);
+  axic2cgtQpllRefClk     <= gtQpllRefClk(1);
+  axic2cgtQpllRefClkLost <= gtQpllRefClkLost(1);
+
+  gtQpllReset(1) <= axic2cCommonQpllRst;
+  gtQpllReset(0) <= TcdsgtQpll0ResetOut;
+
+  TcdsQpll0ClkIn    <= gtQpllClk(0);
+  TcdsQpll0RefClkIn <= gtQpllRefClk(0);
+  TcdsQpll1ClkIn    <= '0';
+  TcdsQpll1RefClkIn <= '0';
+  TcdsgtQpll0LockIn <= gtQpllLock(0);
+
   U_XBAR : entity work.AxiLiteCrossbar
     generic map (
       TPD_G              => TPD_G,

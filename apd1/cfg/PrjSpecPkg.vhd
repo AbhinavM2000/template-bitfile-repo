@@ -6,6 +6,9 @@ use work.StdRtlPkg.all;
 
 package PrjSpecPkg is
 
+  constant I2C_C2C_PHY_ADDR_C : integer range 0 to 1023 := 85;
+
+
   constant SECTOR_CNT_C : integer := 6;
   constant SLR_CNT_C    : integer := 3;
 
@@ -19,7 +22,7 @@ package PrjSpecPkg is
   constant SECTOR_4_BASE_ADDR_C : slv(31 downto 0) := x"6F20_0000";
   constant SECTOR_5_BASE_ADDR_C : slv(31 downto 0) := x"6F28_0000";
 
-  constant APX_INFO_BASE_ADDR_C        : slv(31 downto 0) := x"6FF0_0000";
+  constant APX_INFO_BASE_ADDR_C        : slv(31 downto 0) := x"6ff0_0000";
   constant APX_SECTOR_CTRL_BASE_ADDR_C : slv(31 downto 0) := SECTOR_1_BASE_ADDR_C;
 
 end package PrjSpecPkg;
