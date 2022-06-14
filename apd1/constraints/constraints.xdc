@@ -58,3 +58,28 @@ set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objec
 set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 set_clock_groups -quiet -asynchronous -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 
+##====================##
+## TIMING CONSTRAINTS (FOR TCDS2-Test ##
+##====================##
+set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]] \
+-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] \
+-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
+#-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*/*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] \
+#-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*/*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
+#-group [get_clocks rxoutclk_out[0]_1] \
+#-group [get_clocks rxoutclk_out[0]]
+
+
+#-----------------------------------------------------
+# lpGBT10G Tx - lpGBT-FE Tx - MASTER + SLAVE
+#-----------------------------------------------------
+set_multicycle_path 9  -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -setup
+set_multicycle_path 8 -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -hold
+
+#set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
+#set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]]
+
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks  txoutclkpcs_out[0]] \
+-group [get_clocks rxoutclk_out[0]_1] \
+-group [get_clocks txoutclk_out[0]_1]
+

@@ -16,8 +16,9 @@ loadRuckusTcl $::env(TOP_DIR)/submodules/surf/protocols/pgp/pgp3/core
 loadRuckusTcl $::env(TOP_DIR)/submodules/apx-fs
 
 # Load local source Code and constraints
-loadSource      -dir "$::DIR_PATH/rtl/"
-loadSource      -dir "$::DIR_PATH/cfg/"
+loadSource             -path "$::DIR_PATH/rtl/apd1_top.vhd"
+loadSource -lib apx_fs -path "$::DIR_PATH/rtl/ApxAxiTestIp.vhd"
+loadSource -lib apx_fs -dir "$::DIR_PATH/cfg/"
 loadConstraints -dir "$::DIR_PATH/constraints/"
 
 # Area constraints used in the implementation  only

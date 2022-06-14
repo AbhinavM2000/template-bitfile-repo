@@ -2,7 +2,8 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
-use work.StdRtlPkg.all;
+Library surf;
+use surf.StdRtlPkg.all;
 
 package PrjSpecPkg is
 
@@ -21,7 +22,10 @@ package PrjSpecPkg is
   constant SECTOR_3_BASE_ADDR_C : slv(31 downto 0) := x"6F18_0000";
   constant SECTOR_4_BASE_ADDR_C : slv(31 downto 0) := x"6F20_0000";
   constant SECTOR_5_BASE_ADDR_C : slv(31 downto 0) := x"6F28_0000";
-
+  constant TCDS_CTRL_BASE_ADDR_C: slv(31 downto 0) := x"6F40_0000";   -- Comment: by Lpm Temporal, hbd
+  constant APX_TCDS_MON_BASE_ADDR_C:  slv(31 downto 0) := x"6F60_0000";   -- Comment: by Lpm Temporal, hbd
+  
+  
   constant APX_INFO_BASE_ADDR_C        : slv(31 downto 0) := x"6ff0_0000";
   constant APX_SECTOR_CTRL_BASE_ADDR_C : slv(31 downto 0) := SECTOR_1_BASE_ADDR_C;
 

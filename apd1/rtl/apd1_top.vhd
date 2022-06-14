@@ -3,15 +3,17 @@ use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_misc.all;
 
-use work.StdRtlPkg.all;
-use work.AxiLitePkg.all;
+Library surf;
+use surf.StdRtlPkg.all;
+use surf.AxiLitePkg.all;
+use surf.i2cPkg.all;
 
-use work.i2cPkg.all;
-
-use work.PrjSpecPkg.all;
 
 library UNISIM;
 use UNISIM.vcomponents.all;
+
+library apx_fs; 
+use apx_fs.PrjSpecPkg.all;
 
 entity apd1_top is
   generic (
@@ -68,10 +70,13 @@ architecture rtl of apd1_top is
 
   constant AXI_CLK_FREQUENCY_G : real := 50.00E+6;
 
-  constant NUM_AXI_MASTERS_C : natural := 2;
+  constant NUM_AXI_MASTERS_C : natural := 4;
 
   constant APX_INFO_INDEX_C        : natural := 0;
-  constant APX_SECTOR_CTRL_INDEX_C : natural := 1;
+  constant TCDS_INDEX_C           : natural := 1;
+  constant APX_TCDS_MON_INDEX_C    : natural := 2;
+  constant APX_SECTOR_CTRL_INDEX_C : natural := 3;
+ 
 
 
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
@@ -79,10 +84,20 @@ architecture rtl of apd1_top is
       baseAddr              => APX_INFO_BASE_ADDR_C,
       addrBits              => 18,
       connectivity          => x"FFFF"),
+      TCDS_INDEX_C            => (
+      baseAddr              => TCDS_CTRL_BASE_ADDR_C,
+      addrBits              => 16,
+      connectivity          => x"FFFF"),
+    APX_TCDS_MON_INDEX_C    => (
+      baseAddr              => APX_TCDS_MON_BASE_ADDR_C,
+      addrBits              => 16,
+      connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (
       baseAddr              => APX_SECTOR_CTRL_BASE_ADDR_C,
       addrBits              => 23,
-      connectivity          => x"FFFF"));
+      connectivity          => x"FFFF")
+    
+    );
 
   signal mAxilWriteMasters : AxiLiteWriteMasterArray(NUM_AXI_MASTERS_C-1 downto 0);
   signal mAxilWriteSlaves  : AxiLiteWriteSlaveArray(NUM_AXI_MASTERS_C-1 downto 0) := (others => AXI_LITE_WRITE_SLAVE_EMPTY_DECERR_C);
@@ -148,6 +163,8 @@ architecture rtl of apd1_top is
 
   signal clk_125, clk_125_bufg : std_logic;
 
+   signal fsClkMain : sl;
+
 begin
 
   U_ibufds_125 : IBUFDS
@@ -187,7 +204,7 @@ begin
 --      ); 
 
 
-  U_axiInfra : entity work.axiInfra
+  U_axiInfra : entity apx_fs.axiInfra
     generic map(
       I2C_C2C_PHY_ADDR_G => I2C_C2C_PHY_ADDR_G
       )
@@ -229,7 +246,7 @@ begin
       mAxilReadSlave   => mAxilReadSlave
       );
 
-  U_QpllServiceBank : entity work.QpllServiceBank
+  U_QpllServiceBank : entity apx_fs.QpllServiceBank
 
     port map (
       axi_lite_clk => axi_lite_clk,
@@ -268,7 +285,60 @@ begin
   TcdsQpll1RefClkIn <= '0';
   TcdsgtQpll0LockIn <= gtQpllLock(0);
 
-  U_XBAR : entity work.AxiLiteCrossbar
+  -----------------------------
+  --  APxTCDS2 
+  ---------------------------         
+    U_ApxTcds2 : entity apx_fs.ApxTcds2
+    port map(
+      -- AXI-Lite Bus
+      axiReadMaster  => mAxilReadMasters(TCDS_INDEX_C),
+      axiReadSlave   => mAxilReadSlaves(TCDS_INDEX_C),
+      axiWriteMaster => mAxilWriteMasters(TCDS_INDEX_C),
+      axiWriteSlave  => mAxilWriteSlaves(TCDS_INDEX_C),
+      axiClk         => axi_lite_clk,
+      axiRst         => axi_lite_reset,
+      
+     mgt_refclk_gth_mgt233_rc0_p => tcdsRefclk_p,
+     mgt_refclk_gth_mgt233_rc0_n => tcdsRefclk_n,
+     tcds_clk_40_out_pri   => fsClkMain, -- open,
+     TcdsRxRecClk  =>  open, --fsClkMain,
+    
+     Qpll0ClkIn    => TcdsQpll0ClkIn,
+     Qpll0RefClkIn => TcdsQpll0RefClkIn,
+     Qpll1ClkIn    => TcdsQpll1ClkIn,
+     Qpll1RefClkIn => TcdsQpll1RefClkIn,
+     gtQpll0LockIn => TcdsgtQpll0LockIn,
+     gtQpll0ResetOut => TcdsgtQpll0ResetOut,
+    
+     tcds2_orbit_out  => open,
+--    tcds2_orbit_n  => open, 
+    tcds_backplane_slot2_tx_p => open,
+    tcds_backplane_slot2_tx_n => open,
+    tcds_backplane_slot2_rx_p =>  '0',
+    tcds_backplane_slot2_rx_n => '0'
+      );
+U_FreqRecoverClkMon: entity apx_fs.FreqClkMonBufg
+   generic map(
+     TPD_G => TPD_G,
+     AXI_CLK_FREQ_G       => AXI_CLK_FREQUENCY_G,
+     REFCLK_PAIR_IDX_BTM_G => 0,
+     REFCLK_PAIR_IDX_TOP_G => 0
+     )
+   port map(
+     -- AXI-Lite Bus
+     axiClk         => axi_lite_clk,
+     axiRst         => axi_lite_reset,
+     axiReadMaster  => mAxilReadMasters(APX_TCDS_MON_INDEX_C),  
+     axiReadSlave   => mAxilReadSlaves(APX_TCDS_MON_INDEX_C),   
+     axiWriteMaster => mAxilWriteMasters(APX_TCDS_MON_INDEX_C), 
+     axiWriteSlave  => mAxilWriteSlaves(APX_TCDS_MON_INDEX_C),  
+     
+     ClkIn(0)=> fsClkMain
+        );
+
+      
+    
+  U_XBAR : entity surf.AxiLiteCrossbar
     generic map (
       TPD_G              => TPD_G,
       NUM_SLAVE_SLOTS_G  => 1,
@@ -286,7 +356,7 @@ begin
       axiClk              => axi_lite_clk,
       axiClkRst           => axi_lite_reset);
 
-  U_APxInfo : entity work.apxInfo
+  U_APxInfo : entity apx_fs.apxInfo
     generic map(
       AXI_CLK_FREQ_G          => AXI_CLK_FREQUENCY_G,
       INCLUDE_VERSION_CORE    => true,
@@ -306,7 +376,7 @@ begin
       axiClk         => axi_lite_clk,
       axiRst         => axi_lite_reset);
 
-  U_ApxSectorChassisWrapper : entity work.ApxFsSectorChassisWrapper
+  U_ApxSectorChassisWrapper : entity apx_fs.ApxFsSectorChassisWrapper
     generic map(
       SECTOR_CNT_G   => SECTOR_CNT_C,
       CHASSIS_TYPE_G => CHASSIS_TYPE_C
@@ -330,7 +400,7 @@ begin
 
 
   gen_sector : for i in 0 to SECTOR_CNT_C-1 generate
-    U_APxAxiTestIp : entity work.apxTestIp
+    U_APxAxiTestIp : entity apx_fs.apxTestIp
       generic map(
         AXI_CLK_FREQ_G   => AXI_CLK_FREQUENCY_G,
         SECTOR_NO        => i,

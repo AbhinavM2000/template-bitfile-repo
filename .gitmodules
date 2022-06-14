@@ -7,3 +7,15 @@
 [submodule "submodules/surf"]
 	path = submodules/surf
 	url = https://github.com/slaclab/surf
+[submodule "submodules/cms-tcds2-firmware"]
+	path = submodules/cms-tcds2-firmware
+	url = ssh://git@gitlab.cern.ch:7999/cms-tcds/cms-tcds2-firmware.git
+[submodule "submodules/lpgbt-fpga"]
+	path = submodules/lpgbt-fpga
+	url = ssh://git@gitlab.cern.ch:7999/gbt-fpga/lpgbt-fpga.git
+[submodule "submodules/tclink"]
+	path = submodules/tclink
+	url = ssh://git@gitlab.cern.ch:7999/HPTD/tclink.git
+[submodule "submodules/lpgbt-fpga-kcu105"]
+	path = submodules/lpgbt-fpga-kcu105
+	url = ssh://git@gitlab.cern.ch:7999/gbt-fpga/lpgbt-fpga-kcu105.git

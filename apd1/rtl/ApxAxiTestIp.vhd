@@ -2,9 +2,12 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-use work.StdRtlPkg.all;
-use work.AxiLitePkg.all;
-use work.PrjSpecPkg.all;
+library surf;
+use surf.StdRtlPkg.all;
+use surf.AxiLitePkg.all;
+
+library apx_fs;
+use apx_fs.PrjSpecPkg.all;
 
 entity apxTestIp is
   generic (
@@ -92,7 +95,7 @@ readRegister(0) <= std_logic_vector(to_unsigned(SECTOR_NO,32));
   --------------------------
   -- AXI-Lite: Crossbar Core
   --------------------------
-  U_XBAR : entity work.AxiLiteCrossbar
+  U_XBAR : entity surf.AxiLiteCrossbar
     generic map (
       TPD_G              => TPD_G,
       NUM_SLAVE_SLOTS_G  => 1,
@@ -111,7 +114,7 @@ readRegister(0) <= std_logic_vector(to_unsigned(SECTOR_NO,32));
       mAxiReadSlaves      => locAxiReadSlaves);
 
 
-U_ApxRegs : entity work.AxiLiteRegs 
+U_ApxRegs : entity surf.AxiLiteRegs 
 generic map(
 NUM_READ_REG_G => NUM_READ_REG_G,
 NUM_WRITE_REG_G => NUM_WRITE_REG_G
@@ -128,7 +131,7 @@ NUM_WRITE_REG_G => NUM_WRITE_REG_G
       readRegister   => readRegister);
 
 
-    U_ApxRAM0 : entity work.AxiDualPortRam
+    U_ApxRAM0 : entity surf.AxiDualPortRam
       generic map(
         SYNTH_MODE_G        => "xpm",
         MEMORY_INIT_FILE_G  => "apx_fs_info.mem",  -- Used for MEMORY_TYPE_G="XPM only
@@ -146,7 +149,7 @@ NUM_WRITE_REG_G => NUM_WRITE_REG_G
 
 
 
-    U_ApxRAM1 : entity work.AxiDualPortRam
+    U_ApxRAM1 : entity surf.AxiDualPortRam
       generic map(
         SYNTH_MODE_G        => "xpm",
         MEMORY_INIT_FILE_G  => "apx_fs_info.mem",  -- Used for MEMORY_TYPE_G="XPM only
