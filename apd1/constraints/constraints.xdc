@@ -58,6 +58,7 @@ set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objec
 set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 set_clock_groups -quiet -asynchronous -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk40osc] -group [get_clocks -include_generated_clocks clk_40_tx] -group [get_clocks -include_generated_clocks axiClk]
 ##====================##
 ## TIMING CONSTRAINTS (FOR TCDS2-Test ##
 ##====================##

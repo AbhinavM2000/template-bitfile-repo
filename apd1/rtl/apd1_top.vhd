@@ -55,7 +55,7 @@ entity apd1_top is
     );
 end apd1_top;
 
-architecture rtl of apd1_top is
+architecture rtl of apd1_top is 
 
 
   signal clk_10  : sl;
@@ -298,11 +298,18 @@ begin
       axiClk         => axi_lite_clk,
       axiRst         => axi_lite_reset,
       
-     mgt_refclk_gth_mgt233_rc0_p => tcdsRefclk_p,
-     mgt_refclk_gth_mgt233_rc0_n => tcdsRefclk_n,
-     tcds_clk_40_out_pri   => fsClkMain, -- open,
-     TcdsRxRecClk  =>  open, --fsClkMain,
-    
+     APxTcds2MgtRefClk_p=> tcdsRefclk_p,
+     APxTcds2MgtRefClk_n=> tcdsRefclk_n,
+     LhcClk40           => fsClkMain, -- open,
+     fsClk40            => open,
+     fsClkMain          => open,    
+     fsClkDiv2          => open, 
+     
+     TcdsRxRecClk      =>  open, --fsClkMain,
+     tcds2_orbit_out  => open,
+     
+     oscClk40         => clk_40,
+
      Qpll0ClkIn    => TcdsQpll0ClkIn,
      Qpll0RefClkIn => TcdsQpll0RefClkIn,
      Qpll1ClkIn    => TcdsQpll1ClkIn,
@@ -310,12 +317,10 @@ begin
      gtQpll0LockIn => TcdsgtQpll0LockIn,
      gtQpll0ResetOut => TcdsgtQpll0ResetOut,
     
-     tcds2_orbit_out  => open,
---    tcds2_orbit_n  => open, 
-    tcds_backplane_slot2_tx_p => open,
-    tcds_backplane_slot2_tx_n => open,
-    tcds_backplane_slot2_rx_p =>  '0',
-    tcds_backplane_slot2_rx_n => '0'
+     tcds_backplane_slot2_tx_p => open,
+     tcds_backplane_slot2_tx_n => open,
+     tcds_backplane_slot2_rx_p =>  '0',
+     tcds_backplane_slot2_rx_n => '0'
       );
 U_FreqRecoverClkMon: entity apx_fs.FreqClkMonBufg
    generic map(
