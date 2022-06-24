@@ -8,6 +8,8 @@ use surf.StdRtlPkg.all;
 use surf.AxiLitePkg.all;
 use surf.i2cPkg.all;
 
+  library apx_fs;
+  use apx_fs.tcdsPkg.all;
 
 library UNISIM;
 use UNISIM.vcomponents.all;
@@ -76,7 +78,6 @@ architecture rtl of apd1_top is
   constant TCDS_INDEX_C           : natural := 1;
   constant APX_TCDS_MON_INDEX_C    : natural := 2;
   constant APX_SECTOR_CTRL_INDEX_C : natural := 3;
- 
 
 
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
@@ -164,6 +165,10 @@ architecture rtl of apd1_top is
   signal clk_125, clk_125_bufg : std_logic;
 
    signal fsClkMain : sl;
+
+
+signal       tcdsCmds : tTcdsCmds;
+
 
 begin
 
@@ -289,6 +294,9 @@ begin
   --  APxTCDS2 
   ---------------------------         
     U_ApxTcds2 : entity apx_fs.ApxTcds2
+    generic map (
+    FS_TO_LHC_CLK_FACTOR_G => FS_TO_LHC_CLK_FACTOR_C
+    )
     port map(
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(TCDS_INDEX_C),
@@ -300,27 +308,20 @@ begin
       
      APxTcds2MgtRefClk_p=> tcdsRefclk_p,
      APxTcds2MgtRefClk_n=> tcdsRefclk_n,
-     LhcClk40           => fsClkMain, -- open,
      fsClk40            => open,
      fsClkMain          => open,    
      fsClkDiv2          => open, 
-     
-     TcdsRxRecClk      =>  open, --fsClkMain,
-     tcds2_orbit_out  => open,
-     
+         
      oscClk40         => clk_40,
+     
+     tcdsCmds => tcdsCmds,
 
      Qpll0ClkIn    => TcdsQpll0ClkIn,
      Qpll0RefClkIn => TcdsQpll0RefClkIn,
      Qpll1ClkIn    => TcdsQpll1ClkIn,
      Qpll1RefClkIn => TcdsQpll1RefClkIn,
      gtQpll0LockIn => TcdsgtQpll0LockIn,
-     gtQpll0ResetOut => TcdsgtQpll0ResetOut,
-    
-     tcds_backplane_slot2_tx_p => open,
-     tcds_backplane_slot2_tx_n => open,
-     tcds_backplane_slot2_rx_p =>  '0',
-     tcds_backplane_slot2_rx_n => '0'
+     gtQpll0ResetOut => TcdsgtQpll0ResetOut
       );
 U_FreqRecoverClkMon: entity apx_fs.FreqClkMonBufg
    generic map(

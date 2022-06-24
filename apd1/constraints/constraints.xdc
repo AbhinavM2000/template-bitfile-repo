@@ -58,18 +58,21 @@ set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objec
 set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 set_clock_groups -quiet -asynchronous -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk40osc] -group [get_clocks -include_generated_clocks clk_40_tx] -group [get_clocks -include_generated_clocks axiClk]
+
+
+create_generated_clock -name clk40osc_mux -source [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/I0] -divide_by 1 [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/O]
+create_generated_clock -name clk40rec_mux -source [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/I1] -divide_by 1 -add -master_clock clk40rec [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/O]
+set_clock_groups -logically_exclusive -group [get_clocks -include_generated_clocks clk40osc_mux] -group [get_clocks -include_generated_clocks clk40rec_mux]
+
+set_clock_groups -asynchronous -group {clk40osc clk80osc clk40osc_mux clk40rec_mux} -group axiClk
+
+
 ##====================##
 ## TIMING CONSTRAINTS (FOR TCDS2-Test ##
 ##====================##
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]] \
 -group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] \
 -group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
-#-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*/*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] \
-#-group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*/*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
-#-group [get_clocks rxoutclk_out[0]_1] \
-#-group [get_clocks rxoutclk_out[0]]
-
 
 #-----------------------------------------------------
 # lpGBT10G Tx - lpGBT-FE Tx - MASTER + SLAVE

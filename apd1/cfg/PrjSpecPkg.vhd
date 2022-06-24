@@ -9,6 +9,7 @@ package PrjSpecPkg is
 
   constant I2C_C2C_PHY_ADDR_C : integer range 0 to 1023 := 85;
 
+  constant    FS_TO_LHC_CLK_FACTOR_C : natural range 1 to 12 := 9;
 
   constant SECTOR_CNT_C : integer := 6;
   constant SLR_CNT_C    : integer := 3;
