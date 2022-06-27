@@ -3,19 +3,26 @@ use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_misc.all;
 
-Library surf;
-use surf.StdRtlPkg.all;
-use surf.AxiLitePkg.all;
-use surf.i2cPkg.all;
-
-  library apx_fs;
-  use apx_fs.tcdsPkg.all;
 
 library UNISIM;
 use UNISIM.vcomponents.all;
 
-library apx_fs; 
+
+library surf;
+use surf.StdRtlPkg.all;
+use surf.AxiLitePkg.all;
+use surf.AxiStreamPkg.all;
+
+
+use surf.i2cPkg.all;
+
+
+library apx_fs;
 use apx_fs.PrjSpecPkg.all;
+use apx_fs.tcdsPkg.all;
+use apx_fs.MgtPkg.all;
+use apx_fs.ApxSectorPkg.all;
+use apx_fs.ApxL1TPkg.all;
 
 entity apd1_top is
   generic (
@@ -44,6 +51,20 @@ entity apd1_top is
     I2C_C2C_scl_io : inout std_logic;
     I2C_C2C_sda_io : inout std_logic;
 
+    mgtRefClk0P : in slv(0 to REFCLK_CNT_C-1);
+    mgtRefClk0N : in slv(0 to REFCLK_CNT_C-1);
+
+    mgtRefClk1P : in slv(0 to REFCLK_CNT_C-1);
+    mgtRefClk1N : in slv(0 to REFCLK_CNT_C-1);
+
+
+    -- Mgt Rx/Tx pins
+    MgtRxN : in  slv(0 to MGT_CNT_C-1) := (others => '0');
+    MgtRxP : in  slv(0 to MGT_CNT_C-1) := (others => '0');
+    MgtTxN : out slv(0 to MGT_CNT_C-1);
+    MgtTxP : out slv(0 to MGT_CNT_C-1);
+
+
     gt_c2c_rx_rxn : in  slv (0 to AURORA_LANES-1);
     gt_c2c_rx_rxp : in  slv (0 to AURORA_LANES-1);
     gt_c2c_tx_txn : out slv (0 to AURORA_LANES-1);
@@ -57,7 +78,7 @@ entity apd1_top is
     );
 end apd1_top;
 
-architecture rtl of apd1_top is 
+architecture rtl of apd1_top is
 
 
   signal clk_10  : sl;
@@ -75,7 +96,7 @@ architecture rtl of apd1_top is
   constant NUM_AXI_MASTERS_C : natural := 4;
 
   constant APX_INFO_INDEX_C        : natural := 0;
-  constant TCDS_INDEX_C           : natural := 1;
+  constant TCDS_INDEX_C            : natural := 1;
   constant APX_TCDS_MON_INDEX_C    : natural := 2;
   constant APX_SECTOR_CTRL_INDEX_C : natural := 3;
 
@@ -85,7 +106,7 @@ architecture rtl of apd1_top is
       baseAddr              => APX_INFO_BASE_ADDR_C,
       addrBits              => 18,
       connectivity          => x"FFFF"),
-      TCDS_INDEX_C            => (
+    TCDS_INDEX_C            => (
       baseAddr              => TCDS_CTRL_BASE_ADDR_C,
       addrBits              => 16,
       connectivity          => x"FFFF"),
@@ -97,7 +118,7 @@ architecture rtl of apd1_top is
       baseAddr              => APX_SECTOR_CTRL_BASE_ADDR_C,
       addrBits              => 23,
       connectivity          => x"FFFF")
-    
+
     );
 
   signal mAxilWriteMasters : AxiLiteWriteMasterArray(NUM_AXI_MASTERS_C-1 downto 0);
@@ -152,6 +173,7 @@ architecture rtl of apd1_top is
   signal gtQpllRefClk               : slv (1 downto 0) := (others => '0');
   signal gtQpllRefClkLost           : slv (1 downto 0) := (others => '0');
   signal gtQpllReset                : slv (1 downto 0) := (others => '0');
+  signal gtQpllRefClkBufgDiv2       : slv (1 downto 0) := (others => '0');
 
 
   --LpGBT 
@@ -164,11 +186,25 @@ architecture rtl of apd1_top is
 
   signal clk_125, clk_125_bufg : std_logic;
 
-   signal fsClkMain : sl;
 
 
-signal       tcdsCmds : tTcdsCmds;
+  signal tcdsCmds : tTcdsCmds;
 
+
+  signal axiStreamAlgoIn  : AxiStreamMasterArray(0 to L1T_IN_STREAM_CNT_C -1);
+  signal axiStreamAlgoOut : AxiStreamMasterArray(0 to L1T_OUT_STREAM_CNT_C -1);
+
+  signal algoClk   : sl;
+  signal algoRst   : sl;
+  signal algoStart : sl;
+  signal algoDone  : sl;
+  signal algoIdle  : sl;
+  signal algoReady : sl;
+
+
+  signal fsClk40   : sl;
+  signal fsClkMain : sl;
+  signal fsClkDiv2 : sl;
 
 begin
 
@@ -201,12 +237,12 @@ begin
       I  => clk_125_bufg
       );
 
---  U_obufds_dplink_ecc : OBUFDS
---    port map (
---      O  => dplink_p2p_ecc_p,
---      OB => dplink_p2n_ecc_n,
---      I  => clk_125_bufg
---      ); 
+  U_obufds_dplink_ecc : OBUFDS
+    port map (
+      O  => dplink_p2p_ecc_p,
+      OB => dplink_p2n_ecc_n,
+      I  => gtQpllRefClkBufgDiv2(1)
+      );
 
 
   U_axiInfra : entity apx_fs.axiInfra
@@ -264,11 +300,12 @@ begin
       axic2cUserClk => axic2cUserClk,
       mmcmNotLocked => mmcmNotLocked,
 
-      gtQpllReset      => gtQpllReset,
-      gtQPllClk        => gtQPllClk,
-      gtQpllRefClk     => gtQpllRefClk,
-      gtQpllLock       => gtQpllLock,
-      gtQpllRefClkLost => gtQpllRefClkLost,
+      gtQpllReset          => gtQpllReset,
+      gtQPllClk            => gtQPllClk,
+      gtQpllRefClk         => gtQpllRefClk,
+      gtQpllLock           => gtQpllLock,
+      gtQpllRefClkLost     => gtQpllRefClkLost,
+      gtQpllRefClkBufgDiv2 => gtQpllRefClkBufgDiv2,
 
       tcdsRefclk_n     => tcdsRefclk_n,
       tcdsRefclk_p     => tcdsRefclk_p,
@@ -293,10 +330,10 @@ begin
   -----------------------------
   --  APxTCDS2 
   ---------------------------         
-    U_ApxTcds2 : entity apx_fs.ApxTcds2
+  U_ApxTcds2 : entity apx_fs.ApxTcds2
     generic map (
-    FS_TO_LHC_CLK_FACTOR_G => FS_TO_LHC_CLK_FACTOR_C
-    )
+      FS_TO_LHC_CLK_FACTOR_G => FS_TO_LHC_CLK_FACTOR_C
+      )
     port map(
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(TCDS_INDEX_C),
@@ -305,45 +342,45 @@ begin
       axiWriteSlave  => mAxilWriteSlaves(TCDS_INDEX_C),
       axiClk         => axi_lite_clk,
       axiRst         => axi_lite_reset,
-      
-     APxTcds2MgtRefClk_p=> tcdsRefclk_p,
-     APxTcds2MgtRefClk_n=> tcdsRefclk_n,
-     fsClk40            => open,
-     fsClkMain          => open,    
-     fsClkDiv2          => open, 
-         
-     oscClk40         => clk_40,
-     
-     tcdsCmds => tcdsCmds,
 
-     Qpll0ClkIn    => TcdsQpll0ClkIn,
-     Qpll0RefClkIn => TcdsQpll0RefClkIn,
-     Qpll1ClkIn    => TcdsQpll1ClkIn,
-     Qpll1RefClkIn => TcdsQpll1RefClkIn,
-     gtQpll0LockIn => TcdsgtQpll0LockIn,
-     gtQpll0ResetOut => TcdsgtQpll0ResetOut
+      APxTcds2MgtRefClk_p => tcdsRefclk_p,
+      APxTcds2MgtRefClk_n => tcdsRefclk_n,
+      fsClk40             => fsClk40,
+      fsClkMain           => fsClkMain,
+      fsClkDiv2           => fsClkDiv2,
+
+      oscClk40 => clk_40,
+
+      tcdsCmds => tcdsCmds,
+
+      Qpll0ClkIn      => TcdsQpll0ClkIn,
+      Qpll0RefClkIn   => TcdsQpll0RefClkIn,
+      Qpll1ClkIn      => TcdsQpll1ClkIn,
+      Qpll1RefClkIn   => TcdsQpll1RefClkIn,
+      gtQpll0LockIn   => TcdsgtQpll0LockIn,
+      gtQpll0ResetOut => TcdsgtQpll0ResetOut
       );
-U_FreqRecoverClkMon: entity apx_fs.FreqClkMonBufg
-   generic map(
-     TPD_G => TPD_G,
-     AXI_CLK_FREQ_G       => AXI_CLK_FREQUENCY_G,
-     REFCLK_PAIR_IDX_BTM_G => 0,
-     REFCLK_PAIR_IDX_TOP_G => 0
-     )
-   port map(
-     -- AXI-Lite Bus
-     axiClk         => axi_lite_clk,
-     axiRst         => axi_lite_reset,
-     axiReadMaster  => mAxilReadMasters(APX_TCDS_MON_INDEX_C),  
-     axiReadSlave   => mAxilReadSlaves(APX_TCDS_MON_INDEX_C),   
-     axiWriteMaster => mAxilWriteMasters(APX_TCDS_MON_INDEX_C), 
-     axiWriteSlave  => mAxilWriteSlaves(APX_TCDS_MON_INDEX_C),  
-     
-     ClkIn(0)=> fsClkMain
-        );
+  U_FreqRecoverClkMon : entity apx_fs.FreqClkMonBufg
+    generic map(
+      TPD_G                 => TPD_G,
+      AXI_CLK_FREQ_G        => AXI_CLK_FREQUENCY_G,
+      REFCLK_PAIR_IDX_BTM_G => 0,
+      REFCLK_PAIR_IDX_TOP_G => 0
+      )
+    port map(
+      -- AXI-Lite Bus
+      axiClk         => axi_lite_clk,
+      axiRst         => axi_lite_reset,
+      axiReadMaster  => mAxilReadMasters(APX_TCDS_MON_INDEX_C),
+      axiReadSlave   => mAxilReadSlaves(APX_TCDS_MON_INDEX_C),
+      axiWriteMaster => mAxilWriteMasters(APX_TCDS_MON_INDEX_C),
+      axiWriteSlave  => mAxilWriteSlaves(APX_TCDS_MON_INDEX_C),
 
-      
-    
+      ClkIn(0) => fsClkMain
+      );
+
+
+
   U_XBAR : entity surf.AxiLiteCrossbar
     generic map (
       TPD_G              => TPD_G,
@@ -404,24 +441,64 @@ U_FreqRecoverClkMon: entity apx_fs.FreqClkMonBufg
       mAxiReadSlaves   => secAxiReadSlaves
       );
 
+--  gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
+  gen_sector : for i in 0 to 0 generate
 
-  gen_sector : for i in 0 to SECTOR_CNT_C-1 generate
-    U_APxAxiTestIp : entity apx_fs.apxTestIp
+    U_ApxL1TSector : entity apx_fs.ApxL1TSector
       generic map(
-        AXI_CLK_FREQ_G   => AXI_CLK_FREQUENCY_G,
-        SECTOR_NO        => i,
-        BUILD_INFO_G     => BUILD_INFO_G,
-        XIL_DEVICE_G     => "ULTRASCALE",
+
+        AXI_CLK_FREQ_G => AXI_CLK_FREQUENCY_G,
+        REFCLK_0_CFG_G => RefClk0CfgImpl_C,
+        REFCLK_1_CFG_G => RefClk1CfgImpl_C,
+        QPLL_CFG_G     => QpllCfgImpl_C,
+        MGT_CFG_G      => MgtCfgImpl67_C,
+        APX_L1T_CFG_G  => apxL1TCfgArrImpl,
+
+
+        REFCLK_PAIR_IDX_BTM_G => sectorMinIdx(i, RefClk0CfgImpl_C),
+        REFCLK_PAIR_IDX_TOP_G => sectorMaxIdx(i, RefClk0CfgImpl_C),
+
+        QPLL_IDX_BTM_G => sectorMinIdx(i, QpllCfgImpl_C),
+        QPLL_IDX_TOP_G => sectorMaxIdx(i, QpllCfgImpl_C),
+
+        MGT_IDX_BTM_G => sectorMinIdx(i, MgtCfgImpl67_C),
+        MGT_IDX_TOP_G => sectorMaxIdx(i, MgtCfgImpl67_C),
+
+        APX_L1T_IDX_BTM_G => sectorMinIdx(i, apxL1TCfgArrImpl),
+        APX_L1T_IDX_TOP_G => sectorMaxIdx(i, apxL1TCfgArrImpl),
+
+
+
         AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
         )
       port map(
-        -- AXI-Lite Bus
+
         axiReadMaster  => secAxiReadMasters(i),
         axiReadSlave   => secAxiReadSlaves(i),
         axiWriteMaster => secAxiWriteMasters(i),
         axiWriteSlave  => secAxiWriteSlaves(i),
         axiClk         => axi_lite_clk,
-        axiRst         => secAxiRst(i));
+        axiRst         => secAxiRst(i),
+
+        axiStreamClk => fsClkMain,
+        axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+
+        LHCClk   => fsClk40,
+        tcdsCmds => tcdsCmds,
+
+        MgtRxN => MgtRxN(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        MgtRxP => MgtRxP(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        MgtTxN => MgtTxN(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        MgtTxP => MgtTxP(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+
+        mgtRefClk0N => mgtRefClk0N(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
+        mgtRefClk0P => mgtRefClk0P(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
+        mgtRefClk1N => mgtRefClk1N(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
+        mgtRefClk1P => mgtRefClk1P(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C))
+
+        );
+
   end generate;
 
 end architecture;
