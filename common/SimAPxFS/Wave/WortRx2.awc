@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="awc" version="2">
+	<waveform>
+		<datasets>
+			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1658852510"/>
+		</datasets>
+		<browser type="events"/>
+		<view active="true">
+			<cursors>
+				<cursor name="Default cursor" id="-1" time="0fs+0" lock="0" tip="1"/>
+				<active name="Default cursor" time="0fs+0"/>
+			</cursors>
+			<signalspart>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_iCSPFSM" aliasid="0"/>
+				<expand value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_iCSPFSM.HdrTypeBuf" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/r" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/wr_en" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/rd_en" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/dout" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/din" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/overflow" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_OrbitStrobeGen/orbit_strobe_o" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/overflow" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/empty" aliasid="0"/>
+				<viewmode value="namedrow"/>
+				<expand value="1"/>
+				<group name="Error Insertion ">
+					<viewmode value=""/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/iridisSfTxCtrl" aliasid="0"/>
+				</group>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/mgtTxClk" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/syncTxCtrlStrobePort" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/crcLatched" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerSBin" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM" aliasid="0"/>
+				<expand value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.IsFiller" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.hdrErrForce" aliasid="0"/>
+				<viewmode value="namedrow"/>
+				<expand value="1"/>
+				<group name="CSPTxScrambler ">
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<viewmode value=""/>
+					<wave_coloring value="1"/>
+					<analogbottom value="-300"/>
+					<analogtop value="1000"/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerDin" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerSBin" aliasid="0"/>
+					<color value="#da70d6"/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerSBout" aliasid="0"/>
+					<bold value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<analogbottom value=""/>
+					<analogtop value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerEna" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerDout" aliasid="0"/>
+				</group>
+				<bold value="1"/>
+				<color value="#8a2be2"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.ClrMask.hdrErrForce" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.TxCtrlStrobe" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<viewmode value="namedrow"/>
+				<wave_coloring value=""/>
+				<expand value="1"/>
+				<group name="CSPRxScrambler">
+					<viewmode value=""/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerDout" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerSBout" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/RxDataWord" aliasid="0"/>
+				</group>
+				<bold value="1"/>
+				<height value="27"/>
+				<color value="#ff0000"/>
+				<viewmode value="namedrow"/>
+				<wave_coloring value="1"/>
+				<group name="IndxCorrection ">
+					<bold value=""/>
+					<height value=""/>
+					<color value=""/>
+					<viewmode value=""/>
+					<wave_coloring value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/data_word_in" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/r" aliasid="0"/>
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/fifoWrite_in" aliasid="0"/>
+					<bold value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/combined_state_v" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/resync_active_v" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/comparator_v" aliasid="0"/>
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/fifoWrite_out_v" aliasid="0"/>
+					<bold value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/f2d_error_out_v" aliasid="0"/>
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/d2f_error_out_v" aliasid="0"/>
+					<bold value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/resync_active_v" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/combined_state_v" aliasid="0"/>
+				</group>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/data_word_in" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/r" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/fifoWrite_in" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/combined_state_v" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/resync_active_v" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/comparator_v" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/fifoWrite_out_v" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/f2d_error_out_v" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/d2f_error_out_v" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/resync_active_v" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_IndexCorrector/comb/combined_state_v" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/crcErrCnt" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/ICf2dErr" aliasid="0"/>
+				<color value="#da70d6"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/ICd2fErr" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM" aliasid="0">
+					<reverse value="1"/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.crcTChain" aliasid="0"/>
+				</signal>
+				<reverse value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/axisClk" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerVin" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerSBin" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerDin" aliasid="0"/>
+			</signalspart>
+			<firstvisiblesignal number="0"/>
+			<timesynchronization value="1"/>
+			<cursorssynchronization value="1"/>
+			<time beginvisible="0fs" endvisible="0fs"/>
+		</view>
+		<bookmarks/>
+		<time beginvisible="299220703125fs" endvisible="300041015625fs"/>
+		<timeunit name="auto"/>
+		<grid type="signalgrid" aliasid="0" name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.TxCtrlStrobe" edgetype="all" color="#808080" gridname="TxCtrlStrobe" ruler="0"/>
+		<grid type="signalgrid" aliasid="0" name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.ClrMask.hdrErrForce" edgetype="all" color="#808080" gridname="hdrErrForce" ruler="0"/>
+		<cursors>
+			<cursor name="Cursor 7" id="-1" time="300us+0" lock="0" tip="1"/>
+			<active name="Cursor 7" time="300us+0"/>
+		</cursors>
+		<hierarchy_depth value="0"/>
+	</waveform>
+</document>

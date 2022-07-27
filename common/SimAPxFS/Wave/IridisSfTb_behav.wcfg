@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="IridisSfTb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="IridisSfTb" />
+            <top_module name="axilitepkg" />
+            <top_module name="axistreampkg" />
+            <top_module name="csprulespkg" />
+            <top_module name="glbl" />
+            <top_module name="iridispkg" />
+            <top_module name="stdrtlpkg" />
+            <top_module name="tcds2_bx_and_orbit_pkg" />
+            <top_module name="textutilpkg" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="299,857.513000 ns"></ZoomStartTime>
+      <ZoomEndTime time="299,877.283001 ns"></ZoomEndTime>
+      <Cursor1Time time="299,873.988000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="307"></NameColumnWidth>
+      <ValueColumnWidth column_width="235"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wave_markers>
+      <marker label="" time="269079858" />
+      <marker label="" time="499967440000" />
+      <marker label="" time="23800000000" />
+      <marker label="" time="96657484000" />
+      <marker label="" time="299848986000" />
+   </wave_markers>
+   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/r_iCSPFSM">
+      <obj_property name="ElementShortName">r_iCSPFSM</obj_property>
+      <obj_property name="ObjectShortName">r_iCSPFSM</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/U_LinkResyncCtrl/r">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/r_oCSPFSM">
+      <obj_property name="ElementShortName">r_oCSPFSM</obj_property>
+      <obj_property name="ObjectShortName">r_oCSPFSM</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/fifoDataIn">
+      <obj_property name="ElementShortName">fifoDataIn[71:0]</obj_property>
+      <obj_property name="ObjectShortName">fifoDataIn[71:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/fifoDataOut">
+      <obj_property name="ElementShortName">fifoDataOut[71:0]</obj_property>
+      <obj_property name="ObjectShortName">fifoDataOut[71:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/U_Fifo/wr_en">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/U_Fifo/rd_en">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/axisClk">
+      <obj_property name="ElementShortName">axisClk</obj_property>
+      <obj_property name="ObjectShortName">axisClk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisSfTb/fsClks">
+      <obj_property name="ElementShortName">fsClks[1:0]</obj_property>
+      <obj_property name="ObjectShortName">fsClks[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisSfTb/mainSimClk">
+      <obj_property name="ElementShortName">mainSimClk</obj_property>
+      <obj_property name="ObjectShortName">mainSimClk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisSfTb/ClkMngrLockStat">
+      <obj_property name="ElementShortName">ClkMngrLockStat</obj_property>
+      <obj_property name="ObjectShortName">ClkMngrLockStat</obj_property>
+   </wvobject>
+</wave_config>
