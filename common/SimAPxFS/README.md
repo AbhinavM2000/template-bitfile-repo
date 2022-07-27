@@ -5,7 +5,7 @@ Basic simulation of the  IridisCSP  (CMS Standard Protocol) Tx and Rx blocks.
 
 ### Clone  the Simulation Project. 
 ```bash 
-git clone --recursive ssh://git@gitlab.cern.ch:7999/WisconsinCMS/APx-FW/apx-fs-pilot-prj.git -b  IridisCSPSimulation
+git clone --recursive ssh://git@gitlab.cern.ch:7999/WisconsinCMS/APx-FW/apx-fs-pilot-prj.git -b CSPSim_Integration
 ```
 
 ### Create a build directory  (Temporary Vivado project files)
