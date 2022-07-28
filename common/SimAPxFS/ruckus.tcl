@@ -43,7 +43,6 @@ loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/crc
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/CSPRulesPkg.vhd"
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/IridisCSPRx.vhd"
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/RxLinkResyncCtrl.vhd"
-loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/Pgp3RxGearboxAligner.vhd"
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/throttle.vhd"
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/rtl/SideBandGen.vhd"
 
