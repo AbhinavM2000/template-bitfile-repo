@@ -17,6 +17,7 @@ library apx_fs;
 
 use apx_fs.IridisCSPPkg.all;
 use apx_fs.CSPRulesPkg.all;
+use apx_fs.APxLinkBufPkg.all;
 -- TCDS Library
 use work.tcds2_bx_and_orbit_pkg.all;
 
@@ -225,9 +226,20 @@ type ErrorGeneratorType is record
   
   -- 
    signal AxisRst: sl := '1';  -- Rst state by defaul; 
-  
-  
-  ------------------------------------------------------------------------------------
+   -- 
+    -- LinkBuffer PlayBack  -- 
+   signal  linkBufCtrlTb  : tLinkBufCtrl := LinkBufCtrlInit; 
+   signal  linkBufStatTb  : tLinkBufStat;
+
+   signal AxisPbBufferIn, AxisPbBufferOut: AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
+
+   -- LinkBuffer Capture  --- 
+   signal  linkBufCtrlCap : tLinkBufCtrl := LinkBufCtrlInit; 
+   signal  linkBufStatCap : tLinkBufStat;
+
+   signal AxisCapBufferIn, AxisCapBufferOut: AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
+
+------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------ 
 begin
 
@@ -345,7 +357,39 @@ begin
               monitorOut   => SideBandMonitor
             );
 
+--------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------- 
+   U_PlayBackBuffer : entity apx_fs.APxLinkBuffer 
+     generic map ( 
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_LENGTH    => CHAN_FRAME_LENGTH_SIM_C, 
+      CHAN_THROTTLE_VECTOR =>  CHAN_THROTTLE_VECTOR_SIM_C  
+      )
+     port map ( 
+ 
+              clkLHC       => clk40, 
+              bc0_clkLHC   => OrbitStrobe,
+ 
+              linkBufCtrl  => linkBufCtrlTb, 
+              linkBufStat  => linkBufStatTb, 
 
+              axiStreamClk =>  axisTxClk, 
+              axiStreamIn  =>  AxisPbBufferIn, 
+              axiStreamOut =>  AxisPbBufferOut, 
+
+              clk_sc      => '0',
+              en_sc       => '1',
+              we_sc       => '0',
+              addr_sc     => (others => '0'),
+              din_sc      => (others => '0'),
+              dout_sc     => open
+        );
+
+ ---------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------- 
 -- ------------------------------------
 -- Iridis Rx --------------------------
 ---------------------------------------
@@ -381,7 +425,40 @@ U_IridisCSPRx: entity apx_fs.IridisCSPRx
    iridisSfRxStat => iridisSfRxStat
  );
 
---------------------------------- 
+----------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------- 
+  
+   U_CaptureBuffer : entity apx_fs.APxLinkBuffer 
+     generic map ( 
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C, 
+      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C  
+      )
+     port map ( 
+ 
+              clkLHC       => clk40, 
+              bc0_clkLHC   => OrbitStrobe,
+ 
+              linkBufCtrl  => linkBufCtrlCap, 
+              linkBufStat  => linkBufStatCap, 
+
+              axiStreamClk =>  axisRxClk, 
+              axiStreamIn  =>  AxisCapBufferIn, 
+              axiStreamOut =>  AxisCapBufferOut, 
+
+              clk_sc      => '0',
+              en_sc       => '1',
+              we_sc       => '0',
+              addr_sc     => (others => '0'),
+              din_sc      => (others => '0'),
+              dout_sc     => open
+        );
+
+  
+  
+  --------------------------------- 
 ---- Iridis Tx --------------
  -------------------------------- 
   U_IridisCSPTx : entity apx_fs.IridisCSPTx
@@ -410,7 +487,7 @@ U_IridisCSPRx: entity apx_fs.IridisCSPRx
        
       
       axisClk  => axisTxClk,
-      axiStream =>   AxisTxSideBand);-- AxisTxMaster);
+      axiStream =>  AxisPbBufferOut ); -- AxisTxSideBand);-- AxisTxMaster);
 
 -------------------------------------------
 -- AXI Stream Generator                ----
@@ -639,6 +716,14 @@ p_MainProces : process is
       show("Set Tx Resync Command"); 
       CtrlPulse(5,IridisSfTxCtrl.resync);
       wait for 150 ns;
+      ------ -- Play Back  Config   (Hast to be improved) ----- 
+       linkBufCtrlTb.mode         <= '1';  -- Playback  Mode 
+       linkBufCtrlTb.muxCtrl      <= '0';  -- Playback 
+       linkBufCtrlTb.loopEna      <= '1';  -- Playback  LoopEnable 
+       linkBufCtrlTb.bufdelay     <= x"000F";  -- Playback 
+       linkBufCtrlTb.SBGbc0delay  <= x"0100";  -- Playback 
+      wait for 50 ns; 
+      LinkBufRst (linkBufCtrlTb);     
   ------------------------------------------------------------------------------------
   --  After configuration and Tx Resync Command  Start the data generation  ---
   ------------------------------------------------------------------------------------
@@ -656,9 +741,8 @@ p_MainProces : process is
 	  EnableMatchFlag <= '0';
       wait for 50 ns;
       LinkRxInfo(iridisSfRxStat,iridisSfTxCtrl); 
-	  wait ;
 	  wait for  50ns;
-       for i in 0 to 20  loop
+       for i in 0 to 4  loop
 	    CrCError(iridisSfTxCtrl);
 		 wait for 500 ns ;
 		 RxCountersStatus(iridisSfRxStat);
@@ -666,6 +750,19 @@ p_MainProces : process is
 	end loop;
 	   wait until (rising_edge(OrbitStrobe));
 	    RxCountersStatus(iridisSfRxStat);
+
+      ------ -- Play Back  Config   (Hast to be improved) ----- 
+       linkBufCtrlCap.mode         <= '0';  --  
+       linkBufCtrlCap.muxCtrl      <= '0';  -- 
+       linkBufCtrlCap.loopEna      <= '0';  -- 
+       linkBufCtrlCap.bufdelay     <= x"000F";  -- 
+       linkBufCtrlCap.lastCycleAddr  <= x"0FF";  -- 
+      wait for 50 ns; 
+      LinkBufRst (linkBufCtrlCap);     
+      wait for  100 ns; 
+      linkBufCtrlCap.snglEna <= '1'; 
+      wait for  500 ns; 
+     linkBufCtrlCap.snglEna <= '0'; 
 	  wait ;
 	  
 	  HdrError(iridisSfTxCtrl);

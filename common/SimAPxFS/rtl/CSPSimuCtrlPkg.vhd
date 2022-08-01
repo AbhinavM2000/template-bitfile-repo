@@ -15,7 +15,7 @@ use apx_fs.IridisCSPPkg.all;
 --  CSP simulation Pakage 
 use work.CSPSimulationPkg.all; 
 use work.CSPSimTypePkg.all; 
-
+use apx_fs.APxLinkBufPkg.all;
 library std; 
 use std.textio.all;
 
@@ -100,6 +100,13 @@ package CSPSimCtrlPkg is
 ----------------------------------------------------------------------------------------- 
    procedure RxSyncRecovery ( signal IridisSfRxCtrl : inout tIridisSfRxCtrl; 
                               signal IridisSfRxStat : in tIridisSfRxStat);
+----------------------------------------------------------------------------------------- 
+    procedure LinkBufRst ( signal linkBufCtrlTb : out tLinkBufCtrl); 
+ ---------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------- 
+    procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufCtrl; 
+                              constant linkBufMode : in sl  ); 
+ ---------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
   procedure  show (constant str: in string); -- Information (simulation and note) shown on screen and  sim_logfile   
 ----------------------------------------------------------------------------------------- 
@@ -443,7 +450,7 @@ end package CSPSimCtrlPkg;
              is 
              begin
 			  null;
-               show("====================================================================");
+             show("====================================================================");
 	           show(" **********  Rx Resync Command **********"); 
 	           show("====================================================================");
                  IridisSfRxCtrl.resync <= '1'; 
@@ -458,7 +465,29 @@ end package CSPSimCtrlPkg;
              end RxSyncRecovery;
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
-  ----------------------------------------------------------------------------------------- 
+   procedure LinkBufRst (signal linkBufCtrlTb : out tLinkBufCtrl) 
+        is 
+           begin 
+             show("====================================================================");
+	           show(" **********  Link Buffer Reset                            **********"); 
+	           show("====================================================================");
+              linkBufCtrlTb.fsmrst <= '1'; 
+              wait for 50 ns; 
+              linkBufCtrlTb.fsmrst <= '0'; 
+          end LinkBufRst; 
+      
+----------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------- 
+ 
+ procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufCtrl; 
+                              constant linkBufMode : in sl  )
+        is 
+           begin 
+             wait for 1 ns; 
+              linkBufCtrlTb.mode <= linkBufMode; 
+          end LinkBufCfgMode; 
+      
     -- =====================================================
 	-- = S H O W   t h e  T I M E  screen  and  text file  =
     -- =====================================================
