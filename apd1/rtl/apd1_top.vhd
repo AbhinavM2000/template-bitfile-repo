@@ -23,6 +23,8 @@ use apx_fs.tcdsPkg.all;
 use apx_fs.MgtPkg.all;
 use apx_fs.ApxSectorPkg.all;
 use apx_fs.ApxL1TPkg.all;
+use apx_fs.apd1ChassisPkg.all;
+
 
 entity apd1_top is
   generic (
@@ -403,7 +405,6 @@ begin
     generic map(
       AXI_CLK_FREQ_G          => AXI_CLK_FREQUENCY_G,
       INCLUDE_VERSION_CORE    => true,
-      INCLUDE_SYSMON_CORE     => false,
       INCLUDE_APX_FS_INFO_ROM => true,
       INCLUDE_ALGO_INFO_ROM   => false,
       BUILD_INFO_G            => BUILD_INFO_G,
@@ -441,8 +442,8 @@ begin
       mAxiReadSlaves   => secAxiReadSlaves
       );
 
-  --gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
-   gen_sector : for i in 0 to 0 generate
+ gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
+ --  gen_sector : for i in 0 to 0 generate
 
     U_ApxL1TSector : entity apx_fs.ApxL1TSector
       generic map(
@@ -466,8 +467,6 @@ begin
 
         APX_L1T_IDX_BTM_G => sectorMinIdx(i, apxL1TCfgArrImpl),
         APX_L1T_IDX_TOP_G => sectorMaxIdx(i, apxL1TCfgArrImpl),
-
-
 
         AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
         
