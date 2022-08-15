@@ -21,8 +21,7 @@ library apx_fs;
 use apx_fs.PrjSpecPkg.all;
 use apx_fs.tcdsPkg.all;
 use apx_fs.MgtPkg.all;
-use apx_fs.ApxSectorPkg.all;
-use apx_fs.ApxL1TPkg.all;
+use apx_fs.ApxChPkg.all;
 use apx_fs.apd1ChassisPkg.all;
 
 
@@ -95,12 +94,11 @@ architecture rtl of apd1_top is
 
   constant AXI_CLK_FREQUENCY_G : real := 50.00E+6;
 
-  constant NUM_AXI_MASTERS_C : natural := 4;
+  constant NUM_AXI_MASTERS_C : natural := 3;
 
   constant APX_INFO_INDEX_C        : natural := 0;
   constant TCDS_INDEX_C            : natural := 1;
-  constant APX_TCDS_MON_INDEX_C    : natural := 2;
-  constant APX_SECTOR_CTRL_INDEX_C : natural := 3;
+  constant APX_SECTOR_CTRL_INDEX_C : natural := 2;
 
 
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
@@ -110,10 +108,6 @@ architecture rtl of apd1_top is
       connectivity          => x"FFFF"),
     TCDS_INDEX_C            => (
       baseAddr              => TCDS_CTRL_BASE_ADDR_C,
-      addrBits              => 16,
-      connectivity          => x"FFFF"),
-    APX_TCDS_MON_INDEX_C    => (
-      baseAddr              => APX_TCDS_MON_BASE_ADDR_C,
       addrBits              => 16,
       connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (
@@ -191,6 +185,9 @@ architecture rtl of apd1_top is
 
 
   signal tcdsCmds : tTcdsCmds;
+  
+  constant L1T_IN_STREAM_CNT_C : integer := 100;
+  constant L1T_OUT_STREAM_CNT_C : integer := 100;
 
 
   signal axiStreamAlgoIn  : AxiStreamMasterArray(0 to L1T_IN_STREAM_CNT_C -1);
@@ -362,25 +359,6 @@ begin
       gtQpll0LockIn   => TcdsgtQpll0LockIn,
       gtQpll0ResetOut => TcdsgtQpll0ResetOut
       );
-  U_FreqRecoverClkMon : entity apx_fs.FreqClkMonBufg
-    generic map(
-      TPD_G                 => TPD_G,
-      AXI_CLK_FREQ_G        => AXI_CLK_FREQUENCY_G,
-      REFCLK_PAIR_IDX_BTM_G => 0,
-      REFCLK_PAIR_IDX_TOP_G => 0
-      )
-    port map(
-      -- AXI-Lite Bus
-      axiClk         => axi_lite_clk,
-      axiRst         => axi_lite_reset,
-      axiReadMaster  => mAxilReadMasters(APX_TCDS_MON_INDEX_C),
-      axiReadSlave   => mAxilReadSlaves(APX_TCDS_MON_INDEX_C),
-      axiWriteMaster => mAxilWriteMasters(APX_TCDS_MON_INDEX_C),
-      axiWriteSlave  => mAxilWriteSlaves(APX_TCDS_MON_INDEX_C),
-
-      ClkIn(0) => fsClkMain
-      );
-
 
 
   U_XBAR : entity surf.AxiLiteCrossbar
@@ -445,28 +423,23 @@ begin
  gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
  --  gen_sector : for i in 0 to 0 generate
 
-    U_ApxL1TSector : entity apx_fs.ApxL1TSector
+    U_apxSector : entity apx_fs.apxSector
       generic map(
 
         AXI_CLK_FREQ_G => AXI_CLK_FREQUENCY_G,
-        REFCLK_0_CFG_G => RefClk0CfgImpl_C,
-        REFCLK_1_CFG_G => RefClk1CfgImpl_C,
-        QPLL_CFG_G     => QpllCfgImpl_C,
-        MGT_CFG_G      => MgtCfgImpl67_C,
-        APX_L1T_CFG_G  => apxL1TCfgArrImpl,
+        
+        REFCLK_CFG_G => REFCLK_CFG_C,
+        QPLL_CFG_G     => QPLL_CFG_C,
+        APX_CH_CFG_G  => APX_CH_CFG_C,
 
+        REFCLK_PAIR_IDX_BTM_G => sectorMinIdx(i, REFCLK_CFG_C),
+        REFCLK_PAIR_IDX_TOP_G => sectorMaxIdx(i, REFCLK_CFG_C),
 
-        REFCLK_PAIR_IDX_BTM_G => sectorMinIdx(i, RefClk0CfgImpl_C),
-        REFCLK_PAIR_IDX_TOP_G => sectorMaxIdx(i, RefClk0CfgImpl_C),
+        QPLL_IDX_BTM_G => sectorMinIdx(i, QPLL_CFG_C),
+        QPLL_IDX_TOP_G => sectorMaxIdx(i, QPLL_CFG_C),
 
-        QPLL_IDX_BTM_G => sectorMinIdx(i, QpllCfgImpl_C),
-        QPLL_IDX_TOP_G => sectorMaxIdx(i, QpllCfgImpl_C),
-
-        MGT_IDX_BTM_G => sectorMinIdx(i, MgtCfgImpl67_C),
-        MGT_IDX_TOP_G => sectorMaxIdx(i, MgtCfgImpl67_C),
-
-        APX_L1T_IDX_BTM_G => sectorMinIdx(i, apxL1TCfgArrImpl),
-        APX_L1T_IDX_TOP_G => sectorMaxIdx(i, apxL1TCfgArrImpl),
+        APX_CH_IDX_BTM_G => sectorMinIdx(i, APX_CH_CFG_C),
+        APX_CH_IDX_TOP_G => sectorMaxIdx(i, APX_CH_CFG_C),
 
         AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
         
@@ -481,21 +454,21 @@ begin
         axiRst         => secAxiRst(i),
 
         axiStreamClk => fsClkMain,
-        axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
-        axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+        axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
 
         LHCClk   => fsClk40,
         tcdsCmds => tcdsCmds,
 
-        MgtRxN => MgtRxN(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
-        MgtRxP => MgtRxP(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
-        MgtTxN => MgtTxN(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
-        MgtTxP => MgtTxP(sectorMinIdx(i, MgtCfgImpl67_C) to sectorMaxIdx(i, MgtCfgImpl67_C)),
+        MgtRxN => MgtRxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+        MgtRxP => MgtRxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+        MgtTxN => MgtTxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+        MgtTxP => MgtTxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
 
-        mgtRefClk0N => mgtRefClk0N(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
-        mgtRefClk0P => mgtRefClk0P(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
-        mgtRefClk1N => mgtRefClk1N(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C)),
-        mgtRefClk1P => mgtRefClk1P(sectorMinIdx(i, RefClk0CfgImpl_C) to sectorMaxIdx(i, RefClk0CfgImpl_C))
+        mgtRefClk0N => mgtRefClk0N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+        mgtRefClk0P => mgtRefClk0P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+        mgtRefClk1N => mgtRefClk1N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+        mgtRefClk1P => mgtRefClk1P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C))
 
         );
 

@@ -13,7 +13,7 @@ resize_pblock [get_pblocks axi_if] -add {CLOCKREGION_X0Y7:CLOCKREGION_X1Y7}
 # APx Sectors 0
 create_pblock Sec_0
 #add_cells_to_pblock Sec_0 [get_cells [list {gen_sector[0].U_APxAxiTestIp} ]] 
-add_cells_to_pblock Sec_0 [get_cells [list {gen_sector[0].U_ApxL1TSector} ]] 
+add_cells_to_pblock Sec_0 [get_cells [list {gen_sector[0].U_apxSector} ]] 
 add_cells_to_pblock Sec_0 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec0]] 
 resize_pblock [get_pblocks Sec_0] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y4}
 
@@ -21,30 +21,30 @@ resize_pblock [get_pblocks Sec_0] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y4}
 # APx Sectors 1
 create_pblock Sec_1
 add_cells_to_pblock Sec_1 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec1]] 
-add_cells_to_pblock Sec_1 [get_cells [list {gen_sector[1].U_ApxL1TSector}]] 
+add_cells_to_pblock Sec_1 [get_cells [list {gen_sector[1].U_apxSector}]] 
 resize_pblock [get_pblocks Sec_1] -add {CLOCKREGION_X0Y5:CLOCKREGION_X0Y9} 
 
 
 # APx Sectors 2
 create_pblock Sec_2
-add_cells_to_pblock Sec_2 [get_cells [list {gen_sector[2].U_ApxL1TSector} ]] 
+add_cells_to_pblock Sec_2 [get_cells [list {gen_sector[2].U_apxSector} ]] 
 resize_pblock [get_pblocks Sec_2] -add {CLOCKREGION_X00Y10:CLOCKREGION_X0Y14}
 
 # APx Sectors 3
 create_pblock Sec_3
 add_cells_to_pblock Sec_3 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec3]] 
-add_cells_to_pblock Sec_3 [get_cells [list {gen_sector[3].U_ApxL1TSector}]] 
+add_cells_to_pblock Sec_3 [get_cells [list {gen_sector[3].U_apxSector}]] 
 resize_pblock [get_pblocks Sec_3] -add {CLOCKREGION_X5Y0:CLOCKREGION_X5Y4}
 
 # APx Sectors 4
 create_pblock Sec_4
 add_cells_to_pblock Sec_4 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec4]] 
-add_cells_to_pblock Sec_4 [get_cells [list {gen_sector[4].U_ApxL1TSector} ]] 
+add_cells_to_pblock Sec_4 [get_cells [list {gen_sector[4].U_apxSector} ]] 
 resize_pblock [get_pblocks Sec_4] -add {CLOCKREGION_X5Y5:CLOCKREGION_X5Y9}
 
 # APx Sectors 5
 create_pblock Sec_5
-add_cells_to_pblock Sec_5 [get_cells [list {gen_sector[5].U_ApxL1TSector}]] 
+add_cells_to_pblock Sec_5 [get_cells [list {gen_sector[5].U_apxSector}]] 
 resize_pblock [get_pblocks Sec_5] -add {CLOCKREGION_X5Y10:CLOCKREGION_X5Y14}
 
 
