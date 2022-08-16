@@ -80,7 +80,7 @@ package PrjSpecPkg is
     24 => (enabled => "1", sector => 5, qpllCore => gty_qpll_25g, refclk0 => 15, refclk1 => 15)
     );
 
-  constant MGT_SYM_25G_6467           : tMgtCfg     := (mgtCore   => gty4_25g_sym, mgtCoreType => "gty4", rxLineRate => "25.78125Gbps", rxEncoding => "64b67b", txLineRate => "25.78125Gbps", txEncoding => "64b67b");
+  constant MGT_SYM_25G_6467           : tMgtCfg     := (mgtCore   => gty4_25g_sym,  mgtCoreType => "gty4", rxLineRate => "25.78125Gbps", rxEncoding => "64b67b", txLineRate => "25.78125Gbps", txEncoding => "64b67b");
 
   constant PROTO_CSP_TM_18_CR_9_FL_162_TV_0 : tCSPProtoCfg := (ProtocolType  => CSP, CSPTMInterval => 18, CSPClkRatio => 9, CSPFrameLength => 162, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
