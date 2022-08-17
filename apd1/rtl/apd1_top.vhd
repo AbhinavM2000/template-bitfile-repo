@@ -420,8 +420,8 @@ begin
       mAxiReadSlaves   => secAxiReadSlaves
       );
 
- --gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
-   gen_sector : for i in 0 to 1 generate
+ gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
+ --  gen_sector : for i in 0 to 0 generate
 
     U_apxSector : entity apx_fs.apxSector
       generic map(
