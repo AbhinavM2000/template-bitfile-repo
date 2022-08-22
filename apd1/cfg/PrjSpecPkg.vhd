@@ -18,6 +18,7 @@ package PrjSpecPkg is
   constant CHASSIS_TYPE_C : string := "APd1";
 
   -- user constants
+  -- Must begin with "USER_" and must be parsable as a string or number.
   constant USER_STRING_C : string           := "Project description. abcdef 123 !!@#$";  -- up to 64 character long, parser will throw an error if longer
   constant USER_NUM1_C   : slv(31 downto 0) := x"00000000";
   constant USER_NUM2_C   : slv(31 downto 0) := x"11111111";
