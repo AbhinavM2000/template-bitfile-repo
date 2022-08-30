@@ -35,6 +35,7 @@ set_property PACKAGE_PIN AW31 [get_ports dplink_p2n_ecc_n]
 set_property LOC  GTYE4_CHANNEL_X0Y28 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]
 set_property LOC  GTYE4_CHANNEL_X0Y29 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[1].*CHANNEL_PRIM_INST}]
 
+set_property  LOC BUFGCTRL_X0Y61 [get_cells [list U_ApxTcds2/U_BUFGMUX_CTRL]]
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
 
@@ -63,6 +64,10 @@ set_clock_groups -quiet -asynchronous -group [get_clocks -of_objects [get_pins -
 create_generated_clock -name clk40osc_mux -source [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/I0] -divide_by 1 [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/O]
 create_generated_clock -name clk40rec_mux -source [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/I1] -divide_by 1 -add -master_clock clk40rec [get_pins U_ApxTcds2/U_BUFGMUX_CTRL/O]
 set_clock_groups -logically_exclusive -group [get_clocks -include_generated_clocks clk40osc_mux] -group [get_clocks -include_generated_clocks clk40rec_mux]
+
+
+
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKIN1]] -group axiClk
 
 set_clock_groups -asynchronous -group {clk40osc clk80osc clk40osc_mux clk40rec_mux} -group axiClk
 
