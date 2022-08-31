@@ -17,6 +17,10 @@ package PrjSpecPkg is
   -- chassis type
   constant CHASSIS_TYPE_C : string := "APd1";
 
+  --clk 40 source 
+  constant CLK_40_SOURCE_LOCAL_C   : integer := 1 ;
+  constant CLK_40_SOURCE_TCDS_C    : integer := 2 ;
+  constant CLK_40_SOURCE_DYNAMIC_C : integer := 3 ;
   -- user constants
   -- Must begin with "USER_" and must be parsable as a string or number.
   constant USER_STRING_C : string           := "Project description. abcdef 123 !!@#$";  -- up to 64 character long, parser will throw an error if longer
