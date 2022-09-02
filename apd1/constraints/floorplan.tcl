@@ -16,7 +16,7 @@
 #delete_pblocks -quiet [get_pblocks -quiet AxiRs_Sec3]
 #delete_pblocks -quiet [get_pblocks -quiet AxiRs_Sec4]
 #delete_pblocks -quiet [get_pblocks -quiet AxiRs_Sec5]
-
+   
    create_pblock Sec_0
    add_cells_to_pblock Sec_0 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec0]] 
    resize_pblock [get_pblocks Sec_0] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y4}
@@ -95,7 +95,7 @@ remove_cells_from_pblock axi_ifr [get_cells [list U_axiInfra/gen_osc_300.U_clk_g
 # -----------------------------------------------------------------------------
    set uCntrQuad 0 
    set uSlr 0
-   set lLeftQuadWidth 780
+   set lLeftQuadWidth 700
    set lRightQuadWidth 600
 
    set lSlr [get_slr]
@@ -129,9 +129,9 @@ remove_cells_from_pblock axi_ifr [get_cells [list U_axiInfra/gen_osc_300.U_clk_g
 # --        Parameters Defined by User  "Right side"                         --
 # -----------------------------------------------------------------------------  
     set NumbersQuad 3
-    set OffsetQuad 2 
+    set OffsetQuad 1 
     set InitialLink 48
-    set SectorNumber 3     
+    set SectorNumber 3    
   
 
   fill_quad_pblock $NumbersQuad $OffsetQuad $InitialLink "quad_R" $SectorNumber
@@ -142,7 +142,7 @@ remove_cells_from_pblock axi_ifr [get_cells [list U_axiInfra/gen_osc_300.U_clk_g
 # -----------------------------------------------------------------------------
    set uSlr 1
    set uCntrQuad 5 
-   set lLeftQuadWidth 780
+   set lLeftQuadWidth 700
    set lRightQuadWidth 600
 
    set lSlr [get_slr]
@@ -200,7 +200,7 @@ remove_cells_from_pblock axi_ifr [get_cells [list U_axiInfra/gen_osc_300.U_clk_g
 # -----------------------------------------------------------------------------
    set uSlr 2
    set uCntrQuad 10 
-   set lLeftQuadWidth 780
+   set lLeftQuadWidth 700
    set lRightQuadWidth 600
 
    set lSlr [get_slr]
