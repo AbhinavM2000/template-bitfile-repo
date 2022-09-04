@@ -420,58 +420,58 @@ begin
       mAxiReadSlaves   => secAxiReadSlaves
       );
 
- gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
- --  gen_sector : for i in 0 to 0 generate
+--gen_sector : for i in 0 to SECTOR_CNT_C - 1 generate
+  gen_sector : for i in 0 to 5 generate
 
-    U_apxSector : entity apx_fs.apxSector
-      generic map(
+   U_apxSector : entity apx_fs.apxSector
+     generic map(
 
-        AXI_CLK_FREQ_G => AXI_CLK_FREQUENCY_G,
-        
-        REFCLK_CFG_G => REFCLK_CFG_C,
-        QPLL_CFG_G     => QPLL_CFG_C,
-        APX_CH_CFG_G  => APX_CH_CFG_C,
+       AXI_CLK_FREQ_G => AXI_CLK_FREQUENCY_G,
+       
+       REFCLK_CFG_G => REFCLK_CFG_C,
+       QPLL_CFG_G     => QPLL_CFG_C,
+       APX_CH_CFG_G  => APX_CH_CFG_C,
 
-        REFCLK_PAIR_IDX_BTM_G => sectorMinIdx(i, REFCLK_CFG_C),
-        REFCLK_PAIR_IDX_TOP_G => sectorMaxIdx(i, REFCLK_CFG_C),
+       REFCLK_PAIR_IDX_BTM_G => sectorMinIdx(i, REFCLK_CFG_C),
+       REFCLK_PAIR_IDX_TOP_G => sectorMaxIdx(i, REFCLK_CFG_C),
 
-        QPLL_IDX_BTM_G => sectorMinIdx(i, QPLL_CFG_C),
-        QPLL_IDX_TOP_G => sectorMaxIdx(i, QPLL_CFG_C),
+       QPLL_IDX_BTM_G => sectorMinIdx(i, QPLL_CFG_C),
+       QPLL_IDX_TOP_G => sectorMaxIdx(i, QPLL_CFG_C),
 
-        APX_CH_IDX_BTM_G => sectorMinIdx(i, APX_CH_CFG_C),
-        APX_CH_IDX_TOP_G => sectorMaxIdx(i, APX_CH_CFG_C),
+       APX_CH_IDX_BTM_G => sectorMinIdx(i, APX_CH_CFG_C),
+       APX_CH_IDX_TOP_G => sectorMaxIdx(i, APX_CH_CFG_C),
 
-        AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
-        
-        )
-      port map(
+       AXIL_BASE_ADDR_G => APX_SECTOR_OFFSETS_C(i)
+       
+       )
+     port map(
 
-        axiReadMaster  => secAxiReadMasters(i),
-        axiReadSlave   => secAxiReadSlaves(i),
-        axiWriteMaster => secAxiWriteMasters(i),
-        axiWriteSlave  => secAxiWriteSlaves(i),
-        axiClk         => axi_lite_clk,
-        axiRst         => secAxiRst(i),
+       axiReadMaster  => secAxiReadMasters(i),
+       axiReadSlave   => secAxiReadSlaves(i),
+       axiWriteMaster => secAxiWriteMasters(i),
+       axiWriteSlave  => secAxiWriteSlaves(i),
+       axiClk         => axi_lite_clk,
+       axiRst         => secAxiRst(i),
 
-        axiStreamClk => fsClkMain,
-        axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
-        axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       axiStreamClk => fsClkMain,
+       axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
 
-        LHCClk   => fsClk40,
-        tcdsCmds => tcdsCmds,
+       LHCClk   => fsClk40,
+       tcdsCmds => tcdsCmds,
 
-        MgtRxN => MgtRxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
-        MgtRxP => MgtRxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
-        MgtTxN => MgtTxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
-        MgtTxP => MgtTxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       MgtRxN => MgtRxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       MgtRxP => MgtRxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       MgtTxN => MgtTxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+       MgtTxP => MgtTxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
 
-        mgtRefClk0N => mgtRefClk0N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
-        mgtRefClk0P => mgtRefClk0P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
-        mgtRefClk1N => mgtRefClk1N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
-        mgtRefClk1P => mgtRefClk1P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C))
+       mgtRefClk0N => mgtRefClk0N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+       mgtRefClk0P => mgtRefClk0P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+       mgtRefClk1N => mgtRefClk1N(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C)),
+       mgtRefClk1P => mgtRefClk1P(sectorMinIdx(i, REFCLK_CFG_C) to sectorMaxIdx(i, REFCLK_CFG_C))
 
-        );
+       );
 
-  end generate;
+ end generate;
 
 end architecture;
