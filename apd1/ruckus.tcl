@@ -23,3 +23,4 @@ loadConstraints -dir "$::DIR_PATH/constraints/"
 
 # Area constraints used in the implementation  only
 set_property used_in_synthesis false [get_files  $::DIR_PATH/constraints/floorplan.tcl]
+set_msg_config -suppress -id {Vivado 12-1433};  # Expecting a non-empty list of cells to be added to the pblock.  
