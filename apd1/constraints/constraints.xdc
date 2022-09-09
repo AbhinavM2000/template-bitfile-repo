@@ -345,3 +345,7 @@ set_false_path -from [get_clocks -of_objects [get_pins U_axiInfra/gen_osc_300.U_
 set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].gen_mgt_en.U_MgtWrapper/gen_mgt_25g.U_gty25g/inst/gen_gtwizard_gtye4_top.gty25g_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst/reset_synchronizer_rx_done_inst/rst_in_out_reg/C}] -to [get_pins {gen_sector[*].U_apxSector/U_IridisCSPRxCtrl/genIridisSfRx[*].genIridisSfRxEn.U_IridisCSPRx/U_LinkResyncCtrl/FSM_onehot_r_reg[state][*]/CE}]
 
 set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].gen_mgt_en.U_MgtWrapper/gen_mgt_25g.U_gty25g/inst/gen_gtwizard_gtye4_top.gty25g_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_rx_buffer_bypass_internal.gen_single_instance.gtwiz_buffbypass_rx_inst/gen_gtwiz_buffbypass_rx_main.gen_auto_mode.gtwiz_buffbypass_rx_done_out_reg/C}] 
+
+set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]]
+set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
+set_clock_groups -asynchronous -group  mgtRefClkBufg* -group axiClk
