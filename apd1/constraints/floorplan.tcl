@@ -1,87 +1,89 @@
 
 
-create_pblock axi_if
-add_cells_to_pblock [get_pblocks axi_if] [get_cells -quiet [list U_XBAR U_axiInfra U_ApxTcds2 U_APxInfo]]
-resize_pblock [get_pblocks axi_if] -add {CLOCKREGION_X0Y7:CLOCKREGION_X1Y7}
+create_pblock root_infra
+add_cells_to_pblock [get_pblocks root_infra] [get_cells -quiet [list U_XBAR U_axiInfra U_ApxTcds2 U_APxInfo]]
+resize_pblock root_infra -add {SLICE_X0Y420:SLICE_X42Y479 RAMB18_X0Y168:RAMB18_X2Y191 RAMB36_X0Y84:RAMB36_X2Y95}
 
-
+# APx Sectors 0
    create_pblock S_0
+   add_cells_to_pblock S_0 [get_cells gen_sector[0].*/*Ctrl*]
+   add_cells_to_pblock S_0 [get_cells gen_sector[0].*/U_XBAR]
    add_cells_to_pblock S_0 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec0]] 
-   resize_pblock [get_pblocks S_0] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y4}
+   resize_pblock S_0 -add {SLICE_X0Y0:SLICE_X28Y299 RAMB36_X0Y0:RAMB36_X1Y59}
 
 
 # APx Sectors 1
    create_pblock S_1
+   add_cells_to_pblock S_1 [get_cells gen_sector[1].*/*Ctrl*]
+   add_cells_to_pblock S_1 [get_cells gen_sector[1].*/U_XBAR]
    add_cells_to_pblock S_1 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec1]]
    add_cells_to_pblock S_1 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec1*}]]
-   resize_pblock [get_pblocks S_1] -add {CLOCKREGION_X0Y5:CLOCKREGION_X0Y9} 
+   resize_pblock S_1 -add {SLICE_X0Y300:SLICE_X28Y599 RAMB36_X0Y60:RAMB36_X1Y119}
 
 
 # APx Sectors 2
    create_pblock S_2
-   resize_pblock [get_pblocks S_2] -add {CLOCKREGION_X00Y10:CLOCKREGION_X0Y14}
+   add_cells_to_pblock S_2 [get_cells gen_sector[2].*/U_XBAR]
+   add_cells_to_pblock S_2 [get_cells gen_sector[2].*/*Ctrl*]
+   resize_pblock [get_pblocks S_2] -add {SLICE_X0Y600:SLICE_X28Y899 RAMB36_X0Y120:RAMB36_X1Y179}
 
 # APx Sectors 3
    create_pblock S_3
+   add_cells_to_pblock S_3 [get_cells gen_sector[3].*/*Ctrl*]
+   add_cells_to_pblock S_3 [get_cells gen_sector[3].*/U_XBAR]
    add_cells_to_pblock S_3 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec3]] 
    resize_pblock [get_pblocks S_3] -add {CLOCKREGION_X5Y0:CLOCKREGION_X5Y4}
 
 # APx Sectors 4
    create_pblock S_4
+   add_cells_to_pblock S_4 [get_cells gen_sector[4].*/*Ctrl*]
+   add_cells_to_pblock S_4 [get_cells gen_sector[4].*/U_XBAR]
    add_cells_to_pblock S_4 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_XBAR_Sec4]] 
   resize_pblock [get_pblocks S_4] -add {CLOCKREGION_X5Y5:CLOCKREGION_X5Y9}
 
 # APx Sectors 5
   create_pblock S_5
+   add_cells_to_pblock S_5 [get_cells gen_sector[5].*/*Ctrl*]
+add_cells_to_pblock S_5 [get_cells gen_sector[5].*/U_XBAR]
   resize_pblock [get_pblocks S_5] -add {CLOCKREGION_X5Y10:CLOCKREGION_X5Y14}
 
 
    create_pblock AxiRs0_Sec0
    add_cells_to_pblock AxiRs0_Sec0 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_0_Sec0]]
   add_cells_to_pblock AxiRs0_Sec0 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec0Stage0*}]]
-   resize_pblock [get_pblocks AxiRs0_Sec0] -add {CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
+resize_pblock AxiRs0_Sec0 -add {SLICE_X0Y286:SLICE_X28Y299 LAGUNA_X0Y212:LAGUNA_X3Y239}
 set_property IS_SOFT 0 [get_pblocks AxiRs0_Sec0]
 
    create_pblock AxiRs1_Sec0
    add_cells_to_pblock AxiRs1_Sec0 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_1_Sec0]]
    add_cells_to_pblock AxiRs1_Sec0 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec0Stage1*}]]
-   resize_pblock [get_pblocks AxiRs1_Sec0] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0}
-set_property IS_SOFT 0 [get_pblocks AxiRs1_Sec0]
+   resize_pblock AxiRs1_Sec0 -add SLICE_X0Y0:SLICE_X28Y8
+   set_property IS_SOFT 0 [get_pblocks AxiRs1_Sec0]
 
    create_pblock AxiRs_Sec2
    add_cells_to_pblock AxiRs_Sec2 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_Sec2]]
    add_cells_to_pblock AxiRs_Sec2 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec2*}]]
-   resize_pblock [get_pblocks AxiRs_Sec2] -add {CLOCKREGION_X0Y10:CLOCKREGION_X0Y10}
+   resize_pblock AxiRs_Sec2 -add {SLICE_X0Y600:SLICE_X28Y609 LAGUNA_X0Y480:LAGUNA_X3Y499}
 set_property IS_SOFT 0 [get_pblocks AxiRs_Sec2]
 
    create_pblock AxiRs_Sec3
    add_cells_to_pblock AxiRs_Sec3 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_Sec3]]
    add_cells_to_pblock AxiRs_Sec3 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec3*}]]
-   resize_pblock [get_pblocks AxiRs_Sec3] -add {CLOCKREGION_X5Y0:CLOCKREGION_X5Y0}
+resize_pblock AxiRs_Sec3 -add SLICE_X142Y0:SLICE_X168Y8
 set_property IS_SOFT 0 [get_pblocks AxiRs_Sec3]
 
 
   create_pblock AxiRs_Sec4
   add_cells_to_pblock AxiRs_Sec4 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_Sec4]]
   add_cells_to_pblock AxiRs_Sec4 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec4*}]]
-  
-  resize_pblock [get_pblocks AxiRs_Sec4] -add {CLOCKREGION_X5Y5:CLOCKREGION_X5Y5}
-set_property IS_SOFT 0 [get_pblocks AxiRs_Sec4]
+  resize_pblock AxiRs_Sec4 -add {SLICE_X142Y300:SLICE_X168Y309 LAGUNA_X20Y240:LAGUNA_X23Y259}
+  set_property IS_SOFT 0 [get_pblocks AxiRs_Sec4]
 
    create_pblock AxiRs_Sec5
    add_cells_to_pblock AxiRs_Sec5 [get_cells [list U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/U_Axi_RegSlice_Sec5]]
    add_cells_to_pblock AxiRs_Sec5 [get_cells [list {U_apxFsTcdsCmdChassisWrapper/genTcdsDistApd1.U_ChassisApd1/tcdsCmdsSec5*}]]
-   resize_pblock [get_pblocks AxiRs_Sec5] -add {CLOCKREGION_X5Y10:CLOCKREGION_X5Y10}
+resize_pblock AxiRs_Sec5 -add {SLICE_X142Y600:SLICE_X168Y609 LAGUNA_X20Y480:LAGUNA_X23Y499}
 set_property IS_SOFT 0 [get_pblocks AxiRs_Sec5]
-
-
-#   add_cells_to_pblock S_0 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstS_reg[0]}]] 
-#   add_cells_to_pblock S_1 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstS_reg[1]}]] 
-#   add_cells_to_pblock S_2 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstS_reg[2]}]]
-#   add_cells_to_pblock S_3 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstS_reg[3]}]] 
-#  add_cells_to_pblock S_4 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstS_reg[4]}]] 
-#  add_cells_to_pblock S_5 [get_cells [list {U_ApxSectorChassisWrapper/genApd1Fabric0.U_ChassisApd1Fabric0/axiRstSec_reg[5]}]] 
-
 
 
 
