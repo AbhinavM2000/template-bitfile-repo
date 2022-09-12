@@ -34,9 +34,9 @@ package PrjSpecPkg is
   constant USER_NUM3_C   : slv(31 downto 0) := x"ABCD1234";
   constant USER_NUM4_C   : slv(31 downto 0) := x"87654321";
 
-  constant PRJ_VER_MAJOR_C   : std_logic_vector(7 downto 0) := x"00";
-  constant PRJ_VER_MINOR_C   : std_logic_vector(7 downto 0) := x"01";
-  constant PRJ_VER_REVISON_C : std_logic_vector(7 downto 0) := x"00";
+  constant PRJ_VER_MAJOR_C    : integer := 0;
+  constant PRJ_VER_MINOR_C    : integer := 1;
+  constant PRJ_VER_REVISION_C : integer := 0;
 
   -- firmware shell algo clock to LHC BC clock multiplier
   constant FS_TO_LHC_CLK_FACTOR_C : natural range 1 to 12 := 9;
