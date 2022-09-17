@@ -94,11 +94,12 @@ architecture rtl of apd1_top is
 
   constant AXI_CLK_FREQUENCY_G : real := 50.00E+6;
 
-  constant NUM_AXI_MASTERS_C : natural := 3;
+  constant NUM_AXI_MASTERS_C : natural := 4;
 
   constant APX_INFO_INDEX_C        : natural := 0;
   constant TCDS_INDEX_C            : natural := 1;
   constant APX_SECTOR_CTRL_INDEX_C : natural := 2;
+  constant ALGO_CTRL_INDEX_C       : natural := 3;
 
 
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
@@ -108,6 +109,10 @@ architecture rtl of apd1_top is
       connectivity          => x"FFFF"),
     TCDS_INDEX_C            => (
       baseAddr              => TCDS_CTRL_BASE_ADDR_C,
+      addrBits              => 16,
+      connectivity          => x"FFFF"),
+    ALGO_CTRL_INDEX_C       => (
+      baseAddr              => x"6F50_0000",
       addrBits              => 16,
       connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (
@@ -466,13 +471,12 @@ begin
           axiRst         => secAxiRst(i),
 
           axiStreamClk => fsClkMain,
-          axiStreamIn  => axiStreamAlgoIn(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
-          axiStreamOut => axiStreamAlgoOut(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+          axiStreamIn  => axiStreamAlgoOut(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
+          axiStreamOut => axiStreamAlgoIn(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
 
           LHCClk   => fsClk40,
           tcdsCmds => tcdsCmdsArr(i),
-          -- tcdsCmds => tcdsCmds,
-
+          
           MgtRxN => MgtRxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
           MgtRxP => MgtRxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
           MgtTxN => MgtTxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
@@ -486,5 +490,53 @@ begin
           );
     end generate;
   end generate;
+  
+    algoClk <= fsClkMain;
+
+    U_algoCtrl : entity apx_fs.algoCtrl
+    generic map (
+      TPD_G => TPD_G)
+    port map(
+      algoClk   => algoClk,
+      algoRst   => algoRst,
+      algoStart => algoStart,
+      algoDone  => algoDone,
+      algoIdle  => algoIdle,
+      algoReady => algoReady,
+
+      tcdsCmds => tcdsCmds,
+
+      -- AXI-Lite Bus
+      axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
+      axiReadSlave   => mAxilReadSlaves(ALGO_CTRL_INDEX_C),
+      axiWriteMaster => mAxilWriteMasters(ALGO_CTRL_INDEX_C),
+      axiWriteSlave  => mAxilWriteSlaves(ALGO_CTRL_INDEX_C),
+      axiClk         => axi_lite_clk,
+      axiClkRst      => axi_lite_reset);
+      
+  
+    U_algoTopWrapper : entity work.algoTopWrapper
+    generic map(
+      APX_CH_CFG_G => APX_CH_CFG_C,
+      N_INPUT_STREAMS  => L1T_IN_STREAM_CNT_C,
+      N_OUTPUT_STREAMS => L1T_OUT_STREAM_CNT_C
+      )
+    port map(
+      -- Algo Control/Status Signals
+      algoClk   => algoClk,
+      algoRst   => algoRst,
+      algoStart => '1',
+      algoDone  => algoDone,
+      algoIdle  => algoIdle,
+      algoReady => algoReady,
+      
+    clkLHC    => fsClk40,     
+    bc0_clkLHC => tcdsCmds.bc0,    
+
+      -- AXI-Stream In/Out Ports
+      axiStreamIn  => axiStreamAlgoIn,
+      axiStreamOut => axiStreamAlgoOut
+      );
+
 
 end architecture;
