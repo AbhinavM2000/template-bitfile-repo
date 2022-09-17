@@ -525,7 +525,7 @@ begin
       -- Algo Control/Status Signals
       algoClk   => algoClk,
       algoRst   => algoRst,
-      algoStart => '1',
+      algoStart => algoStart,
       algoDone  => algoDone,
       algoIdle  => algoIdle,
       algoReady => algoReady,
