@@ -2,7 +2,7 @@
 
 create_pblock root_infra
 add_cells_to_pblock [get_pblocks root_infra] [get_cells -quiet [list U_XBAR U_axiInfra U_ApxTcds2 U_APxInfo]]
-resize_pblock root_infra -add {SLICE_X0Y420:SLICE_X42Y479 RAMB18_X0Y168:RAMB18_X2Y191 RAMB36_X0Y84:RAMB36_X2Y95}
+resize_pblock root_infra -add {CLOCKREGION_X0Y7:CLOCKREGION_X1Y7}
 
 # APx Sectors 0
    create_pblock S_0
@@ -313,5 +313,40 @@ add_cells_to_pblock [get_pblocks SS_5_4] [get_cells -quiet {get_cells */*/gen*[9
 resize_pblock [get_pblocks SS_5_4] -add {CLOCKREGION_X5Y14:CLOCKREGION_X5Y14}
 
 
+create_pblock algo_SLR0
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[0].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[1].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[2].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[3].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[4].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[5].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[6].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[7].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[8].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[9].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[10].*]]
+add_cells_to_pblock algo_SLR0 [get_cells [list U_algoTopWrapper/genOPW*[11].*]]
+resize_pblock [get_pblocks algo_SLR0] -add {CLOCKREGION_X2Y1:CLOCKREGION_X3Y3}
+
+create_pblock algo_SLR1
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[16].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[17].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[18].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[19].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[20].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[21].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[22].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[23].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[24].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[25].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[26].*]]
+add_cells_to_pblock algo_SLR1 [get_cells [list U_algoTopWrapper/genOPW*[27].*]]
+resize_pblock [get_pblocks algo_SLR1] -add {CLOCKREGION_X2Y6:CLOCKREGION_X3Y8}
 
 
+create_pblock algo_SLR2
+add_cells_to_pblock algo_SLR2 [get_cells [list U_algoTopWrapper/genOPW*[32].*]]
+add_cells_to_pblock algo_SLR2 [get_cells [list U_algoTopWrapper/genOPW*[33].*]]
+add_cells_to_pblock algo_SLR2 [get_cells [list U_algoTopWrapper/genOPW*[34].*]]
+add_cells_to_pblock algo_SLR2 [get_cells [list U_algoTopWrapper/genOPW*[35].*]]
+resize_pblock [get_pblocks algo_SLR2] -add {CLOCKREGION_X2Y11:CLOCKREGION_X3Y13}
