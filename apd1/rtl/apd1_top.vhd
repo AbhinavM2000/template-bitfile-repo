@@ -112,7 +112,7 @@ architecture rtl of apd1_top is
       addrBits              => 16,
       connectivity          => x"FFFF"),
     ALGO_CTRL_INDEX_C       => (
-      baseAddr              => x"6F50_0000",
+      baseAddr              => x"6A50_0000",
       addrBits              => 16,
       connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (
@@ -147,7 +147,6 @@ architecture rtl of apd1_top is
                                                          SECTOR_3_BASE_ADDR_C,
                                                          SECTOR_4_BASE_ADDR_C,
                                                          SECTOR_5_BASE_ADDR_C);
-
 
   -- COMMON 
   -- AXI Chip to Chip
@@ -210,6 +209,9 @@ architecture rtl of apd1_top is
   signal fsClk40   : sl;
   signal fsClkMain : sl;
   signal fsClkDiv2 : sl;
+
+signal reg0 : slv(31 downto 0);
+signal reg1 : slv(31 downto 0);
 
 begin
 
@@ -505,6 +507,8 @@ begin
       algoReady => algoReady,
 
       tcdsCmds => tcdsCmds,
+      reg0 => reg0,
+      reg1 => reg1,
 
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
@@ -532,11 +536,11 @@ begin
       
     clkLHC    => fsClk40,     
     bc0_clkLHC => tcdsCmds.bc0,    
+    delay => reg0(15 downto 0),
 
       -- AXI-Stream In/Out Ports
       axiStreamIn  => axiStreamAlgoIn,
       axiStreamOut => axiStreamAlgoOut
       );
-
 
 end architecture;

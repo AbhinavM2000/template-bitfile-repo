@@ -28,6 +28,8 @@ entity algoTopWrapper is
     --LHC clock domain
     clkLHC     : in sl;
     bc0_clkLHC : in sl;
+    
+    delay : in slv(15 downto 0);
 
     -- AXI-Stream In/Out Ports
     axiStreamIn  : in  AxiStreamMasterArray(0 to N_INPUT_STREAMS-1);
@@ -68,7 +70,7 @@ begin
           clkLHC     => clkLHC,
           bc0_clkLHC => bc0_clkLHC,
 
-          delay => x"0000"  --delay on LHC BC0 in AXI stream clock units to position the OPW pattern with respect to TCDS BC0
+          delay => delay
           );
     end generate;
   end generate;
@@ -94,7 +96,7 @@ begin
           clkLHC     => clkLHC,
           bc0_clkLHC => bc0_clkLHC,
 
-          delay => x"0000"  --delay on LHC BC0 in AXI stream clock units to position the OPW pattern with respect to TCDS BC0
+          delay => delay
           );
     end generate;
   end generate;
@@ -120,7 +122,7 @@ begin
           clkLHC     => clkLHC,
           bc0_clkLHC => bc0_clkLHC,
 
-          delay => x"0000"  --delay on LHC BC0 in AXI stream clock units to position the OPW pattern with respect to TCDS BC0
+          delay => delay
           );
     end generate;
   end generate;
