@@ -1,0 +1,6 @@
+source /opt/Xilinx/Vivado/2020.1/settings64.sh
+git clone --recursive ssh://git@gitlab.cern.ch:7999/WisconsinCMS/APx-FW/apx-fs-pilot-prj.git
+cd apx-fs-pilot-prj/
+mkdir build
+cd common/SimAPxFS/
+make gui
