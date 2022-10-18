@@ -756,7 +756,7 @@ p_MainProces : process is
        linkBufCtrlCap.muxCtrl      <= '0';  -- 
        linkBufCtrlCap.loopEna      <= '0';  -- 
        linkBufCtrlCap.bufdelay     <= x"000F";  -- 
-       linkBufCtrlCap.lastCycleAddr  <= x"0FF";  -- 
+       linkBufCtrlCap.lastCycleAddr  <= "1111111111";  -- 
       wait for 50 ns; 
       LinkBufRst (linkBufCtrlCap);     
       wait for  100 ns; 
