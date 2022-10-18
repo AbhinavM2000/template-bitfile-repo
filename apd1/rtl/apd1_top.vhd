@@ -398,6 +398,8 @@ begin
       AXIL_BASE_ADDR_G        => APX_INFO_BASE_ADDR_C
       )
     port map(
+      SysmonClk         => clk_10,
+
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(APX_INFO_INDEX_C),
       axiReadSlave   => mAxilReadSlaves(APX_INFO_INDEX_C),
