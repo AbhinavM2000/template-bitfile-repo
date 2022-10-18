@@ -239,11 +239,52 @@ type ErrorGeneratorType is record
 
    signal AxisCapBufferIn, AxisCapBufferOut: AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
 
+
+  signal AxisOPWGenOut : AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
+
+
+signal ck2880, ck40v2,ck40, ck360: sl := '0';
+signal ck320 : sl := '1';
+signal cnt40, cnt320, cnt360 : integer := 0;
+
+constant common_clk_period : time := (24.95 ns) / (8*9);
+
+
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------ 
 begin
 
-  assert (CHAN_FRAME_LENGTH_SIM_C <=  (CHAN_TM_INTERVAL_SIM_C * CHAN_CLK_RATIO_SIM_C)) report "Number of words in the frame must be <= TM_INTERVAL * CLK_RATIO" severity failure;
+ck40v2 <= not ck40v2 after 12.5 ns;
+ck2880 <= not ck2880 after common_clk_period/4;
+
+process(ck2880) is
+begin
+if rising_edge(ck2880) then
+
+    cnt40 <= cnt40+1;
+    if (cnt40 = 71) then
+        cnt40 <= 0;
+        ck40 <= not ck40;
+    end if;   
+    
+    cnt320 <= cnt320+1;
+    if (cnt320 = 8) then
+        cnt320 <= 0;
+        ck320 <= not ck320;
+    end if;    
+
+
+    cnt360 <= cnt360+1;
+    if (cnt360 = 7) then
+        cnt360 <= 0;
+        ck360 <= not ck360;
+    end if;    
+
+    
+end if;
+end process;
+
+  assert (TX_CHAN_FRAME_LENGTH_SIM_C <= (TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C)) report "Number of words in the frame must be <= TM_INTERVAL * CLK_RATIO" severity failure;
 
    ---------------------------
   -- Generate clocks and resets
@@ -292,9 +333,16 @@ begin
     -- fsClk(0) =  320 MHz 
 	-- fsClk(1) =  40 MHz 
 	-- fsClk(2) = 360 MHz 
-   clk40 <=  fsClks(1);       -- 
-   axisTxClk <= fsClks(2);    --  
-   axisRxClk <= fsClks(2);
+	
+	
+--   clk40 <=  fsClks(1);       -- 
+--   axisTxClk <= fsClks(2);    --  
+--   axisRxClk <= fsClks(2);
+   
+   
+  clk40     <= ck40;              -- 
+  axisTxClk <= ck360;             --  
+  axisRxClk <= ck360;
    
  -------------------------------
  -- TCDS2 Control
@@ -324,170 +372,157 @@ begin
            clk   => axisTxClk, 
            rstOut => AxisRst);
     
-    
+
+
 -- ------------------------------------
---  CSP Generator --------------------
+-- OPWGen  --------------------
 ---------------------------------------
-  U_SideBandGen: entity apx_fs.SideBandGen    
-       generic map ( 
-         TPD_G            => TPD_C, 
-         TM_INTERVAL      => CHAN_TM_INTERVAL_SIM_C,
-         CLK_RATIO        => CHAN_CLK_RATIO_SIM_C,
-         FRAME_LENGTH     => CHAN_FRAME_LENGTH_SIM_C, 
-         THROTTLE_VECTOR  => CHAN_THROTTLE_VECTOR_SIM_C, 
-         BC0_OFFSET       => 0,
-         BC0_CLK_DOMAIN   => "LHC",
-         MODE             => "GENERATE"
-       )
-       port map ( 
-              -- AXI-stream/a
-              axisClk      => axisTxClk,
-              axiStreamIn  =>  AxisDataSideBand, 
-              axiStreamOut =>  AxisTxSideBand,
-              bc0_axis     =>  '0',
-              rst_axis     => AxisRst,
-              --LHC clock domain
-              clkLHC       => clk40, 
-              bc0_clkLHC   => OrbitStrobe,
-              
-               --Delay on distributed LHC clock (in AXI stream clock units)
-              delay        => x"0100",
-              
-              --monitor bit output stream
-              monitorOut   => SideBandMonitor
-            );
 
---------------------------------------------------------------------------------------- 
---------------------------------------------------------------------------------------- 
---------------------------------------------------------------------------------------- 
-   U_PlayBackBuffer : entity apx_fs.APxLinkBuffer 
-     generic map ( 
-      TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => CHAN_CLK_RATIO_SIM_C,
-      CHAN_FRAME_LENGTH    => CHAN_FRAME_LENGTH_SIM_C, 
-      CHAN_THROTTLE_VECTOR =>  CHAN_THROTTLE_VECTOR_SIM_C  
-      )
-     port map ( 
- 
-              clkLHC       => clk40, 
-              bc0_clkLHC   => OrbitStrobe,
- 
-              linkBufCtrl  => linkBufCtrlTb, 
-              linkBufStat  => linkBufStatTb, 
-
-              axiStreamClk =>  axisTxClk, 
-              axiStreamIn  =>  AxisPbBufferIn, 
-              axiStreamOut =>  AxisPbBufferOut, 
-
-              clk_sc      => '0',
-              en_sc       => '1',
-              we_sc       => '0',
-              addr_sc     => (others => '0'),
-              din_sc      => (others => '0'),
-              dout_sc     => open
-        );
-
- ---------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------ 
--- ------------------------------------
--- Iridis Rx --------------------------
----------------------------------------
-U_IridisCSPRx: entity apx_fs.IridisCSPRx
-   generic map (
-       TPD_G  => TPD_C, 
-       CHAN_TM_INTERVAL      => RX_CHAN_TM_INTERVAL_SIM_C,
-       CHAN_CLK_RATIO        => RX_CHAN_CLK_RATIO_SIM_C,   
-       CHAN_THROTTLE_VECTOR  => RX_CHAN_THROTTLE_VECTOR_SIM_C,    
-       CHAN_FRAME_LENGTH     => RX_CHAN_FRAME_LENGTH_SIM_C           
-     )
-   port map  (
-   axisClk    => axisRxClk, 
-   axiStream  => AxisRxMaster, 
-
-
-   clkLHC     => clk40, 
-   bc0_clkLHC => OrbitStrobe, 
-
-   cspSpecialStatus  => RxcspSpecialStatusTb, 
-
-   mgtRxClk         => mgtClk, 
-   mgtRxInitDone    => mgtRxInitDone, 
-   mgtRxHeaderValid => mgtRxHeaderValid, 
-   mgtRxHeader      => mgtRxHeader, 
-   mgtRxDataValid   => mgtRxDataValid,  
-   mgtRxData        => mgtRxData, 
-   mgtRxSlip        => mgtRxSlip, 
-   mgtRst           => mgtRst, 
-
-
-   iridisSfRxCtrl => iridisSfRxCtrl,
-   iridisSfRxStat => iridisSfRxStat
- );
-
------------------------------------------------------------------------------------------ 
------------------------------------------------------------------------------------------ 
-  
-   U_CaptureBuffer : entity apx_fs.APxLinkBuffer 
-     generic map ( 
-      TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
-      CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C, 
-      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C  
-      )
-     port map ( 
- 
-              clkLHC       => clk40, 
-              bc0_clkLHC   => OrbitStrobe,
- 
-              linkBufCtrl  => linkBufCtrlCap, 
-              linkBufStat  => linkBufStatCap, 
-
-              axiStreamClk =>  axisRxClk, 
-              axiStreamIn  =>  AxisCapBufferIn, 
-              axiStreamOut =>  AxisCapBufferOut, 
-
-              clk_sc      => '0',
-              en_sc       => '1',
-              we_sc       => '0',
-              addr_sc     => (others => '0'),
-              din_sc      => (others => '0'),
-              dout_sc     => open
-        );
-
-  
-  
-  --------------------------------- 
----- Iridis Tx --------------
- -------------------------------- 
-  U_IridisCSPTx : entity apx_fs.IridisCSPTx
-    generic map (
-      TPD_G              => TPD_C,
-      CHAN_TM_INTERVAL   => CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO     => CHAN_CLK_RATIO_SIM_C,
-      CHAN_FRAME_LENGTH  => CHAN_FRAME_LENGTH_SIM_C, 
-      CHAN_THROTTLE_VECTOR =>  CHAN_THROTTLE_VECTOR_SIM_C  
+  U_OPWGen : entity apx_fs.OPWGen
+    generic map(
+      TPD_G           => TPD_C,
+      TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
+      THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
       )
     port map(
-     clkLHC   => clk40, 
-     bc0_clkLHC     => OrbitStrobe,
-  
+      slow_ctl_rst => AxisRst,
+
+      -- AXI-stream/algo interface
+      axisClk      => axisTxClk,
+      axiStreamOut => AxisOPWGenOut,
+
+
+      clkLHC     => clk40,
+      bc0_clkLHC => OrbitStrobe,
+
+      --Delay on distributed LHC clock (in AXI stream clock units)
+      delay => x"000A"
+      );
+
+  U_PlayBackBuffer : entity apx_fs.APxLinkBuffer
+    generic map (
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
+      CHAN_THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
+      )
+    port map (
+
+      clkLHC     => clk40,
+      bc0_clkLHC => OrbitStrobe,
+
+      linkBufCtrl => linkBufCtrlTb,
+      linkBufStat => linkBufStatTb,
+
+      axiStreamClk => axisTxClk,
+      axiStreamIn  => AxisOPWGenOut,
+      axiStreamOut => AxisPbBufferOut,
+
+      clk_sc  => '0',
+      en_sc   => '1',
+      we_sc   => '0',
+      addr_sc => (others => '0'),
+      din_sc  => (others => '0'),
+      dout_sc => open
+      );
+
+
+  --------------------------------- 
+---- Iridis Tx --------------
+  -------------------------------- 
+  U_IridisCSPTx : entity apx_fs.IridisCSPTx
+    generic map (
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
+      CHAN_THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
+      )
+    port map(
+      clkLHC     => clk40,
+      bc0_clkLHC => OrbitStrobe,
+
       -- MGT Interface 
-      mgtTxClk => mgtClk,
+      mgtTxClk      => mgtClk,
       mgtTxInitDone => mgtTxInitDone,
       mgtTxHeader   => mgtTxHeader,
       mgtTxData     => mgtTxData,
       mgtTxSequence => mgtTxSequence,
 
-      iridisSfTxCtrl => iridisSfTxCtrl, 
+      iridisSfTxCtrl => iridisSfTxCtrl,
       iridisSfTxStat => iridisSfTxStat,
 
       cspSpecialStatus => cspSpecialStatusTb,
-       
-      
-      axisClk  => axisTxClk,
-      axiStream =>  AxisPbBufferOut ); -- AxisTxSideBand);-- AxisTxMaster);
+
+      axisClk   => axisTxClk,
+      axiStream => AxisPbBufferOut);
+
+
+  U_IridisCSPRx : entity apx_fs.IridisCSPRx
+    generic map (
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C,
+      CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C
+      )
+    port map (
+      axisClk   => axisRxClk,
+      axiStream => AxisRxMaster,
+
+
+      clkLHC     => clk40,
+      bc0_clkLHC => OrbitStrobe,
+
+      cspSpecialStatus => RxcspSpecialStatusTb,
+
+      mgtRxClk         => mgtClk,
+      mgtRxInitDone    => mgtRxInitDone,
+      mgtRxHeaderValid => mgtRxHeaderValid,
+      mgtRxHeader      => mgtRxHeader,
+      mgtRxDataValid   => mgtRxDataValid,
+      mgtRxData        => mgtRxData,
+      mgtRxSlip        => mgtRxSlip,
+      mgtRst           => mgtRst,
+
+
+      iridisSfRxCtrl => iridisSfRxCtrl,
+      iridisSfRxStat => iridisSfRxStat
+      );
+
+
+  U_CaptureBuffer : entity apx_fs.APxLinkBuffer
+    generic map (
+      TPD_G                => TPD_C,
+      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
+      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C,
+      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C
+      )
+    port map (
+
+      clkLHC     => clk40,
+      bc0_clkLHC => OrbitStrobe,
+
+      linkBufCtrl => linkBufCtrlCap,
+      linkBufStat => linkBufStatCap,
+
+      axiStreamClk => axisTxClk,
+      axiStreamIn  => AxisRxMaster,
+      axiStreamOut => AxisCapBufferOut,
+
+
+      clk_sc  => '0',
+      en_sc   => '1',
+      we_sc   => '0',
+      addr_sc => (others => '0'),
+      din_sc  => (others => '0'),
+      dout_sc => open
+      );
+
 
 -------------------------------------------
 -- AXI Stream Generator                ----

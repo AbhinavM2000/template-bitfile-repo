@@ -16,11 +16,11 @@ package CSPSimulationPkg is
   -----  User Defined  parameters. 
   -----------------------------------------------------------------------------------
   -----------------------------------------------------------------------------------
-  constant  CHAN_TM_INTERVAL_SIM_C   : natural := 6;   -- TM Interval in units of bunch crossing  
-  constant  CHAN_CLK_RATIO_SIM_C     : natural := 9;    -- Ratio of algo clocks to LHC clocks 
-  constant  CHAN_FRAME_LENGTH_SIM_C  : natural := 54;  -- Number of words in the frame (must be <= TM_INTERVAL * CLK RATIO
-  constant  CHAN_FIFO_WORDS_PER_FRAME_SIM_C : natural := 54; --number of FIFO words read, including frame data + idle ***DOES NOT INCLUDE THROTTLED CLOCK CYCLES
-  constant  CHAN_THROTTLE_VECTOR_SIM_C : slv := "0";
+  constant  TX_CHAN_TM_INTERVAL_SIM_C   : natural := 6;   -- TM Interval in units of bunch crossing  
+  constant  TX_CHAN_CLK_RATIO_SIM_C     : natural := 9;    -- Ratio of algo clocks to LHC clocks 
+  constant  TX_CHAN_FRAME_LENGTH_SIM_C  : natural := 54;  -- Number of words in the frame (must be <= TM_INTERVAL * CLK RATIO
+  constant  TX_CHAN_FIFO_WORDS_PER_FRAME_SIM_C : natural := 54; --number of FIFO words read, including frame data + idle ***DOES NOT INCLUDE THROTTLED CLOCK CYCLES
+  constant  TX_CHAN_THROTTLE_VECTOR_SIM_C : slv := "0";
 
   -- 
   constant RX_CHAN_TM_INTERVAL_SIM_C   : natural := 6;   -- TM Interval in units of bunch crossing  

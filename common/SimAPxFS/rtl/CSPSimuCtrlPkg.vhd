@@ -126,14 +126,14 @@ end package CSPSimCtrlPkg;
 			   show("====================================================================");
 			   show("           Data Generator Config                                    "); 
 			   show("====================================================================");
-			   show(" TM                  : " &str(CHAN_TM_INTERVAL_SIM_C)); 
-			   show(" CLOCK RATIO         : " &str(CHAN_CLK_RATIO_SIM_C));
-			   show(" FRAME LENGTH        : " &str(CHAN_FRAME_LENGTH_SIM_C));
-			   show(" THROTTLE VECTOR     : " &str(CHAN_THROTTLE_VECTOR_SIM_C));
-               CNTR_FRAME_x_ORBIT <= CntrMaxNumFramexOrbit(CHAN_TM_INTERVAL_SIM_C);                    -- Comment: Number of Frames per Obit 
-               CNTR_FRAME_LENGTH <= CntrFrameMaxFunc(CHAN_TM_INTERVAL_SIM_C,CHAN_CLK_RATIO_SIM_C);     --Comment:  Frame Length (TM, Clock Ratio) 
+			   show(" TM                  : " &str(TX_CHAN_TM_INTERVAL_SIM_C)); 
+			   show(" CLOCK RATIO         : " &str(TX_CHAN_CLK_RATIO_SIM_C));
+			   show(" FRAME LENGTH        : " &str(TX_CHAN_FRAME_LENGTH_SIM_C));
+			   show(" THROTTLE VECTOR     : " &str(TX_CHAN_THROTTLE_VECTOR_SIM_C));
+               CNTR_FRAME_x_ORBIT <= CntrMaxNumFramexOrbit(TX_CHAN_TM_INTERVAL_SIM_C);                    -- Comment: Number of Frames per Obit 
+               CNTR_FRAME_LENGTH <= CntrFrameMaxFunc(TX_CHAN_TM_INTERVAL_SIM_C,TX_CHAN_CLK_RATIO_SIM_C);     --Comment:  Frame Length (TM, Clock Ratio) 
 	           wait for  50 ns; 
-               CNTR_FRAME_USR_LENGTH  <= NumberOfDataWordsxFrameFunc(CHAN_FRAME_LENGTH_SIM_C);
+               CNTR_FRAME_USR_LENGTH  <= NumberOfDataWordsxFrameFunc(TX_CHAN_FRAME_LENGTH_SIM_C);
      end DataGenCfg;  
    
    
@@ -192,7 +192,7 @@ end package CSPSimCtrlPkg;
              variable FrameLength : integer range 0 to 200:= 165;
            begin 
              FrameLength:= (TMInterval * ClkRatio);
-  assert (CHAN_FRAME_LENGTH_SIM_C <=  FrameLength) report "Number of words in the frame must be <= TM_INTERVAL * CLK_RATIO" severity failure;
+  assert (TX_CHAN_FRAME_LENGTH_SIM_C <=  FrameLength) report "Number of words in the frame must be <= TM_INTERVAL * CLK_RATIO" severity failure;
              return FrameLength - 2; 
   end CntrFrameMaxFunc;
 
@@ -205,8 +205,8 @@ end package CSPSimCtrlPkg;
              variable IdlesNum     : integer := 10; 
              begin
                 DataWordsNum := NumDataWords; 
-                assert (DataWordsNum <=  (CHAN_TM_INTERVAL_SIM_C * CHAN_CLK_RATIO_SIM_C)) report "Invalid number of Data Words x Frame" severity failure;
-                IdlesNum :=  ((CHAN_TM_INTERVAL_SIM_C * CHAN_CLK_RATIO_SIM_C) - DataWordsNum);
+                assert (DataWordsNum <=  (TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C)) report "Invalid number of Data Words x Frame" severity failure;
+                IdlesNum :=  ((TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C) - DataWordsNum);
 				show("====================================================================");
                 show(str(DataWordsNum) & " Data Words  and " & str(IdlesNum) & " Idle Words  per frame");
 				show("====================================================================");
