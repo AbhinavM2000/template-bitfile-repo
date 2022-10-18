@@ -79,12 +79,12 @@ update_compile_order -fileset sim_1
 set_property -name {xsim.elaborate.xelab.more_options} -value {-timescale 1fs/1fs  -override_timeprecision} -objects [get_filesets sim_1]
 
 #Predefined Time simulation 
-set_property -name {xsim.simulate.runtime} -value {500us} -objects [get_filesets sim_1]
+set_property -name {xsim.simulate.runtime} -value {2000us} -objects [get_filesets sim_1]
 
 # Predefined Wave 
-#set Wave $::TOP_DIR/common/SimAPxFS/Wave/
-#set Wave_filename  $Wave/IridisSfTb_behav.wcfg
-#set_property xsim.view ${Wave_filename} -objects [get_filesets sim_1]
-#set_property -name {xsim.simulate.wdb} -value ${Wave_filename} -objects [get_filesets sim_1]
-#update_compile_order -fileset sim_1
+set Wave $::TOP_DIR/common/SimAPxFS/Wave/
+set Wave_filename  $Wave/IridisSfTb_behav.wcfg
+set_property xsim.view ${Wave_filename} -objects [get_filesets sim_1]
+set_property -name {xsim.simulate.wdb} -value ${Wave_filename} -objects [get_filesets sim_1]
+update_compile_order -fileset sim_1
 

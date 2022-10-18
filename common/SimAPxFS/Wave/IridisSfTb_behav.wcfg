@@ -3,14 +3,18 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="IridisSfTb_behav.wdb" id="1">
+      <db_ref path="IridisCSPTb_behav.wdb" id="1">
          <top_modules>
-            <top_module name="IridisSfTb" />
+            <top_module name="IridisCSPTb" />
+            <top_module name="apxlinkbufpkg" />
             <top_module name="axilitepkg" />
             <top_module name="axistreampkg" />
             <top_module name="csprulespkg" />
+            <top_module name="cspsimctrlpkg" />
+            <top_module name="cspsimtypepkg" />
+            <top_module name="cspsimulationpkg" />
             <top_module name="glbl" />
-            <top_module name="iridispkg" />
+            <top_module name="iridiscsppkg" />
             <top_module name="stdrtlpkg" />
             <top_module name="tcds2_bx_and_orbit_pkg" />
             <top_module name="textutilpkg" />
@@ -19,68 +23,1359 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="299,857.513000 ns"></ZoomStartTime>
-      <ZoomEndTime time="299,877.283001 ns"></ZoomEndTime>
-      <Cursor1Time time="299,873.988000 ns"></Cursor1Time>
+      <ZoomStartTime time="1600102164068fs"></ZoomStartTime>
+      <ZoomEndTime time="1600196974368fs"></ZoomEndTime>
+      <Cursor1Time time="1694837625500fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="307"></NameColumnWidth>
-      <ValueColumnWidth column_width="235"></ValueColumnWidth>
+      <NameColumnWidth column_width="360"></NameColumnWidth>
+      <ValueColumnWidth column_width="153"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
-   <wave_markers>
-      <marker label="" time="269079858" />
-      <marker label="" time="499967440000" />
-      <marker label="" time="23800000000" />
-      <marker label="" time="96657484000" />
-      <marker label="" time="299848986000" />
-   </wave_markers>
-   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/r_iCSPFSM">
+   <WVObjectSize size="35" />
+   <wvobject type="logic" fp_name="/IridisCSPTb/clk40">
+      <obj_property name="ElementShortName">clk40</obj_property>
+      <obj_property name="ObjectShortName">clk40</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/axisTxClk">
+      <obj_property name="ElementShortName">axisTxClk</obj_property>
+      <obj_property name="ObjectShortName">axisTxClk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/axisRxClk">
+      <obj_property name="ElementShortName">axisRxClk</obj_property>
+      <obj_property name="ObjectShortName">axisRxClk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/EnableMatchFlag">
+      <obj_property name="ElementShortName">EnableMatchFlag</obj_property>
+      <obj_property name="ObjectShortName">EnableMatchFlag</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/OrbitStrobe">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">OrbitStrobe</obj_property>
+      <obj_property name="ObjectShortName">OrbitStrobe</obj_property>
+      <obj_property name="label">OrbitStrobe - BC0</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider117" type="divider">
+      <obj_property name="label">OPW</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut">
+      <obj_property name="ElementShortName">axiStreamOut</obj_property>
+      <obj_property name="ObjectShortName">axiStreamOut</obj_property>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus1218">
+      <obj_property name="label">Sideband</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[5]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+         <obj_property name="label">CRC strb</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[4]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+         <obj_property name="label">CRC Err</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[3]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+         <obj_property name="label">tValid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[2]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+         <obj_property name="label">EOF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[1]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="label">FFO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tUser[0]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+         <obj_property name="label">SOF</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus673">
+      <obj_property name="label">O</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[63]">
+         <obj_property name="ElementShortName">[63]</obj_property>
+         <obj_property name="ObjectShortName">[63]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[62]">
+         <obj_property name="ElementShortName">[62]</obj_property>
+         <obj_property name="ObjectShortName">[62]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[61]">
+         <obj_property name="ElementShortName">[61]</obj_property>
+         <obj_property name="ObjectShortName">[61]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[60]">
+         <obj_property name="ElementShortName">[60]</obj_property>
+         <obj_property name="ObjectShortName">[60]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[59]">
+         <obj_property name="ElementShortName">[59]</obj_property>
+         <obj_property name="ObjectShortName">[59]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[58]">
+         <obj_property name="ElementShortName">[58]</obj_property>
+         <obj_property name="ObjectShortName">[58]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[57]">
+         <obj_property name="ElementShortName">[57]</obj_property>
+         <obj_property name="ObjectShortName">[57]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[56]">
+         <obj_property name="ElementShortName">[56]</obj_property>
+         <obj_property name="ObjectShortName">[56]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[55]">
+         <obj_property name="ElementShortName">[55]</obj_property>
+         <obj_property name="ObjectShortName">[55]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[54]">
+         <obj_property name="ElementShortName">[54]</obj_property>
+         <obj_property name="ObjectShortName">[54]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[53]">
+         <obj_property name="ElementShortName">[53]</obj_property>
+         <obj_property name="ObjectShortName">[53]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[52]">
+         <obj_property name="ElementShortName">[52]</obj_property>
+         <obj_property name="ObjectShortName">[52]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[51]">
+         <obj_property name="ElementShortName">[51]</obj_property>
+         <obj_property name="ObjectShortName">[51]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[50]">
+         <obj_property name="ElementShortName">[50]</obj_property>
+         <obj_property name="ObjectShortName">[50]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[49]">
+         <obj_property name="ElementShortName">[49]</obj_property>
+         <obj_property name="ObjectShortName">[49]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[48]">
+         <obj_property name="ElementShortName">[48]</obj_property>
+         <obj_property name="ObjectShortName">[48]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[47]">
+         <obj_property name="ElementShortName">[47]</obj_property>
+         <obj_property name="ObjectShortName">[47]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[46]">
+         <obj_property name="ElementShortName">[46]</obj_property>
+         <obj_property name="ObjectShortName">[46]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[45]">
+         <obj_property name="ElementShortName">[45]</obj_property>
+         <obj_property name="ObjectShortName">[45]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[44]">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">[44]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[43]">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">[43]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[42]">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">[42]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[41]">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">[41]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[40]">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">[40]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[39]">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">[39]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[38]">
+         <obj_property name="ElementShortName">[38]</obj_property>
+         <obj_property name="ObjectShortName">[38]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[37]">
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">[37]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[36]">
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">[36]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[35]">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">[35]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[34]">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">[34]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[33]">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">[33]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[32]">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">[32]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus656">
+      <obj_property name="label">P</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[31]">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">[31]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[30]">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">[30]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[29]">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">[29]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[28]">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">[28]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[27]">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">[27]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[26]">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">[26]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[25]">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">[25]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[24]">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">[24]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[23]">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">[23]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[22]">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">[22]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[21]">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">[21]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[20]">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">[20]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[19]">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">[19]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[18]">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">[18]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[17]">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">[17]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[16]">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">[16]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus639">
+      <obj_property name="label">W</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_OPWGen/axiStreamOut.tData[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider4229" type="divider">
+      <obj_property name="label">CSP Tx Link Buf</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut">
+      <obj_property name="ElementShortName">axiStreamOut</obj_property>
+      <obj_property name="ObjectShortName">axiStreamOut</obj_property>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus5339">
+      <obj_property name="label">Sideband</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tValid">
+         <obj_property name="ElementShortName">.tValid</obj_property>
+         <obj_property name="ObjectShortName">.tValid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tLast">
+         <obj_property name="ElementShortName">.tLast</obj_property>
+         <obj_property name="ObjectShortName">.tLast</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[5]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+         <obj_property name="label">CRC Strb</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[4]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+         <obj_property name="label">CRC Err</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[3]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+         <obj_property name="label">Throttle</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[2]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+         <obj_property name="label">EOF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[1]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="label">FFO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tUser[0]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+         <obj_property name="label">SOF</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus4794">
+      <obj_property name="label">O</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[63]">
+         <obj_property name="ElementShortName">[63]</obj_property>
+         <obj_property name="ObjectShortName">[63]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[62]">
+         <obj_property name="ElementShortName">[62]</obj_property>
+         <obj_property name="ObjectShortName">[62]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[61]">
+         <obj_property name="ElementShortName">[61]</obj_property>
+         <obj_property name="ObjectShortName">[61]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[60]">
+         <obj_property name="ElementShortName">[60]</obj_property>
+         <obj_property name="ObjectShortName">[60]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[59]">
+         <obj_property name="ElementShortName">[59]</obj_property>
+         <obj_property name="ObjectShortName">[59]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[58]">
+         <obj_property name="ElementShortName">[58]</obj_property>
+         <obj_property name="ObjectShortName">[58]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[57]">
+         <obj_property name="ElementShortName">[57]</obj_property>
+         <obj_property name="ObjectShortName">[57]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[56]">
+         <obj_property name="ElementShortName">[56]</obj_property>
+         <obj_property name="ObjectShortName">[56]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[55]">
+         <obj_property name="ElementShortName">[55]</obj_property>
+         <obj_property name="ObjectShortName">[55]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[54]">
+         <obj_property name="ElementShortName">[54]</obj_property>
+         <obj_property name="ObjectShortName">[54]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[53]">
+         <obj_property name="ElementShortName">[53]</obj_property>
+         <obj_property name="ObjectShortName">[53]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[52]">
+         <obj_property name="ElementShortName">[52]</obj_property>
+         <obj_property name="ObjectShortName">[52]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[51]">
+         <obj_property name="ElementShortName">[51]</obj_property>
+         <obj_property name="ObjectShortName">[51]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[50]">
+         <obj_property name="ElementShortName">[50]</obj_property>
+         <obj_property name="ObjectShortName">[50]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[49]">
+         <obj_property name="ElementShortName">[49]</obj_property>
+         <obj_property name="ObjectShortName">[49]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[48]">
+         <obj_property name="ElementShortName">[48]</obj_property>
+         <obj_property name="ObjectShortName">[48]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[47]">
+         <obj_property name="ElementShortName">[47]</obj_property>
+         <obj_property name="ObjectShortName">[47]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[46]">
+         <obj_property name="ElementShortName">[46]</obj_property>
+         <obj_property name="ObjectShortName">[46]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[45]">
+         <obj_property name="ElementShortName">[45]</obj_property>
+         <obj_property name="ObjectShortName">[45]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[44]">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">[44]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[43]">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">[43]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[42]">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">[42]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[41]">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">[41]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[40]">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">[40]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[39]">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">[39]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[38]">
+         <obj_property name="ElementShortName">[38]</obj_property>
+         <obj_property name="ObjectShortName">[38]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[37]">
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">[37]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[36]">
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">[36]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[35]">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">[35]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[34]">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">[34]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[33]">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">[33]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[32]">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">[32]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus4777">
+      <obj_property name="label">P</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[31]">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">[31]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[30]">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">[30]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[29]">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">[29]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[28]">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">[28]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[27]">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">[27]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[26]">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">[26]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[25]">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">[25]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[24]">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">[24]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[23]">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">[23]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[22]">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">[22]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[21]">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">[21]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[20]">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">[20]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[19]">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">[19]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[18]">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">[18]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[17]">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">[17]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[16]">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">[16]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus4760">
+      <obj_property name="label">W</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_PlayBackBuffer/axiStreamOut.tData[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider1825" type="divider">
+      <obj_property name="label">CSP Tx</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream">
+      <obj_property name="ElementShortName">axiStream</obj_property>
+      <obj_property name="ObjectShortName">axiStream</obj_property>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus2905">
+      <obj_property name="label">O</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[63]">
+         <obj_property name="ElementShortName">[63]</obj_property>
+         <obj_property name="ObjectShortName">[63]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[62]">
+         <obj_property name="ElementShortName">[62]</obj_property>
+         <obj_property name="ObjectShortName">[62]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[61]">
+         <obj_property name="ElementShortName">[61]</obj_property>
+         <obj_property name="ObjectShortName">[61]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[60]">
+         <obj_property name="ElementShortName">[60]</obj_property>
+         <obj_property name="ObjectShortName">[60]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[59]">
+         <obj_property name="ElementShortName">[59]</obj_property>
+         <obj_property name="ObjectShortName">[59]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[58]">
+         <obj_property name="ElementShortName">[58]</obj_property>
+         <obj_property name="ObjectShortName">[58]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[57]">
+         <obj_property name="ElementShortName">[57]</obj_property>
+         <obj_property name="ObjectShortName">[57]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[56]">
+         <obj_property name="ElementShortName">[56]</obj_property>
+         <obj_property name="ObjectShortName">[56]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[55]">
+         <obj_property name="ElementShortName">[55]</obj_property>
+         <obj_property name="ObjectShortName">[55]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[54]">
+         <obj_property name="ElementShortName">[54]</obj_property>
+         <obj_property name="ObjectShortName">[54]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[53]">
+         <obj_property name="ElementShortName">[53]</obj_property>
+         <obj_property name="ObjectShortName">[53]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[52]">
+         <obj_property name="ElementShortName">[52]</obj_property>
+         <obj_property name="ObjectShortName">[52]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[51]">
+         <obj_property name="ElementShortName">[51]</obj_property>
+         <obj_property name="ObjectShortName">[51]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[50]">
+         <obj_property name="ElementShortName">[50]</obj_property>
+         <obj_property name="ObjectShortName">[50]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[49]">
+         <obj_property name="ElementShortName">[49]</obj_property>
+         <obj_property name="ObjectShortName">[49]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[48]">
+         <obj_property name="ElementShortName">[48]</obj_property>
+         <obj_property name="ObjectShortName">[48]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[47]">
+         <obj_property name="ElementShortName">[47]</obj_property>
+         <obj_property name="ObjectShortName">[47]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[46]">
+         <obj_property name="ElementShortName">[46]</obj_property>
+         <obj_property name="ObjectShortName">[46]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[45]">
+         <obj_property name="ElementShortName">[45]</obj_property>
+         <obj_property name="ObjectShortName">[45]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[44]">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">[44]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[43]">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">[43]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[42]">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">[42]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[41]">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">[41]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[40]">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">[40]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[39]">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">[39]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[38]">
+         <obj_property name="ElementShortName">[38]</obj_property>
+         <obj_property name="ObjectShortName">[38]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[37]">
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">[37]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[36]">
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">[36]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[35]">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">[35]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[34]">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">[34]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[33]">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">[33]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[32]">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">[32]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus2888">
+      <obj_property name="label">P</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[31]">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">[31]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[30]">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">[30]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[29]">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">[29]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[28]">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">[28]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[27]">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">[27]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[26]">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">[26]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[25]">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">[25]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[24]">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">[24]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[23]">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">[23]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[22]">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">[22]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[21]">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">[21]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[20]">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">[20]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[19]">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">[19]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[18]">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">[18]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[17]">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">[17]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[16]">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">[16]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus2871">
+      <obj_property name="label">W</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tData[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus2352">
+      <obj_property name="label">Sideband</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tLast">
+         <obj_property name="ElementShortName">.tLast</obj_property>
+         <obj_property name="ObjectShortName">.tLast</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tValid">
+         <obj_property name="ElementShortName">.tValid</obj_property>
+         <obj_property name="ObjectShortName">.tValid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[5]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+         <obj_property name="label">CRC Strb</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[4]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+         <obj_property name="label">CRC Err</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[3]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+         <obj_property name="label">Throttle</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[2]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+         <obj_property name="label">EOF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[1]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="label">FFO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPTx/axiStream.tUser[0]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+         <obj_property name="label">SOF</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl">
+      <obj_property name="ElementShortName">iridisSfTxCtrl</obj_property>
+      <obj_property name="ObjectShortName">iridisSfTxCtrl</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxStat">
+      <obj_property name="ElementShortName">iridisSfTxStat</obj_property>
+      <obj_property name="ObjectShortName">iridisSfTxStat</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPTx/r_iCSPFSM">
       <obj_property name="ElementShortName">r_iCSPFSM</obj_property>
       <obj_property name="ObjectShortName">r_iCSPFSM</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/U_LinkResyncCtrl/r">
-      <obj_property name="ElementShortName">r</obj_property>
-      <obj_property name="ObjectShortName">r</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/r_oCSPFSM">
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM">
       <obj_property name="ElementShortName">r_oCSPFSM</obj_property>
       <obj_property name="ObjectShortName">r_oCSPFSM</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/fifoDataIn">
-      <obj_property name="ElementShortName">fifoDataIn[71:0]</obj_property>
-      <obj_property name="ObjectShortName">fifoDataIn[71:0]</obj_property>
+   <wvobject fp_name="divider1828" type="divider">
+      <obj_property name="label">CSP Rx</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/IridisSfTb/U_IridisRx/fifoDataOut">
-      <obj_property name="ElementShortName">fifoDataOut[71:0]</obj_property>
-      <obj_property name="ObjectShortName">fifoDataOut[71:0]</obj_property>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream">
+      <obj_property name="ElementShortName">axiStream</obj_property>
+      <obj_property name="ObjectShortName">axiStream</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/U_Fifo/wr_en">
-      <obj_property name="ElementShortName">wr_en</obj_property>
-      <obj_property name="ObjectShortName">wr_en</obj_property>
+   <wvobject type="vbus" fp_name="vbus3677">
+      <obj_property name="label">O</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[63]">
+         <obj_property name="ElementShortName">[63]</obj_property>
+         <obj_property name="ObjectShortName">[63]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[62]">
+         <obj_property name="ElementShortName">[62]</obj_property>
+         <obj_property name="ObjectShortName">[62]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[61]">
+         <obj_property name="ElementShortName">[61]</obj_property>
+         <obj_property name="ObjectShortName">[61]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[60]">
+         <obj_property name="ElementShortName">[60]</obj_property>
+         <obj_property name="ObjectShortName">[60]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[59]">
+         <obj_property name="ElementShortName">[59]</obj_property>
+         <obj_property name="ObjectShortName">[59]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[58]">
+         <obj_property name="ElementShortName">[58]</obj_property>
+         <obj_property name="ObjectShortName">[58]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[57]">
+         <obj_property name="ElementShortName">[57]</obj_property>
+         <obj_property name="ObjectShortName">[57]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[56]">
+         <obj_property name="ElementShortName">[56]</obj_property>
+         <obj_property name="ObjectShortName">[56]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[55]">
+         <obj_property name="ElementShortName">[55]</obj_property>
+         <obj_property name="ObjectShortName">[55]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[54]">
+         <obj_property name="ElementShortName">[54]</obj_property>
+         <obj_property name="ObjectShortName">[54]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[53]">
+         <obj_property name="ElementShortName">[53]</obj_property>
+         <obj_property name="ObjectShortName">[53]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[52]">
+         <obj_property name="ElementShortName">[52]</obj_property>
+         <obj_property name="ObjectShortName">[52]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[51]">
+         <obj_property name="ElementShortName">[51]</obj_property>
+         <obj_property name="ObjectShortName">[51]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[50]">
+         <obj_property name="ElementShortName">[50]</obj_property>
+         <obj_property name="ObjectShortName">[50]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[49]">
+         <obj_property name="ElementShortName">[49]</obj_property>
+         <obj_property name="ObjectShortName">[49]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[48]">
+         <obj_property name="ElementShortName">[48]</obj_property>
+         <obj_property name="ObjectShortName">[48]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[47]">
+         <obj_property name="ElementShortName">[47]</obj_property>
+         <obj_property name="ObjectShortName">[47]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[46]">
+         <obj_property name="ElementShortName">[46]</obj_property>
+         <obj_property name="ObjectShortName">[46]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[45]">
+         <obj_property name="ElementShortName">[45]</obj_property>
+         <obj_property name="ObjectShortName">[45]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[44]">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">[44]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[43]">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">[43]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[42]">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">[42]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[41]">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">[41]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[40]">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">[40]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[39]">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">[39]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[38]">
+         <obj_property name="ElementShortName">[38]</obj_property>
+         <obj_property name="ObjectShortName">[38]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[37]">
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">[37]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[36]">
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">[36]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[35]">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">[35]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[34]">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">[34]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[33]">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">[33]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[32]">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">[32]</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/U_Fifo/rd_en">
-      <obj_property name="ElementShortName">rd_en</obj_property>
-      <obj_property name="ObjectShortName">rd_en</obj_property>
+   <wvobject type="vbus" fp_name="vbus3660">
+      <obj_property name="label">P</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[31]">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">[31]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[30]">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">[30]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[29]">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">[29]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[28]">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">[28]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[27]">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">[27]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[26]">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">[26]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[25]">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">[25]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[24]">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">[24]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[23]">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">[23]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[22]">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">[22]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[21]">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">[21]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[20]">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">[20]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[19]">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">[19]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[18]">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">[18]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[17]">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">[17]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[16]">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">[16]</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/IridisSfTb/U_IridisRx/axisClk">
-      <obj_property name="ElementShortName">axisClk</obj_property>
-      <obj_property name="ObjectShortName">axisClk</obj_property>
+   <wvobject type="vbus" fp_name="vbus3643">
+      <obj_property name="label">W</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tData[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="array" fp_name="/IridisSfTb/fsClks">
-      <obj_property name="ElementShortName">fsClks[1:0]</obj_property>
-      <obj_property name="ObjectShortName">fsClks[1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject type="vbus" fp_name="vbus4222">
+      <obj_property name="label">Sideband</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tLast">
+         <obj_property name="ElementShortName">.tLast</obj_property>
+         <obj_property name="ObjectShortName">.tLast</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tValid">
+         <obj_property name="ElementShortName">.tValid</obj_property>
+         <obj_property name="ObjectShortName">.tValid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[5]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+         <obj_property name="label">CRC Strb</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[4]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+         <obj_property name="label">CRC Err</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[3]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+         <obj_property name="label">Throttle</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[2]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+         <obj_property name="label">EOF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[1]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="label">FFO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/axiStream.tUser[0]">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+         <obj_property name="label">SOF</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/IridisSfTb/mainSimClk">
-      <obj_property name="ElementShortName">mainSimClk</obj_property>
-      <obj_property name="ObjectShortName">mainSimClk</obj_property>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPRx/iridisSfRxCtrl">
+      <obj_property name="ElementShortName">iridisSfRxCtrl</obj_property>
+      <obj_property name="ObjectShortName">iridisSfRxCtrl</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/IridisSfTb/ClkMngrLockStat">
-      <obj_property name="ElementShortName">ClkMngrLockStat</obj_property>
-      <obj_property name="ObjectShortName">ClkMngrLockStat</obj_property>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPRx/iridisSfRxStat">
+      <obj_property name="ElementShortName">iridisSfRxStat</obj_property>
+      <obj_property name="ObjectShortName">iridisSfRxStat</obj_property>
    </wvobject>
 </wave_config>
