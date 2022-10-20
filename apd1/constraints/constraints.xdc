@@ -35,6 +35,8 @@ set_property PACKAGE_PIN AW31 [get_ports dplink_p2n_ecc_n]
 set_property LOC  GTYE4_CHANNEL_X0Y28 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]
 set_property LOC  GTYE4_CHANNEL_X0Y29 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[1].*CHANNEL_PRIM_INST}]
 
+set_property LOC GTYE4_CHANNEL_X0Y30 [get_cells -hierarchical -filter {NAME =~ U_ApxTcds2/*GTYE4_CHANNEL_PRIM_INST}]
+
 set_property  LOC BUFGCTRL_X0Y61 [get_cells [list U_ApxTcds2/*.U_BUFGMUX_CTRL]]
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
