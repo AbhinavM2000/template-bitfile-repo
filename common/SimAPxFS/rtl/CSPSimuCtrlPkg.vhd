@@ -216,12 +216,12 @@ end package CSPSimCtrlPkg;
 ------------------------------------------------------------------------------------------- 
     procedure HdrError(signal IridisTxCtrl: inout tIridisSfTxCtrl) is 
                 begin 
-                    IridisTxCtrl.ClrMask.hdrErrForce <= '1';
+                    IridisTxCtrl.ClrMask.hdrDbErrForce <= '1';
                     IridisTxCtrl.TxCtrlStrobe <= '1' ; 
                     wait for AxiStreamPeriod * 2; 
                     IridisTxCtrl.TxCtrlStrobe <= '0' ; 
 					          wait for AxiStreamPeriod * 2; 
-					          IridisTxCtrl.ClrMask.hdrErrForce <= '0';
+					          IridisTxCtrl.ClrMask.hdrDbErrForce <= '0';
 					show("Double Header Error  inserted "); 
     end HdrError; 
 ------------------------------------------------------------------------------------------- 
@@ -240,24 +240,24 @@ end package CSPSimCtrlPkg;
 ----------------------------------------------------------------------------------------- 
     procedure CtlCodeError(signal IridisTxCtrl: inout tIridisSfTxCtrl) is 
                 begin 
-                    IridisTxCtrl.ClrMask.ctlcodeErrForce <= '1';
+                    IridisTxCtrl.ClrMask.ctlcodeDbErrForce <= '1';
                     IridisTxCtrl.TxCtrlStrobe <= '1' ; 
                     wait for AxiStreamPeriod * 2; 
                     IridisTxCtrl.TxCtrlStrobe <= '0' ; 
 					          wait for AxiStreamPeriod * 2; 
-					          IridisTxCtrl.ClrMask.ctlcodeErrForce<= '0';
+					          IridisTxCtrl.ClrMask.ctlcodeDbErrForce<= '0';
 					show("Control Code Double Bit Error inserted (p0, d3) "); 
     end CtlCodeError; 
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
     procedure ICFieldError(signal IridisTxCtrl: inout tIridisSfTxCtrl) is 
                 begin 
-                    IridisTxCtrl.ClrMask.ctlcodeErrForce <= '1';
+                    IridisTxCtrl.ClrMask.icfieldErrForce <= '1';
                     IridisTxCtrl.TxCtrlStrobe <= '1' ; 
                     wait for AxiStreamPeriod * 2; 
                     IridisTxCtrl.TxCtrlStrobe <= '0' ; 
 					          wait for AxiStreamPeriod * 2; 
-					          IridisTxCtrl.ClrMask.ctlcodeErrForce<= '0';
+					          IridisTxCtrl.ClrMask.icfieldErrForce<= '0';
 					show("IC counter Error inserted "); 
     end ICFieldError; 
 ----------------------------------------------------------------------------------------- 
