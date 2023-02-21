@@ -112,7 +112,7 @@ architecture rtl of apd1_top is
       addrBits              => 16,
       connectivity          => x"FFFF"),
     ALGO_CTRL_INDEX_C       => (
-      baseAddr              => x"6A50_0000",
+      baseAddr              => ALGO_CTRL_BASE_ADDR_C,
       addrBits              => 16,
       connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (

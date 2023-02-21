@@ -28,7 +28,7 @@ entity algoTopWrapper is
     --LHC clock domain
     clkLHC     : in sl;
     bc0_clkLHC : in sl;
-    
+
     delay : in slv(15 downto 0);
 
     -- AXI-Stream In/Out Ports
@@ -39,22 +39,23 @@ end algoTopWrapper;
 
 architecture rtl of algoTopWrapper is
 
-
-signal sAxiStreamOutSLR0 :  AxiStreamMasterArray(0 to 11);
-signal sAxiStreamOutSLR1 :  AxiStreamMasterArray(12 to 27);
-signal sAxiStreamOutSLR2 :  AxiStreamMasterArray(28 to 47);
-signal sAxiStreamOutSLR03 :  AxiStreamMasterArray(48 to 51);
-
-
-attribute dont_touch : string;
-attribute dont_touch of sAxiStreamOutSLR0, sAxiStreamOutSLR1, sAxiStreamOutSLR2 : signal is "TRUE";
+  signal OPWrst, OPWrst2  : slv(0 to N_INPUT_STREAMS-1);
 
 begin
 
-  genOPWSLR0 : for i in 0 to 11 generate
+  genOPWrst : for i in 0 to N_INPUT_STREAMS-1 generate
+    process(algoClk) is
+    begin
+      if rising_edge(algoClk) then
+        OPWrst(i)  <= algoRst;
+        OPWrst2(i) <= OPWrst(i);
+      end if;
+    end process;
+  end generate;
+
+  genOPW : for i in 0 to N_INPUT_STREAMS-1 generate
     genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
       U_OPWGen_Tx : entity apx_fs.OPWGen
-      
         generic map(
           TM_INTERVAL     => APX_CH_CFG_G(i).TxProtocolCfg.CSPTMInterval,
           CLK_RATIO       => APX_CH_CFG_G(i).TxProtocolCfg.CSPClkRatio,
@@ -62,11 +63,11 @@ begin
           THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
           )
         port map(
-          slow_ctl_rst => algoRst,
+          slow_ctl_rst => OPWrst2(i),
 
           -- AXI-stream/algo interface
           axisClk      => algoClk,
-          axiStreamOut => sAxiStreamOutSLR0(i),
+          axiStreamOut => AxiStreamOut(i),
 
           --LHC clock domain
           clkLHC     => clkLHC,
@@ -76,89 +77,5 @@ begin
           );
     end generate;
   end generate;
-  
-  genOPWSLR03 : for i in 48 to 51 generate
-    genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
-      U_OPWGen_Tx : entity apx_fs.OPWGen
-      
-        generic map(
-          TM_INTERVAL     => APX_CH_CFG_G(i).TxProtocolCfg.CSPTMInterval,
-          CLK_RATIO       => APX_CH_CFG_G(i).TxProtocolCfg.CSPClkRatio,
-          FRAME_LENGTH    => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameLength,
-          THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
-          )
-        port map(
-          slow_ctl_rst => algoRst,
-
-          -- AXI-stream/algo interface
-          axisClk      => algoClk,
-          axiStreamOut => sAxiStreamOutSLR03(i),
-
-          --LHC clock domain
-          clkLHC     => clkLHC,
-          bc0_clkLHC => bc0_clkLHC,
-
-          delay => delay
-          );
-    end generate;
-  end generate;  
-  
-    genOPWSLR1 : for i in 12 to 27 generate
-    genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
-      U_OPWGen_Tx : entity apx_fs.OPWGen
-      
-        generic map(
-          TM_INTERVAL     => APX_CH_CFG_G(i).TxProtocolCfg.CSPTMInterval,
-          CLK_RATIO       => APX_CH_CFG_G(i).TxProtocolCfg.CSPClkRatio,
-          FRAME_LENGTH    => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameLength,
-          THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
-          )
-        port map(
-          slow_ctl_rst => algoRst,
-
-          -- AXI-stream/algo interface
-          axisClk      => algoClk,
-          axiStreamOut => sAxiStreamOutSLR1(i),
-
-          --LHC clock domain
-          clkLHC     => clkLHC,
-          bc0_clkLHC => bc0_clkLHC,
-
-          delay => delay
-          );
-    end generate;
-  end generate;
-  
-  genOPWSLR2 : for i in 28 to 47 generate
-    genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
-      U_OPWGen_Tx : entity apx_fs.OPWGen
-      
-        generic map(
-          TM_INTERVAL     => APX_CH_CFG_G(i).TxProtocolCfg.CSPTMInterval,
-          CLK_RATIO       => APX_CH_CFG_G(i).TxProtocolCfg.CSPClkRatio,
-          FRAME_LENGTH    => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameLength,
-          THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
-          )
-        port map(
-          slow_ctl_rst => algoRst,
-
-          -- AXI-stream/algo interface
-          axisClk      => algoClk,
-          axiStreamOut => sAxiStreamOutSLR2(i),
-
-          --LHC clock domain
-          clkLHC     => clkLHC,
-          bc0_clkLHC => bc0_clkLHC,
-
-          delay => delay
-          );
-    end generate;
-  end generate;
-    
-    
-  AxiStreamOut(0 to 11) <= sAxiStreamOutSLR0(0 to 11);
-  AxiStreamOut(16 to 27) <= sAxiStreamOutSLR1(16 to 27);
-  AxiStreamOut(32 to 35) <= sAxiStreamOutSLR2(32 to 35);
-  AxiStreamOut(48 to 51) <= sAxiStreamOutSLR03(48 to 51);
 
 end rtl;
