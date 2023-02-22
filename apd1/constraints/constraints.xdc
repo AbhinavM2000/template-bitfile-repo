@@ -234,6 +234,10 @@ set_property LOC GTYE4_CHANNEL_X1Y57 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X1Y58 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[98]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X1Y59 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[99]*.GTYE4_CHANNEL_PRIM_INST}]
 
+set_property ES_EYE_SCAN_EN TRUE [get_cells -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST}]
+
+
+
 # False path constraints
 # ----------------------------------------------------------------------------------------------------------------------
 set_false_path -to [get_cells -hierarchical -filter {NAME =~ *bit_synchronizer*inst/i_in_meta_reg}]
