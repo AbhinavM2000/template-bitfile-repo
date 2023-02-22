@@ -41,6 +41,10 @@ architecture rtl of algoTopWrapper is
 
   signal OPWrst, OPWrst2  : slv(0 to N_INPUT_STREAMS-1);
 
+attribute dont_touch : string;
+attribute dont_touch of OPWrst, OPWrst2 : signal is "TRUE";
+
+
 begin
 
   genOPWrst : for i in 0 to N_INPUT_STREAMS-1 generate
