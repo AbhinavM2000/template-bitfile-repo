@@ -28,7 +28,7 @@ use work.CSPSimTypePkg.all;
 
 entity IridisCSPTb is
 end IridisCSPTb;
-
+    
 
 architecture Behavioral of IridisCSPTb is
 
@@ -458,7 +458,7 @@ end process;
       cspSpecialStatus => cspSpecialStatusTb,
 
       axisClk   => axisTxClk,
-      axiStream => AxisPbBufferOut);
+      axiStream => AxisOPWGenOut);
 
 
   U_IridisCSPRx : entity apx_fs.IridisCSPRx
@@ -550,57 +550,21 @@ p_MainProces : process is
       show("Set Tx Resync Command");
       CtrlPulse(5, IridisSfTxCtrl.resync);
 
-      linkBufCtrlTb.bufdelay      <= x"0000";  -- Playback 
-      linkBufCtrlTb.SBGbc0delay   <= x"0009";  -- Playback 
-      linkBufCtrlTb.lastCycleAddr <= "1111111111";   -- Playback 
-      
+--      
       show("Set Rx Resync Command");
       CtrlPulse(2, IridisSfRxCtrl.resync);
+	    wait until (rising_edge(OrbitStrobe));
+		  wait until (rising_edge(OrbitStrobe));
       ------------------------------------------------------------------------------------
--- capture mode     
-      wait for 250 us;
-      linkBufCtrlTb.mode          <= '0';      -- capture mode
-      linkBufCtrlTb.muxCtrl       <= '0';
-      linkBufCtrlTb.loopEna       <= '0';
-      linkBufCtrlTb.snglEna       <= '0';
-      wait for 50 ns;
-
-      LinkBufRst (linkBufCtrlTb);
-      linkBufCtrlTb.snglEna <= '1';
-      wait for 120 us;
-
-
-      linkBufCtrlTb.snglEna <= '0';
+       LinkRxInfo(iridisSfRxStat, iridisSfTxCtrl);
       ------------------------------------------------------------------------------------
--- playback mode 
-      wait for 50 ns;
-      
+      for i in 0 to 15 loop
+        RxCountersStatus(iridisSfRxStat);
+        wait for 900 ns;
+      end loop;
 
 
-      linkBufCtrlTb.mode <= '1';        -- playback mode
-
-      LinkBufRst (linkBufCtrlTb);
-      wait for 50 ns;
-
-      linkBufCtrlTb.loopEna <= '1';  --- loopb enable playback mode activated
-      wait for 240 us;
-
-      ------------------------------------------------------------------------------------
-
-      linkBufCtrlTb.loopEna       <= '0';
-      linkBufCtrlTb.muxCtrl       <= '1';
-      linkBufCtrlTb.lastCycleAddr <= "0000110101";
-
-      LinkBufRst (linkBufCtrlTb);
-      wait for 50 ns;
-      linkBufCtrlTb.loopEna <= '1';  --- loopb enable playback mode activated
-
-      wait for 100 us;
-
-      linkBufCtrlTb.bufdelay <= x"0036";  -- Playback 
-
-      wait for 150 us;
-
+    wait ; 
 
       ------------------------------------------------------------------------------------
       --  After configuration and Tx Resync Command  Start the data generation  ---
@@ -643,7 +607,8 @@ p_MainProces : process is
       linkBufCtrlCap.snglEna       <= '0';
 
       EnableMatchFlag <= '1';
-
+--  ------
+      wait ; 
       show("Set Rx Resync Command 2nd");
       CtrlPulse(2, IridisSfRxCtrl.resync);
 

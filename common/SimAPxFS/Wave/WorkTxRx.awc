@@ -2,7 +2,7 @@
 <document type="awc" version="2">
 	<waveform>
 		<datasets>
-			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1658852510"/>
+			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1677437747"/>
 		</datasets>
 		<browser type="events"/>
 		<view active="true">
@@ -310,10 +310,13 @@
 					<reverse value="1"/>
 					<expand value=""/>
 					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.crcTChain" aliasid="0"/>
+					<integral_representation value="DecimalUnsigned"/>
+					<reverse value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.bc0CtrLatch" aliasid="0"/>
 				</signal>
 				<bold value="1"/>
 				<height value="27"/>
-				<reverse value=""/>
+				<integral_representation value=""/>
 				<color value="#ff0000"/>
 				<viewmode value="namedrow"/>
 				<wave_coloring value="1"/>
@@ -367,7 +370,7 @@
 				<signal name="/IridisCSPTb/iridisSfTxCtrl" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/r_iCSPFSM" aliasid="0"/>
 			</signalspart>
-			<firstvisiblesignal number="0"/>
+			<firstvisiblesignal number="11"/>
 			<timesynchronization value="1"/>
 			<cursorssynchronization value="1"/>
 			<time beginvisible="0fs" endvisible="0fs"/>
@@ -376,11 +379,11 @@
 			<bookmark name="SingleCtrlHdr " time="504896180ps" from="504880607704fs" to="504904640297fs"/>
 			<bookmark name="DoubleCtrlHdr " time="504888480ps" from="504882392482fs" to="504912910061fs"/>
 		</bookmarks>
-		<time beginvisible="0fs" endvisible="420us"/>
+		<time beginvisible="102250ns" endvisible="1047250ns"/>
 		<timeunit name="auto"/>
 		<cursors>
-			<cursor name="Cursor 5" id="-1" time="300us+0" lock="0" tip="1"/>
-			<active name="Cursor 5" time="300us+0"/>
+			<cursor name="Cursor 5" id="-1" time="1ms+0" lock="0" tip="1"/>
+			<active name="Cursor 5" time="1ms+0"/>
 		</cursors>
 		<hierarchy_depth value="0"/>
 	</waveform>

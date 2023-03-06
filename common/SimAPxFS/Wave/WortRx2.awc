@@ -2,7 +2,7 @@
 <document type="awc" version="2">
 	<waveform>
 		<datasets>
-			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1658852510"/>
+			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1677431611"/>
 		</datasets>
 		<browser type="events"/>
 		<view active="true">
@@ -15,7 +15,6 @@
 				<signal name="/IridisCSPTb/U_IridisCSPRx/r_iCSPFSM" aliasid="0"/>
 				<expand value=""/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/r_iCSPFSM.HdrTypeBuf" aliasid="0"/>
-				<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/r" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/wr_en" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/rd_en" aliasid="0"/>
@@ -48,11 +47,8 @@
 				<wave_coloring value=""/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/crcLatched" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/scramblerSBin" aliasid="0"/>
-				<expand value="1"/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM" aliasid="0"/>
-				<expand value=""/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.IsFiller" aliasid="0"/>
-				<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.hdrErrForce" aliasid="0"/>
 				<viewmode value="namedrow"/>
 				<expand value="1"/>
 				<group name="CSPTxScrambler ">
@@ -78,7 +74,6 @@
 				<bold value="1"/>
 				<color value="#8a2be2"/>
 				<wave_coloring value="1"/>
-				<signal name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.ClrMask.hdrErrForce" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.TxCtrlStrobe" aliasid="0"/>
 				<bold value=""/>
 				<color value=""/>
@@ -177,8 +172,11 @@
 					<reverse value="1"/>
 					<expand value=""/>
 					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.crcTChain" aliasid="0"/>
+					<integral_representation value="DecimalUnsigned"/>
+					<reverse value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.bc0CtrLatch" aliasid="0"/>
 				</signal>
-				<reverse value=""/>
+				<integral_representation value=""/>
 				<signal name="/IridisCSPTb/U_IridisCSPTx/axisClk" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerVin" aliasid="0"/>
 				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerSBin" aliasid="0"/>
@@ -190,13 +188,12 @@
 			<time beginvisible="0fs" endvisible="0fs"/>
 		</view>
 		<bookmarks/>
-		<time beginvisible="299220703125fs" endvisible="300041015625fs"/>
+		<time beginvisible="0fs" endvisible="2ms"/>
 		<timeunit name="auto"/>
 		<grid type="signalgrid" aliasid="0" name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.TxCtrlStrobe" edgetype="all" color="#808080" gridname="TxCtrlStrobe" ruler="0"/>
-		<grid type="signalgrid" aliasid="0" name="/IridisCSPTb/U_IridisCSPTx/iridisSfTxCtrl.ClrMask.hdrErrForce" edgetype="all" color="#808080" gridname="hdrErrForce" ruler="0"/>
 		<cursors>
-			<cursor name="Cursor 7" id="-1" time="300us+0" lock="0" tip="1"/>
-			<active name="Cursor 7" time="300us+0"/>
+			<cursor name="Cursor 7" id="-1" time="550165979401fs" lock="0" tip="1"/>
+			<active name="Cursor 7" time="550165979401fs"/>
 		</cursors>
 		<hierarchy_depth value="0"/>
 	</waveform>
