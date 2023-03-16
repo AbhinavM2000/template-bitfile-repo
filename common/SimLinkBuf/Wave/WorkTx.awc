@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="awc" version="2">
+	<waveform>
+		<datasets>
+			<dataset alias="sim" file="../../../build/APxFsSim2/APxFsSim2_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1653388704"/>
+		</datasets>
+		<browser type="events"/>
+		<view active="true">
+			<cursors>
+				<cursor name="Default cursor" id="-1" time="179798700ps" lock="0" tip="1"/>
+				<active name="Default cursor" time="179798700ps"/>
+			</cursors>
+			<signalspart>
+				<expand value="1"/>
+				<signal name="/IridisSfTb/iridisSfTxCtrl" aliasid="0"/>
+				<color value="#ff00ff"/>
+				<wave_coloring value="1"/>
+				<expand value=""/>
+				<signal name="/IridisSfTb/r.wrSof" aliasid="0"/>
+				<signal name="/IridisSfTb/r.wrEoF" aliasid="0"/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisSfTb/r.wrFFO" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisSfTb/iridisSfTxStat" aliasid="0"/>
+				<expand value=""/>
+				<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM" aliasid="0"/>
+				<integral_representation value="DecimalUnsigned"/>
+				<array name="Fifo72DataBits">
+					<integral_representation value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(63)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(62)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(61)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(60)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(59)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(58)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(57)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(56)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(55)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(54)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(53)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(52)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(51)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(50)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(49)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(48)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(47)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(46)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(45)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(44)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(43)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(42)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(41)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(40)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(39)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(38)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(37)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(36)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(35)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(34)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(33)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(32)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(31)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(30)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(29)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(28)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(27)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(26)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(25)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(24)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(23)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(22)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(21)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(20)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(19)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(18)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(17)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(16)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(15)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(14)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(13)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(12)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(11)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(10)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(9)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(8)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(7)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(6)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(5)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(4)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(3)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(2)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(1)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(0)" aliasid="0"/>
+				</array>
+				<array name="Fifo72CtrlBits">
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(71)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(70)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(69)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(68)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(67)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(66)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(65)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/r_iCSPFSM.fifo72(64)" aliasid="0"/>
+				</array>
+				<expand value="1"/>
+				<signal name="/IridisSfTb/U_IridisTx/r_oCSPFSM" aliasid="0">
+					<integral_representation value="DecimalUnsigned"/>
+					<expand value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/r_oCSPFSM.GearboxCtr" aliasid="0"/>
+				</signal>
+				<integral_representation value=""/>
+				<signal name="/IridisSfTb/U_IridisTx/scramblerDout" aliasid="0"/>
+				<signal name="/IridisSfTb/U_IridisTx/scramblerEna" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<analogbottom value="-300"/>
+				<analogtop value="1000"/>
+				<expand value="1"/>
+				<signal name="/IridisSfTb/U_IridisTx/comb_oCSPFSM/v_WordBuilderState" aliasid="0"/>
+				<bold value=""/>
+				<color value="#6a5acd"/>
+				<analogbottom value=""/>
+				<analogtop value=""/>
+				<expand value=""/>
+				<signal name="/IridisSfTb/OrbitStrobe" aliasid="0"/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisSfTb/r.wrFrameCnt" aliasid="0"/>
+				<color value="#4169e1"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisSfTb/U_IridisTx/fifoEmpty" aliasid="0"/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisSfTb/r.wrBxCnt" aliasid="0"/>
+				<signal name="/IridisSfTb/U_IridisTx/fifoDataOut" aliasid="0"/>
+				<integral_representation value="DecimalUnsigned"/>
+				<array name="TxFiFoOutDataBits">
+					<integral_representation value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(63)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(62)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(61)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(60)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(59)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(58)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(57)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(56)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(55)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(54)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(53)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(52)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(51)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(50)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(49)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(48)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(47)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(46)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(45)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(44)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(43)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(42)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(41)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(40)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(39)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(38)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(37)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(36)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(35)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(34)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(33)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(32)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(31)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(30)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(29)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(28)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(27)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(26)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(25)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(24)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(23)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(22)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(21)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(20)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(19)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(18)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(17)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(16)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(15)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(14)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(13)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(12)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(11)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(10)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(9)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(8)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(7)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(6)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(5)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(4)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(3)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(2)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(1)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(0)" aliasid="0"/>
+				</array>
+				<array name="TxFiFoOutCtrlBits">
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(71)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(70)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(69)" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(68)" aliasid="0"/>
+					<label value="TxValid(Idle)"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(67)" aliasid="0"/>
+					<label value="TxEOF"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(66)" aliasid="0"/>
+					<label value="TxSOF"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(65)" aliasid="0"/>
+					<label value="TxFFO"/>
+					<signal name="/IridisSfTb/U_IridisTx/fifoDataOut(64)" aliasid="0"/>
+				</array>
+				<viewmode value="namedrow"/>
+				<expand value="1"/>
+				<label value=""/>
+				<group name="FifoTxStatus">
+					<viewmode value=""/>
+					<expand value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/full" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/overflow" aliasid="0"/>
+					<bold value="1"/>
+					<color value="#c71585"/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/wr_en" aliasid="0"/>
+					<bold value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/empty" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/underflow" aliasid="0"/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout" aliasid="0"/>
+					<bold value="1"/>
+					<integral_representation value="DecimalUnsigned"/>
+					<color value="#32cd32"/>
+					<wave_coloring value="1"/>
+					<analogbottom value="-300"/>
+					<analogtop value="1000"/>
+					<array name="FifoOutData">
+						<bold value=""/>
+						<integral_representation value=""/>
+						<color value=""/>
+						<wave_coloring value=""/>
+						<analogbottom value=""/>
+						<analogtop value=""/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(63)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(62)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(61)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(60)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(59)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(58)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(57)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(56)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(55)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(54)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(53)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(52)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(51)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(50)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(49)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(48)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(47)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(46)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(45)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(44)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(43)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(42)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(41)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(40)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(39)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(38)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(37)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(36)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(35)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(34)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(33)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(32)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(31)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(30)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(29)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(28)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(27)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(26)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(25)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(24)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(23)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(22)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(21)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(20)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(19)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(18)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(17)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(16)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(15)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(14)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(13)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(12)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(11)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(10)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(9)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(8)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(7)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(6)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(5)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(4)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(3)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(2)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(1)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/dout(0)" aliasid="0"/>
+					</array>
+					<bold value="1"/>
+					<integral_representation value="DecimalUnsigned"/>
+					<color value="#da70d6"/>
+					<analogbottom value="-300"/>
+					<analogtop value="1000"/>
+					<array name="FifoInData">
+						<bold value=""/>
+						<integral_representation value=""/>
+						<color value=""/>
+						<analogbottom value=""/>
+						<analogtop value=""/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(63)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(62)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(61)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(60)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(59)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(58)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(57)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(56)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(55)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(54)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(53)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(52)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(51)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(50)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(49)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(48)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(47)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(46)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(45)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(44)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(43)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(42)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(41)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(40)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(39)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(38)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(37)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(36)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(35)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(34)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(33)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(32)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(31)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(30)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(29)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(28)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(27)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(26)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(25)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(24)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(23)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(22)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(21)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(20)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(19)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(18)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(17)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(16)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(15)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(14)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(13)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(12)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(11)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(10)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(9)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(8)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(7)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(6)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(5)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(4)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(3)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(2)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(1)" aliasid="0"/>
+						<signal name="/IridisSfTb/U_IridisTx/U_Fifo/din(0)" aliasid="0"/>
+					</array>
+					<bold value="1"/>
+					<integral_representation value="DecimalUnsigned"/>
+					<color value="#7b68ee"/>
+					<wave_coloring value="1"/>
+					<analogbottom value="-300"/>
+					<analogtop value="1000"/>
+					<signal name="/IridisSfTb/r.wrCnt" aliasid="0"/>
+					<bold value=""/>
+					<integral_representation value=""/>
+					<color value=""/>
+					<wave_coloring value=""/>
+					<analogbottom value=""/>
+					<analogtop value=""/>
+					<signal name="/IridisSfTb/U_IridisTx/U_Fifo/rd_en" aliasid="0"/>
+				</group>
+				<signal name="/IridisSfTb/mgtClk" aliasid="0"/>
+			</signalspart>
+			<firstvisiblesignal number="0"/>
+			<timesynchronization value="1"/>
+			<cursorssynchronization value="1"/>
+			<time beginvisible="0fs" endvisible="0fs"/>
+		</view>
+		<bookmarks>
+			<bookmark name="CRVC" time="179697370ps" from="179677758227fs" to="179709865773fs"/>
+			<bookmark name="FFO" time="179239984ps" from="179238378623fs" to="179270486169fs"/>
+			<bookmark name="Stop_ReadFIfo_Problem" time="192730752ps" from="192719514361fs" to="192751621907fs"/>
+		</bookmarks>
+		<time beginvisible="192719514361fs" endvisible="192751621907fs"/>
+		<timeunit name="auto"/>
+		<cursors>
+			<cursor name="Default cursor" id="-1" time="192730752ps" lock="1" tip="1"/>
+			<cursor name="Cursor 1" id="-1" time="179693812ps" lock="1" tip="1"/>
+			<cursor name="Cursor 2" id="-1" time="192730752ps" lock="0" tip="1"/>
+			<cursor name="Cursor 3" id="-1" time="192734316ps" lock="1" tip="1"/>
+			<active name="Cursor 2" time="192730752ps"/>
+		</cursors>
+		<hierarchy_depth value="0"/>
+	</waveform>
+</document>
