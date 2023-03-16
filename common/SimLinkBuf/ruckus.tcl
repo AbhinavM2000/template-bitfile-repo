@@ -51,6 +51,9 @@ loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/misc/rtl/OPWGen.
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/linkBuf/rtl/APxLinkBufferPkg.vhd"
 loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/linkBuf/rtl/APxLinkBuffer.vhd"
 
+loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/linkBuf/rtl/APxLinkBufferG2Pkg.vhd"
+loadSource -lib apx_fs -path "$::env(TOP_DIR)/submodules/apx-fs/linkBuf/rtl/ApxLinkBufferG2.vhd"
+
 loadIpCore  -path "$::env(TOP_DIR)/submodules/apx-fs/linkBuf/ip/capPbRAM.xci"
 loadIpCore  -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/ip/fifoTx.xci"
 loadIpCore  -path "$::env(TOP_DIR)/submodules/apx-fs/iridisSF/ip/fifoRx.xci"
