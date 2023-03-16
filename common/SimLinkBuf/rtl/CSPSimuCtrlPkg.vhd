@@ -15,7 +15,7 @@ use apx_fs.IridisCSPPkg.all;
 --  CSP simulation Pakage 
 use work.CSPSimulationPkg.all; 
 use work.CSPSimTypePkg.all; 
-use apx_fs.APxLinkBufPkg.all;
+use apx_fs.APxLinkBufG2Pkg.all;
 library std; 
 use std.textio.all;
 
@@ -101,10 +101,10 @@ package CSPSimCtrlPkg is
    procedure RxSyncRecovery ( signal IridisSfRxCtrl : inout tIridisSfRxCtrl; 
                               signal IridisSfRxStat : in tIridisSfRxStat);
 ----------------------------------------------------------------------------------------- 
-    procedure LinkBufRst ( signal linkBufCtrlTb : out tLinkBufCtrl); 
+    procedure LinkBufRst ( signal linkBufCtrlTb : out tLinkBufG2Ctrl); 
  ---------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
-    procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufCtrl; 
+    procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufG2Ctrl; 
                               constant linkBufMode : in sl  ); 
  ---------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
@@ -465,7 +465,7 @@ end package CSPSimCtrlPkg;
              end RxSyncRecovery;
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
-   procedure LinkBufRst (signal linkBufCtrlTb : out tLinkBufCtrl) 
+   procedure LinkBufRst (signal linkBufCtrlTb : out tLinkBufG2Ctrl) 
         is 
            begin 
              show("====================================================================");
@@ -480,7 +480,7 @@ end package CSPSimCtrlPkg;
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
  
- procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufCtrl; 
+ procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufG2Ctrl; 
                               constant linkBufMode : in sl  )
         is 
            begin 

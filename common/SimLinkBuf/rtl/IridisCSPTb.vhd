@@ -17,7 +17,7 @@ library apx_fs;
 
 use apx_fs.IridisCSPPkg.all;
 use apx_fs.CSPRulesPkg.all;
-use apx_fs.APxLinkBufPkg.all;
+use apx_fs.APxLinkBufG2Pkg.all;
 -- TCDS Library
 use work.tcds2_bx_and_orbit_pkg.all;
 
@@ -228,14 +228,14 @@ type ErrorGeneratorType is record
    signal AxisRst: sl := '1';  -- Rst state by defaul; 
    -- 
     -- LinkBuffer PlayBack  -- 
-   signal  linkBufCtrlTb  : tLinkBufCtrl := LinkBufCtrlInit; 
-   signal  linkBufStatTb  : tLinkBufStat;
+   signal  linkBufCtrlTb  : tLinkBufG2Ctrl := LinkBufG2CtrlInit; 
+   signal  linkBufStatTb  : tLinkBufG2Stat;
 
    signal AxisPbBufferIn, AxisPbBufferOut: AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
 
    -- LinkBuffer Capture  --- 
-   signal  linkBufCtrlCap : tLinkBufCtrl := LinkBufCtrlInit; 
-   signal  linkBufStatCap : tLinkBufStat;
+   signal  linkBufCtrlCap : tLinkBufG2Ctrl := LinkBufG2CtrlInit; 
+   signal  linkBufStatCap : tLinkBufG2Stat;
 
    signal AxisCapBufferIn, AxisCapBufferOut: AxiStreamMasterType := AXI_STREAM_MASTER_INIT_C;
 
@@ -404,7 +404,7 @@ end process;
       delay => x"000A"
       );
 
-  U_PlayBackBuffer : entity apx_fs.APxLinkBuffer
+  U_PlayBackBuffer : entity apx_fs.APxLinkBufferG2
     generic map (
       TPD_G                => TPD_C,
       CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
@@ -497,7 +497,7 @@ end process;
       );
 
 
-  U_CaptureBuffer : entity apx_fs.APxLinkBuffer
+  U_CaptureBuffer : entity apx_fs.APxLinkBufferG2
     generic map (
       TPD_G                => TPD_C,
       CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
