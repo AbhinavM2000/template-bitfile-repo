@@ -25,7 +25,9 @@ package CSPSimCtrlPkg is
  file  SimLog:    text open  WRITE_MODE  is    "../../../../../../common/SimAPxFS/Wave/SimLog.txt";
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
- procedure  DataGenCfg (signal  CNTR_FRAME_x_ORBIT    : out  integer; 
+  procedure  DataGenCfg (signal  TM_INTERVAL           : in integer range 1 to 100;
+                        signal  CLK_RATIO             : in integer range 1 to 100;
+                        signal  CNTR_FRAME_x_ORBIT    : out  integer; 
                         signal  CNTR_FRAME_LENGTH     : out  integer range 1 to 10000; 
                         signal  CNTR_FRAME_USR_LENGTH : out  integer range 1 to 10000);
 ----------------------------------------------------------------------------------------- 
@@ -84,7 +86,8 @@ package CSPSimCtrlPkg is
                               constant resyncDly :  in slv (15 downto 0);
                               constant LinkInfo1 :  in slv (31 downto 0);
                               constant LinkInfo2 :  in slv (31 downto 0);
-                              constant ClrMask   :  in slv (7  downto 0); 
+                              constant ClrMask   :  in slv (7  downto 0);
+                              constant I2Fenable : in sl; 
                               signal TxIridisCtrl : out tIridisSfTxCtrl);
 ------------------------------------------------------------------------------------------- 
 ------------------------------------------------------------------------------------------- 
@@ -102,11 +105,17 @@ package CSPSimCtrlPkg is
                               signal IridisSfRxStat : in tIridisSfRxStat);
 ----------------------------------------------------------------------------------------- 
     procedure LinkBufRst ( signal linkBufCtrlTb : out tLinkBufG2Ctrl); 
- ---------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
-    procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufG2Ctrl; 
-                              constant linkBufMode : in sl  ); 
- ---------------------------------------------------------------------------------------- 
+    procedure LinkBufConfig ( constant BC0_delay : in slv (15 downto 0);
+                              constant Buf_delay : in slv (15 downto 0);
+                              constant Fast_Rewind : in sl;
+                              constant Last_Cycle_Addr : in slv (9 downto 0);
+                              constant Throttle_Suppress : in sl;
+                              constant Idle_Suppress : in sl;
+                              constant Mode : in slv(2 downto 0);
+                              signal linkBufCtrlTb : out tLinkBufG2Ctrl); 
+---------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
   procedure  show (constant str: in string); -- Information (simulation and note) shown on screen and  sim_logfile   
 ----------------------------------------------------------------------------------------- 
@@ -118,7 +127,9 @@ end package CSPSimCtrlPkg;
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
 
- procedure  DataGenCfg (signal  CNTR_FRAME_x_ORBIT    : out  integer; 
+ procedure  DataGenCfg (signal  TM_INTERVAL           : in integer range 1 to 100;
+                        signal  CLK_RATIO             : in integer range 1 to 100;
+                        signal  CNTR_FRAME_x_ORBIT    : out  integer; 
                         signal  CNTR_FRAME_LENGTH     : out  integer range 1 to 10000; 
                         signal  CNTR_FRAME_USR_LENGTH : out  integer range 1 to 10000) is
 
@@ -126,12 +137,12 @@ end package CSPSimCtrlPkg;
 			   show("====================================================================");
 			   show("           Data Generator Config                                    "); 
 			   show("====================================================================");
-			   show(" TM                  : " &str(TX_CHAN_TM_INTERVAL_SIM_C)); 
-			   show(" CLOCK RATIO         : " &str(TX_CHAN_CLK_RATIO_SIM_C));
+			   show(" TM                  : " &str(TM_INTERVAL)); 
+			   show(" CLOCK RATIO         : " &str(CLK_RATIO));
 			   show(" FRAME LENGTH        : " &str(TX_CHAN_FRAME_LENGTH_SIM_C));
 			   show(" THROTTLE VECTOR     : " &str(TX_CHAN_THROTTLE_VECTOR_SIM_C));
-               CNTR_FRAME_x_ORBIT <= CntrMaxNumFramexOrbit(TX_CHAN_TM_INTERVAL_SIM_C);                    -- Comment: Number of Frames per Obit 
-               CNTR_FRAME_LENGTH <= CntrFrameMaxFunc(TX_CHAN_TM_INTERVAL_SIM_C,TX_CHAN_CLK_RATIO_SIM_C);     --Comment:  Frame Length (TM, Clock Ratio) 
+               CNTR_FRAME_x_ORBIT <= CntrMaxNumFramexOrbit(TM_INTERVAL);                    -- Comment: Number of Frames per Obit 
+               CNTR_FRAME_LENGTH <= CntrFrameMaxFunc(TM_INTERVAL * CLK_RATIO);     --Comment:  Frame Length (TM, Clock Ratio) 
 	           wait for  50 ns; 
                CNTR_FRAME_USR_LENGTH  <= NumberOfDataWordsxFrameFunc(TX_CHAN_FRAME_LENGTH_SIM_C);
      end DataGenCfg;  
@@ -205,8 +216,8 @@ end package CSPSimCtrlPkg;
              variable IdlesNum     : integer := 10; 
              begin
                 DataWordsNum := NumDataWords; 
-                assert (DataWordsNum <=  (TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C)) report "Invalid number of Data Words x Frame" severity failure;
-                IdlesNum :=  ((TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C) - DataWordsNum);
+                assert (DataWordsNum <=  (TX_CHAN_FRAME_INTERVAL_SIM_C)) report "Invalid number of Data Words x Frame" severity failure;
+                IdlesNum :=  ((TX_CHAN_FRAME_INTERVAL_SIM_C) - DataWordsNum);
 				show("====================================================================");
                 show(str(DataWordsNum) & " Data Words  and " & str(IdlesNum) & " Idle Words  per frame");
 				show("====================================================================");
@@ -357,13 +368,15 @@ end package CSPSimCtrlPkg;
                               constant LinkInfo1 :  in slv (31 downto 0);
                               constant LinkInfo2 :  in slv (31 downto 0);
                               constant ClrMask   :  in slv (7  downto 0); 
+                              constant I2Fenable :  in sl;
                               signal TxIridisCtrl : out tIridisSfTxCtrl)
              is 
              begin 
                 TxIridisCtrl.IdleMethod  <= IdleMethod; 
                 TxIridisCtrl.resyncDly   <= resyncDly; 
                 TxIridisCtrl.linkInfo(0) <= LinkInfo1; 
-                TxIridisCtrl.linkInfo(1) <= LinkInfo2; 
+                TxIridisCtrl.linkInfo(1) <= LinkInfo2;
+                TxIridisCtrl.enaI2F <= I2Fenable; 
                 TxIridisCtrl.ClrMask.ffoPositionErr    <= ClrMask(0);
                 TxIridisCtrl.ClrMask.ffoDetected       <= ClrMask(1);
                 TxIridisCtrl.ClrMask.sofPositionErr     <= ClrMask(2);
@@ -375,6 +388,11 @@ end package CSPSimCtrlPkg;
       show("====================================================================");
       show ("Set  IridisTxCtrl config");
       show("====================================================================");
+   if I2Fenable = '0' then
+     show(" I2F mode       : disabled");
+   else
+     show(" I2F mode       : enabled");
+   end if;
    if IdleMethod = '0' then 
      show(" Idle Method    : 1");
   else 
@@ -471,22 +489,39 @@ end package CSPSimCtrlPkg;
              show("====================================================================");
 	           show(" **********  Link Buffer Reset                            **********"); 
 	           show("====================================================================");
-              linkBufCtrlTb.fsmrst <= '1'; 
+              linkBufCtrlTb.rst <= '1'; 
               wait for 50 ns; 
-              linkBufCtrlTb.fsmrst <= '0'; 
+              linkBufCtrlTb.rst <= '0'; 
           end LinkBufRst; 
       
 ----------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------ 
- 
- procedure LinkBufCfgMode ( signal linkBufCtrlTb : out tLinkBufG2Ctrl; 
-                              constant linkBufMode : in sl  )
-        is 
-           begin 
-             wait for 1 ns; 
-              linkBufCtrlTb.mode <= linkBufMode; 
-          end LinkBufCfgMode; 
+  procedure LinkBufConfig ( constant BC0_delay : in slv (15 downto 0);
+                              constant Buf_delay : in slv (15 downto 0);
+                              constant Fast_Rewind : in sl;
+                              constant Last_Cycle_Addr : in slv (9 downto 0);
+                              constant Throttle_Suppress : in sl;
+                              constant Idle_Suppress : in sl;
+                              constant Mode : in slv(2 downto 0);
+                              signal linkBufCtrlTb : out tLinkBufG2Ctrl)
+  is
+    begin
+      linkBufCtrlTb.rst <= '1';
+      
+      linkBufCtrlTb.mode <= Mode;
+      linkBufCtrlTb.loopEna <= '0';
+      linkBufCtrlTb.snglEna <= '0';
+      linkBufCtrlTb.bufdelay <= Buf_delay;
+      linkBufCtrlTb.bc0delay <= BC0_delay;
+      linkBufCtrlTb.fastRewind <= Fast_Rewind;
+      linkBufCtrlTb.lastCycleAddr <= Last_Cycle_Addr;
+      linkBufCtrlTb.throttle_suppress <= Throttle_Suppress;
+      linkBufCtrlTb.idle_suppress <= Idle_Suppress;
+      wait for 100ns;
+      linkBufCtrlTb.rst <= '0';
+    end LinkBufConfig;
+    
+                              
       
     -- =====================================================
 	-- = S H O W   t h e  T I M E  screen  and  text file  =

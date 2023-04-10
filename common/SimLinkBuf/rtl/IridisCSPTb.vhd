@@ -1,7 +1,7 @@
 library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
---use ieee.std_logic_arith.all;
+use ieee.std_logic_arith.all;
 use ieee.numeric_std.all;
 
 library surf;
@@ -125,7 +125,7 @@ architecture Behavioral of IridisCSPTb is
   signal fsClks                : slv(NUM_FS_CLOCKS_C-1 downto 0);
   signal  ClkMngrLockStat      : sl := '0';
   --------------------------------------------------------------------
-  
+  signal marker                : slv(5 downto 0) := (others => '0');
 
   constant MGT_CLK_PERIOD_C     : time := 2.48242425 ns;
 
@@ -284,7 +284,7 @@ if rising_edge(ck2880) then
 end if;
 end process;
 
-  assert (TX_CHAN_FRAME_LENGTH_SIM_C <= (TX_CHAN_TM_INTERVAL_SIM_C * TX_CHAN_CLK_RATIO_SIM_C)) report "Number of words in the frame must be <= TM_INTERVAL * CLK_RATIO" severity failure;
+  assert (TX_CHAN_FRAME_LENGTH_SIM_C <= TX_CHAN_FRAME_INTERVAL_SIM_C) report "Number of words in the frame must be <= frame interval" severity failure;
 
    ---------------------------
   -- Generate clocks and resets
@@ -344,7 +344,7 @@ end process;
  -- Clock routing to APx-FS Tx and Rx APx-FS modules   
  -------------------------------
   clk40     <= ck40;              
-  axisTxClk <= ck360;        -- ck320 or ck360      
+  axisTxClk <= ck320;        -- ck320 or ck360      
   axisRxClk <= ck360;        -- ck320 or ck360
    
  -------------------------------
@@ -384,8 +384,9 @@ end process;
   U_OPWGen : entity apx_fs.OPWGen
     generic map(
       TPD_G           => TPD_C,
-      TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
-      CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      --TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      --CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      FRAME_INTERVAL    => TX_CHAN_FRAME_INTERVAL_SIM_C,
       FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
       THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
       )
@@ -401,16 +402,18 @@ end process;
       bc0_clkLHC => OrbitStrobe,
 
       --Delay on distributed LHC clock (in AXI stream clock units)
-      delay => x"000A"
+      delay => OPW_BC0_DELAY
       );
 
   U_PlayBackBuffer : entity apx_fs.APxLinkBufferG2
     generic map (
       TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      --CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      --CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_INTERVAL  => TX_CHAN_FRAME_INTERVAL_SIM_C,
       CHAN_FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
-      CHAN_THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
+      CHAN_THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C,
+      BUF_POS              => "TX"
       )
     port map (
 
@@ -439,8 +442,9 @@ end process;
   U_IridisCSPTx : entity apx_fs.IridisCSPTx
     generic map (
       TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      --CHAN_TM_INTERVAL     => TX_CHAN_TM_INTERVAL_SIM_C,
+      --CHAN_CLK_RATIO       => TX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_INTERVAL  => TX_CHAN_FRAME_INTERVAL_SIM_C,
       CHAN_FRAME_LENGTH    => TX_CHAN_FRAME_LENGTH_SIM_C,
       CHAN_THROTTLE_VECTOR => TX_CHAN_THROTTLE_VECTOR_SIM_C
       )
@@ -461,14 +465,15 @@ end process;
       cspSpecialStatus => cspSpecialStatusTb,
 
       axisClk   => axisTxClk,
-      axiStream => AxisOPWGenOut);
+      axiStream => AxisPbBufferOut);
 
 
   U_IridisCSPRx : entity apx_fs.IridisCSPRx
     generic map (
       TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      --CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
+      --CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_INTERVAL  => RX_CHAN_FRAME_INTERVAL_SIM_C,
       CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C,
       CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C
       )
@@ -500,10 +505,12 @@ end process;
   U_CaptureBuffer : entity apx_fs.APxLinkBufferG2
     generic map (
       TPD_G                => TPD_C,
-      CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
-      CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      --CHAN_TM_INTERVAL     => RX_CHAN_TM_INTERVAL_SIM_C,
+      --CHAN_CLK_RATIO       => RX_CHAN_CLK_RATIO_SIM_C,
+      CHAN_FRAME_INTERVAL  => RX_CHAN_FRAME_INTERVAL_SIM_C,
       CHAN_FRAME_LENGTH    => RX_CHAN_FRAME_LENGTH_SIM_C,
-      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C
+      CHAN_THROTTLE_VECTOR => RX_CHAN_THROTTLE_VECTOR_SIM_C,
+      BUF_POS              => "RX"
       )
     port map (
 
@@ -513,7 +520,7 @@ end process;
       linkBufCtrl => linkBufCtrlCap,
       linkBufStat => linkBufStatCap,
 
-      axiStreamClk => axisTxClk,
+      axiStreamClk => axisRxClk,
       axiStreamIn  => AxisRxMaster,
       axiStreamOut => AxisCapBufferOut,
 
@@ -538,7 +545,7 @@ p_MainProces : process is
       ------------------------------------------------------------------------------------
       -- Configuration of the Data Generator                                          ----
       -------------------------------------------------------------------------------
-      DataGenCfg(CNTR_FRAME_x_ORBIT, CNTR_FRAME_LENGTH, CNTR_FRAME_USR_LENGTH);
+      --DataGenCfg(CNTR_FRAME_x_ORBIT, CNTR_FRAME_LENGTH, CNTR_FRAME_USR_LENGTH);
       ------------------------------------------------------------------------------------
       --  Configurartion Erorr                                                         --
       ------------------------------------------------------------------------------------
@@ -546,26 +553,122 @@ p_MainProces : process is
       ------------------------------------------------------------------------------------
       --  Set Configuration of CSP_Tx and CSP_Rx parameters. 
       ------------------------------------------------------------------------------------
-      IridisTxCtrlSet(IDLE_METHOD, RESYNC_DLY, LINK_INFO_0, LINK_INFO_1, x"00", iridisSfTxCtrl);
+      IridisTxCtrlSet(IDLE_METHOD, RESYNC_DLY, LINK_INFO_0, LINK_INFO_1, x"00", I2F_FLAG, iridisSfTxCtrl); 
       wait for 10 ns;
       IridisRxCtrlSet(INDX_CORRECTION_BLOCK, MGT_RST_EN, AUTO_ORBIT_ALIGN, RESYNC_DEFAULT, RX_RESYNC_DLY, RELEASE_DLY, x"00", iridisSfRxCtrl);
       wait for 10 ns;
       show("Set Tx Resync Command");
       CtrlPulse(5, IridisSfTxCtrl.resync);
 
---      
+      --put both buffers in standby
+      linkBufCtrlTb.bc0delay <= TXBUF_BC0_DELAY;
+      linkBufCtrlTb.mode <= BUF_OP_MODE_STANDBY_C;
+      linkBufCtrlCap.bc0delay <= RXBUF_BC0_DELAY;
+      linkBufCtrlCap.mode <= BUF_OP_MODE_STANDBY_C;
+      wait for 100 ns;
+      linkBufCtrlCap.rst <= '0';
+      linkBufCtrlTb.rst <= '0';
+
+      
+      
+
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+      --configure the tx buffer
+      LinkBufConfig(TXBUF_BC0_DELAY,
+                    conv_std_logic_vector(0,16),                    --link buf delay            8000 word (1000 Bx) delay
+                    '0',                        --fast rewind
+                    conv_std_logic_vector(100*8-1,10),               --last cycle address
+                    '1',                        --throttle suppress
+                    '0',                        --idle suppress
+                    BUF_OP_MODE_CAPTURE_STRM_C,      --mode
+                    linkBufCtrlTb); 
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+
+      --turn on single capture
+      linkBufCtrlTb.snglEna <= '1';
+
+	  wait until (rising_edge(OrbitStrobe));
+	  wait until (rising_edge(OrbitStrobe));
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+	  --turn on loop dynamic playback 
+      LinkBufConfig(TXBUF_BC0_DELAY,
+                    conv_std_logic_vector(20*8,16),                    --link buf delay
+                    '0',                        --fast rewind
+                    conv_std_logic_vector(100*8-1,10),               --last cycle address
+                    '0',                        --throttle suppress
+                    '0',                        --idle suppress
+                    BUF_OP_MODE_DYNAMIC_PB_C,      --mode
+                   linkBufCtrlTb); 
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+      --turn on loop playback
+      linkBufCtrlTb.loopEna <= '1';
+
+
+
+ -- get receiver up and firing
+ 
+ --      
       show("Set Rx Resync Command");
       CtrlPulse(2, IridisSfRxCtrl.resync);
-	    wait until (rising_edge(OrbitStrobe));
-		  wait until (rising_edge(OrbitStrobe));
-      ------------------------------------------------------------------------------------
-       LinkRxInfo(iridisSfRxStat, iridisSfTxCtrl);
-      ------------------------------------------------------------------------------------
-      for i in 0 to 15 loop
-        RxCountersStatus(iridisSfRxStat);
-        wait for 900 ns;
-      end loop;
+      
+	  wait until (rising_edge(OrbitStrobe));
+ 
+      
+	  wait until (rising_edge(OrbitStrobe));
+      wait for 10 us;
+      marker(0) <= '1';
+      
+      
+      --turn on Rx Capture buffer
+      LinkBufConfig(RXBUF_BC0_DELAY,
+                    conv_std_logic_vector(200*8,16),                    --link buf delay
+                    '0',                        --fast rewind
+                    conv_std_logic_vector(100*8-1,10),               --last cycle address
+                    '1',                        --throttle suppress
+                    '0',                        --idle suppress
+                    BUF_OP_MODE_CAPTURE_STRM_C,      --mode
+                    linkBufCtrlCap); 
+      
+      wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+      --turn on single capture
+      linkBufCtrlCap.snglEna <= '1';
+	    
+      marker(1) <= '1';
+	  wait for 30 us;  --wait for capture to complete
 
+      --wait until (rising_edge(OrbitStrobe));
+      --wait until (rising_edge(OrbitStrobe));
+      wait until (rising_edge(OrbitStrobe));
+	  
+	  wait until (rising_edge(OrbitStrobe));
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+	  --turn on loop dynamic playback 
+      LinkBufConfig(RXBUF_BC0_DELAY,
+                    conv_std_logic_vector(400*8,16),                    --link buf delay
+                    '0',                        --fast rewind
+                    conv_std_logic_vector(100*8-1,10),               --last cycle address
+                    '1',                        --throttle suppress
+                    '0',                        --idle suppress
+                    BUF_OP_MODE_DYNAMIC_PB_C,      --mode
+                   linkBufCtrlCap); 
+	  wait until (rising_edge(OrbitStrobe));
+	  wait for 100 ns;
+      --turn on loop playback
+      linkBufCtrlCap.loopEna <= '1';
+
+      wait until (rising_edge(OrbitStrobe));
+      wait until (rising_edge(OrbitStrobe));
+      wait until (rising_edge(OrbitStrobe));
+      --insert a CRC error for Rx buffer testing purposes
+      wait for 45 us;
+      CrCError(iridisSfTxCtrl);
+      marker(5) <= '1';
 
     wait ; 
 
@@ -596,19 +699,8 @@ p_MainProces : process is
       wait until (rising_edge(OrbitStrobe));
       RxCountersStatus(iridisSfRxStat);
 
-      ------ -- Play Back  Config   (Hast to be improved) ----- 
-      linkBufCtrlCap.mode          <= '0';      --  
-      linkBufCtrlCap.muxCtrl       <= '0';      -- 
-      linkBufCtrlCap.loopEna       <= '0';      -- 
-      linkBufCtrlCap.bufdelay      <= x"000F";  -- 
-      linkBufCtrlCap.lastCycleAddr <= "0011111111";   -- 
-      wait for 50 ns;
-      LinkBufRst (linkBufCtrlCap);
-      wait for 100 ns;
-      linkBufCtrlCap.snglEna       <= '1';
-      wait for 500 ns;
-      linkBufCtrlCap.snglEna       <= '0';
-
+      
+ 
       EnableMatchFlag <= '1';
 --  ------
       wait ; 
@@ -736,7 +828,8 @@ p_MainProces : process is
                wait until (rising_edge(AxisRxMaster.tUser(2)));
 			   assert (AxisRxMaster.tUser(2) = '0') report "CRC Error detected" severity warning; 
 			   wait for 200 ns; 
-                LocCounter := to_integer(unsigned(iridisSfRxStat.CRCErrCnt)); 
+			    LocCounter := 0;
+                --LocCounter := to_integer(unsigned(iridisSfRxStat.CRCErrCnt)); 
                 report "Number of CRC Errors: " & str(locCounter) ;
               end loop;
              wait;

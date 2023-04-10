@@ -11,7 +11,8 @@ export BOARD = APd1
 #Define target part
 export PRJ_PART = xcvu9p-flgc2104-1-e
 
-export PARALLEL_SYNTH = 24
+#export PARALLEL_SYNTH = 24
+export PARALLEL_SYNTH = 1
 export GZIP_BUILD_IMAGE = 1
 
 export TOP_DIR = $(abspath $(PWD)/../..)
