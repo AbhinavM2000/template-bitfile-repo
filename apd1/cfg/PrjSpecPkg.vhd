@@ -40,14 +40,15 @@ package PrjSpecPkg is
 
   -- firmware shell algo clock to LHC BC clock multiplier
   constant FS_TO_LHC_CLK_FACTOR_C : natural range 1 to 12 := 9;
+  constant SHELL_ALGO_FREQ_MHZ_C : natural 1 to 1000000:= 360720;
 
   constant SECTOR_ENABLED_C : BooleanArray(0 to SECTOR_CNT_C-1) := (
     0 => true,
-    1 => false,
-    2 => false,
-    3 => false,
-    4 => false,
-    5 => false  
+    1 => true,
+    2 => true,
+    3 => true,
+    4 => true,
+    5 => true  
     );
 
 
