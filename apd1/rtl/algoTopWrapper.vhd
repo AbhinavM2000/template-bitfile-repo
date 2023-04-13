@@ -47,38 +47,6 @@ attribute dont_touch of OPWrst, OPWrst2 : signal is "TRUE";
 
 begin
 
-  genOPWrst : for i in 0 to N_INPUT_STREAMS-1 generate
-    process(algoClk) is
-    begin
-      if rising_edge(algoClk) then
-        OPWrst(i)  <= algoRst;
-        OPWrst2(i) <= OPWrst(i);
-      end if;
-    end process;
-  end generate;
-
-  genOPW : for i in 0 to N_INPUT_STREAMS-1 generate
-    genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
-      U_OPWGen_Tx : entity apx_fs.OPWGen
-        generic map(
-          FRAME_INTERVAL      => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameInterval,
-          FRAME_LENGTH    => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameLength,
-          THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
-          )
-        port map(
-          slow_ctl_rst => OPWrst2(i),
-
-          -- AXI-stream/algo interface
-          axisClk      => algoClk,
-          axiStreamOut => AxiStreamOut(i),
-
-          --LHC clock domain
-          clkLHC     => clkLHC,
-          bc0_clkLHC => bc0_clkLHC,
-
-          delay => delay
-          );
-    end generate;
-  end generate;
+axiStreamOut <= axiStreamIn;
 
 end rtl;
