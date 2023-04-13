@@ -61,8 +61,7 @@ begin
     genEnabled : if (APX_CH_CFG_G(i).enabled(AXP_CH_ENABLE_PE_TX) = '1') generate
       U_OPWGen_Tx : entity apx_fs.OPWGen
         generic map(
-          TM_INTERVAL     => APX_CH_CFG_G(i).TxProtocolCfg.CSPTMInterval,
-          CLK_RATIO       => APX_CH_CFG_G(i).TxProtocolCfg.CSPClkRatio,
+          FRAME_INTERVAL      => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameInterval,
           FRAME_LENGTH    => APX_CH_CFG_G(i).TxProtocolCfg.CSPFrameLength,
           THROTTLE_VECTOR => APX_CH_CFG_G(i).TxProtocolCfg.CSPThrottleVector
           )

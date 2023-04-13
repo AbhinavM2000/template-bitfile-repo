@@ -43,11 +43,11 @@ package PrjSpecPkg is
 
   constant SECTOR_ENABLED_C : BooleanArray(0 to SECTOR_CNT_C-1) := (
     0 => true,
-    1 => true,
-    2 => true,
-    3 => true,
-    4 => true,
-    5 => true  
+    1 => false,
+    2 => false,
+    3 => false,
+    4 => false,
+    5 => false  
     );
 
 
@@ -108,25 +108,25 @@ package PrjSpecPkg is
 
 
   --TM18, 360 AXI Clock, 162-word packets, no throttle
-  constant CSP_TM18_PL162 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 18, CSPClkRatio => 9, CSPFrameLength => 162, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM18_PL162 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 164, CSPFrameLength => 162, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM18, 360 AXI Clock, 150-word packets, no throttle
-  constant CSP_TM18_PL150 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 18, CSPClkRatio => 9, CSPFrameLength => 150, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM18_PL150 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 164, CSPFrameLength => 150, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM6, 360 AXI Clock, 54-word packets, no throttle
-  constant CSP_TM6_PL54 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 6, CSPClkRatio => 9, CSPFrameLength => 54, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM6_PL54 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 54, CSPFrameLength => 54, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM6, 360 AXI Clock, 47-word packets, no throttle
-  constant CSP_TM6_PL47 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 6, CSPClkRatio => 9, CSPFrameLength => 47, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM6_PL47 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 54, CSPFrameLength => 47, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM2, 360 AXI Clock, 18-word packets, no throttle (meant for full-length TM1 packets, CRC every other Bx)
-  constant CSP_TM2_PL18 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 2, CSPClkRatio => 9, CSPFrameLength => 18, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM2_PL18 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 18, CSPFrameLength => 18, CSPThrottleVector => "000000000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM1, 360 AXI Clock, 8-word packets, 5th of 9 clocks throttled (no FIFO operation)
-  constant CSP_TM1_PL8_TV4 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 1, CSPClkRatio => 8, CSPFrameLength => 8, CSPThrottleVector => "000010000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM1_PL8_TV4 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 9, CSPFrameLength => 8, CSPThrottleVector => "000010000", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   --TM1, 360 AXI Clock, 8-word packets, 9th of 9 clocks throttled (no FIFO operation)
-  constant CSP_TM1_PL8_TV8 : tCSPProtoCfg := (ProtocolType => CSP, CSPTMInterval => 1, CSPClkRatio => 8, CSPFrameLength => 8, CSPThrottleVector => "000000001", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
+  constant CSP_TM1_PL8_TV8 : tCSPProtoCfg := (ProtocolType => CSP, CSPFrameInterval => 9, CSPFrameLength => 8, CSPThrottleVector => "000000001", lpGBTParam1 => 0, lpGBTParam2 => '0', lpGBTParam3 => "0000");
 
   -- tApxChCfgArr declaration in apx-fs/apxSector/rtl/apxChPkg.vhd
   -- channel configurations for APx Validation Tests
