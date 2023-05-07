@@ -39,14 +39,33 @@ end algoTopWrapper;
 
 architecture rtl of algoTopWrapper is
 
-  signal OPWrst, OPWrst2  : slv(0 to N_INPUT_STREAMS-1);
+  signal  axiStreamInReg  :   AxiStreamMasterArray(0 to N_INPUT_STREAMS-1);
 
-attribute dont_touch : string;
-attribute dont_touch of OPWrst, OPWrst2 : signal is "TRUE";
-
+  signal sAxiStreamOut : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1) := (others => AXI_STREAM_MASTER_INIT_C);
 
 begin
 
-axiStreamOut <= axiStreamIn;
+axiStreamInReg <= axiStreamIn when rising_edge(algoClk);
+
+  U_algoSlice1 : entity work.algoSlice1
+    port map(
+      axisClk        => algoClk,
+      AxiStreamInGA  => axiStreamInReg(60 to 75),
+      AxiStreamInGB  => axiStreamInReg(76 to 79),
+      AxiStreamOutGA => sAxiStreamOut(24 to 27),
+      AxiStreamOutGB => sAxiStreamOut(12 to 19)
+      );
+
+  U_algoSlice2 : entity work.algoSlice2
+    port map(
+      axisClk                 => algoClk,
+      AxiStreamInGA(0 to 11)  => axiStreamInReg(0 to 11),
+      AxiStreamInGA(12 to 15) => axiStreamInReg(48 to 51),
+      AxiStreamInGB           => axiStreamInReg(52 to 59),
+      AxiStreamOutGA          => sAxiStreamOut(52 to 59),
+      AxiStreamOutGB          => sAxiStreamOut(0 to 7)
+      );
+
+  axiStreamOut <= sAxiStreamOut when rising_edge(algoClk);
 
 end rtl;
