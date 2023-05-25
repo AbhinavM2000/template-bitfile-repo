@@ -1,4 +1,4 @@
-export BUILD_SCRIPT = $(PWD)/../submodules/ruckus/system_vivado.mk
+export BUILD_SCRIPT = $(PWD)/../../submodules/ruckus/system_vivado.mk
 
 # Define target output
 target: bit
@@ -15,10 +15,10 @@ export PRJ_PART = xcvu9p-flgc2104-1-e
 export PARALLEL_SYNTH = 24
 export GZIP_BUILD_IMAGE = 1
 
-export TOP_DIR = $(abspath $(PWD)/..)
+export TOP_DIR = $(abspath $(PWD)/../..)
   
 # !Caution! Timing failuire IGnore flag. Allows bitfile generation even if timing not met. 
-export TIG = true
+#export TIG = true
 
 # Use top level makefile
 include $(BUILD_SCRIPT)

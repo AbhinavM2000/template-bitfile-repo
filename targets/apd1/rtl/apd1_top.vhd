@@ -210,8 +210,8 @@ architecture rtl of apd1_top is
   signal fsClkMain : sl;
   signal fsClkDiv2 : sl;
 
-signal reg0 : slv(31 downto 0);
-signal reg1 : slv(31 downto 0);
+  signal reg0 : slv(31 downto 0);
+  signal reg1 : slv(31 downto 0);
 
 begin
 
@@ -398,7 +398,7 @@ begin
       AXIL_BASE_ADDR_G        => APX_INFO_BASE_ADDR_C
       )
     port map(
-      SysmonClk         => clk_10,
+      SysmonClk => clk_10,
 
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(APX_INFO_INDEX_C),
@@ -480,7 +480,7 @@ begin
 
           LHCClk   => fsClk40,
           tcdsCmds => tcdsCmdsArr(i),
-          
+
           MgtRxN => MgtRxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
           MgtRxP => MgtRxP(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
           MgtTxN => MgtTxN(sectorMinIdx(i, APX_CH_CFG_C) to sectorMaxIdx(i, APX_CH_CFG_C)),
@@ -494,10 +494,10 @@ begin
           );
     end generate;
   end generate;
-  
-    algoClk <= fsClkMain;
 
-    U_algoCtrl : entity apx_fs.algoCtrl
+  algoClk <= fsClkMain;
+
+  U_algoCtrl : entity apx_fs.algoCtrl
     generic map (
       TPD_G => TPD_G)
     port map(
@@ -509,8 +509,8 @@ begin
       algoReady => algoReady,
 
       tcdsCmds => tcdsCmds,
-      reg0 => reg0,
-      reg1 => reg1,
+      reg0     => reg0,
+      reg1     => reg1,
 
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
@@ -519,11 +519,11 @@ begin
       axiWriteSlave  => mAxilWriteSlaves(ALGO_CTRL_INDEX_C),
       axiClk         => axi_lite_clk,
       axiClkRst      => axi_lite_reset);
-      
-  
-    U_algoTopWrapper : entity work.algoTopWrapper
+
+
+  U_algoTopWrapper : entity work.algoTopWrapper
     generic map(
-      APX_CH_CFG_G => APX_CH_CFG_C,
+      APX_CH_CFG_G     => APX_CH_CFG_C,
       N_INPUT_STREAMS  => L1T_IN_STREAM_CNT_C,
       N_OUTPUT_STREAMS => L1T_OUT_STREAM_CNT_C
       )
@@ -535,10 +535,9 @@ begin
       algoDone  => algoDone,
       algoIdle  => algoIdle,
       algoReady => algoReady,
-      
-    clkLHC    => fsClk40,     
-    bc0_clkLHC => tcdsCmds.bc0,    
-    delay => reg0(15 downto 0),
+
+      clkLHC     => fsClk40,
+      bc0_clkLHC => tcdsCmds.bc0,
 
       -- AXI-Stream In/Out Ports
       axiStreamIn  => axiStreamAlgoIn,

@@ -1,1 +1,0 @@
-../../submodules/apx-fs/scripts/pre_synthesis.tcl
