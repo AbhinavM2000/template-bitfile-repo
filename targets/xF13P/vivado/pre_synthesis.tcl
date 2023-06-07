@@ -12,5 +12,4 @@
 
 #puts ${::env(TOP_DIR)}
 #puts ${::env(PROJ_DIR)}
-#exec /usr/bin/env -uPYTHON -uPYTHONPATH -uPYTHONHOME /usr/bin/python3 "${::env(TOP_DIR)}/submodules/apx-fs/scripts/apxfs_romgen.pyz" -m "${::env(PROJ_DIR)}/cfg/apx_fs_info.mem" -p "${::env(PROJ_DIR)}/cfg/PrjSpecPkg.vhd" -s "${::env(TOP_DIR)}/submodules/apx-fs" 2>&1
-exec /usr/bin/env -uPYTHON -uPYTHONPATH -uPYTHONHOME /usr/bin/python3 "/scratch/ales/repos/apx-fs-reference-projects/submodules/apx-fs/scripts/apxfs_romgen.pyz" -m "/scratch/ales/repos/apx-fs-reference-projects/targets/xF13P/cfg/apx_fs_info.mem" -p "/scratch/ales/repos/apx-fs-reference-projects/targets/xF13P/cfg/PrjSpecPkg.vhd" -s "/scratch/ales/repos/apx-fs-reference-projects/submodules/apx-fs" 2>&1
+exec /usr/bin/env -uPYTHON -uPYTHONPATH -uPYTHONHOME /usr/bin/python3 "${::env(TOP_DIR)}/submodules/apx-fs/scripts/apxfs_romgen.pyz" -m "${::env(PROJ_DIR)}/cfg/apx_fs_info.mem" -p "${::env(PROJ_DIR)}/cfg/PrjSpecPkg.vhd" -s "${::env(TOP_DIR)}/submodules/apx-fs" 2>&1
