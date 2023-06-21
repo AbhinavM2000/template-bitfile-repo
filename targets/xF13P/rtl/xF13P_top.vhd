@@ -98,7 +98,7 @@ architecture rtl of xF13P_top is
       connectivity          => x"FFFF"),
     APX_SECTOR_CTRL_INDEX_C => (
       baseAddr              => APX_SECTOR_CTRL_BASE_ADDR_C,
-      addrBits              => 24,
+      addrBits              => 23,
       connectivity          => x"FFFF")
 
     );
