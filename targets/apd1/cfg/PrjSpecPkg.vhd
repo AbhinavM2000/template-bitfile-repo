@@ -16,9 +16,10 @@ package PrjSpecPkg is
 
   -- chassis type
   constant CHASSIS_TYPE_C : string := "APd1";
+  constant PROJECT_SPEED_GRADE_C : integer := 1;
 
  constant FABRIC_ID_BOARD_C : string := "APd1";
- constant FABRIC_ID_NUMBER_C : integer := 1;
+ constant FABRIC_ID_NUMBER_C : integer := 0;
 
   --clk 40 source
   constant CLK_40_SOURCE_LOCAL_C   : integer := 1;
