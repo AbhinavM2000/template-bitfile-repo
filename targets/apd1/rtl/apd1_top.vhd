@@ -519,7 +519,7 @@ begin
 
   algoClk <= fsClkMain;
 
-  U_algoCtrl : entity apx_fs.algoCtrl
+  U_algoCtrl : entity apx_fs.algoCtrlv2
     generic map (
       TPD_G => TPD_G)
     port map(
@@ -531,8 +531,6 @@ begin
       algoReady => algoReady,
 
       tcdsCmds => tcdsCmds,
-      reg0     => reg0,
-      reg1     => reg1,
 
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
@@ -541,7 +539,6 @@ begin
       axiWriteSlave  => mAxilWriteSlaves(ALGO_CTRL_INDEX_C),
       axiClk         => axi_lite_clk,
       axiClkRst      => axi_lite_reset);
-
 
   U_algoTopWrapper : entity work.algoTopWrapper
     generic map(
