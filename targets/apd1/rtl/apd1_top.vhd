@@ -31,7 +31,8 @@ entity apd1_top is
     AURORA_LANES       : integer                 := 2;
     TPD_G              : time                    := 1 ns;
     BUILD_INFO_G       : BuildInfoType;
-    XIL_DEVICE_G       : string                  := "ULTRASCALE"
+    XIL_DEVICE_G       : string                  := "ULTRASCALE";
+    ILA_ALGO_IO_DBG_G  : boolean                 := true
     );
   port (
     clk_300_clk_n : in std_logic;
@@ -212,6 +213,27 @@ architecture rtl of apd1_top is
 
   signal reg0 : slv(31 downto 0);
   signal reg1 : slv(31 downto 0);
+  
+  COMPONENT ila_algo_io_dbg
+
+PORT (
+	clk : IN STD_LOGIC;
+
+
+
+	probe0 : IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+	probe1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0); 
+	probe2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+	probe3 : IN STD_LOGIC_VECTOR(4 DOWNTO 0); 
+	probe4 : IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+	probe5 : IN STD_LOGIC_VECTOR(4 DOWNTO 0); 
+	probe6 : IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
+	probe7 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+	probe8 : IN STD_LOGIC_VECTOR(0 DOWNTO 0)
+);
+END COMPONENT  ;
+
+
 
 begin
 
@@ -543,5 +565,22 @@ begin
       axiStreamIn  => axiStreamAlgoIn,
       axiStreamOut => axiStreamAlgoOut
       );
+      
+gen_ila : if ILA_ALGO_IO_DBG_G = true generate
+    U_ila_algo_io_dbg : ila_algo_io_dbg
+    PORT MAP (
+        clk => algoClk,
+    
+        probe0 => axiStreamAlgoIn(0).tData(31 downto 0), 
+        probe1 => axiStreamAlgoIn(0).tUser(4 downto 0),
+        probe2 => axiStreamAlgoIn(1).tData(31 downto 0), 
+        probe3 => axiStreamAlgoIn(1).tUser(4 downto 0),
+        probe4 => axiStreamAlgoOut(0).tData(31 downto 0), 
+        probe5 => axiStreamAlgoOut(0).tUser(4 downto 0),
+        probe6(0) => algoStart, 
+        probe7(0) => algoRst,
+        probe8(0) => tcdsCmds.bc0
+    );
+end generate;
 
 end architecture;
