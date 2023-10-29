@@ -15,11 +15,12 @@ package PrjSpecPkg is
   constant PRJ_SPEC_PKG_FORMAT_VER_C : integer := 1;
 
   -- chassis type
-  constant CHASSIS_TYPE_C : string := "vA2577-APd1";
+  constant CHASSIS_TYPE_C        : string  := "vA2577-APd1";
+  constant PROJECT_SPEED_GRADE_C : integer := 1;
 
- constant FABRIC_ID_BOARD_C : string := "vA2577-APd1";
- 
- constant FABRIC_ID_NUMBER_C : integer := 2;
+  constant FABRIC_ID_BOARD_C : string := "vA2577-APd1";
+
+  constant FABRIC_ID_NUMBER_C : integer := 2;
 
   --clk 40 source
   constant CLK_40_SOURCE_LOCAL_C   : integer := 1;
@@ -40,39 +41,39 @@ package PrjSpecPkg is
   constant PRJ_VER_REVISION_C : integer := 0;
 
   -- firmware shell algo clock to LHC BC clock multiplier
-  constant FS_TO_LHC_CLK_FACTOR_C : natural range 1 to 12 := 9;
-  constant SHELL_ALGO_FREQ_HZ_C : natural range 1 to 1000000:= 360720;
+  constant FS_TO_LHC_CLK_FACTOR_C : natural range 1 to 12      := 9;
+  constant SHELL_ALGO_FREQ_HZ_C   : natural range 1 to 1000000 := 360720;
 
   constant SECTOR_ENABLED_C : BooleanArray(0 to SECTOR_CNT_C-1) := (
     0 => true,
-    1 => false,
-    2 => false,
-    3 => false,
-    4 => false,
-    5 => false  
+    1 => true,
+    2 => true,
+    3 => true,
+    4 => true,
+    5 => true
     );
 
 
   -- tRefClkCfgArr declaration in apx-fs/mgt/rtl/MgtPkg.vhd
   constant REFCLK_CFG_C : tRefClkCfgArr(0 to REFCLK_CNT_C-1) := (
-    0  => (enabled => "11", sector => 0, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    1  => (enabled => "11", sector => 0, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    
-    2  => (enabled => "11", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    3  => (enabled => "00", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    4  => (enabled => "11", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    
-    5  => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    6  => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    7  => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    
-    8  => (enabled => "11", sector => 3, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    9  => (enabled => "11", sector => 3, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    
+    0 => (enabled => "11", sector => 0, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    1 => (enabled => "11", sector => 0, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+
+    2 => (enabled => "11", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    3 => (enabled => "00", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    4 => (enabled => "11", sector => 1, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+
+    5 => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    6 => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    7 => (enabled => "11", sector => 2, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+
+    8 => (enabled => "11", sector => 3, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+    9 => (enabled => "11", sector => 3, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
+
     10 => (enabled => "11", sector => 4, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
     11 => (enabled => "11", sector => 4, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
     12 => (enabled => "11", sector => 4, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
-    
+
     13 => (enabled => "11", sector => 5, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
     14 => (enabled => "11", sector => 5, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz"),
     15 => (enabled => "11", sector => 5, refclk0_freq => "515.625MHz", refclk1_freq => "515.625MHz")
@@ -81,35 +82,35 @@ package PrjSpecPkg is
 
   -- tQpllCfgArr declaration in apx-fs/mgt/rtl/MgtPkg.vhd
   constant QPLL_CFG_C : tQpllCfgArr(0 to QPLL_CNT_C-1) := (
-    0  => (enabled => "0", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
-    1  => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
-    2  => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
-    3  => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 1, refclk1 => 1),
-    4  => (enabled => "0", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 1, refclk1 => 1),
-    
-    5  => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 2, refclk1 => 2),
-    6  => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 2, refclk1 => 2),
-    7  => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 4, refclk1 => 4 ),
-    8  => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 4, refclk1 => 4),
-    
+    0 => (enabled => "0", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
+    1 => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
+    2 => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 0, refclk1 => 0),
+    3 => (enabled => "1", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 1, refclk1 => 1),
+    4 => (enabled => "0", sector => 0, qpllCore => gty_qpll_25g, refclk0 => 1, refclk1 => 1),
+
+    5 => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 2, refclk1 => 2),
+    6 => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 2, refclk1 => 2),
+    7 => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 4, refclk1 => 4),
+    8 => (enabled => "1", sector => 1, qpllCore => gty_qpll_25g, refclk0 => 4, refclk1 => 4),
+
     9  => (enabled => "1", sector => 2, qpllCore => gty_qpll_25g, refclk0 => 5, refclk1 => 5),
     10 => (enabled => "1", sector => 2, qpllCore => gty_qpll_25g, refclk0 => 5, refclk1 => 5),
     11 => (enabled => "1", sector => 2, qpllCore => gty_qpll_25g, refclk0 => 6, refclk1 => 6),
     12 => (enabled => "1", sector => 2, qpllCore => gty_qpll_25g, refclk0 => 7, refclk1 => 7),
     13 => (enabled => "1", sector => 2, qpllCore => gty_qpll_25g, refclk0 => 7, refclk1 => 7),
-    
+
     14 => (enabled => "0", sector => 3, qpllCore => gty_qpll_25g, refclk0 => 8, refclk1 => 8),
     15 => (enabled => "1", sector => 3, qpllCore => gty_qpll_25g, refclk0 => 8, refclk1 => 8),
     16 => (enabled => "1", sector => 3, qpllCore => gty_qpll_25g, refclk0 => 8, refclk1 => 8),
     17 => (enabled => "1", sector => 3, qpllCore => gty_qpll_25g, refclk0 => 9, refclk1 => 9),
     18 => (enabled => "0", sector => 3, qpllCore => gty_qpll_25g, refclk0 => 9, refclk1 => 9),
-    
+
     19 => (enabled => "1", sector => 4, qpllCore => gty_qpll_25g, refclk0 => 10, refclk1 => 10),
     20 => (enabled => "1", sector => 4, qpllCore => gty_qpll_25g, refclk0 => 10, refclk1 => 10),
     21 => (enabled => "1", sector => 4, qpllCore => gty_qpll_25g, refclk0 => 11, refclk1 => 11),
     22 => (enabled => "1", sector => 4, qpllCore => gty_qpll_25g, refclk0 => 12, refclk1 => 12),
     23 => (enabled => "1", sector => 4, qpllCore => gty_qpll_25g, refclk0 => 12, refclk1 => 12),
-    
+
     24 => (enabled => "1", sector => 5, qpllCore => gty_qpll_25g, refclk0 => 13, refclk1 => 13),
     25 => (enabled => "1", sector => 5, qpllCore => gty_qpll_25g, refclk0 => 13, refclk1 => 13),
     26 => (enabled => "1", sector => 5, qpllCore => gty_qpll_25g, refclk0 => 14, refclk1 => 14),
@@ -128,16 +129,16 @@ package PrjSpecPkg is
   -- channel configurations for APx Validation Tests
   -- NOTE:  enable order, L->R, is  "TxBuf TxProt MGT RxProt RxBuf"   1=enabled, 0=disabled
   constant APX_CH_CFG_C : tApxChCfgArr(0 to MGT_CNT_C-1) := (
-     0 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     1 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     2 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     3 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     4 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     5 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     6 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     7 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     8 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-     9 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    0  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    1  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    2  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    3  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    4  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    5  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    6  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    7  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    8  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    9  => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     10 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     11 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     12 => (enabled => "10001", sector => 0, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
@@ -186,7 +187,7 @@ package PrjSpecPkg is
     53 => (enabled => "10001", sector => 2, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     54 => (enabled => "10001", sector => 2, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     55 => (enabled => "10001", sector => 2, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    
+
     56 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     57 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     58 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
@@ -207,7 +208,7 @@ package PrjSpecPkg is
     73 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     74 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     75 => (enabled => "10001", sector => 3, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-   
+
     76 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     77 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     78 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
@@ -228,11 +229,11 @@ package PrjSpecPkg is
     93 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     94 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     95 => (enabled => "10001", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    
-    96 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    97 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    98 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    99 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+
+    96  => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    97  => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    98  => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    99  => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     100 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     101 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     102 => (enabled => "10001", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),

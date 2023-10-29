@@ -25,7 +25,8 @@ entity vA2577apd1_top is
     AURORA_LANES       : integer                 := 2;
     TPD_G              : time                    := 1 ns;
     BUILD_INFO_G       : BuildInfoType;
-    XIL_DEVICE_G       : string                  := "ULTRASCALE"
+    XIL_DEVICE_G       : string                  := "ULTRASCALE";
+    ILA_ALGO_IO_DBG_G  : boolean                 := true
     );
   port (
     clk_300_clk_n : in std_logic;
@@ -75,6 +76,22 @@ end vA2577apd1_top;
 
 architecture rtl of vA2577apd1_top is
 
+
+  component ila_algo_io_dbg
+    port (
+      clk : in std_logic;
+
+      probe0 : in std_logic_vector(31 downto 0);
+      probe1 : in std_logic_vector(4 downto 0);
+      probe2 : in std_logic_vector(31 downto 0);
+      probe3 : in std_logic_vector(4 downto 0);
+      probe4 : in std_logic_vector(31 downto 0);
+      probe5 : in std_logic_vector(4 downto 0);
+      probe6 : in std_logic_vector(0 downto 0);
+      probe7 : in std_logic_vector(0 downto 0);
+      probe8 : in std_logic_vector(0 downto 0)
+      );
+  end component;
 
   signal clk_10  : sl;
   signal clk_40  : sl;
@@ -203,9 +220,6 @@ architecture rtl of vA2577apd1_top is
   signal fsClk40   : sl;
   signal fsClkMain : sl;
   signal fsClkDiv2 : sl;
-
-  signal reg0 : slv(31 downto 0);
-  signal reg1 : slv(31 downto 0);
 
 begin
 
@@ -389,7 +403,7 @@ begin
       INCLUDE_ALGO_INFO_ROM   => false,
       BUILD_INFO_G            => BUILD_INFO_G,
       XIL_DEVICE_G            => "ULTRASCALE",
-      SLR_CNT_G => SLR_CNT_C,
+      SLR_CNT_G               => SLR_CNT_C,
       AXIL_BASE_ADDR_G        => APX_INFO_BASE_ADDR_C
       )
     port map(
@@ -492,7 +506,7 @@ begin
 
   algoClk <= fsClkMain;
 
-  U_algoCtrl : entity apx_fs.algoCtrl
+  U_algoCtrl : entity apx_fs.algoCtrlv2
     generic map (
       TPD_G => TPD_G)
     port map(
@@ -504,8 +518,6 @@ begin
       algoReady => algoReady,
 
       tcdsCmds => tcdsCmds,
-      reg0     => reg0,
-      reg1     => reg1,
 
       -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
@@ -538,5 +550,24 @@ begin
       axiStreamIn  => axiStreamAlgoIn,
       axiStreamOut => axiStreamAlgoOut
       );
+
+  gen_ila : if ILA_ALGO_IO_DBG_G = true generate
+    U_ila_algo_io_dbg : ila_algo_io_dbg
+      port map (
+        clk => algoClk,
+
+        probe0    => axiStreamAlgoIn(0).tData(31 downto 0),
+        probe1    => axiStreamAlgoIn(0).tUser(4 downto 0),
+        probe2    => axiStreamAlgoIn(1).tData(31 downto 0),
+        probe3    => axiStreamAlgoIn(1).tUser(4 downto 0),
+        probe4    => axiStreamAlgoOut(0).tData(31 downto 0),
+        probe5    => axiStreamAlgoOut(0).tUser(4 downto 0),
+        probe6(0) => algoStart,
+        probe7(0) => algoRst,
+        probe8(0) => tcdsCmds.bc0
+
+        );
+  end generate;
+
 
 end architecture;

@@ -24,8 +24,8 @@ create_clock -period 3.118 -name tcdsRefclk -waveform {0.000 1.559} [get_ports t
 #set_property PACKAGE_PIN BC41 [get_ports tcdsRefclk_p]
 
 
-set_property PACKAGE_PIN BC40 [get_ports tcdsRefclk_n]
-set_property PACKAGE_PIN BC39 [get_ports tcdsRefclk_p]
+set_property PACKAGE_PIN BC42 [get_ports tcdsRefclk_n]
+set_property PACKAGE_PIN BC41 [get_ports tcdsRefclk_p]
 
 set_property LOC GTYE4_CHANNEL_X0Y2 [get_cells -hierarchical -filter {NAME =~ U_ApxTcds2/*GTYE4_CHANNEL_PRIM_INST}]
 
