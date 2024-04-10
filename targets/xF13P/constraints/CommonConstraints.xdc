@@ -4,16 +4,16 @@
 #-----------------------------------------------------
 #-------       I2C controller -- From Bank 62 -- AXY_PHY_SCL_1_8
 #-----------------------------------------------------
-  set_property PACKAGE_PIN BB29 [get_ports I2C_C2C_scl_io]
-  set_property PACKAGE_PIN BC29 [get_ports I2C_C2C_sda_io]
-  set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_scl_io]
-  set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_sda_io]
+set_property PACKAGE_PIN BB29 [get_ports I2C_C2C_scl_io]
+set_property PACKAGE_PIN BC29 [get_ports I2C_C2C_sda_io]
+set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_scl_io]
+set_property IOSTANDARD LVCMOS18 [get_ports I2C_C2C_sda_io]
 
 
 #-----------------------------------------------------
 #-------       300 MHz Clock  -- From Bank 63
 #-----------------------------------------------------
-  create_clock -period 3.333 -name clk_300_clk_p [get_ports clk_300_clk_p]
+create_clock -period 3.333 -name clk_300_clk_p [get_ports clk_300_clk_p]
 set_property PACKAGE_PIN BA34 [get_ports clk_300_clk_p]
 set_property PACKAGE_PIN BB34 [get_ports clk_300_clk_n]
 set_property IOSTANDARD LVDS [get_ports clk_300_clk_n]
@@ -39,25 +39,22 @@ create_clock -period 10.000 -name refclk_c2c_clk [get_ports refclk_c2c_clk_p]
 
 set_property PACKAGE_PIN BA41 [get_ports refclk_c2c_clk_p]
 
-set_property LOC  GTYE4_CHANNEL_X0Y0 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]
-set_property LOC  GTYE4_CHANNEL_X0Y1 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[1].*CHANNEL_PRIM_INST}]
+set_property LOC GTYE4_CHANNEL_X0Y0 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[0].*CHANNEL_PRIM_INST}]
+set_property LOC GTYE4_CHANNEL_X0Y1 [get_cells -hierarchical -filter {NAME =~ U_axiInfra/*channel_inst[1].*CHANNEL_PRIM_INST}]
 
 
-create_generated_clock -name axiClk      [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]
-create_generated_clock -name clk100osc   [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT1]
-create_generated_clock -name clk200osc   [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT2]
-create_generated_clock -name clk40osc    [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT3]
-create_generated_clock -name clk80osc    [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT4]
-create_generated_clock -name clk10osc    [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT5]
+create_generated_clock -name axiClk [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]
+create_generated_clock -name clk100osc [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT1]
+create_generated_clock -name clk200osc [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT2]
+create_generated_clock -name clk40osc [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT3]
+create_generated_clock -name clk80osc [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT4]
+create_generated_clock -name clk10osc [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT5]
 
-set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]]
-set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/TXOUTCLK}]]
+set_clock_groups -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]] -quiet
+set_clock_groups -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/TXOUTCLK}]] -quiet
 
-set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/TXOUTCLKPCS}]]
-set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLKPCS}]]
+set_clock_groups -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/TXOUTCLKPCS}]] -quiet
 
-set_clock_groups -quiet -asynchronous -group axiClk -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
-set_clock_groups -quiet -asynchronous -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*CHANNEL_PRIM_INST/RXOUTCLK}]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ U_axiInfra/*.bufg_gt_usrclk2_inst/O}]]
 
 
 
@@ -75,22 +72,18 @@ set_clock_groups -asynchronous -group {clk40osc clk80osc clk40osc_mux clk40rec_m
 ##====================##
 ## TIMING CONSTRAINTS (FOR TCDS2-Test ##
 ##====================##
-set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]] \
--group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] \
--group [get_clocks -include_generated_clocks  -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
+set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0]] -group [get_clocks -include_generated_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]] -group [get_clocks -include_generated_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ */tcds2_interface/*mgt*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
 
 #-----------------------------------------------------
 # lpGBT10G Tx - lpGBT-FE Tx - MASTER + SLAVE
 #-----------------------------------------------------
-set_multicycle_path 9  -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -setup
-set_multicycle_path 8 -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -hold
+set_multicycle_path -setup -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] 9
+set_multicycle_path -hold -through [get_nets -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txdatapath_inst/fec5*}] -to [get_pins -hierarchical -filter {NAME =~ *cmp_lpgbt_fe_tx/txgearbox_inst/dataWord_reg*/D}] 8
 
 #set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
 #set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_axiInfra/*/inst/mmcme*_adv_inst/CLKOUT0] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]]
 
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks  txoutclkpcs_out[0]] \
--group [get_clocks rxoutclk_out[0]_1] \
--group [get_clocks txoutclk_out[0]_1]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks {txoutclkpcs_out[0]}] -group [get_clocks {rxoutclk_out[0]_1}] -group [get_clocks {txoutclk_out[0]_1}]
 
 
 
@@ -110,66 +103,66 @@ set_clock_groups -asynchronous -group axiClk -group [get_clocks -of_objects [get
 
 
 #-----------------------------------------------------
-#-------       MgtClks  
+#-------       MgtClks
 #-----------------------------------------------------
-create_clock -period 1.9393939 -name refclk0_0 [get_ports {mgtRefClk0P[0]}]
-create_clock -period 1.9393939 -name refclk1_0 [get_ports {mgtRefClk0P[1]}]
-create_clock -period 1.9393939 -name refclk2_0 [get_ports {mgtRefClk0P[2]}]
-create_clock -period 1.9393939 -name refclk3_0 [get_ports {mgtRefClk0P[3]}]
-create_clock -period 1.9393939 -name refclk4_0 [get_ports {mgtRefClk0P[4]}]
-create_clock -period 1.9393939 -name refclk5_0 [get_ports {mgtRefClk0P[5]}]
-create_clock -period 1.9393939 -name refclk6_0 [get_ports {mgtRefClk0P[6]}]
-create_clock -period 1.9393939 -name refclk7_0 [get_ports {mgtRefClk0P[7]}]
-create_clock -period 1.9393939 -name refclk8_0 [get_ports {mgtRefClk0P[8]}]
-create_clock -period 1.9393939 -name refclk9_0 [get_ports {mgtRefClk0P[9]}]
-create_clock -period 1.9393939 -name refclk10_0 [get_ports {mgtRefClk0P[10]}]
-create_clock -period 1.9393939 -name refclk11_0 [get_ports {mgtRefClk0P[11]}]
-create_clock -period 1.9393939 -name refclk12_0 [get_ports {mgtRefClk0P[12]}]
-create_clock -period 1.9393939 -name refclk13_0 [get_ports {mgtRefClk0P[13]}]
-create_clock -period 1.9393939 -name refclk14_0 [get_ports {mgtRefClk0P[14]}]
-create_clock -period 1.9393939 -name refclk15_0 [get_ports {mgtRefClk0P[15]}]
-create_clock -period 1.9393939 -name refclk16_0 [get_ports {mgtRefClk0P[16]}]
-create_clock -period 1.9393939 -name refclk17_0 [get_ports {mgtRefClk0P[17]}]
+create_clock -period 1.939 -name refclk0_0 [get_ports {mgtRefClk0P[0]}]
+create_clock -period 1.939 -name refclk1_0 [get_ports {mgtRefClk0P[1]}]
+create_clock -period 1.939 -name refclk2_0 [get_ports {mgtRefClk0P[2]}]
+create_clock -period 1.939 -name refclk3_0 [get_ports {mgtRefClk0P[3]}]
+create_clock -period 1.939 -name refclk4_0 [get_ports {mgtRefClk0P[4]}]
+create_clock -period 1.939 -name refclk5_0 [get_ports {mgtRefClk0P[5]}]
+create_clock -period 1.939 -name refclk6_0 [get_ports {mgtRefClk0P[6]}]
+create_clock -period 1.939 -name refclk7_0 [get_ports {mgtRefClk0P[7]}]
+create_clock -period 1.939 -name refclk8_0 [get_ports {mgtRefClk0P[8]}]
+create_clock -period 1.939 -name refclk9_0 [get_ports {mgtRefClk0P[9]}]
+create_clock -period 1.939 -name refclk10_0 [get_ports {mgtRefClk0P[10]}]
+create_clock -period 1.939 -name refclk11_0 [get_ports {mgtRefClk0P[11]}]
+create_clock -period 1.939 -name refclk12_0 [get_ports {mgtRefClk0P[12]}]
+create_clock -period 1.939 -name refclk13_0 [get_ports {mgtRefClk0P[13]}]
+create_clock -period 1.939 -name refclk14_0 [get_ports {mgtRefClk0P[14]}]
+create_clock -period 1.939 -name refclk15_0 [get_ports {mgtRefClk0P[15]}]
+create_clock -period 1.939 -name refclk16_0 [get_ports {mgtRefClk0P[16]}]
+create_clock -period 1.939 -name refclk17_0 [get_ports {mgtRefClk0P[17]}]
 
-create_clock -period 1.9393939 -name refclk0_1 [get_ports {mgtRefClk1P[0]}]
-create_clock -period 1.9393939 -name refclk1_1 [get_ports {mgtRefClk1P[1]}]
-create_clock -period 1.9393939 -name refclk2_1 [get_ports {mgtRefClk1P[2]}]
-create_clock -period 1.9393939 -name refclk3_1 [get_ports {mgtRefClk1P[3]}]
-create_clock -period 1.9393939 -name refclk4_1 [get_ports {mgtRefClk1P[4]}]
-create_clock -period 1.9393939 -name refclk5_1 [get_ports {mgtRefClk1P[5]}]
-create_clock -period 1.9393939 -name refclk6_1 [get_ports {mgtRefClk1P[6]}]
-create_clock -period 1.9393939 -name refclk7_1 [get_ports {mgtRefClk1P[7]}]
-create_clock -period 1.9393939 -name refclk8_1 [get_ports {mgtRefClk1P[8]}]
-create_clock -period 1.9393939 -name refclk9_1 [get_ports {mgtRefClk1P[9]}]
-create_clock -period 1.9393939 -name refclk10_1 [get_ports {mgtRefClk1P[10]}]
-create_clock -period 1.9393939 -name refclk11_1 [get_ports {mgtRefClk1P[11]}]
-create_clock -period 1.9393939 -name refclk12_1 [get_ports {mgtRefClk1P[12]}]
-create_clock -period 1.9393939 -name refclk13_1 [get_ports {mgtRefClk1P[13]}]
-create_clock -period 1.9393939 -name refclk14_1 [get_ports {mgtRefClk1P[14]}]
-create_clock -period 1.9393939 -name refclk15_1 [get_ports {mgtRefClk1P[15]}]
-create_clock -period 1.9393939 -name refclk16_1 [get_ports {mgtRefClk1P[16]}]
-create_clock -period 1.9393939 -name refclk17_1 [get_ports {mgtRefClk1P[17]}]
+create_clock -period 1.939 -name refclk0_1 [get_ports {mgtRefClk1P[0]}]
+create_clock -period 1.939 -name refclk1_1 [get_ports {mgtRefClk1P[1]}]
+create_clock -period 1.939 -name refclk2_1 [get_ports {mgtRefClk1P[2]}]
+create_clock -period 1.939 -name refclk3_1 [get_ports {mgtRefClk1P[3]}]
+create_clock -period 1.939 -name refclk4_1 [get_ports {mgtRefClk1P[4]}]
+create_clock -period 1.939 -name refclk5_1 [get_ports {mgtRefClk1P[5]}]
+create_clock -period 1.939 -name refclk6_1 [get_ports {mgtRefClk1P[6]}]
+create_clock -period 1.939 -name refclk7_1 [get_ports {mgtRefClk1P[7]}]
+create_clock -period 1.939 -name refclk8_1 [get_ports {mgtRefClk1P[8]}]
+create_clock -period 1.939 -name refclk9_1 [get_ports {mgtRefClk1P[9]}]
+create_clock -period 1.939 -name refclk10_1 [get_ports {mgtRefClk1P[10]}]
+create_clock -period 1.939 -name refclk11_1 [get_ports {mgtRefClk1P[11]}]
+create_clock -period 1.939 -name refclk12_1 [get_ports {mgtRefClk1P[12]}]
+create_clock -period 1.939 -name refclk13_1 [get_ports {mgtRefClk1P[13]}]
+create_clock -period 1.939 -name refclk14_1 [get_ports {mgtRefClk1P[14]}]
+create_clock -period 1.939 -name refclk15_1 [get_ports {mgtRefClk1P[15]}]
+create_clock -period 1.939 -name refclk16_1 [get_ports {mgtRefClk1P[16]}]
+create_clock -period 1.939 -name refclk17_1 [get_ports {mgtRefClk1P[17]}]
 
 
 #-----------------------------------------------------
 #-- Sync clocks
 #-----------------------------------------------------
-# -- Bank 121 
-set_property PACKAGE_PIN BB39 [get_ports {mgtRefClkP[0]}]  
+# -- Bank 121
+set_property PACKAGE_PIN BB39 [get_ports {mgtRefClkP[0]}]
 # -- Bank 122
-set_property PACKAGE_PIN AY39 [get_ports {mgtRefClk1P[1]}]  
+set_property PACKAGE_PIN AY39 [get_ports {mgtRefClk1P[1]}]
 ## -- Bank 123 "
-set_property PACKAGE_PIN AV39 [get_ports {mgtRefClk1P[2]}]  
+set_property PACKAGE_PIN AV39 [get_ports {mgtRefClk1P[2]}]
 ## -- Bank 125 "
-set_property PACKAGE_PIN AP39 [get_ports {mgtRefClk1P[3]}]  
+set_property PACKAGE_PIN AP39 [get_ports {mgtRefClk1P[3]}]
 ## -- Bank 127"
-set_property PACKAGE_PIN AJ41 [get_ports {mgtRefClk1P[4]}]  
+set_property PACKAGE_PIN AJ41 [get_ports {mgtRefClk1P[4]}]
 ## -- Bank 129 "
-set_property PACKAGE_PIN AA41 [get_ports {mgtRefClk1P[5]}]  
+set_property PACKAGE_PIN AA41 [get_ports {mgtRefClk1P[5]}]
 ## -- Bank 131 "
-set_property PACKAGE_PIN U41  [get_ports {mgtRefClk1P[6]}]
+set_property PACKAGE_PIN U41 [get_ports {mgtRefClk1P[6]}]
 ## -- Bank 133 "
-set_property PACKAGE_PIN N41  [get_ports {mgtRefClk1P[7]}]
+set_property PACKAGE_PIN N41 [get_ports {mgtRefClk1P[7]}]
 ## -- Bank 134 "
 set_property PACKAGE_PIN L41 [get_ports {mgtRefClk1P[8]}]
 ## -- Bank 220 "
@@ -195,23 +188,23 @@ set_property PACKAGE_PIN L11 [get_ports {mgtRefClk1P[17]}]
 ##-- Async clocks
 ##-----------------------------------------------------
 ## -- Bank 121 "
-#set_property PACKAGE_PIN BA41 [get_ports {mgtRefClk1P[0]}]  
+#set_property PACKAGE_PIN BA41 [get_ports {mgtRefClk1P[0]}]
 ## -- Bank 122 "
-set_property PACKAGE_PIN AW41 [get_ports {mgtRefClk0P[1]}]  
+set_property PACKAGE_PIN AW41 [get_ports {mgtRefClk0P[1]}]
 ## -- Bank 123 "
-set_property PACKAGE_PIN AU41 [get_ports {mgtRefClk0P[2]}]  
+set_property PACKAGE_PIN AU41 [get_ports {mgtRefClk0P[2]}]
 ## -- Bank 125 "
-set_property PACKAGE_PIN AN41 [get_ports {mgtRefClk0P[3]}]  
+set_property PACKAGE_PIN AN41 [get_ports {mgtRefClk0P[3]}]
 ## -- Bank 127"
-set_property PACKAGE_PIN AG41 [get_ports {mgtRefClk0P[4]}]  
+set_property PACKAGE_PIN AG41 [get_ports {mgtRefClk0P[4]}]
 ## -- Bank 129 "
-set_property PACKAGE_PIN Y39 [get_ports {mgtRefClk0P[5]}]  
+set_property PACKAGE_PIN Y39 [get_ports {mgtRefClk0P[5]}]
 ## -- Bank 131 "
-set_property PACKAGE_PIN T39  [get_ports {mgtRefClk0P[6]}]
+set_property PACKAGE_PIN T39 [get_ports {mgtRefClk0P[6]}]
 ## -- Bank 133 "
-set_property PACKAGE_PIN M39  [get_ports {mgtRefClk0P[7]}]
+set_property PACKAGE_PIN M39 [get_ports {mgtRefClk0P[7]}]
 ## -- Bank 134 "
-set_property PACKAGE_PIN K39  [get_ports {mgtRefClk0P[8]}]
+set_property PACKAGE_PIN K39 [get_ports {mgtRefClk0P[8]}]
 ## -- Bank 220 "
 set_property PACKAGE_PIN BC11 [get_ports {mgtRefClk0P[9]}]
 ## -- Bank 221 "
@@ -256,7 +249,7 @@ set_property LOC GTYE4_CHANNEL_X0Y13 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X0Y14 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[10]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X0Y15 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[11]*.GTYE4_CHANNEL_PRIM_INST}]
 
-###### Sector 1 ###### 
+###### Sector 1 ######
 
 set_property LOC GTYE4_CHANNEL_X0Y16 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[12]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X0Y17 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[13]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -276,7 +269,7 @@ set_property LOC GTYE4_CHANNEL_X0Y30 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X0Y31 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[27]*.GTYE4_CHANNEL_PRIM_INST}]
 
 
-###### Sector 2 ###### 
+###### Sector 2 ######
 
 set_property LOC GTYE4_CHANNEL_X0Y32 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[28]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X0Y33 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[29]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -295,7 +288,7 @@ set_property LOC GTYE4_CHANNEL_X0Y45 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X0Y46 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[42]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X0Y47 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[43]*.GTYE4_CHANNEL_PRIM_INST}]
 
-###### Sector 3 ###### 
+###### Sector 3 ######
 
 set_property LOC GTYE4_CHANNEL_X0Y48 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[44]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X0Y49 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[45]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -315,7 +308,7 @@ set_property LOC GTYE4_CHANNEL_X0Y62 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X0Y63 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[59]*.GTYE4_CHANNEL_PRIM_INST}]
 
 #-----------------------------------------------------
-#-------      Right Side  
+#-------      Right Side
 #-----------------------------------------------------
 ###### Sector 4 ######
 
@@ -336,7 +329,7 @@ set_property LOC GTYE4_CHANNEL_X1Y13 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X1Y14 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[74]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X1Y15 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[75]*.GTYE4_CHANNEL_PRIM_INST}]
 
-###### Sector 5 ###### 
+###### Sector 5 ######
 
 set_property LOC GTYE4_CHANNEL_X1Y16 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[76]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X1Y17 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[77]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -356,7 +349,7 @@ set_property LOC GTYE4_CHANNEL_X1Y30 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X1Y31 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[91]*.GTYE4_CHANNEL_PRIM_INST}]
 
 
-###### Sector 6 ###### 
+###### Sector 6 ######
 
 set_property LOC GTYE4_CHANNEL_X1Y32 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[92]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X1Y33 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[93]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -376,7 +369,7 @@ set_property LOC GTYE4_CHANNEL_X1Y46 [get_cells -hierarchical -filter {NAME =~ *
 set_property LOC GTYE4_CHANNEL_X1Y47 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[107]*.GTYE4_CHANNEL_PRIM_INST}]
 
 
-###### Sector 7 ###### 
+###### Sector 7 ######
 
 set_property LOC GTYE4_CHANNEL_X1Y48 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[108]*.GTYE4_CHANNEL_PRIM_INST}]
 set_property LOC GTYE4_CHANNEL_X1Y49 [get_cells -hierarchical -filter {NAME =~ *gen_mgt[109]*.GTYE4_CHANNEL_PRIM_INST}]
@@ -401,12 +394,18 @@ set_property LOC GTYE4_CHANNEL_X1Y63 [get_cells -hierarchical -filter {NAME =~ *
 # ----------------------------------------------------------------------------------------------------------------------
 set_false_path -to [get_cells -hierarchical -filter {NAME =~ *bit_synchronizer*inst/i_in_meta_reg}]
 ##set_false_path -to [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_*_reg}]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*D -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_meta*}]]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_meta*}]]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync1*}]]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync2*}]]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync3*}]]
-set_false_path -to [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_out*}]]
+set _xlnx_shared_i0 [get_pins -filter REF_PIN_NAME=~*D -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_meta*}]]
+set_false_path -to $_xlnx_shared_i0
+set _xlnx_shared_i1 [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_meta*}]]
+set_false_path -to $_xlnx_shared_i1
+set _xlnx_shared_i2 [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync1*}]]
+set_false_path -to $_xlnx_shared_i2
+set _xlnx_shared_i3 [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync2*}]]
+set_false_path -to $_xlnx_shared_i3
+set _xlnx_shared_i4 [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_sync3*}]]
+set_false_path -to $_xlnx_shared_i4
+set _xlnx_shared_i5 [get_pins -filter REF_PIN_NAME=~*PRE -of_objects [get_cells -hierarchical -filter {NAME =~ *reset_synchronizer*inst/rst_in_out*}]]
+set_false_path -to $_xlnx_shared_i5
 
 #####
 
@@ -434,15 +433,15 @@ set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_IridisCSPTxCtrl/r_re
 set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_IridisCSPTxCtrl/genIridisSfTx[*].genIridisSfTxEn.U_IridisSfTx/r_iCSPFSM_reg[crcLatched][*]/C}]
 
 set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_IridisCSPRxCtrl/genIridisSfRx[*].genIridisSfRxEn.U_IridisCSPRx/U_LinkResyncCtrl/r_reg[resyncOut]/C}] -to [get_pins {gen_sector[*].U_apxSector/U_IridisCSPRxCtrl/genIridisSfRx[*].genIridisSfRxEn.U_IridisCSPRx/U_RstSync/Synchronizer_1/GEN.ASYNC_RST.crossDomainSyncReg_reg[0]/PRE}]
-set_false_path -from [get_pins {U_ApxTcds2/tcds2_interface/tcds2_interface/tclink/cmp_cdc_rx/data_b_reg_reg[29]/C}] 
+set_false_path -from [get_pins {U_ApxTcds2/tcds2_interface/tcds2_interface/tclink/cmp_cdc_rx/data_b_reg_reg[29]/C}]
 
 set_false_path -from [get_clocks -of_objects [get_pins U_axiInfra/gen_osc_300.U_clk_gen_300/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT1] -filter {IS_GENERATED && MASTER_CLOCK == clk40osc_mux}]
 
 
 set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].gen_mgt_en.U_MgtWrapper/gen_mgt_25g.U_gty25g/inst/gen_gtwizard_gtye4_top.gty25g_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst/reset_synchronizer_rx_done_inst/rst_in_out_reg/C}] -to [get_pins {gen_sector[*].U_apxSector/U_IridisCSPRxCtrl/genIridisSfRx[*].genIridisSfRxEn.U_IridisCSPRx/U_LinkResyncCtrl/FSM_onehot_r_reg[state][*]/CE}]
 
-set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].gen_mgt_en.U_MgtWrapper/gen_mgt_25g.U_gty25g/inst/gen_gtwizard_gtye4_top.gty25g_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_rx_buffer_bypass_internal.gen_single_instance.gtwiz_buffbypass_rx_inst/gen_gtwiz_buffbypass_rx_main.gen_auto_mode.gtwiz_buffbypass_rx_done_out_reg/C}] 
+set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].gen_mgt_en.U_MgtWrapper/gen_mgt_25g.U_gty25g/inst/gen_gtwizard_gtye4_top.gty25g_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_rx_buffer_bypass_internal.gen_single_instance.gtwiz_buffbypass_rx_inst/gen_gtwiz_buffbypass_rx_main.gen_auto_mode.gtwiz_buffbypass_rx_done_out_reg/C}]
 
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]]
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
-set_clock_groups -asynchronous -group  mgtRefClkBufg* -group axiClk
+set_clock_groups -asynchronous -group mgtRefClkBufg* -group axiClk

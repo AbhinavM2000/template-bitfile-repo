@@ -519,21 +519,4 @@ begin
       axiStreamOut => axiStreamAlgoOut
       );
 
-  gen_ila : if ILA_ALGO_IO_DBG_G = true generate
-    U_ila_algo_io_dbg : ila_algo_io_dbg
-      port map (
-        clk => algoClk,
-
-        probe0    => axiStreamAlgoIn(0).tData(31 downto 0),
-        probe1    => axiStreamAlgoIn(0).tUser(4 downto 0),
-        probe2    => axiStreamAlgoIn(1).tData(31 downto 0),
-        probe3    => axiStreamAlgoIn(1).tUser(4 downto 0),
-        probe4    => axiStreamAlgoOut(0).tData(31 downto 0),
-        probe5    => axiStreamAlgoOut(0).tUser(4 downto 0),
-        probe6(0) => algoStart,
-        probe7(0) => algoRst,
-        probe8(0) => tcdsCmds.bc0
-        );
-  end generate;
-
 end architecture;

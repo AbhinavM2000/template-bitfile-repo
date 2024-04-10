@@ -16,11 +16,15 @@ loadRuckusTcl $::env(TOP_DIR)/submodules/surf/protocols/pgp/pgp3/core
 loadRuckusTcl $::env(TOP_DIR)/submodules/apx-fs
 
 # Load local source Code and constraints
+# Load local source Code and constraints
 loadSource -path "$::DIR_PATH/rtl/xF13P_top.vhd"
-loadSource -path "$::DIR_PATH/rtl/algoTopWrapper.vhd"
+#loadSource -path "$::DIR_PATH/rtl/algoTopWrapper.vhd"
+loadSource -dir "$::DIR_PATH/rtl/AlgoRTL/"
+loadSource -dir "$::DIR_PATH/rtl/Wrappers/"
 loadSource -lib apx_fs -dir "$::DIR_PATH/cfg/"
 loadConstraints -dir "$::DIR_PATH/constraints/"
 loadIpCore -dir "$::DIR_PATH/ip/"
+
 
 # Area constraints used in the implementation  only
 set_property used_in_synthesis false [get_files  $::DIR_PATH/constraints/floorplan.tcl]

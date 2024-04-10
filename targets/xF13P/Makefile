@@ -10,7 +10,7 @@ export PROJECT = xF13P_top
 export BOARD = xF13P
 
 #Define target part
-export PRJ_PART = xcvu13p-flga2577-1-e
+export PRJ_PART = xcvu13p-flga2577-2-e
 
 export PARALLEL_SYNTH = 24
 export GZIP_BUILD_IMAGE = 1
