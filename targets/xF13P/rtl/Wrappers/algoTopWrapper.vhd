@@ -178,169 +178,155 @@ signal axiStreamOutSLR3D6 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 
 signal axiStreamOutAlgo : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_TOTAL-1);
 
+attribute shreg_extract of axiStreamInSLR3D1, axiStreamInSLR2D1, axiStreamInSLR1D1, axiStreamInSLR0D1: signal is "no";
+
 attribute shreg_extract of axiStreamOutSLR0D0, axiStreamOutSLR0D1, axiStreamOutSLR0D2, axiStreamOutSLR0D3, axiStreamOutSLR0D4, axiStreamOutSLR0D5, axiStreamOutSLR0D6: signal is "no";
 attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutSLR1D2, axiStreamOutSLR1D3, axiStreamOutSLR1D4, axiStreamOutSLR1D5, axiStreamOutSLR1D6: signal is "no";
 attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6: signal is "no";
 attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6: signal is "no";
 
 constant XLA_INPUT_MAP_C_SLR3 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
-    --sector 3
-    0  => 44,
-    1  => 45,
-    2  => 46,
-    3  => 47,
-    4  => 48,
-    5  => 49,
-    6  => 50,
-    7  => 51,
-    8  => 52,
-    9  => 53,
-    10 => 54,
-    11 => 55,
-    12 => 56,
-    13 => 57,
-    14 => 58,
-    
-    --sector 7
-    15 => 108,
-    16 => 109,
-    17 => 110,
-    18 => 111,
-    19 => 112,
-    20 => 113,
-    21 => 114,
-    22 => 115,
-    23 => 116,
-    24 => 117,
-    25 => 118,
-    26 => 119,
-    27 => 120,
-    28 => 121,
-    29 => 122
+   0  => 44,
+   6  => 45,
+   12 => 46,
+   18 => 47,
+   24 => 48,
+   3  => 49,
+   9  => 50,
+   15 => 51,
+   21 => 52,
+   27 => 53,
+   4  => 54,
+   10 => 55,
+   16 => 56,
+   22 => 57,
+   28 => 58,
+
+   1  => 108,
+   7  => 109,
+   13 => 110,
+   19 => 111,
+   25 => 112,
+   2  => 113,
+   8  => 114,
+   14 => 115,
+   20 => 116,
+   26 => 117,
+   5  => 118,
+   11 => 119,
+   17 => 120,
+   23 => 121,
+   29 => 122
 );
 
 constant XLA_INPUT_MAP_C_SLR2 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
     --sector 2
     0  => 28,
-    1  => 29,
-    2  => 30,
-    3  => 31,
-    4  => 32,
-    5  => 33,
-    6  => 34,
-    7  => 35,
-    8  => 36,
-    9  => 37,
-    10 => 38,
-    11 => 39,
-    12 => 40,
-    13 => 41,
-    14 => 42,
-
-    --sector 6
-    15 => 92,
-    16 => 93,
-    17 => 94,
-    18 => 95,
-    19 => 96,
-    20 => 97,
-    21 => 98,
-    22 => 99,
-    23 => 100,
-    24 => 101,
-    25 => 102,
-    26 => 103,
-    27 => 104,
-    28 => 105,
+    6  => 29,
+    12 => 30,
+    18 => 31,
+    24 => 32,
+    3  => 33,
+    9  => 34,
+    15 => 35,
+    21 => 36,
+    27 => 37,
+    4  => 38,
+    10 => 39,
+    16 => 40,
+    22 => 41,
+    28 => 42,
+    
+    1  => 92,
+    7  => 93,
+    13 => 94,
+    19 => 95,
+    25 => 96,
+    2  => 97,
+    8  => 98,
+    14 => 99,
+    20 => 100,
+    26 => 101,
+    5  => 102,
+    11 => 103,
+    17 => 104,
+    23 => 105,
     29 => 106
 );
 
 constant XLA_INPUT_MAP_C_SLR1 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
     --sector 1
     0  => 12,
-    1  => 13,
-    2  => 14,
-    3  => 15,
-    4  => 16,
-    5  => 17,
-    6  => 18,
-    7  => 19,
-    8  => 20,
-    9  => 21,
-    10 => 22,
-    11 => 23,
-    12 => 24,
-    13 => 25,
-    14 => 26,
+    6  => 13,
+    12 => 14,
+    18 => 15,
+    24 => 16,
+    3  => 17,
+    9  => 18,
+    15 => 19,
+    21 => 20,
+    27 => 21,
+    4  => 22,
+    10 => 23,
+    16 => 24,
+    22 => 25,
+    28 => 26,
 
-    --sector 5
-    15 => 76,
-    16 => 77,
-    17 => 78,
-    18 => 79,
-    19 => 80,
-    20 => 81,
-    21 => 82,
-    22 => 83,
-    23 => 84,
-    24 => 85,
-    25 => 86,
-    26 => 87,
-    27 => 88,
-    28 => 89,
+    1  => 76,
+    7  => 77,
+    13 => 78,
+    19 => 79,
+    25 => 80,
+    2  => 81,
+    8  => 82,
+    14 => 83,
+    20 => 84,
+    26 => 85,
+    5  => 86,
+    11 => 87,
+    17 => 88,
+    23 => 89,
     29 => 90
 );
 
 constant XLA_INPUT_MAP_C_SLR0 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_2x6-1) := (
     --sector 0
-    0  => 0,
-    1  => 1,
-    2  => 2,
-    3  => 3,
-    4  => 4,
-    5  => 5,
-    6  => 6,
-    7  => 7,
-    8  => 8,
-    9  => 9,
-    10 => 10,
-    11 => 11
-);
-
-constant XLA_OUTPUT_MAP_C : IntegerArray(0 to N_OUTPUT_STREAMS_TOTAL-1) := (
-    --sector 4
-    0  => 68,
-    1  => 69,
-    2  => 70,
-    3  => 71,
+    0  => 64,
+    6  => 65,
+    1  => 66,
+    7  => 67,
+    2  => 68,
+    8  => 69,
+    3  => 70,
+    9  => 71,
     4  => 72,
-    5  => 73,
-    6  => 74,
-    7  => 75
+    10 => 73,
+    5  => 74,
+    11 => 75
 );
 
 constant XLA_OUTPUT_MAP_C_SLR3 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 3
-    0  => 44,
-    1  => 45
+    0  => 115,
+    1  => 116
 );
 
 constant XLA_OUTPUT_MAP_C_SLR2 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 2
-    0  => 28,
-    1  => 29
+    0  => 99,
+    1  => 100
 );
 
 constant XLA_OUTPUT_MAP_C_SLR1 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 1
-    0  => 12,
-    1  => 13
+    0  => 83,
+    1  => 84
 );
 
 constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 0
-    0  => 0,
-    1  => 1
+    0  => 64,
+    1  => 65
 );
 
 begin
