@@ -157,11 +157,7 @@ begin
     end process;
   end generate;
   
-  axiStreamOut(0).tdata <= axiStreamOutIntr(0).tdata;
-  axiStreamOut(1).tdata <= axiStreamOutIntr(1).tdata when rising_edge(algoClk);
-  
-  axiStreamOut(0).tvalid <= axiStreamOutIntr(0).tvalid;
-  axiStreamOut(1).tvalid <= axiStreamOutIntr(1).tvalid when rising_edge(algoClk);
+  axiStreamOut <= axiStreamOutIntr;
 
   ip1_5x6_algo_top : entity work.IP1_5x6_algo_top
   port map (
