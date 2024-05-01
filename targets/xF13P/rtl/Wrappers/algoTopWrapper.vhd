@@ -50,7 +50,6 @@ SIGNAL algoRstD4_SLR0   : std_logic := '1';
 SIGNAL algoRstD5_SLR0   : std_logic := '1';
 SIGNAL algoRstD6_SLR0   : std_logic := '1';
 
-
 SIGNAL algoStartD_SLR0  : std_logic := '0';
 SIGNAL algoStartD1_SLR0 : std_logic := '0';
 SIGNAL algoStartD2_SLR0 : std_logic := '0';
@@ -108,91 +107,62 @@ SIGNAL algoStartD5_SLR3 : std_logic := '0';
 SIGNAL algoStartD6_SLR3 : std_logic := '0';
 
 attribute dont_touch : string;
-attribute dont_touch of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0 : signal is "yes";
-attribute dont_touch of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0 : signal is "yes";
+attribute dont_touch of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0: signal is "yes";
+attribute dont_touch of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1 : signal is "yes";
-attribute dont_touch of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1 : signal is "yes";
+attribute dont_touch of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1: signal is "yes";
+attribute dont_touch of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2 : signal is "yes";
-attribute dont_touch of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2 : signal is "yes";
+attribute dont_touch of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2: signal is "yes";
+attribute dont_touch of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3 : signal is "yes";
-attribute dont_touch of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3 : signal is "yes";
+attribute dont_touch of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3: signal is "yes";
+attribute dont_touch of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3: signal is "yes";
 
 attribute shreg_extract : string;
-attribute shreg_extract of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0 : signal is "no";
-attribute shreg_extract of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0 : signal is "no";
+attribute shreg_extract of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0: signal is "no";
+attribute shreg_extract of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1 : signal is "no";
-attribute shreg_extract of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1 : signal is "no";
+attribute shreg_extract of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1: signal is "no";
+attribute shreg_extract of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2 : signal is "no";
-attribute shreg_extract of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2 : signal is "no";
+attribute shreg_extract of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2: signal is "no";
+attribute shreg_extract of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3 : signal is "no";
-attribute shreg_extract of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3 : signal is "no";
+attribute shreg_extract of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3: signal is "no";
+attribute shreg_extract of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3: signal is "no";
 
 signal axiStreamInSLR3   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR3D0 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR3D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
-signal axiStreamInSLR3D2 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 
 signal axiStreamInSLR2   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR2D0 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR2D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
-signal axiStreamInSLR2D2 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 
 signal axiStreamInSLR1   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR1D0 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR1D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
-signal axiStreamInSLR1D2 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 
 signal axiStreamInSLR0   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_2x6-1);
 signal axiStreamInSLR0D0 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_2x6-1);
 signal axiStreamInSLR0D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_2x6-1);
-signal axiStreamInSLR0D2 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_2x6-1);
 
 signal axiStreamOutSLR0D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR0D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR0D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR0D3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR0D4 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR0D5 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR0D6 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 
 signal axiStreamOutSLR1D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR1D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR1D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR1D3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR1D4 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR1D5 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR1D6 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 
 signal axiStreamOutSLR2D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR2D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR2D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR2D3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR2D4 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR2D5 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR2D6 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 
 signal axiStreamOutSLR3D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR3D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR3D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR3D3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR3D4 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR3D5 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-signal axiStreamOutSLR3D6 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
-
-signal axiStreamOutAlgo : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_TOTAL-1);
-
-attribute shreg_extract of axiStreamInSLR3D1, axiStreamInSLR2D1, axiStreamInSLR1D1, axiStreamInSLR0D1: signal is "no";
-
-attribute shreg_extract of axiStreamOutSLR0D0, axiStreamOutSLR0D1, axiStreamOutSLR0D2, axiStreamOutSLR0D3, axiStreamOutSLR0D4, axiStreamOutSLR0D5, axiStreamOutSLR0D6: signal is "no";
-attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutSLR1D2, axiStreamOutSLR1D3, axiStreamOutSLR1D4, axiStreamOutSLR1D5, axiStreamOutSLR1D6: signal is "no";
-attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6: signal is "no";
-attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6: signal is "no";
 
 constant XLA_INPUT_MAP_C_SLR3 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
    0  => 44,
@@ -360,19 +330,15 @@ end generate;
 
 axiStreamInSLR3D0 <= axiStreamInSLR3   when rising_edge(algoClk);
 axiStreamInSLR3D1 <= axiStreamInSLR3D0 when rising_edge(algoClk);
-axiStreamInSLR3D2 <= axiStreamInSLR3D1 when rising_edge(algoClk);
 
 axiStreamInSLR2D0 <= axiStreamInSLR2   when rising_edge(algoClk);
 axiStreamInSLR2D1 <= axiStreamInSLR2D0 when rising_edge(algoClk);
-axiStreamInSLR2D2 <= axiStreamInSLR2D1 when rising_edge(algoClk);
 
 axiStreamInSLR1D0 <= axiStreamInSLR1   when rising_edge(algoClk);
 axiStreamInSLR1D1 <= axiStreamInSLR1D0 when rising_edge(algoClk);
-axiStreamInSLR1D2 <= axiStreamInSLR1D1 when rising_edge(algoClk);
 
 axiStreamInSLR0D0 <= axiStreamInSLR0   when rising_edge(algoClk);
 axiStreamInSLR0D1 <= axiStreamInSLR0D0 when rising_edge(algoClk);
-axiStreamInSLR0D2 <= axiStreamInSLR0D1 when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------START and RESET GENERATION
@@ -477,7 +443,7 @@ RCT5x6_ALGO_SLR3: entity work.RCT5x6TopWrapper
     algoReady => open,
 
     -- AXI-Stream In/Out Ports
-    axiStreamIn  => axiStreamInSLR3D2,
+    axiStreamIn  => axiStreamInSLR3D1,
     axiStreamOut => axiStreamOutSLR3D0
 );
 
@@ -487,10 +453,6 @@ RCT5x6_ALGO_SLR3: entity work.RCT5x6TopWrapper
 
 axiStreamOutSLR3D1 <= axiStreamOutSLR3D0 when rising_edge(algoClk);
 axiStreamOutSLR3D2 <= axiStreamOutSLR3D1 when rising_edge(algoClk);
-axiStreamOutSLR3D3 <= axiStreamOutSLR3D2 when rising_edge(algoClk);
---axiStreamOutSLR3D4 <= axiStreamOutSLR3D3 when rising_edge(algoClk);
---axiStreamOutSLR3D5 <= axiStreamOutSLR3D4 when rising_edge(algoClk);
---axiStreamOutSLR3D6 <= axiStreamOutSLR3D5 when rising_edge(algoClk);
 
 RCT5x6_ALGO_SLR2: entity work.RCT5x6TopWrapper
   generic map(
@@ -507,7 +469,7 @@ RCT5x6_ALGO_SLR2: entity work.RCT5x6TopWrapper
     algoReady => open,
 
     -- AXI-Stream In/Out Ports
-    axiStreamIn  => axiStreamInSLR2D2,
+    axiStreamIn  => axiStreamInSLR2D1,
     axiStreamOut => axiStreamOutSLR2D0
 );
 
@@ -517,10 +479,6 @@ RCT5x6_ALGO_SLR2: entity work.RCT5x6TopWrapper
 
 axiStreamOutSLR2D1 <= axiStreamOutSLR2D0 when rising_edge(algoClk);
 axiStreamOutSLR2D2 <= axiStreamOutSLR2D1 when rising_edge(algoClk);
-axiStreamOutSLR2D3 <= axiStreamOutSLR2D2 when rising_edge(algoClk);
---axiStreamOutSLR2D4 <= axiStreamOutSLR2D3 when rising_edge(algoClk);
---axiStreamOutSLR2D5 <= axiStreamOutSLR2D4 when rising_edge(algoClk);
---axiStreamOutSLR2D6 <= axiStreamOutSLR2D5 when rising_edge(algoClk);
 
 RCT5x6_ALGO_SLR1: entity work.RCT5x6TopWrapper
   generic map(
@@ -537,7 +495,7 @@ RCT5x6_ALGO_SLR1: entity work.RCT5x6TopWrapper
     algoReady => open,
 
     -- AXI-Stream In/Out Ports
-    axiStreamIn  => axiStreamInSLR1D2,
+    axiStreamIn  => axiStreamInSLR1D1,
     axiStreamOut => axiStreamOutSLR1D0
 );
 
@@ -547,10 +505,6 @@ RCT5x6_ALGO_SLR1: entity work.RCT5x6TopWrapper
 
 axiStreamOutSLR1D1 <= axiStreamOutSLR1D0 when rising_edge(algoClk);
 axiStreamOutSLR1D2 <= axiStreamOutSLR1D1 when rising_edge(algoClk);
-axiStreamOutSLR1D3 <= axiStreamOutSLR1D2 when rising_edge(algoClk);
---axiStreamOutSLR1D4 <= axiStreamOutSLR1D3 when rising_edge(algoClk);
---axiStreamOutSLR1D5 <= axiStreamOutSLR1D4 when rising_edge(algoClk);
---axiStreamOutSLR1D6 <= axiStreamOutSLR1D5 when rising_edge(algoClk);
 
 RCT2x6_ALGO_SLR0: entity work.RCT2x6TopWrapper
   generic map(
@@ -567,7 +521,7 @@ RCT2x6_ALGO_SLR0: entity work.RCT2x6TopWrapper
     algoReady => open,
 
     -- AXI-Stream In/Out Ports
-    axiStreamIn  => axiStreamInSLR0D2,
+    axiStreamIn  => axiStreamInSLR0D1,
     axiStreamOut => axiStreamOutSLR0D0
 );
 
@@ -577,16 +531,12 @@ RCT2x6_ALGO_SLR0: entity work.RCT2x6TopWrapper
 
 axiStreamOutSLR0D1 <= axiStreamOutSLR0D0 when rising_edge(algoClk);
 axiStreamOutSLR0D2 <= axiStreamOutSLR0D1 when rising_edge(algoClk);
-axiStreamOutSLR0D3 <= axiStreamOutSLR0D2 when rising_edge(algoClk);
---axiStreamOutSLR0D4 <= axiStreamOutSLR0D3 when rising_edge(algoClk);
---axiStreamOutSLR0D5 <= axiStreamOutSLR0D4 when rising_edge(algoClk);
---axiStreamOutSLR0D6 <= axiStreamOutSLR0D5 when rising_edge(algoClk);
 
 GEN_OUT_LINKS: for idx in 0 to N_OUTPUT_STREAMS_ALGO-1 generate
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx))   <= axiStreamOutSLR0D3(idx);
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR1(idx))   <= axiStreamOutSLR1D3(idx);
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR2(idx))   <= axiStreamOutSLR2D3(idx); 
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR3(idx))   <= axiStreamOutSLR3D3(idx);
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx))   <= axiStreamOutSLR0D2(idx);
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR1(idx))   <= axiStreamOutSLR1D2(idx);
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR2(idx))   <= axiStreamOutSLR2D2(idx); 
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR3(idx))   <= axiStreamOutSLR3D2(idx);
 end generate;
 
 end rtl;
