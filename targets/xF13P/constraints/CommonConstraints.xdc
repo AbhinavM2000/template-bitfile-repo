@@ -445,3 +445,4 @@ set_false_path -from [get_pins {gen_sector[*].U_apxSector/U_MgtCtrl/gen_mgt[*].g
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/RXOUTCLK}]]
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
 set_clock_groups -asynchronous -group mgtRefClkBufg* -group axiClk
+
