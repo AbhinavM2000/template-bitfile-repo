@@ -48,6 +48,7 @@ SIGNAL algoRstD2_SLR0   : std_logic := '1';
 SIGNAL algoRstD3_SLR0   : std_logic := '1';
 SIGNAL algoRstD4_SLR0   : std_logic := '1';
 SIGNAL algoRstD5_SLR0   : std_logic := '1';
+SIGNAL algoRstD6_SLR0   : std_logic := '1';
 
 SIGNAL algoStartD_SLR0  : std_logic := '0';
 SIGNAL algoStartD1_SLR0 : std_logic := '0';
@@ -55,6 +56,7 @@ SIGNAL algoStartD2_SLR0 : std_logic := '0';
 SIGNAL algoStartD3_SLR0 : std_logic := '0';
 SIGNAL algoStartD4_SLR0 : std_logic := '0';
 SIGNAL algoStartD5_SLR0 : std_logic := '0';
+SIGNAL algoStartD6_SLR0 : std_logic := '0';
 
 SIGNAL algoRstD_SLR1    : std_logic := '1';
 SIGNAL algoRstD1_SLR1   : std_logic := '1';
@@ -62,6 +64,7 @@ SIGNAL algoRstD2_SLR1   : std_logic := '1';
 SIGNAL algoRstD3_SLR1   : std_logic := '1';
 SIGNAL algoRstD4_SLR1   : std_logic := '1';
 SIGNAL algoRstD5_SLR1   : std_logic := '1';
+SIGNAL algoRstD6_SLR1   : std_logic := '1';
 
 SIGNAL algoStartD_SLR1  : std_logic := '0';
 SIGNAL algoStartD1_SLR1 : std_logic := '0';
@@ -69,6 +72,7 @@ SIGNAL algoStartD2_SLR1 : std_logic := '0';
 SIGNAL algoStartD3_SLR1 : std_logic := '0';
 SIGNAL algoStartD4_SLR1 : std_logic := '0';
 SIGNAL algoStartD5_SLR1 : std_logic := '0';
+SIGNAL algoStartD6_SLR1 : std_logic := '0';
 
 SIGNAL algoRstD_SLR2   : std_logic := '1';
 SIGNAL algoRstD1_SLR2  : std_logic := '1';
@@ -76,6 +80,7 @@ SIGNAL algoRstD2_SLR2  : std_logic := '1';
 SIGNAL algoRstD3_SLR2  : std_logic := '1';
 SIGNAL algoRstD4_SLR2  : std_logic := '1';
 SIGNAL algoRstD5_SLR2  : std_logic := '1';
+SIGNAL algoRstD6_SLR2  : std_logic := '1';
 
 SIGNAL algoStartD_SLR2  : std_logic := '0';
 SIGNAL algoStartD1_SLR2 : std_logic := '0';
@@ -83,6 +88,7 @@ SIGNAL algoStartD2_SLR2 : std_logic := '0';
 SIGNAL algoStartD3_SLR2 : std_logic := '0';
 SIGNAL algoStartD4_SLR2 : std_logic := '0';
 SIGNAL algoStartD5_SLR2 : std_logic := '0';
+SIGNAL algoStartD6_SLR2 : std_logic := '0';
 
 SIGNAL algoRstD_SLR3    : std_logic := '1';
 SIGNAL algoRstD1_SLR3   : std_logic := '1';
@@ -90,6 +96,7 @@ SIGNAL algoRstD2_SLR3   : std_logic := '1';
 SIGNAL algoRstD3_SLR3   : std_logic := '1';
 SIGNAL algoRstD4_SLR3   : std_logic := '1';
 SIGNAL algoRstD5_SLR3   : std_logic := '1';
+SIGNAL algoRstD6_SLR3   : std_logic := '1';
 
 SIGNAL algoStartD_SLR3  : std_logic := '0';
 SIGNAL algoStartD1_SLR3 : std_logic := '0';
@@ -97,32 +104,33 @@ SIGNAL algoStartD2_SLR3 : std_logic := '0';
 SIGNAL algoStartD3_SLR3 : std_logic := '0';
 SIGNAL algoStartD4_SLR3 : std_logic := '0';
 SIGNAL algoStartD5_SLR3 : std_logic := '0';
+SIGNAL algoStartD6_SLR3 : std_logic := '0';
 
 attribute dont_touch : string;
-attribute dont_touch of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0: signal is "yes";
-attribute dont_touch of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0: signal is "yes";
+attribute dont_touch of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0: signal is "yes";
+attribute dont_touch of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1: signal is "yes";
-attribute dont_touch of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1: signal is "yes";
+attribute dont_touch of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1: signal is "yes";
+attribute dont_touch of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2: signal is "yes";
-attribute dont_touch of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2: signal is "yes";
+attribute dont_touch of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2: signal is "yes";
+attribute dont_touch of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2: signal is "yes";
 
-attribute dont_touch of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3: signal is "yes";
-attribute dont_touch of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3: signal is "yes";
+attribute dont_touch of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3: signal is "yes";
+attribute dont_touch of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3: signal is "yes";
 
 attribute shreg_extract : string;
-attribute shreg_extract of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0: signal is "no";
-attribute shreg_extract of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0: signal is "no";
+attribute shreg_extract of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0, algoRstD6_SLR0: signal is "no";
+attribute shreg_extract of algoStartD_SLR0, algoStartD1_SLR0, algoStartD2_SLR0, algoStartD3_SLR0, algoStartD4_SLR0, algoStartD5_SLR0, algoStartD6_SLR0: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1: signal is "no";
-attribute shreg_extract of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1: signal is "no";
+attribute shreg_extract of algoRstD_SLR1, algoRstD1_SLR1, algoRstD2_SLR1, algoRstD3_SLR1, algoRstD4_SLR1, algoRstD5_SLR1, algoRstD6_SLR1: signal is "no";
+attribute shreg_extract of algoStartD_SLR1, algoStartD1_SLR1, algoStartD2_SLR1, algoStartD3_SLR1, algoStartD4_SLR1, algoStartD5_SLR1, algoStartD6_SLR1: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2: signal is "no";
-attribute shreg_extract of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2: signal is "no";
+attribute shreg_extract of algoRstD_SLR2, algoRstD1_SLR2, algoRstD2_SLR2, algoRstD3_SLR2, algoRstD4_SLR2, algoRstD5_SLR2, algoRstD6_SLR2: signal is "no";
+attribute shreg_extract of algoStartD_SLR2, algoStartD1_SLR2, algoStartD2_SLR2, algoStartD3_SLR2, algoStartD4_SLR2, algoStartD5_SLR2, algoStartD6_SLR2: signal is "no";
 
-attribute shreg_extract of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3: signal is "no";
-attribute shreg_extract of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3: signal is "no";
+attribute shreg_extract of algoRstD_SLR3, algoRstD1_SLR3, algoRstD2_SLR3, algoRstD3_SLR3, algoRstD4_SLR3, algoRstD5_SLR3, algoRstD6_SLR3: signal is "no";
+attribute shreg_extract of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, algoStartD3_SLR3, algoStartD4_SLR3, algoStartD5_SLR3, algoStartD6_SLR3: signal is "no";
 
 signal axiStreamInSLR3   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
 signal axiStreamInSLR3D0 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_ALGO_5x6-1);
@@ -352,6 +360,7 @@ algoRstD2_SLR3  <= algoRstD1_SLR3  when rising_edge(algoClk);
 algoRstD3_SLR3  <= algoRstD2_SLR3  when rising_edge(algoClk);
 algoRstD4_SLR3  <= algoRstD3_SLR3  when rising_edge(algoClk);
 algoRstD5_SLR3  <= algoRstD4_SLR3  when rising_edge(algoClk);
+algoRstD6_SLR3  <= algoRstD5_SLR3  when rising_edge(algoClk);
 
 algoStartD_SLR3  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR3 <= algoStartD_SLR3   when rising_edge(algoClk);
@@ -359,6 +368,7 @@ algoStartD2_SLR3 <= algoStartD1_SLR3  when rising_edge(algoClk);
 algoStartD3_SLR3 <= algoStartD2_SLR3  when rising_edge(algoClk);
 algoStartD4_SLR3 <= algoStartD3_SLR3  when rising_edge(algoClk);
 algoStartD5_SLR3 <= algoStartD4_SLR3  when rising_edge(algoClk);
+algoStartD6_SLR3 <= algoStartD5_SLR3  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR2
@@ -370,6 +380,7 @@ algoRstD2_SLR2  <= algoRstD1_SLR2  when rising_edge(algoClk);
 algoRstD3_SLR2  <= algoRstD2_SLR2  when rising_edge(algoClk);
 algoRstD4_SLR2  <= algoRstD3_SLR2  when rising_edge(algoClk);
 algoRstD5_SLR2  <= algoRstD4_SLR2  when rising_edge(algoClk);
+algoRstD6_SLR2  <= algoRstD5_SLR2  when rising_edge(algoClk);
 
 algoStartD_SLR2  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR2 <= algoStartD_SLR2   when rising_edge(algoClk);
@@ -377,6 +388,7 @@ algoStartD2_SLR2 <= algoStartD1_SLR2  when rising_edge(algoClk);
 algoStartD3_SLR2 <= algoStartD2_SLR2  when rising_edge(algoClk);
 algoStartD4_SLR2 <= algoStartD3_SLR2  when rising_edge(algoClk);
 algoStartD5_SLR2 <= algoStartD4_SLR2  when rising_edge(algoClk);
+algoStartD6_SLR2 <= algoStartD5_SLR2  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR1
@@ -388,6 +400,7 @@ algoRstD2_SLR1  <= algoRstD1_SLR1  when rising_edge(algoClk);
 algoRstD3_SLR1  <= algoRstD2_SLR1  when rising_edge(algoClk);
 algoRstD4_SLR1  <= algoRstD3_SLR1  when rising_edge(algoClk);
 algoRstD5_SLR1  <= algoRstD4_SLR1  when rising_edge(algoClk);
+algoRstD6_SLR1  <= algoRstD5_SLR1  when rising_edge(algoClk);
 
 algoStartD_SLR1  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR1 <= algoStartD_SLR1   when rising_edge(algoClk);
@@ -395,6 +408,7 @@ algoStartD2_SLR1 <= algoStartD1_SLR1  when rising_edge(algoClk);
 algoStartD3_SLR1 <= algoStartD2_SLR1  when rising_edge(algoClk);
 algoStartD4_SLR1 <= algoStartD3_SLR1  when rising_edge(algoClk);
 algoStartD5_SLR1 <= algoStartD4_SLR1  when rising_edge(algoClk);
+algoStartD6_SLR1 <= algoStartD5_SLR1  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR0
@@ -406,6 +420,7 @@ algoRstD2_SLR0  <= algoRstD1_SLR0  when rising_edge(algoClk);
 algoRstD3_SLR0  <= algoRstD2_SLR0  when rising_edge(algoClk);
 algoRstD4_SLR0  <= algoRstD3_SLR0  when rising_edge(algoClk);
 algoRstD5_SLR0  <= algoRstD4_SLR0  when rising_edge(algoClk);
+algoRstD6_SLR0  <= algoRstD5_SLR0  when rising_edge(algoClk);
 
 algoStartD_SLR0  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR0 <= algoStartD_SLR0   when rising_edge(algoClk);
@@ -413,6 +428,7 @@ algoStartD2_SLR0 <= algoStartD1_SLR0  when rising_edge(algoClk);
 algoStartD3_SLR0 <= algoStartD2_SLR0  when rising_edge(algoClk);
 algoStartD4_SLR0 <= algoStartD3_SLR0  when rising_edge(algoClk);
 algoStartD5_SLR0 <= algoStartD4_SLR0  when rising_edge(algoClk);
+algoStartD6_SLR0 <= algoStartD5_SLR0  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------ALGO INSTANTIATION AND OUTPUT GEN
@@ -426,8 +442,8 @@ RCT5x6_ALGO_SLR3: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD5_SLR3,
-    algoStart => algoStartD5_SLR3,
+    algoRst   => algoRstD6_SLR3,
+    algoStart => algoStartD6_SLR3,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -451,8 +467,8 @@ RCT5x6_ALGO_SLR2: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD5_SLR2,
-    algoStart => algoStartD5_SLR2,
+    algoRst   => algoRstD6_SLR2,
+    algoStart => algoStartD6_SLR2,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -476,8 +492,8 @@ RCT5x6_ALGO_SLR1: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD5_SLR1,
-    algoStart => algoStartD5_SLR1,
+    algoRst   => algoRstD6_SLR1,
+    algoStart => algoStartD6_SLR1,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -501,8 +517,8 @@ RCT2x6_ALGO_SLR0: entity work.RCT2x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD5_SLR0,
-    algoStart => algoStartD5_SLR0,
+    algoRst   => algoRstD6_SLR0,
+    algoStart => algoStartD6_SLR0,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,

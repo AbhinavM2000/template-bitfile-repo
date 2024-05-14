@@ -47,10 +47,6 @@ architecture Behavioral of RCT5x6AlgoWrapper is
   signal in_cyc  : t_cyc_9_arr(0 TO N_INPUT_STREAMS-1);
   signal out_cyc : t_cyc_9_arr(0 TO N_OUTPUT_STREAMS-1);
   
-  signal axiStreamOutD0 : AxiStreamMasterArray(0 TO N_OUTPUT_STREAMS-1);
-  signal axiStreamOutD1 : AxiStreamMasterArray(0 TO N_OUTPUT_STREAMS-1);
-  signal axiStreamOutD2 : AxiStreamMasterArray(0 TO N_OUTPUT_STREAMS-1);
-  
 begin
 
   algoStartD1 <= algoStart  when rising_edge(algoClk);
@@ -137,31 +133,27 @@ begin
 
         if (link_out_ap_vld_latched(idx) = '0') then
           out_cyc(idx)                <= 0;
-          axiStreamOutD0(idx).tvalid <= '0';
+          axiStreamOut(idx).tvalid <= '0';
         else
-          axiStreamOutD0(idx).tvalid <= '1';
+          axiStreamOut(idx).tvalid <= '1';
           out_cyc(idx)                <= out_cyc(idx) + 1;
           if (out_cyc(idx) = 8) then
             out_cyc(idx) <= 0;
           end if;
         end if;
 
-        if (out_cyc(idx) = 0) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(63 downto 0); end if;
-        if (out_cyc(idx) = 1) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(127 downto 64); end if;
-        if (out_cyc(idx) = 2) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(191 downto 128); end if;
-        if (out_cyc(idx) = 3) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(255 downto 192); end if;
-        if (out_cyc(idx) = 4) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(319 downto 256); end if;
-        if (out_cyc(idx) = 5) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(383 downto 320); end if;
-        if (out_cyc(idx) = 6) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(447 downto 384); end if;
-        if (out_cyc(idx) = 7) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(511 downto 448); end if;
-		if (out_cyc(idx) = 8) then axiStreamOutD0(idx).tdata(63 downto 0) <= link_out_reg(idx)(575 downto 512); end if;
+        if (out_cyc(idx) = 0) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(63 downto 0); end if;
+        if (out_cyc(idx) = 1) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(127 downto 64); end if;
+        if (out_cyc(idx) = 2) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(191 downto 128); end if;
+        if (out_cyc(idx) = 3) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(255 downto 192); end if;
+        if (out_cyc(idx) = 4) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(319 downto 256); end if;
+        if (out_cyc(idx) = 5) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(383 downto 320); end if;
+        if (out_cyc(idx) = 6) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(447 downto 384); end if;
+        if (out_cyc(idx) = 7) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(511 downto 448); end if;
+		if (out_cyc(idx) = 8) then axiStreamOut(idx).tdata(63 downto 0) <= link_out_reg(idx)(575 downto 512); end if;
       end if;
     end process;
   end generate;
-  
-  axiStreamOutD1 <= axiStreamOutD0 when rising_edge(algoClk);
-  axiStreamOutD2 <= axiStreamOutD1 when rising_edge(algoClk);
-  axiStreamOut   <= axiStreamOutD2 when rising_edge(algoClk);
 
   ip1_5x6_algo_top : entity work.IP1_5x6_algo_top
   port map (
