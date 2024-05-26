@@ -1,7 +1,7 @@
 
 
 create_pblock root_infra
-add_cells_to_pblock [get_pblocks root_infra] [get_cells -quiet [list U_XBAR U_axiInfra U_ApxTcds2 U_APxInfo]]
+add_cells_to_pblock [get_pblocks root_infra] [get_cells -quiet [list U_XBAR U_axiInfra U_ApxTcds2 U_APxInfo U_algoCtrl]]
 remove_cells_from_pblock root_infra [get_cells [list U_axiInfra/gen_osc_300.U_clk_gen_300/inst/*]]
 resize_pblock root_infra -add {CLOCKREGION_X0Y0:CLOCKREGION_X1Y0}
 
