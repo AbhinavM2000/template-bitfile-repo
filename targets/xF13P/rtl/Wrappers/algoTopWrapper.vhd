@@ -48,7 +48,6 @@ SIGNAL algoRstD2_SLR0   : std_logic := '1';
 SIGNAL algoRstD3_SLR0   : std_logic := '1';
 SIGNAL algoRstD4_SLR0   : std_logic := '1';
 SIGNAL algoRstD5_SLR0   : std_logic := '1';
-SIGNAL algoRstD6_SLR0   : std_logic := '1';
 
 SIGNAL algoStartD_SLR0  : std_logic := '0';
 SIGNAL algoStartD1_SLR0 : std_logic := '0';
@@ -56,7 +55,6 @@ SIGNAL algoStartD2_SLR0 : std_logic := '0';
 SIGNAL algoStartD3_SLR0 : std_logic := '0';
 SIGNAL algoStartD4_SLR0 : std_logic := '0';
 SIGNAL algoStartD5_SLR0 : std_logic := '0';
-SIGNAL algoStartD6_SLR0 : std_logic := '0';
 
 SIGNAL algoRstD_SLR1    : std_logic := '1';
 SIGNAL algoRstD1_SLR1   : std_logic := '1';
@@ -64,7 +62,6 @@ SIGNAL algoRstD2_SLR1   : std_logic := '1';
 SIGNAL algoRstD3_SLR1   : std_logic := '1';
 SIGNAL algoRstD4_SLR1   : std_logic := '1';
 SIGNAL algoRstD5_SLR1   : std_logic := '1';
-SIGNAL algoRstD6_SLR1   : std_logic := '1';
 
 SIGNAL algoStartD_SLR1  : std_logic := '0';
 SIGNAL algoStartD1_SLR1 : std_logic := '0';
@@ -72,7 +69,6 @@ SIGNAL algoStartD2_SLR1 : std_logic := '0';
 SIGNAL algoStartD3_SLR1 : std_logic := '0';
 SIGNAL algoStartD4_SLR1 : std_logic := '0';
 SIGNAL algoStartD5_SLR1 : std_logic := '0';
-SIGNAL algoStartD6_SLR1 : std_logic := '0';
 
 SIGNAL algoRstD_SLR2   : std_logic := '1';
 SIGNAL algoRstD1_SLR2  : std_logic := '1';
@@ -80,7 +76,6 @@ SIGNAL algoRstD2_SLR2  : std_logic := '1';
 SIGNAL algoRstD3_SLR2  : std_logic := '1';
 SIGNAL algoRstD4_SLR2  : std_logic := '1';
 SIGNAL algoRstD5_SLR2  : std_logic := '1';
-SIGNAL algoRstD6_SLR2  : std_logic := '1';
 
 SIGNAL algoStartD_SLR2  : std_logic := '0';
 SIGNAL algoStartD1_SLR2 : std_logic := '0';
@@ -88,7 +83,6 @@ SIGNAL algoStartD2_SLR2 : std_logic := '0';
 SIGNAL algoStartD3_SLR2 : std_logic := '0';
 SIGNAL algoStartD4_SLR2 : std_logic := '0';
 SIGNAL algoStartD5_SLR2 : std_logic := '0';
-SIGNAL algoStartD6_SLR2 : std_logic := '0';
 
 SIGNAL algoRstD_SLR3    : std_logic := '1';
 SIGNAL algoRstD1_SLR3   : std_logic := '1';
@@ -96,7 +90,6 @@ SIGNAL algoRstD2_SLR3   : std_logic := '1';
 SIGNAL algoRstD3_SLR3   : std_logic := '1';
 SIGNAL algoRstD4_SLR3   : std_logic := '1';
 SIGNAL algoRstD5_SLR3   : std_logic := '1';
-SIGNAL algoRstD6_SLR3   : std_logic := '1';
 
 SIGNAL algoStartD_SLR3  : std_logic := '0';
 SIGNAL algoStartD1_SLR3 : std_logic := '0';
@@ -104,7 +97,6 @@ SIGNAL algoStartD2_SLR3 : std_logic := '0';
 SIGNAL algoStartD3_SLR3 : std_logic := '0';
 SIGNAL algoStartD4_SLR3 : std_logic := '0';
 SIGNAL algoStartD5_SLR3 : std_logic := '0';
-SIGNAL algoStartD6_SLR3 : std_logic := '0';
 
 attribute dont_touch : string;
 attribute dont_touch of algoRstD_SLR0, algoRstD1_SLR0, algoRstD2_SLR0, algoRstD3_SLR0, algoRstD4_SLR0, algoRstD5_SLR0: signal is "yes";
@@ -165,107 +157,107 @@ signal axiStreamOutSLR3D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 signal axiStreamOutSLR3D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_ALGO-1);
 
 constant XLA_INPUT_MAP_C_SLR3 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
-   0  => 44,
-   1  => 45,
-   2  => 46,
-   3  => 47,
-   4  => 48,
-   5  => 49,
-   6  => 50,
-   7  => 51,
-   8  => 52,
-   9  => 53,
-   10 => 54,
-   11 => 55,
-   12 => 56,
-   13 => 57,
-   14 => 58,
+   0  => 45,
+   1  => 46,
+   2  => 47,
+   3  => 48,
+   4  => 49,
+   5  => 50,
+   6  => 51,
+   7  => 52,
+   8  => 53,
+   9  => 54,
+   10 => 55,
+   11 => 56,
+   12 => 57,
+   13 => 58,
+   14 => 59,
 
-   15 => 122,
-   16 => 121,
-   17 => 120,
-   18 => 119,
-   19 => 118,
-   20 => 117,
-   21 => 116,
-   22 => 115,
-   23 => 114,
-   24 => 113,
-   25 => 112,
-   26 => 111,
-   27 => 110,
-   28 => 109,
-   29 => 108
+   15 => 123,
+   16 => 122,
+   17 => 121,
+   18 => 120,
+   19 => 119,
+   20 => 118,
+   21 => 117,
+   22 => 116,
+   23 => 115,
+   24 => 114,
+   25 => 113,
+   26 => 112,
+   27 => 111,
+   28 => 110,
+   29 => 109
 );
 
 constant XLA_INPUT_MAP_C_SLR2 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
     --sector 2
-    0  => 28,
-    1  => 29,
-    2  => 30,
-    3  => 31,
-    4  => 32,
-    5  => 33,
-    6  => 34,
-    7  => 35,
-    8  => 36,
-    9  => 37,
-    10 => 38,
-    11 => 39,
-    12 => 40,
-    13 => 41,
-    14 => 42,
+    0  => 29,
+    1  => 30,
+    2  => 31,
+    3  => 32,
+    4  => 33,
+    5  => 34,
+    6  => 35,
+    7  => 36,
+    8  => 37,
+    9  => 38,
+    10 => 39,
+    11 => 40,
+    12 => 41,
+    13 => 42,
+    14 => 43,
 
-    15 => 106,
-    16 => 105,
-    17 => 104,
-    18 => 103,
-    19 => 102,
-    20 => 101,
-    21 => 100,
-    22 => 99,
-    23 => 98,
-    24 => 97,
-    25 => 96,
-    26 => 95,
-    27 => 94,
-    28 => 93,
-    29 => 92
+    15 => 107,
+    16 => 106,
+    17 => 105,
+    18 => 104,
+    19 => 103,
+    20 => 102,
+    21 => 101,
+    22 => 100,
+    23 => 99,
+    24 => 98,
+    25 => 97,
+    26 => 96,
+    27 => 95,
+    28 => 94,
+    29 => 93
 );
 
 constant XLA_INPUT_MAP_C_SLR1 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_5x6-1) := (
     --sector 1
-    0  => 12,
-    1  => 13,
-    2  => 14,
-    3  => 15,
-    4  => 16,
-    5  => 17,
-    6  => 18,
-    7  => 19,
-    8  => 20,
-    9  => 21,
-    10 => 22,
-    11 => 23,
-    12 => 24,
-    13 => 25,
-    14 => 26,
+    0  => 13,
+    1  => 14,
+    2  => 15,
+    3  => 16,
+    4  => 17,
+    5  => 18,
+    6  => 19,
+    7  => 20,
+    8  => 21,
+    9  => 22,
+    10 => 23,
+    11 => 24,
+    12 => 25,
+    13 => 26,
+    14 => 27,
     
-    15 => 90,
-    16 => 89,
-    17 => 88,
-    18 => 87,
-    19 => 86,
-    20 => 85,
-    21 => 84,
-    22 => 83,
-    23 => 82,
-    24 => 81,
-    25 => 80,
-    26 => 79,
-    27 => 78,
-    28 => 77,
-    29 => 76
+    15 => 91,
+    16 => 90,
+    17 => 89,
+    18 => 88,
+    19 => 87,
+    20 => 86,
+    21 => 85,
+    22 => 84,
+    23 => 83,
+    24 => 82,
+    25 => 81,
+    26 => 80,
+    27 => 79,
+    28 => 78,
+    29 => 77
 );
 
 constant XLA_INPUT_MAP_C_SLR0 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_2x6-1) := (
@@ -286,20 +278,20 @@ constant XLA_INPUT_MAP_C_SLR0 : IntegerArray(0 to N_INPUT_STREAMS_ALGO_2x6-1) :=
 
 constant XLA_OUTPUT_MAP_C_SLR3 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 3
-    0  => 115,
-    1  => 116
+    0  => 48,
+    1  => 49
 );
 
 constant XLA_OUTPUT_MAP_C_SLR2 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 2
-    0  => 99,
-    1  => 100
+    0  => 32,
+    1  => 33
 );
 
 constant XLA_OUTPUT_MAP_C_SLR1 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
     --sector 1
-    0  => 83,
-    1  => 84
+    0  => 16,
+    1  => 17
 );
 
 constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUT_STREAMS_ALGO-1) := (
@@ -360,7 +352,6 @@ algoRstD2_SLR3  <= algoRstD1_SLR3  when rising_edge(algoClk);
 algoRstD3_SLR3  <= algoRstD2_SLR3  when rising_edge(algoClk);
 algoRstD4_SLR3  <= algoRstD3_SLR3  when rising_edge(algoClk);
 algoRstD5_SLR3  <= algoRstD4_SLR3  when rising_edge(algoClk);
-algoRstD6_SLR3  <= algoRstD5_SLR3  when rising_edge(algoClk);
 
 algoStartD_SLR3  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR3 <= algoStartD_SLR3   when rising_edge(algoClk);
@@ -368,7 +359,6 @@ algoStartD2_SLR3 <= algoStartD1_SLR3  when rising_edge(algoClk);
 algoStartD3_SLR3 <= algoStartD2_SLR3  when rising_edge(algoClk);
 algoStartD4_SLR3 <= algoStartD3_SLR3  when rising_edge(algoClk);
 algoStartD5_SLR3 <= algoStartD4_SLR3  when rising_edge(algoClk);
-algoStartD6_SLR3 <= algoStartD5_SLR3  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR2
@@ -380,7 +370,6 @@ algoRstD2_SLR2  <= algoRstD1_SLR2  when rising_edge(algoClk);
 algoRstD3_SLR2  <= algoRstD2_SLR2  when rising_edge(algoClk);
 algoRstD4_SLR2  <= algoRstD3_SLR2  when rising_edge(algoClk);
 algoRstD5_SLR2  <= algoRstD4_SLR2  when rising_edge(algoClk);
-algoRstD6_SLR2  <= algoRstD5_SLR2  when rising_edge(algoClk);
 
 algoStartD_SLR2  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR2 <= algoStartD_SLR2   when rising_edge(algoClk);
@@ -388,7 +377,6 @@ algoStartD2_SLR2 <= algoStartD1_SLR2  when rising_edge(algoClk);
 algoStartD3_SLR2 <= algoStartD2_SLR2  when rising_edge(algoClk);
 algoStartD4_SLR2 <= algoStartD3_SLR2  when rising_edge(algoClk);
 algoStartD5_SLR2 <= algoStartD4_SLR2  when rising_edge(algoClk);
-algoStartD6_SLR2 <= algoStartD5_SLR2  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR1
@@ -400,7 +388,6 @@ algoRstD2_SLR1  <= algoRstD1_SLR1  when rising_edge(algoClk);
 algoRstD3_SLR1  <= algoRstD2_SLR1  when rising_edge(algoClk);
 algoRstD4_SLR1  <= algoRstD3_SLR1  when rising_edge(algoClk);
 algoRstD5_SLR1  <= algoRstD4_SLR1  when rising_edge(algoClk);
-algoRstD6_SLR1  <= algoRstD5_SLR1  when rising_edge(algoClk);
 
 algoStartD_SLR1  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR1 <= algoStartD_SLR1   when rising_edge(algoClk);
@@ -408,7 +395,6 @@ algoStartD2_SLR1 <= algoStartD1_SLR1  when rising_edge(algoClk);
 algoStartD3_SLR1 <= algoStartD2_SLR1  when rising_edge(algoClk);
 algoStartD4_SLR1 <= algoStartD3_SLR1  when rising_edge(algoClk);
 algoStartD5_SLR1 <= algoStartD4_SLR1  when rising_edge(algoClk);
-algoStartD6_SLR1 <= algoStartD5_SLR1  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------FOR SLR0
@@ -420,7 +406,6 @@ algoRstD2_SLR0  <= algoRstD1_SLR0  when rising_edge(algoClk);
 algoRstD3_SLR0  <= algoRstD2_SLR0  when rising_edge(algoClk);
 algoRstD4_SLR0  <= algoRstD3_SLR0  when rising_edge(algoClk);
 algoRstD5_SLR0  <= algoRstD4_SLR0  when rising_edge(algoClk);
-algoRstD6_SLR0  <= algoRstD5_SLR0  when rising_edge(algoClk);
 
 algoStartD_SLR0  <= algoStart         when rising_edge(algoClk);
 algoStartD1_SLR0 <= algoStartD_SLR0   when rising_edge(algoClk);
@@ -428,7 +413,6 @@ algoStartD2_SLR0 <= algoStartD1_SLR0  when rising_edge(algoClk);
 algoStartD3_SLR0 <= algoStartD2_SLR0  when rising_edge(algoClk);
 algoStartD4_SLR0 <= algoStartD3_SLR0  when rising_edge(algoClk);
 algoStartD5_SLR0 <= algoStartD4_SLR0  when rising_edge(algoClk);
-algoStartD6_SLR0 <= algoStartD5_SLR0  when rising_edge(algoClk);
 
 ----------------------------------------------------------------------------
 ---------------------ALGO INSTANTIATION AND OUTPUT GEN
@@ -442,8 +426,8 @@ RCT5x6_ALGO_SLR3: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD6_SLR3,
-    algoStart => algoStartD6_SLR3,
+    algoRst   => algoRstD5_SLR3,
+    algoStart => algoStartD5_SLR3,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -467,8 +451,8 @@ RCT5x6_ALGO_SLR2: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD6_SLR2,
-    algoStart => algoStartD6_SLR2,
+    algoRst   => algoRstD5_SLR2,
+    algoStart => algoStartD5_SLR2,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -492,8 +476,8 @@ RCT5x6_ALGO_SLR1: entity work.RCT5x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD6_SLR1,
-    algoStart => algoStartD6_SLR1,
+    algoRst   => algoRstD5_SLR1,
+    algoStart => algoStartD5_SLR1,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,
@@ -517,8 +501,8 @@ RCT2x6_ALGO_SLR0: entity work.RCT2x6TopWrapper
   port map(
     -- Algo Control/Status Signals
     algoClk   => algoClk,
-    algoRst   => algoRstD6_SLR0,
-    algoStart => algoStartD6_SLR0,
+    algoRst   => algoRstD5_SLR0,
+    algoStart => algoStartD5_SLR0,
     algoDone  => open,
     algoIdle  => open,
     algoReady => open,

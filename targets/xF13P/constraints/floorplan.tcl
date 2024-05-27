@@ -386,31 +386,3 @@ add_cells_to_pblock [get_pblocks SS_7_3] [get_cells -quiet {get_cells */*/gen*[1
 add_cells_to_pblock [get_pblocks SS_7_3] [get_cells -quiet {get_cells */*/gen*[123].*}]
 resize_pblock [get_pblocks SS_7_3] -add {CLOCKREGION_X7Y15:CLOCKREGION_X7Y15}
 
-
-create_pblock pblock_RCT2x6_ALGO_SLR0
-add_cells_to_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] [get_cells -quiet [list U_algoTopWrapper/RCT2x6_ALGO_SLR0]]
-resize_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] -add {CLOCKREGION_X1Y1:CLOCKREGION_X3Y3}
-
-create_pblock pblock_RCT5x6_ALGO_SLR1
-add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR1]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] -add {CLOCKREGION_X2Y5:CLOCKREGION_X5Y6}
-
-create_pblock pblock_RCT5x6_ALGO_SLR2
-add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR2]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] -add {CLOCKREGION_X2Y9:CLOCKREGION_X5Y10}
-
-create_pblock pblock_RCT5x6_ALGO_SLR3
-add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR3]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] -add {CLOCKREGION_X2Y13:CLOCKREGION_X5Y14}
-
-create_pblock pblock_grp_prcsOtptLnks_f_1358
-add_cells_to_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR3/U_AlgoWrapper/ip1_5x6_algo_top/grp_processOutputLinks_fu_1358]]
-resize_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358] -add {CLOCKREGION_X4Y14:CLOCKREGION_X5Y14}
-
-create_pblock pblock_grp_prcsOtptLnks_f_1358_1
-add_cells_to_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358_1] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR2/U_AlgoWrapper/ip1_5x6_algo_top/grp_processOutputLinks_fu_1358]]
-resize_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358_1] -add {CLOCKREGION_X4Y10:CLOCKREGION_X5Y10}
-
-create_pblock pblock_grp_prcsOtptLnks_f_1358_2
-add_cells_to_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358_2] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR1/U_AlgoWrapper/ip1_5x6_algo_top/grp_processOutputLinks_fu_1358]]
-resize_pblock [get_pblocks pblock_grp_prcsOtptLnks_f_1358_2] -add {CLOCKREGION_X4Y6:CLOCKREGION_X5Y6}
