@@ -49,7 +49,7 @@ CONSTANT N_OUTPUT_STREAMS_IP3 : NATURAL := 4;
 
 CONSTANT N_INPUT_STREAMS_HCAL : NATURAL := 4;
 
-CONSTANT HCAL_LINK_INT : NATURAL := 68;
+CONSTANT HCAL_LINK_INIT : NATURAL := 68;
 
 SIGNAL algoRstD_SLR0    : std_logic := '1';
 SIGNAL algoRstD1_SLR0   : std_logic := '1';
@@ -658,7 +658,7 @@ GEN_HCAL_IN_buff: for idx in 0 to N_INPUT_STREAMS_HCAL-1 generate
 process(algoClk)
 begin
     if(rising_edge(algoClk)) then
-            axiStreamInHCAL(idx)    <= axiStreamIn(HCAL_LINK_INT+idx);
+            axiStreamInHCAL(idx)    <= axiStreamIn(HCAL_LINK_INIT+idx);
             axiStreamInHCALD0(idx)  <= axiStreamInHCAL(idx);
     end if; 
 end process;
