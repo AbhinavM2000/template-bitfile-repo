@@ -446,3 +446,19 @@ set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcd
 set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins U_ApxTcds2/U_ClockManager/MmcmGen.U_Mmcm/CLKOUT0]] -group [get_clocks -of_objects [get_pins -hierarchical -filter {NAME =~ *gen_mgt[*]*.GTYE4_CHANNEL_PRIM_INST/TXOUTCLK}]]
 set_clock_groups -asynchronous -group mgtRefClkBufg* -group axiClk
 
+
+create_pblock pblock_RCT5x6_ALGO_SLR3
+add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR3]]
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] -add {CLOCKREGION_X1Y13:CLOCKREGION_X3Y15}
+create_pblock pblock_RCT5x6_ALGO_SLR2
+add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR2]]
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] -add {CLOCKREGION_X1Y9:CLOCKREGION_X3Y11}
+create_pblock pblock_RCT5x6_ALGO_SLR1
+add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR1]]
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] -add {CLOCKREGION_X1Y5:CLOCKREGION_X3Y7}
+create_pblock pblock_RCT2x6_ALGO_SLR0
+add_cells_to_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] [get_cells -quiet [list U_algoTopWrapper/RCT2x6_ALGO_SLR0]]
+resize_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] -add {CLOCKREGION_X1Y1:CLOCKREGION_X3Y3}
+create_pblock pblock_1
+add_cells_to_pblock [get_pblocks pblock_1] [get_cells -quiet [list U_algoTopWrapper/ALGO_IP2_SLR0 U_algoTopWrapper/ALGO_IP3_SLR0]]
+resize_pblock [get_pblocks pblock_1] -add {CLOCKREGION_X4Y1:CLOCKREGION_X6Y3}
