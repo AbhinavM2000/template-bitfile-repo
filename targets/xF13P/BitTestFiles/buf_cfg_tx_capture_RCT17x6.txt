@@ -1,0 +1,5 @@
+BUFFER OPERATION COLUMN BC0_DELAY    LOOP_MODE
+T64   stream_capture  0        273    single
+T65   stream_capture  1        273    single
+T66   stream_capture  2        273    single
+T67   stream_capture  3        273    single
