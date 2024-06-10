@@ -1,4 +1,4 @@
 PROJECT: xF13P_top
 FW_VERSION: 0x00000001
-BUILD_STRING: xF13P_top: Vivado v2021.1, beck.hep.wisc.edu (Kernel), Built Thu May 30 07:00:14 CDT 2024 by piyushkumar
-GIT_HASH: 5696ebf049b0e57a10b5e64ddc1361277bb05d50
+BUILD_STRING: xF13P_top: Vivado v2021.1, beck.hep.wisc.edu (Kernel), Built Sun Jun  9 12:08:24 CDT 2024 by piyushkumar
+GIT_HASH: 0
