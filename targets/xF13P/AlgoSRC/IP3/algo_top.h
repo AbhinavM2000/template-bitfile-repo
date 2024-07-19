@@ -254,7 +254,8 @@ class rcttower{
 	A = (ECAL > HCAL)?ECAL:HCAL;
 	B = (ECAL > HCAL)?HCAL:ECAL;
  
-	if( ECAL == 0 || HCAL == 0 || HCAL >= ECAL) hoeLSB = 0 ;
+	//if( ECAL == 0 || HCAL == 0 || HCAL >= ECAL) hoeLSB = 0 ;
+    if(HCAL >= ECAL) hoeLSB = 0 ;
 	else hoeLSB = 1 ;
 	 if( A > B ){
 	  if(A > 2*B) hoe = 0b001 ;
