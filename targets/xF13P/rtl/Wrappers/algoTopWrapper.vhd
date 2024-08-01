@@ -45,7 +45,7 @@ CONSTANT N_INPUT_STREAMS_IP2  : NATURAL := 8;
 CONSTANT N_OUTPUT_STREAMS_IP2 : NATURAL := 5;
 
 CONSTANT N_INPUT_STREAMS_IP3  : NATURAL := 9;
-CONSTANT N_OUTPUT_STREAMS_IP3 : NATURAL := 4;
+CONSTANT N_OUTPUT_STREAMS_IP3 : NATURAL := 8; -- This has been doubled to account for the 2x duplication
 
 CONSTANT N_INPUT_STREAMS_HCAL : NATURAL := 4;
 
@@ -351,6 +351,11 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUT_STREAMS_IP3-1) := (
   1  => 65,
   2  => 66,
   3  => 67
+  --duplicate outputs
+  4  => 68,
+  5  => 69,
+  6  => 70,
+  7  => 71
 );
 
 begin
@@ -714,8 +719,15 @@ ALGO_IP3_SLR0: entity work.IP3TopWrapper
 axiStreamOutIP3D0 <= axiStreamOutIP3   when rising_edge(algoClk);
 axiStreamOutIP3D1 <= axiStreamOutIP3D0 when rising_edge(algoClk);
 
+--GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUT_STREAMS_IP3-1 generate
+--    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx))   <= axiStreamOutIP3D1(idx);
+--end generate;
 GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUT_STREAMS_IP3-1 generate
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx))   <= axiStreamOutIP3D1(idx);
+    if idx < 4 then
+        axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx);
+    else
+        axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx - 4);
+    end if;
 end generate;
-
 end rtl;
+
