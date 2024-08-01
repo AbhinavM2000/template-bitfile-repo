@@ -350,7 +350,7 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUT_STREAMS_IP3-1) := (
   0  => 64,
   1  => 65,
   2  => 66,
-  3  => 67
+  3  => 67,
   --duplicate outputs
   4  => 68,
   5  => 69,
@@ -719,15 +719,18 @@ ALGO_IP3_SLR0: entity work.IP3TopWrapper
 axiStreamOutIP3D0 <= axiStreamOutIP3   when rising_edge(algoClk);
 axiStreamOutIP3D1 <= axiStreamOutIP3D0 when rising_edge(algoClk);
 
---GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUT_STREAMS_IP3-1 generate
---    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx))   <= axiStreamOutIP3D1(idx);
---end generate;
-GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUT_STREAMS_IP3-1 generate
-    if idx < 4 then
-        axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx);
-    else
-        axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx - 4);
-    end if;
+
+-- First generate statement for 4 outputs
+GEN_OUT_LINKS_SLR0_0_TO_3: for idx in 0 to 3 generate
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx);
 end generate;
+
+-- Second generate statement for 4 duplicates
+GEN_OUT_LINKS_SLR0_4_TO_7: for idx in 4 to 7 generate
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx - 4);
+end generate;
+
+
+
 end rtl;
 
