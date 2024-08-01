@@ -45,7 +45,8 @@ CONSTANT N_INPUT_STREAMS_IP2  : NATURAL := 8;
 CONSTANT N_OUTPUT_STREAMS_IP2 : NATURAL := 5;
 
 CONSTANT N_INPUT_STREAMS_IP3  : NATURAL := 9;
-CONSTANT N_OUTPUT_STREAMS_IP3 : NATURAL := 8; -- This has been doubled to account for the 2x duplication
+CONSTANT N_IP3_OUTPUTS : NATURAL := 4; -- Number of original IP3 outputs
+CONSTANT N_OUTPUTS_IP3_PLUS_DUP : NATURAL := 8; -- Total number of outputs after duplication
 
 CONSTANT N_INPUT_STREAMS_HCAL : NATURAL := 4;
 
@@ -345,7 +346,7 @@ constant XLA_INPUT_MAP_C_SLR0 : IntegerArray(0 to N_INPUT_STREAMS_IP1_2x6-1) := 
   11 => 11
 );
 
-constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUT_STREAMS_IP3-1) := (
+constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := (
   --sector 4
   0  => 64,
   1  => 65,
@@ -720,14 +721,9 @@ axiStreamOutIP3D0 <= axiStreamOutIP3   when rising_edge(algoClk);
 axiStreamOutIP3D1 <= axiStreamOutIP3D0 when rising_edge(algoClk);
 
 
--- First generate statement for 4 outputs
-GEN_OUT_LINKS_SLR0_0_TO_3: for idx in 0 to 3 generate
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx);
-end generate;
-
--- Second generate statement for 4 duplicates
-GEN_OUT_LINKS_SLR0_4_TO_7: for idx in 4 to 7 generate
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx - 4);
+GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUTS_IP3_PLUS_DUP-1 generate
+    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= 
+        axiStreamOutIP3D1(idx mod N_IP3_OUTPUTS);
 end generate;
 
 
