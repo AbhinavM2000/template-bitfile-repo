@@ -262,7 +262,7 @@ void putbackintower(ecalcluster ECALCluster, ecaltower ECALTowers[TOWERS_IN_ETA5
 #pragma HLS ARRAY_PARTITION variable=ECALTowers complete dim=0
 #pragma HLS INLINE
 
-	loop id = ECALCluster.eta*6 + ECALCluster.phi ;
+	loop id = (ECALCluster.eta/5)*6 + ECALCluster.phi ; 
 
 for(loop i=0; i<TOWERS_IN_ETA5*TOWERS_IN_PHI; i++){
 	#pragma HLS UNROLL
