@@ -71,149 +71,133 @@ end;
 architecture behav of IP2_stitchClusters2x6 is 
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
-    constant ap_ST_fsm_state1 : STD_LOGIC_VECTOR (4 downto 0) := "00001";
-    constant ap_ST_fsm_state2 : STD_LOGIC_VECTOR (4 downto 0) := "00010";
-    constant ap_ST_fsm_state3 : STD_LOGIC_VECTOR (4 downto 0) := "00100";
-    constant ap_ST_fsm_state4 : STD_LOGIC_VECTOR (4 downto 0) := "01000";
-    constant ap_ST_fsm_state5 : STD_LOGIC_VECTOR (4 downto 0) := "10000";
+    constant ap_ST_fsm_state1 : STD_LOGIC_VECTOR (3 downto 0) := "0001";
+    constant ap_ST_fsm_state2 : STD_LOGIC_VECTOR (3 downto 0) := "0010";
+    constant ap_ST_fsm_state3 : STD_LOGIC_VECTOR (3 downto 0) := "0100";
+    constant ap_ST_fsm_state4 : STD_LOGIC_VECTOR (3 downto 0) := "1000";
     constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
     constant ap_const_lv32_1 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000001";
     constant ap_const_lv32_2 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000010";
-    constant ap_const_lv32_3 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000011";
     constant ap_const_lv5_0 : STD_LOGIC_VECTOR (4 downto 0) := "00000";
     constant ap_const_lv5_18 : STD_LOGIC_VECTOR (4 downto 0) := "11000";
     constant ap_const_lv5_3 : STD_LOGIC_VECTOR (4 downto 0) := "00011";
     constant ap_const_lv12_0 : STD_LOGIC_VECTOR (11 downto 0) := "000000000000";
-    constant ap_const_lv32_4 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000100";
+    constant ap_const_lv32_3 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000011";
     constant ap_const_boolean_1 : BOOLEAN := true;
 
-    signal ap_CS_fsm : STD_LOGIC_VECTOR (4 downto 0) := "00001";
+    signal ap_CS_fsm : STD_LOGIC_VECTOR (3 downto 0) := "0001";
     attribute fsm_encoding : string;
     attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_CS_fsm_state1 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state1 : signal is "none";
-    signal ECALClustersHighEta_31_reg_1698 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ECALClustersHighEta_34_reg_1704 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ECALClustersHighEta_43_reg_1710 : STD_LOGIC_VECTOR (11 downto 0);
-    signal ECALClustersLowEta_6_9_reg_1715 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ECALClustersLowEta_6_10_reg_1721 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ECALClustersLowEta_6_13_reg_1727 : STD_LOGIC_VECTOR (11 downto 0);
-    signal and_ln879_1_fu_306_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_1_reg_1732 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_fu_312_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_reg_1742 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_1_fu_318_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_1_reg_1748 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_2_fu_324_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_2_reg_1754 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_1_fu_330_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_1_reg_1760 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_3_fu_380_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_3_reg_1770 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_5_fu_430_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_5_reg_1780 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_7_fu_480_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_7_reg_1790 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_9_fu_524_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_9_reg_1800 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_11_fu_568_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_11_reg_1810 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_13_fu_618_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_13_reg_1820 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_15_fu_662_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_15_reg_1830 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_17_fu_706_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_17_reg_1840 : STD_LOGIC_VECTOR (0 downto 0);
-    signal EnergyL_V_1_fu_852_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL_V_1_reg_1850 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_fu_384_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_reg_1724 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL5x5_V_fu_392_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_reg_1731 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_fu_400_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_reg_1738 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_fu_408_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH_V_reg_1745 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_fu_416_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH5x5_V_reg_1752 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_fu_424_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_reg_1759 : STD_LOGIC_VECTOR (9 downto 0);
+    signal and_ln879_3_fu_476_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_3_reg_1766 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_5_fu_526_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_5_reg_1776 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_7_fu_576_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_7_reg_1786 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_9_fu_620_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_9_reg_1796 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_11_fu_664_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_11_reg_1806 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_13_fu_714_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_13_reg_1816 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_15_fu_758_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_15_reg_1826 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_17_fu_802_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_17_reg_1836 : STD_LOGIC_VECTOR (0 downto 0);
+    signal EnergyL_V_1_fu_874_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_1_reg_1846 : STD_LOGIC_VECTOR (11 downto 0);
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
-    signal EnergyL5x5_V_1_fu_859_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL5x5_V_1_reg_1857 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_1_fu_866_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_1_reg_1864 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_1_fu_873_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH_V_1_reg_1871 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_1_fu_880_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH5x5_V_1_reg_1878 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_1_fu_887_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_1_reg_1885 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL_V_2_fu_966_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL_V_2_reg_1892 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL5x5_V_2_fu_973_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL5x5_V_2_reg_1899 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_2_fu_980_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_2_reg_1906 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_3_fu_987_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH_V_3_reg_1913 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_3_fu_994_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH5x5_V_3_reg_1920 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_3_fu_1001_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_3_reg_1927 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_fu_1074_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_reg_1934 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL5x5_V_1_fu_880_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_1_reg_1853 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_1_fu_886_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_1_reg_1860 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_1_fu_892_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH_V_1_reg_1867 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_1_fu_899_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH5x5_V_1_reg_1874 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_1_fu_906_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_1_reg_1881 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL_V_2_fu_979_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_2_reg_1888 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL5x5_V_2_fu_986_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_2_reg_1895 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_2_fu_993_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_2_reg_1902 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_3_fu_1000_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH_V_3_reg_1909 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_3_fu_1006_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH5x5_V_3_reg_1916 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_3_fu_1012_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_3_reg_1923 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_fu_1084_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_reg_1930 : STD_LOGIC_VECTOR (11 downto 0);
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
-    signal select_ln879_11_fu_1080_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_11_reg_1939 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_12_fu_1086_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_12_reg_1944 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_2_fu_1092_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH_V_2_reg_1949 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_2_fu_1099_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH5x5_V_2_reg_1956 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_2_fu_1106_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_2_reg_1963 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL_V_3_fu_1173_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL_V_3_reg_1970 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL5x5_V_3_fu_1179_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL5x5_V_3_reg_1977 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_3_fu_1185_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_3_reg_1984 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_4_fu_1191_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH_V_4_reg_1991 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_4_fu_1197_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH5x5_V_4_reg_1998 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_4_fu_1203_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_4_reg_2005 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL_V_4_fu_1275_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL_V_4_reg_2012 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL5x5_V_4_fu_1282_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL5x5_V_4_reg_2019 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_4_fu_1289_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_4_reg_2026 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_37_fu_1296_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_37_reg_2033 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_38_fu_1302_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_38_reg_2038 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_39_fu_1308_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_39_reg_2043 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_28_fu_1374_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_28_reg_2048 : STD_LOGIC_VECTOR (11 downto 0);
-    signal ap_CS_fsm_state4 : STD_LOGIC;
-    attribute fsm_encoding of ap_CS_fsm_state4 : signal is "none";
-    signal select_ln879_29_fu_1380_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_29_reg_2053 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_30_fu_1386_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_30_reg_2058 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_5_fu_1392_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH_V_5_reg_2063 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_5_fu_1398_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH5x5_V_5_reg_2070 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_5_fu_1404_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_5_reg_2077 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL_V_5_fu_1470_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL_V_5_reg_2084 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL5x5_V_5_fu_1476_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL5x5_V_5_reg_2091 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_5_fu_1482_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_5_reg_2098 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_43_fu_1488_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_43_reg_2105 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_44_fu_1494_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_44_reg_2110 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_45_fu_1500_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_45_reg_2115 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_11_fu_1090_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_11_reg_1935 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_12_fu_1096_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_12_reg_1940 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_2_fu_1102_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH_V_2_reg_1945 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_2_fu_1109_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH5x5_V_2_reg_1950 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_2_fu_1116_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_2_reg_1956 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL_V_3_fu_1183_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_3_reg_1962 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL5x5_V_3_fu_1189_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_3_reg_1967 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_3_fu_1195_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_3_reg_1973 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_4_fu_1201_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH_V_4_reg_1979 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_4_fu_1207_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH5x5_V_4_reg_1984 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_4_fu_1213_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_4_reg_1990 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_15_fu_1219_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_15_reg_1996 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_16_fu_1225_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_16_reg_2002 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_17_fu_1231_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_17_reg_2008 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_11_fu_1237_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_11_reg_2014 : STD_LOGIC_VECTOR (0 downto 0);
+    signal EnergyL_V_4_fu_1309_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_4_reg_2024 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL5x5_V_4_fu_1316_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_4_reg_2029 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_4_fu_1323_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_4_reg_2035 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_37_fu_1330_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_37_reg_2041 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_38_fu_1336_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_38_reg_2046 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_39_fu_1342_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_39_reg_2051 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_21_fu_1348_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_21_reg_2056 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_22_fu_1354_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_22_reg_2062 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_23_fu_1360_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_23_reg_2068 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_15_fu_1366_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_15_reg_2074 : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_port_reg_ECALClustersLowEta_7 : STD_LOGIC_VECTOR (11 downto 0);
     signal ap_port_reg_ECALClustersLowEta_8 : STD_LOGIC_VECTOR (11 downto 0);
     signal ap_port_reg_ECALClustersLowEta_7_7 : STD_LOGIC_VECTOR (9 downto 0);
@@ -234,159 +218,162 @@ architecture behav of IP2_stitchClusters2x6 is
     signal icmp_ln879_1_fu_262_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal and_ln879_fu_300_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal icmp_ln879_fu_256_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_2_fu_342_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_2_fu_348_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_3_fu_354_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_1_fu_360_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_1_fu_368_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_2_fu_374_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln879_2_fu_336_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_4_fu_392_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_4_fu_398_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_5_fu_404_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_2_fu_410_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_2_fu_418_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_4_fu_424_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln879_3_fu_386_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_6_fu_442_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_6_fu_448_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_7_fu_454_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_3_fu_460_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_3_fu_468_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln879_4_fu_436_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_6_fu_474_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_8_fu_486_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_8_fu_492_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_9_fu_498_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_4_fu_504_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_4_fu_512_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_8_fu_518_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_10_fu_530_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_10_fu_536_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_11_fu_542_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_5_fu_548_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_5_fu_556_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_10_fu_562_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_12_fu_580_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_12_fu_586_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_13_fu_592_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_6_fu_598_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_6_fu_606_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln879_5_fu_574_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_12_fu_612_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_14_fu_624_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_14_fu_630_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_15_fu_636_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_7_fu_642_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_7_fu_650_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_14_fu_656_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal icmp_ln895_16_fu_668_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal sub_ln214_16_fu_674_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal sub_ln214_17_fu_680_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal select_ln160_8_fu_686_p3 : STD_LOGIC_VECTOR (4 downto 0);
-    signal icmp_ln899_8_fu_694_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal and_ln879_16_fu_700_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal select_ln176_fu_712_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_1_fu_718_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_2_fu_723_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_3_fu_728_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_4_fu_734_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_5_fu_739_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL_V_fu_744_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyL5x5_V_fu_750_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyL2x5_V_fu_756_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_3_fu_798_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_3_fu_780_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_4_fu_786_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_5_fu_792_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_6_fu_804_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_7_fu_812_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_8_fu_820_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_9_fu_828_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_10_fu_836_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_11_fu_844_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH_V_fu_762_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal EnergyH5x5_V_fu_768_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal EnergyH2x5_V_fu_774_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_7_fu_912_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_9_fu_894_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_10_fu_900_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_11_fu_906_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_18_fu_918_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_19_fu_926_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_20_fu_934_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_21_fu_942_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_22_fu_950_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_23_fu_958_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_5_fu_1023_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_6_fu_1008_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_7_fu_1013_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_8_fu_1018_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_12_fu_1028_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_13_fu_1036_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_14_fu_1043_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_15_fu_1050_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_16_fu_1058_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_17_fu_1066_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_9_fu_1125_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_12_fu_1113_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_13_fu_1117_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_14_fu_1121_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_24_fu_1129_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_25_fu_1137_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_26_fu_1144_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_27_fu_1151_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_28_fu_1159_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_29_fu_1166_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_13_fu_1224_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_18_fu_1209_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_19_fu_1214_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_20_fu_1219_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_36_fu_1229_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_37_fu_1237_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_38_fu_1245_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_39_fu_1253_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_40_fu_1261_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_41_fu_1268_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_11_fu_1326_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_15_fu_1314_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_16_fu_1318_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_17_fu_1322_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_30_fu_1330_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_31_fu_1338_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_32_fu_1345_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_33_fu_1352_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_34_fu_1360_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_35_fu_1367_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal icmp_ln895_15_fu_1422_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_21_fu_1410_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_22_fu_1414_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_23_fu_1418_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_42_fu_1426_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_43_fu_1434_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_44_fu_1441_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_45_fu_1448_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_46_fu_1456_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_47_fu_1463_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ap_CS_fsm_state5 : STD_LOGIC;
-    attribute fsm_encoding of ap_CS_fsm_state5 : signal is "none";
-    signal icmp_ln895_17_fu_1518_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal add_ln209_24_fu_1506_p2 : STD_LOGIC_VECTOR (11 downto 0);
-    signal add_ln209_25_fu_1510_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal add_ln209_26_fu_1514_p2 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_48_fu_1522_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_49_fu_1530_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_50_fu_1537_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_51_fu_1544_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln176_52_fu_1552_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln176_53_fu_1559_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_46_fu_1566_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_47_fu_1572_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_48_fu_1578_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_49_fu_1584_p3 : STD_LOGIC_VECTOR (11 downto 0);
-    signal select_ln879_50_fu_1590_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal select_ln879_51_fu_1596_p3 : STD_LOGIC_VECTOR (9 downto 0);
-    signal ap_NS_fsm : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln895_1_fu_330_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_fu_312_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_1_fu_318_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_2_fu_324_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal and_ln879_1_fu_306_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal select_ln176_fu_336_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_1_fu_344_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_2_fu_352_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_3_fu_360_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_4_fu_368_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_5_fu_376_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_2_fu_438_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_2_fu_444_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_3_fu_450_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_1_fu_456_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_1_fu_464_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_2_fu_470_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln879_2_fu_432_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_4_fu_488_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_4_fu_494_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_5_fu_500_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_2_fu_506_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_2_fu_514_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_4_fu_520_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln879_3_fu_482_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_6_fu_538_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_6_fu_544_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_7_fu_550_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_3_fu_556_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_3_fu_564_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln879_4_fu_532_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_6_fu_570_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_8_fu_582_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_8_fu_588_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_9_fu_594_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_4_fu_600_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_4_fu_608_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_8_fu_614_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_10_fu_626_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_10_fu_632_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_11_fu_638_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_5_fu_644_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_5_fu_652_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_10_fu_658_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_12_fu_676_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_12_fu_682_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_13_fu_688_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_6_fu_694_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_6_fu_702_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln879_5_fu_670_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_12_fu_708_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_14_fu_720_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_14_fu_726_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_15_fu_732_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_7_fu_738_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_7_fu_746_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_14_fu_752_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_16_fu_764_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sub_ln214_16_fu_770_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal sub_ln214_17_fu_776_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal select_ln160_8_fu_782_p3 : STD_LOGIC_VECTOR (4 downto 0);
+    signal icmp_ln899_8_fu_790_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal and_ln879_16_fu_796_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal icmp_ln895_3_fu_823_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_3_fu_808_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_4_fu_813_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_5_fu_818_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_6_fu_828_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_7_fu_836_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_8_fu_843_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_9_fu_850_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_10_fu_858_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_11_fu_866_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_7_fu_928_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_9_fu_913_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_10_fu_918_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_11_fu_923_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_18_fu_933_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_19_fu_941_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_20_fu_949_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_21_fu_957_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_22_fu_965_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_23_fu_972_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_5_fu_1033_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_6_fu_1018_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_7_fu_1023_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_8_fu_1028_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_12_fu_1038_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_13_fu_1046_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_14_fu_1053_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_15_fu_1060_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_16_fu_1068_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_17_fu_1076_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_9_fu_1135_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_12_fu_1123_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_13_fu_1127_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_14_fu_1131_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_24_fu_1139_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_25_fu_1147_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_26_fu_1154_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_27_fu_1161_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_28_fu_1169_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_29_fu_1176_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_13_fu_1258_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_18_fu_1243_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_19_fu_1248_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_20_fu_1253_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_36_fu_1263_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_37_fu_1271_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_38_fu_1279_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_39_fu_1287_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_40_fu_1295_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_41_fu_1302_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal ap_CS_fsm_state4 : STD_LOGIC;
+    attribute fsm_encoding of ap_CS_fsm_state4 : signal is "none";
+    signal select_ln176_30_fu_1372_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_31_fu_1378_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_32_fu_1383_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_33_fu_1388_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_34_fu_1394_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_35_fu_1399_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_42_fu_1440_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_43_fu_1446_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_44_fu_1451_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_45_fu_1456_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_46_fu_1462_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_47_fu_1467_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH_V_5_fu_1422_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyL_V_5_fu_1472_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal EnergyH5x5_V_5_fu_1428_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL5x5_V_5_fu_1478_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyH2x5_V_5_fu_1434_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal EnergyL2x5_V_5_fu_1484_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal icmp_ln895_17_fu_1526_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal add_ln209_24_fu_1508_p2 : STD_LOGIC_VECTOR (11 downto 0);
+    signal add_ln209_25_fu_1514_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal add_ln209_26_fu_1520_p2 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_48_fu_1532_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_49_fu_1540_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_50_fu_1548_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_51_fu_1556_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln176_52_fu_1564_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln176_53_fu_1572_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_28_fu_1404_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_46_fu_1580_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_29_fu_1410_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_47_fu_1587_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_30_fu_1416_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_48_fu_1594_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_43_fu_1490_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_49_fu_1601_p3 : STD_LOGIC_VECTOR (11 downto 0);
+    signal select_ln879_44_fu_1496_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_50_fu_1608_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_45_fu_1502_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal select_ln879_51_fu_1615_p3 : STD_LOGIC_VECTOR (9 downto 0);
+    signal ap_NS_fsm : STD_LOGIC_VECTOR (3 downto 0);
 
 
 begin
@@ -408,25 +395,73 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_CS_fsm_state1) and (ap_start = ap_const_logic_1))) then
-                ECALClustersHighEta_31_reg_1698 <= ECALClustersHighEta_26;
-                ECALClustersHighEta_34_reg_1704 <= ECALClustersHighEta_23;
-                ECALClustersHighEta_43_reg_1710 <= ECALClustersHighEta_s;
-                ECALClustersLowEta_6_10_reg_1721 <= ECALClustersLowEta_6_7;
-                ECALClustersLowEta_6_13_reg_1727 <= ECALClustersLowEta_6;
-                ECALClustersLowEta_6_9_reg_1715 <= ECALClustersLowEta_6_8;
-                add_ln209_1_reg_1748 <= add_ln209_1_fu_318_p2;
-                add_ln209_2_reg_1754 <= add_ln209_2_fu_324_p2;
-                add_ln209_reg_1742 <= add_ln209_fu_312_p2;
-                and_ln879_11_reg_1810 <= and_ln879_11_fu_568_p2;
-                and_ln879_13_reg_1820 <= and_ln879_13_fu_618_p2;
-                and_ln879_15_reg_1830 <= and_ln879_15_fu_662_p2;
-                and_ln879_17_reg_1840 <= and_ln879_17_fu_706_p2;
-                and_ln879_1_reg_1732 <= and_ln879_1_fu_306_p2;
-                and_ln879_3_reg_1770 <= and_ln879_3_fu_380_p2;
-                and_ln879_5_reg_1780 <= and_ln879_5_fu_430_p2;
-                and_ln879_7_reg_1790 <= and_ln879_7_fu_480_p2;
-                and_ln879_9_reg_1800 <= and_ln879_9_fu_524_p2;
+            if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
+                EnergyH2x5_V_1_reg_1881 <= EnergyH2x5_V_1_fu_906_p3;
+                EnergyH2x5_V_3_reg_1923 <= EnergyH2x5_V_3_fu_1012_p3;
+                EnergyH5x5_V_1_reg_1874 <= EnergyH5x5_V_1_fu_899_p3;
+                EnergyH5x5_V_3_reg_1916 <= EnergyH5x5_V_3_fu_1006_p3;
+                EnergyH_V_1_reg_1867 <= EnergyH_V_1_fu_892_p3;
+                EnergyH_V_3_reg_1909 <= EnergyH_V_3_fu_1000_p3;
+                EnergyL2x5_V_1_reg_1860 <= EnergyL2x5_V_1_fu_886_p3;
+                EnergyL2x5_V_2_reg_1902 <= EnergyL2x5_V_2_fu_993_p3;
+                EnergyL5x5_V_1_reg_1853 <= EnergyL5x5_V_1_fu_880_p3;
+                EnergyL5x5_V_2_reg_1895 <= EnergyL5x5_V_2_fu_986_p3;
+                EnergyL_V_1_reg_1846 <= EnergyL_V_1_fu_874_p3;
+                EnergyL_V_2_reg_1888 <= EnergyL_V_2_fu_979_p3;
+            end if;
+        end if;
+    end process;
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_const_logic_1 = ap_CS_fsm_state3)) then
+                EnergyH2x5_V_2_reg_1956 <= EnergyH2x5_V_2_fu_1116_p3;
+                EnergyH2x5_V_4_reg_1990 <= EnergyH2x5_V_4_fu_1213_p3;
+                EnergyH5x5_V_2_reg_1950 <= EnergyH5x5_V_2_fu_1109_p3;
+                EnergyH5x5_V_4_reg_1984 <= EnergyH5x5_V_4_fu_1207_p3;
+                EnergyH_V_2_reg_1945 <= EnergyH_V_2_fu_1102_p3;
+                EnergyH_V_4_reg_1979 <= EnergyH_V_4_fu_1201_p3;
+                EnergyL2x5_V_3_reg_1973 <= EnergyL2x5_V_3_fu_1195_p3;
+                EnergyL2x5_V_4_reg_2035 <= EnergyL2x5_V_4_fu_1323_p3;
+                EnergyL5x5_V_3_reg_1967 <= EnergyL5x5_V_3_fu_1189_p3;
+                EnergyL5x5_V_4_reg_2029 <= EnergyL5x5_V_4_fu_1316_p3;
+                EnergyL_V_3_reg_1962 <= EnergyL_V_3_fu_1183_p3;
+                EnergyL_V_4_reg_2024 <= EnergyL_V_4_fu_1309_p3;
+                add_ln209_15_reg_1996 <= add_ln209_15_fu_1219_p2;
+                add_ln209_16_reg_2002 <= add_ln209_16_fu_1225_p2;
+                add_ln209_17_reg_2008 <= add_ln209_17_fu_1231_p2;
+                add_ln209_21_reg_2056 <= add_ln209_21_fu_1348_p2;
+                add_ln209_22_reg_2062 <= add_ln209_22_fu_1354_p2;
+                add_ln209_23_reg_2068 <= add_ln209_23_fu_1360_p2;
+                icmp_ln895_11_reg_2014 <= icmp_ln895_11_fu_1237_p2;
+                icmp_ln895_15_reg_2074 <= icmp_ln895_15_fu_1366_p2;
+                select_ln879_11_reg_1935 <= select_ln879_11_fu_1090_p3;
+                select_ln879_12_reg_1940 <= select_ln879_12_fu_1096_p3;
+                select_ln879_37_reg_2041 <= select_ln879_37_fu_1330_p3;
+                select_ln879_38_reg_2046 <= select_ln879_38_fu_1336_p3;
+                select_ln879_39_reg_2051 <= select_ln879_39_fu_1342_p3;
+                select_ln879_reg_1930 <= select_ln879_fu_1084_p3;
+            end if;
+        end if;
+    end process;
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
+                EnergyH2x5_V_reg_1759 <= EnergyH2x5_V_fu_424_p3;
+                EnergyH5x5_V_reg_1752 <= EnergyH5x5_V_fu_416_p3;
+                EnergyH_V_reg_1745 <= EnergyH_V_fu_408_p3;
+                EnergyL2x5_V_reg_1738 <= EnergyL2x5_V_fu_400_p3;
+                EnergyL5x5_V_reg_1731 <= EnergyL5x5_V_fu_392_p3;
+                EnergyL_V_reg_1724 <= EnergyL_V_fu_384_p3;
+                and_ln879_11_reg_1806 <= and_ln879_11_fu_664_p2;
+                and_ln879_13_reg_1816 <= and_ln879_13_fu_714_p2;
+                and_ln879_15_reg_1826 <= and_ln879_15_fu_758_p2;
+                and_ln879_17_reg_1836 <= and_ln879_17_fu_802_p2;
+                and_ln879_3_reg_1766 <= and_ln879_3_fu_476_p2;
+                and_ln879_5_reg_1776 <= and_ln879_5_fu_526_p2;
+                and_ln879_7_reg_1786 <= and_ln879_7_fu_576_p2;
+                and_ln879_9_reg_1796 <= and_ln879_9_fu_620_p2;
                 ap_port_reg_ECALClustersHighEta_15 <= ECALClustersHighEta_15;
                 ap_port_reg_ECALClustersHighEta_16 <= ECALClustersHighEta_16;
                 ap_port_reg_ECALClustersHighEta_24 <= ECALClustersHighEta_24;
@@ -439,70 +474,6 @@ begin
                 ap_port_reg_ECALClustersLowEta_8 <= ECALClustersLowEta_8;
                 ap_port_reg_ECALClustersLowEta_8_7 <= ECALClustersLowEta_8_7;
                 ap_port_reg_ECALClustersLowEta_8_8 <= ECALClustersLowEta_8_8;
-                icmp_ln895_1_reg_1760 <= icmp_ln895_1_fu_330_p2;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_const_logic_1 = ap_CS_fsm_state2)) then
-                EnergyH2x5_V_1_reg_1885 <= EnergyH2x5_V_1_fu_887_p3;
-                EnergyH2x5_V_3_reg_1927 <= EnergyH2x5_V_3_fu_1001_p3;
-                EnergyH5x5_V_1_reg_1878 <= EnergyH5x5_V_1_fu_880_p3;
-                EnergyH5x5_V_3_reg_1920 <= EnergyH5x5_V_3_fu_994_p3;
-                EnergyH_V_1_reg_1871 <= EnergyH_V_1_fu_873_p3;
-                EnergyH_V_3_reg_1913 <= EnergyH_V_3_fu_987_p3;
-                EnergyL2x5_V_1_reg_1864 <= EnergyL2x5_V_1_fu_866_p3;
-                EnergyL2x5_V_2_reg_1906 <= EnergyL2x5_V_2_fu_980_p3;
-                EnergyL5x5_V_1_reg_1857 <= EnergyL5x5_V_1_fu_859_p3;
-                EnergyL5x5_V_2_reg_1899 <= EnergyL5x5_V_2_fu_973_p3;
-                EnergyL_V_1_reg_1850 <= EnergyL_V_1_fu_852_p3;
-                EnergyL_V_2_reg_1892 <= EnergyL_V_2_fu_966_p3;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_const_logic_1 = ap_CS_fsm_state3)) then
-                EnergyH2x5_V_2_reg_1963 <= EnergyH2x5_V_2_fu_1106_p3;
-                EnergyH2x5_V_4_reg_2005 <= EnergyH2x5_V_4_fu_1203_p3;
-                EnergyH5x5_V_2_reg_1956 <= EnergyH5x5_V_2_fu_1099_p3;
-                EnergyH5x5_V_4_reg_1998 <= EnergyH5x5_V_4_fu_1197_p3;
-                EnergyH_V_2_reg_1949 <= EnergyH_V_2_fu_1092_p3;
-                EnergyH_V_4_reg_1991 <= EnergyH_V_4_fu_1191_p3;
-                EnergyL2x5_V_3_reg_1984 <= EnergyL2x5_V_3_fu_1185_p3;
-                EnergyL2x5_V_4_reg_2026 <= EnergyL2x5_V_4_fu_1289_p3;
-                EnergyL5x5_V_3_reg_1977 <= EnergyL5x5_V_3_fu_1179_p3;
-                EnergyL5x5_V_4_reg_2019 <= EnergyL5x5_V_4_fu_1282_p3;
-                EnergyL_V_3_reg_1970 <= EnergyL_V_3_fu_1173_p3;
-                EnergyL_V_4_reg_2012 <= EnergyL_V_4_fu_1275_p3;
-                select_ln879_11_reg_1939 <= select_ln879_11_fu_1080_p3;
-                select_ln879_12_reg_1944 <= select_ln879_12_fu_1086_p3;
-                select_ln879_37_reg_2033 <= select_ln879_37_fu_1296_p3;
-                select_ln879_38_reg_2038 <= select_ln879_38_fu_1302_p3;
-                select_ln879_39_reg_2043 <= select_ln879_39_fu_1308_p3;
-                select_ln879_reg_1934 <= select_ln879_fu_1074_p3;
-            end if;
-        end if;
-    end process;
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_const_logic_1 = ap_CS_fsm_state4)) then
-                EnergyH2x5_V_5_reg_2077 <= EnergyH2x5_V_5_fu_1404_p3;
-                EnergyH5x5_V_5_reg_2070 <= EnergyH5x5_V_5_fu_1398_p3;
-                EnergyH_V_5_reg_2063 <= EnergyH_V_5_fu_1392_p3;
-                EnergyL2x5_V_5_reg_2098 <= EnergyL2x5_V_5_fu_1482_p3;
-                EnergyL5x5_V_5_reg_2091 <= EnergyL5x5_V_5_fu_1476_p3;
-                EnergyL_V_5_reg_2084 <= EnergyL_V_5_fu_1470_p3;
-                select_ln879_28_reg_2048 <= select_ln879_28_fu_1374_p3;
-                select_ln879_29_reg_2053 <= select_ln879_29_fu_1380_p3;
-                select_ln879_30_reg_2058 <= select_ln879_30_fu_1386_p3;
-                select_ln879_43_reg_2105 <= select_ln879_43_fu_1488_p3;
-                select_ln879_44_reg_2110 <= select_ln879_44_fu_1494_p3;
-                select_ln879_45_reg_2115 <= select_ln879_45_fu_1500_p3;
             end if;
         end if;
     end process;
@@ -511,7 +482,7 @@ begin
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_state1 => 
-                if (((ap_const_logic_1 = ap_CS_fsm_state1) and (ap_start = ap_const_logic_1))) then
+                if (((ap_start = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then
                     ap_NS_fsm <= ap_ST_fsm_state2;
                 else
                     ap_NS_fsm <= ap_ST_fsm_state1;
@@ -521,175 +492,172 @@ begin
             when ap_ST_fsm_state3 => 
                 ap_NS_fsm <= ap_ST_fsm_state4;
             when ap_ST_fsm_state4 => 
-                ap_NS_fsm <= ap_ST_fsm_state5;
-            when ap_ST_fsm_state5 => 
                 ap_NS_fsm <= ap_ST_fsm_state1;
             when others =>  
-                ap_NS_fsm <= "XXXXX";
+                ap_NS_fsm <= "XXXX";
         end case;
     end process;
-    EnergyH2x5_V_1_fu_887_p3 <= 
-        select_ln176_11_fu_844_p3 when (and_ln879_3_reg_1770(0) = '1') else 
+    EnergyH2x5_V_1_fu_906_p3 <= 
+        select_ln176_11_fu_866_p3 when (and_ln879_3_reg_1766(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_27;
-    EnergyH2x5_V_2_fu_1106_p3 <= 
-        select_ln176_17_fu_1066_p3 when (and_ln879_5_reg_1780(0) = '1') else 
+    EnergyH2x5_V_2_fu_1116_p3 <= 
+        select_ln176_17_fu_1076_p3 when (and_ln879_5_reg_1776(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_28;
-    EnergyH2x5_V_3_fu_1001_p3 <= 
-        select_ln176_23_fu_958_p3 when (and_ln879_7_reg_1790(0) = '1') else 
-        EnergyH2x5_V_fu_774_p3;
-    EnergyH2x5_V_4_fu_1203_p3 <= 
-        select_ln176_29_fu_1166_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyH2x5_V_1_reg_1885;
-    EnergyH2x5_V_5_fu_1404_p3 <= 
-        select_ln176_35_fu_1367_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyH2x5_V_2_reg_1963;
-    EnergyH2x5_V_fu_774_p3 <= 
-        select_ln176_5_fu_739_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersHighEta_31_reg_1698;
-    EnergyH5x5_V_1_fu_880_p3 <= 
-        select_ln176_10_fu_836_p3 when (and_ln879_3_reg_1770(0) = '1') else 
+    EnergyH2x5_V_3_fu_1012_p3 <= 
+        select_ln176_23_fu_972_p3 when (and_ln879_7_reg_1786(0) = '1') else 
+        EnergyH2x5_V_reg_1759;
+    EnergyH2x5_V_4_fu_1213_p3 <= 
+        select_ln176_29_fu_1176_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyH2x5_V_1_reg_1881;
+    EnergyH2x5_V_5_fu_1434_p3 <= 
+        select_ln176_35_fu_1399_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyH2x5_V_2_reg_1956;
+    EnergyH2x5_V_fu_424_p3 <= 
+        select_ln176_5_fu_376_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersHighEta_26;
+    EnergyH5x5_V_1_fu_899_p3 <= 
+        select_ln176_10_fu_858_p3 when (and_ln879_3_reg_1766(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_24;
-    EnergyH5x5_V_2_fu_1099_p3 <= 
-        select_ln176_16_fu_1058_p3 when (and_ln879_5_reg_1780(0) = '1') else 
+    EnergyH5x5_V_2_fu_1109_p3 <= 
+        select_ln176_16_fu_1068_p3 when (and_ln879_5_reg_1776(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_25;
-    EnergyH5x5_V_3_fu_994_p3 <= 
-        select_ln176_22_fu_950_p3 when (and_ln879_7_reg_1790(0) = '1') else 
-        EnergyH5x5_V_fu_768_p3;
-    EnergyH5x5_V_4_fu_1197_p3 <= 
-        select_ln176_28_fu_1159_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyH5x5_V_1_reg_1878;
-    EnergyH5x5_V_5_fu_1398_p3 <= 
-        select_ln176_34_fu_1360_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyH5x5_V_2_reg_1956;
-    EnergyH5x5_V_fu_768_p3 <= 
-        select_ln176_4_fu_734_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersHighEta_34_reg_1704;
-    EnergyH_V_1_fu_873_p3 <= 
-        select_ln176_9_fu_828_p3 when (and_ln879_3_reg_1770(0) = '1') else 
+    EnergyH5x5_V_3_fu_1006_p3 <= 
+        select_ln176_22_fu_965_p3 when (and_ln879_7_reg_1786(0) = '1') else 
+        EnergyH5x5_V_reg_1752;
+    EnergyH5x5_V_4_fu_1207_p3 <= 
+        select_ln176_28_fu_1169_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyH5x5_V_1_reg_1874;
+    EnergyH5x5_V_5_fu_1428_p3 <= 
+        select_ln176_34_fu_1394_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyH5x5_V_2_reg_1950;
+    EnergyH5x5_V_fu_416_p3 <= 
+        select_ln176_4_fu_368_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersHighEta_23;
+    EnergyH_V_1_fu_892_p3 <= 
+        select_ln176_9_fu_850_p3 when (and_ln879_3_reg_1766(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_15;
-    EnergyH_V_2_fu_1092_p3 <= 
-        select_ln176_15_fu_1050_p3 when (and_ln879_5_reg_1780(0) = '1') else 
+    EnergyH_V_2_fu_1102_p3 <= 
+        select_ln176_15_fu_1060_p3 when (and_ln879_5_reg_1776(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_16;
-    EnergyH_V_3_fu_987_p3 <= 
-        select_ln176_21_fu_942_p3 when (and_ln879_7_reg_1790(0) = '1') else 
-        EnergyH_V_fu_762_p3;
-    EnergyH_V_4_fu_1191_p3 <= 
-        select_ln176_27_fu_1151_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyH_V_1_reg_1871;
-    EnergyH_V_5_fu_1392_p3 <= 
-        select_ln176_33_fu_1352_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyH_V_2_reg_1949;
-    EnergyH_V_fu_762_p3 <= 
-        select_ln176_3_fu_728_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersHighEta_43_reg_1710;
-    EnergyL2x5_V_1_fu_866_p3 <= 
-        select_ln176_8_fu_820_p3 when (and_ln879_3_reg_1770(0) = '1') else 
-        EnergyL2x5_V_fu_756_p3;
-    EnergyL2x5_V_2_fu_980_p3 <= 
-        select_ln176_20_fu_934_p3 when (and_ln879_7_reg_1790(0) = '1') else 
+    EnergyH_V_3_fu_1000_p3 <= 
+        select_ln176_21_fu_957_p3 when (and_ln879_7_reg_1786(0) = '1') else 
+        EnergyH_V_reg_1745;
+    EnergyH_V_4_fu_1201_p3 <= 
+        select_ln176_27_fu_1161_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyH_V_1_reg_1867;
+    EnergyH_V_5_fu_1422_p3 <= 
+        select_ln176_33_fu_1388_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyH_V_2_reg_1945;
+    EnergyH_V_fu_408_p3 <= 
+        select_ln176_3_fu_360_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersHighEta_s;
+    EnergyL2x5_V_1_fu_886_p3 <= 
+        select_ln176_8_fu_843_p3 when (and_ln879_3_reg_1766(0) = '1') else 
+        EnergyL2x5_V_reg_1738;
+    EnergyL2x5_V_2_fu_993_p3 <= 
+        select_ln176_20_fu_949_p3 when (and_ln879_7_reg_1786(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_7_8;
-    EnergyL2x5_V_3_fu_1185_p3 <= 
-        select_ln176_26_fu_1144_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyL2x5_V_2_reg_1906;
-    EnergyL2x5_V_4_fu_1289_p3 <= 
-        select_ln176_38_fu_1245_p3 when (and_ln879_13_reg_1820(0) = '1') else 
+    EnergyL2x5_V_3_fu_1195_p3 <= 
+        select_ln176_26_fu_1154_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyL2x5_V_2_reg_1902;
+    EnergyL2x5_V_4_fu_1323_p3 <= 
+        select_ln176_38_fu_1279_p3 when (and_ln879_13_reg_1816(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_8_8;
-    EnergyL2x5_V_5_fu_1482_p3 <= 
-        select_ln176_44_fu_1441_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyL2x5_V_4_reg_2026;
-    EnergyL2x5_V_fu_756_p3 <= 
-        select_ln176_2_fu_723_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersLowEta_6_9_reg_1715;
-    EnergyL5x5_V_1_fu_859_p3 <= 
-        select_ln176_7_fu_812_p3 when (and_ln879_3_reg_1770(0) = '1') else 
-        EnergyL5x5_V_fu_750_p3;
-    EnergyL5x5_V_2_fu_973_p3 <= 
-        select_ln176_19_fu_926_p3 when (and_ln879_7_reg_1790(0) = '1') else 
+    EnergyL2x5_V_5_fu_1484_p3 <= 
+        select_ln176_44_fu_1451_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyL2x5_V_4_reg_2035;
+    EnergyL2x5_V_fu_400_p3 <= 
+        select_ln176_2_fu_352_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersLowEta_6_8;
+    EnergyL5x5_V_1_fu_880_p3 <= 
+        select_ln176_7_fu_836_p3 when (and_ln879_3_reg_1766(0) = '1') else 
+        EnergyL5x5_V_reg_1731;
+    EnergyL5x5_V_2_fu_986_p3 <= 
+        select_ln176_19_fu_941_p3 when (and_ln879_7_reg_1786(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_7_7;
-    EnergyL5x5_V_3_fu_1179_p3 <= 
-        select_ln176_25_fu_1137_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyL5x5_V_2_reg_1899;
-    EnergyL5x5_V_4_fu_1282_p3 <= 
-        select_ln176_37_fu_1237_p3 when (and_ln879_13_reg_1820(0) = '1') else 
+    EnergyL5x5_V_3_fu_1189_p3 <= 
+        select_ln176_25_fu_1147_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyL5x5_V_2_reg_1895;
+    EnergyL5x5_V_4_fu_1316_p3 <= 
+        select_ln176_37_fu_1271_p3 when (and_ln879_13_reg_1816(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_8_7;
-    EnergyL5x5_V_5_fu_1476_p3 <= 
-        select_ln176_43_fu_1434_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyL5x5_V_4_reg_2019;
-    EnergyL5x5_V_fu_750_p3 <= 
-        select_ln176_1_fu_718_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersLowEta_6_10_reg_1721;
-    EnergyL_V_1_fu_852_p3 <= 
-        select_ln176_6_fu_804_p3 when (and_ln879_3_reg_1770(0) = '1') else 
-        EnergyL_V_fu_744_p3;
-    EnergyL_V_2_fu_966_p3 <= 
-        select_ln176_18_fu_918_p3 when (and_ln879_7_reg_1790(0) = '1') else 
+    EnergyL5x5_V_5_fu_1478_p3 <= 
+        select_ln176_43_fu_1446_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyL5x5_V_4_reg_2029;
+    EnergyL5x5_V_fu_392_p3 <= 
+        select_ln176_1_fu_344_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersLowEta_6_7;
+    EnergyL_V_1_fu_874_p3 <= 
+        select_ln176_6_fu_828_p3 when (and_ln879_3_reg_1766(0) = '1') else 
+        EnergyL_V_reg_1724;
+    EnergyL_V_2_fu_979_p3 <= 
+        select_ln176_18_fu_933_p3 when (and_ln879_7_reg_1786(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_7;
-    EnergyL_V_3_fu_1173_p3 <= 
-        select_ln176_24_fu_1129_p3 when (and_ln879_9_reg_1800(0) = '1') else 
-        EnergyL_V_2_reg_1892;
-    EnergyL_V_4_fu_1275_p3 <= 
-        select_ln176_36_fu_1229_p3 when (and_ln879_13_reg_1820(0) = '1') else 
+    EnergyL_V_3_fu_1183_p3 <= 
+        select_ln176_24_fu_1139_p3 when (and_ln879_9_reg_1796(0) = '1') else 
+        EnergyL_V_2_reg_1888;
+    EnergyL_V_4_fu_1309_p3 <= 
+        select_ln176_36_fu_1263_p3 when (and_ln879_13_reg_1816(0) = '1') else 
         ap_port_reg_ECALClustersLowEta_8;
-    EnergyL_V_5_fu_1470_p3 <= 
-        select_ln176_42_fu_1426_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyL_V_4_reg_2012;
-    EnergyL_V_fu_744_p3 <= 
-        select_ln176_fu_712_p3 when (and_ln879_1_reg_1732(0) = '1') else 
-        ECALClustersLowEta_6_13_reg_1727;
-    add_ln209_10_fu_900_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_fu_768_p3) + unsigned(ap_port_reg_ECALClustersLowEta_7_7));
-    add_ln209_11_fu_906_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_fu_774_p3) + unsigned(ap_port_reg_ECALClustersLowEta_7_8));
-    add_ln209_12_fu_1113_p2 <= std_logic_vector(unsigned(EnergyH_V_1_reg_1871) + unsigned(EnergyL_V_2_reg_1892));
-    add_ln209_13_fu_1117_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_1_reg_1878) + unsigned(EnergyL5x5_V_2_reg_1899));
-    add_ln209_14_fu_1121_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_1_reg_1885) + unsigned(EnergyL2x5_V_2_reg_1906));
-    add_ln209_15_fu_1314_p2 <= std_logic_vector(unsigned(EnergyH_V_2_reg_1949) + unsigned(EnergyL_V_3_reg_1970));
-    add_ln209_16_fu_1318_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_2_reg_1956) + unsigned(EnergyL5x5_V_3_reg_1977));
-    add_ln209_17_fu_1322_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_2_reg_1963) + unsigned(EnergyL2x5_V_3_reg_1984));
-    add_ln209_18_fu_1209_p2 <= std_logic_vector(unsigned(EnergyH_V_3_reg_1913) + unsigned(ap_port_reg_ECALClustersLowEta_8));
-    add_ln209_19_fu_1214_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_3_reg_1920) + unsigned(ap_port_reg_ECALClustersLowEta_8_7));
+    EnergyL_V_5_fu_1472_p3 <= 
+        select_ln176_42_fu_1440_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyL_V_4_reg_2024;
+    EnergyL_V_fu_384_p3 <= 
+        select_ln176_fu_336_p3 when (and_ln879_1_fu_306_p2(0) = '1') else 
+        ECALClustersLowEta_6;
+    add_ln209_10_fu_918_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_reg_1752) + unsigned(ap_port_reg_ECALClustersLowEta_7_7));
+    add_ln209_11_fu_923_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_reg_1759) + unsigned(ap_port_reg_ECALClustersLowEta_7_8));
+    add_ln209_12_fu_1123_p2 <= std_logic_vector(unsigned(EnergyH_V_1_reg_1867) + unsigned(EnergyL_V_2_reg_1888));
+    add_ln209_13_fu_1127_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_1_reg_1874) + unsigned(EnergyL5x5_V_2_reg_1895));
+    add_ln209_14_fu_1131_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_1_reg_1881) + unsigned(EnergyL2x5_V_2_reg_1902));
+    add_ln209_15_fu_1219_p2 <= std_logic_vector(unsigned(EnergyH_V_2_fu_1102_p3) + unsigned(EnergyL_V_3_fu_1183_p3));
+    add_ln209_16_fu_1225_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_2_fu_1109_p3) + unsigned(EnergyL5x5_V_3_fu_1189_p3));
+    add_ln209_17_fu_1231_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_2_fu_1116_p3) + unsigned(EnergyL2x5_V_3_fu_1195_p3));
+    add_ln209_18_fu_1243_p2 <= std_logic_vector(unsigned(EnergyH_V_3_reg_1909) + unsigned(ap_port_reg_ECALClustersLowEta_8));
+    add_ln209_19_fu_1248_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_3_reg_1916) + unsigned(ap_port_reg_ECALClustersLowEta_8_7));
     add_ln209_1_fu_318_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_23) + unsigned(ECALClustersLowEta_6_7));
-    add_ln209_20_fu_1219_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_3_reg_1927) + unsigned(ap_port_reg_ECALClustersLowEta_8_8));
-    add_ln209_21_fu_1410_p2 <= std_logic_vector(unsigned(EnergyH_V_4_reg_1991) + unsigned(EnergyL_V_4_reg_2012));
-    add_ln209_22_fu_1414_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_4_reg_1998) + unsigned(EnergyL5x5_V_4_reg_2019));
-    add_ln209_23_fu_1418_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_4_reg_2005) + unsigned(EnergyL2x5_V_4_reg_2026));
-    add_ln209_24_fu_1506_p2 <= std_logic_vector(unsigned(EnergyH_V_5_reg_2063) + unsigned(EnergyL_V_5_reg_2084));
-    add_ln209_25_fu_1510_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_5_reg_2070) + unsigned(EnergyL5x5_V_5_reg_2091));
-    add_ln209_26_fu_1514_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_5_reg_2077) + unsigned(EnergyL2x5_V_5_reg_2098));
+    add_ln209_20_fu_1253_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_3_reg_1923) + unsigned(ap_port_reg_ECALClustersLowEta_8_8));
+    add_ln209_21_fu_1348_p2 <= std_logic_vector(unsigned(EnergyH_V_4_fu_1201_p3) + unsigned(EnergyL_V_4_fu_1309_p3));
+    add_ln209_22_fu_1354_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_4_fu_1207_p3) + unsigned(EnergyL5x5_V_4_fu_1316_p3));
+    add_ln209_23_fu_1360_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_4_fu_1213_p3) + unsigned(EnergyL2x5_V_4_fu_1323_p3));
+    add_ln209_24_fu_1508_p2 <= std_logic_vector(unsigned(EnergyH_V_5_fu_1422_p3) + unsigned(EnergyL_V_5_fu_1472_p3));
+    add_ln209_25_fu_1514_p2 <= std_logic_vector(unsigned(EnergyH5x5_V_5_fu_1428_p3) + unsigned(EnergyL5x5_V_5_fu_1478_p3));
+    add_ln209_26_fu_1520_p2 <= std_logic_vector(unsigned(EnergyH2x5_V_5_fu_1434_p3) + unsigned(EnergyL2x5_V_5_fu_1484_p3));
     add_ln209_2_fu_324_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_26) + unsigned(ECALClustersLowEta_6_8));
-    add_ln209_3_fu_780_p2 <= std_logic_vector(unsigned(EnergyL_V_fu_744_p3) + unsigned(ap_port_reg_ECALClustersHighEta_15));
-    add_ln209_4_fu_786_p2 <= std_logic_vector(unsigned(EnergyL5x5_V_fu_750_p3) + unsigned(ap_port_reg_ECALClustersHighEta_24));
-    add_ln209_5_fu_792_p2 <= std_logic_vector(unsigned(EnergyL2x5_V_fu_756_p3) + unsigned(ap_port_reg_ECALClustersHighEta_27));
-    add_ln209_6_fu_1008_p2 <= std_logic_vector(unsigned(EnergyL_V_1_reg_1850) + unsigned(ap_port_reg_ECALClustersHighEta_16));
-    add_ln209_7_fu_1013_p2 <= std_logic_vector(unsigned(EnergyL5x5_V_1_reg_1857) + unsigned(ap_port_reg_ECALClustersHighEta_25));
-    add_ln209_8_fu_1018_p2 <= std_logic_vector(unsigned(EnergyL2x5_V_1_reg_1864) + unsigned(ap_port_reg_ECALClustersHighEta_28));
-    add_ln209_9_fu_894_p2 <= std_logic_vector(unsigned(EnergyH_V_fu_762_p3) + unsigned(ap_port_reg_ECALClustersLowEta_7));
+    add_ln209_3_fu_808_p2 <= std_logic_vector(unsigned(EnergyL_V_reg_1724) + unsigned(ap_port_reg_ECALClustersHighEta_15));
+    add_ln209_4_fu_813_p2 <= std_logic_vector(unsigned(EnergyL5x5_V_reg_1731) + unsigned(ap_port_reg_ECALClustersHighEta_24));
+    add_ln209_5_fu_818_p2 <= std_logic_vector(unsigned(EnergyL2x5_V_reg_1738) + unsigned(ap_port_reg_ECALClustersHighEta_27));
+    add_ln209_6_fu_1018_p2 <= std_logic_vector(unsigned(EnergyL_V_1_reg_1846) + unsigned(ap_port_reg_ECALClustersHighEta_16));
+    add_ln209_7_fu_1023_p2 <= std_logic_vector(unsigned(EnergyL5x5_V_1_reg_1853) + unsigned(ap_port_reg_ECALClustersHighEta_25));
+    add_ln209_8_fu_1028_p2 <= std_logic_vector(unsigned(EnergyL2x5_V_1_reg_1860) + unsigned(ap_port_reg_ECALClustersHighEta_28));
+    add_ln209_9_fu_913_p2 <= std_logic_vector(unsigned(EnergyH_V_reg_1745) + unsigned(ap_port_reg_ECALClustersLowEta_7));
     add_ln209_fu_312_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_s) + unsigned(ECALClustersLowEta_6));
-    and_ln879_10_fu_562_p2 <= (icmp_ln899_5_fu_556_p2 and icmp_ln879_4_fu_436_p2);
-    and_ln879_11_fu_568_p2 <= (icmp_ln879_3_fu_386_p2 and and_ln879_10_fu_562_p2);
-    and_ln879_12_fu_612_p2 <= (icmp_ln899_6_fu_606_p2 and icmp_ln879_5_fu_574_p2);
-    and_ln879_13_fu_618_p2 <= (icmp_ln879_fu_256_p2 and and_ln879_12_fu_612_p2);
-    and_ln879_14_fu_656_p2 <= (icmp_ln899_7_fu_650_p2 and icmp_ln879_5_fu_574_p2);
-    and_ln879_15_fu_662_p2 <= (icmp_ln879_2_fu_336_p2 and and_ln879_14_fu_656_p2);
-    and_ln879_16_fu_700_p2 <= (icmp_ln899_8_fu_694_p2 and icmp_ln879_5_fu_574_p2);
-    and_ln879_17_fu_706_p2 <= (icmp_ln879_3_fu_386_p2 and and_ln879_16_fu_700_p2);
+    and_ln879_10_fu_658_p2 <= (icmp_ln899_5_fu_652_p2 and icmp_ln879_4_fu_532_p2);
+    and_ln879_11_fu_664_p2 <= (icmp_ln879_3_fu_482_p2 and and_ln879_10_fu_658_p2);
+    and_ln879_12_fu_708_p2 <= (icmp_ln899_6_fu_702_p2 and icmp_ln879_5_fu_670_p2);
+    and_ln879_13_fu_714_p2 <= (icmp_ln879_fu_256_p2 and and_ln879_12_fu_708_p2);
+    and_ln879_14_fu_752_p2 <= (icmp_ln899_7_fu_746_p2 and icmp_ln879_5_fu_670_p2);
+    and_ln879_15_fu_758_p2 <= (icmp_ln879_2_fu_432_p2 and and_ln879_14_fu_752_p2);
+    and_ln879_16_fu_796_p2 <= (icmp_ln899_8_fu_790_p2 and icmp_ln879_5_fu_670_p2);
+    and_ln879_17_fu_802_p2 <= (icmp_ln879_3_fu_482_p2 and and_ln879_16_fu_796_p2);
     and_ln879_1_fu_306_p2 <= (icmp_ln879_fu_256_p2 and and_ln879_fu_300_p2);
-    and_ln879_2_fu_374_p2 <= (icmp_ln899_1_fu_368_p2 and icmp_ln879_1_fu_262_p2);
-    and_ln879_3_fu_380_p2 <= (icmp_ln879_2_fu_336_p2 and and_ln879_2_fu_374_p2);
-    and_ln879_4_fu_424_p2 <= (icmp_ln899_2_fu_418_p2 and icmp_ln879_1_fu_262_p2);
-    and_ln879_5_fu_430_p2 <= (icmp_ln879_3_fu_386_p2 and and_ln879_4_fu_424_p2);
-    and_ln879_6_fu_474_p2 <= (icmp_ln899_3_fu_468_p2 and icmp_ln879_4_fu_436_p2);
-    and_ln879_7_fu_480_p2 <= (icmp_ln879_fu_256_p2 and and_ln879_6_fu_474_p2);
-    and_ln879_8_fu_518_p2 <= (icmp_ln899_4_fu_512_p2 and icmp_ln879_4_fu_436_p2);
-    and_ln879_9_fu_524_p2 <= (icmp_ln879_2_fu_336_p2 and and_ln879_8_fu_518_p2);
+    and_ln879_2_fu_470_p2 <= (icmp_ln899_1_fu_464_p2 and icmp_ln879_1_fu_262_p2);
+    and_ln879_3_fu_476_p2 <= (icmp_ln879_2_fu_432_p2 and and_ln879_2_fu_470_p2);
+    and_ln879_4_fu_520_p2 <= (icmp_ln899_2_fu_514_p2 and icmp_ln879_1_fu_262_p2);
+    and_ln879_5_fu_526_p2 <= (icmp_ln879_3_fu_482_p2 and and_ln879_4_fu_520_p2);
+    and_ln879_6_fu_570_p2 <= (icmp_ln899_3_fu_564_p2 and icmp_ln879_4_fu_532_p2);
+    and_ln879_7_fu_576_p2 <= (icmp_ln879_fu_256_p2 and and_ln879_6_fu_570_p2);
+    and_ln879_8_fu_614_p2 <= (icmp_ln899_4_fu_608_p2 and icmp_ln879_4_fu_532_p2);
+    and_ln879_9_fu_620_p2 <= (icmp_ln879_2_fu_432_p2 and and_ln879_8_fu_614_p2);
     and_ln879_fu_300_p2 <= (icmp_ln899_fu_294_p2 and icmp_ln879_1_fu_262_p2);
     ap_CS_fsm_state1 <= ap_CS_fsm(0);
     ap_CS_fsm_state2 <= ap_CS_fsm(1);
     ap_CS_fsm_state3 <= ap_CS_fsm(2);
     ap_CS_fsm_state4 <= ap_CS_fsm(3);
-    ap_CS_fsm_state5 <= ap_CS_fsm(4);
 
-    ap_done_assign_proc : process(ap_start, ap_CS_fsm_state1, ap_CS_fsm_state5)
+    ap_done_assign_proc : process(ap_start, ap_CS_fsm_state1, ap_CS_fsm_state4)
     begin
-        if (((ap_const_logic_1 = ap_CS_fsm_state5) or ((ap_start = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
+        if (((ap_const_logic_1 = ap_CS_fsm_state4) or ((ap_start = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_state1)))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -707,325 +675,325 @@ begin
     end process;
 
 
-    ap_ready_assign_proc : process(ap_CS_fsm_state5)
+    ap_ready_assign_proc : process(ap_CS_fsm_state4)
     begin
-        if ((ap_const_logic_1 = ap_CS_fsm_state5)) then 
+        if ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
             ap_ready <= ap_const_logic_1;
         else 
             ap_ready <= ap_const_logic_0;
         end if; 
     end process;
 
-    ap_return_0 <= select_ln879_reg_1934;
-    ap_return_1 <= select_ln879_28_reg_2048;
-    ap_return_10 <= select_ln879_43_reg_2105;
-    ap_return_11 <= select_ln879_49_fu_1584_p3;
-    ap_return_12 <= select_ln879_38_reg_2038;
-    ap_return_13 <= select_ln879_44_reg_2110;
-    ap_return_14 <= select_ln879_50_fu_1590_p3;
-    ap_return_15 <= select_ln879_39_reg_2043;
-    ap_return_16 <= select_ln879_45_reg_2115;
-    ap_return_17 <= select_ln879_51_fu_1596_p3;
-    ap_return_2 <= select_ln879_46_fu_1566_p3;
-    ap_return_3 <= select_ln879_11_reg_1939;
-    ap_return_4 <= select_ln879_29_reg_2053;
-    ap_return_5 <= select_ln879_47_fu_1572_p3;
-    ap_return_6 <= select_ln879_12_reg_1944;
-    ap_return_7 <= select_ln879_30_reg_2058;
-    ap_return_8 <= select_ln879_48_fu_1578_p3;
-    ap_return_9 <= select_ln879_37_reg_2033;
+    ap_return_0 <= select_ln879_reg_1930;
+    ap_return_1 <= select_ln879_28_fu_1404_p3;
+    ap_return_10 <= select_ln879_43_fu_1490_p3;
+    ap_return_11 <= select_ln879_49_fu_1601_p3;
+    ap_return_12 <= select_ln879_38_reg_2046;
+    ap_return_13 <= select_ln879_44_fu_1496_p3;
+    ap_return_14 <= select_ln879_50_fu_1608_p3;
+    ap_return_15 <= select_ln879_39_reg_2051;
+    ap_return_16 <= select_ln879_45_fu_1502_p3;
+    ap_return_17 <= select_ln879_51_fu_1615_p3;
+    ap_return_2 <= select_ln879_46_fu_1580_p3;
+    ap_return_3 <= select_ln879_11_reg_1935;
+    ap_return_4 <= select_ln879_29_fu_1410_p3;
+    ap_return_5 <= select_ln879_47_fu_1587_p3;
+    ap_return_6 <= select_ln879_12_reg_1940;
+    ap_return_7 <= select_ln879_30_fu_1416_p3;
+    ap_return_8 <= select_ln879_48_fu_1594_p3;
+    ap_return_9 <= select_ln879_37_reg_2041;
     icmp_ln879_1_fu_262_p2 <= "1" when (ECALClustersLowEta_6_5 = ap_const_lv5_18) else "0";
-    icmp_ln879_2_fu_336_p2 <= "1" when (ECALClustersHighEta_18 = ap_const_lv5_0) else "0";
-    icmp_ln879_3_fu_386_p2 <= "1" when (ECALClustersHighEta_19 = ap_const_lv5_0) else "0";
-    icmp_ln879_4_fu_436_p2 <= "1" when (ECALClustersLowEta_7_5 = ap_const_lv5_18) else "0";
-    icmp_ln879_5_fu_574_p2 <= "1" when (ECALClustersLowEta_8_5 = ap_const_lv5_18) else "0";
+    icmp_ln879_2_fu_432_p2 <= "1" when (ECALClustersHighEta_18 = ap_const_lv5_0) else "0";
+    icmp_ln879_3_fu_482_p2 <= "1" when (ECALClustersHighEta_19 = ap_const_lv5_0) else "0";
+    icmp_ln879_4_fu_532_p2 <= "1" when (ECALClustersLowEta_7_5 = ap_const_lv5_18) else "0";
+    icmp_ln879_5_fu_670_p2 <= "1" when (ECALClustersLowEta_8_5 = ap_const_lv5_18) else "0";
     icmp_ln879_fu_256_p2 <= "1" when (ECALClustersHighEta_17 = ap_const_lv5_0) else "0";
-    icmp_ln895_10_fu_530_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_22)) else "0";
-    icmp_ln895_11_fu_1326_p2 <= "1" when (unsigned(EnergyH_V_2_reg_1949) > unsigned(EnergyL_V_3_reg_1970)) else "0";
-    icmp_ln895_12_fu_580_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_20)) else "0";
-    icmp_ln895_13_fu_1224_p2 <= "1" when (unsigned(EnergyH_V_3_reg_1913) > unsigned(ap_port_reg_ECALClustersLowEta_8)) else "0";
-    icmp_ln895_14_fu_624_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_21)) else "0";
-    icmp_ln895_15_fu_1422_p2 <= "1" when (unsigned(EnergyH_V_4_reg_1991) > unsigned(EnergyL_V_4_reg_2012)) else "0";
-    icmp_ln895_16_fu_668_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_22)) else "0";
-    icmp_ln895_17_fu_1518_p2 <= "1" when (unsigned(EnergyH_V_5_reg_2063) > unsigned(EnergyL_V_5_reg_2084)) else "0";
+    icmp_ln895_10_fu_626_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_22)) else "0";
+    icmp_ln895_11_fu_1237_p2 <= "1" when (unsigned(EnergyH_V_2_fu_1102_p3) > unsigned(EnergyL_V_3_fu_1183_p3)) else "0";
+    icmp_ln895_12_fu_676_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_20)) else "0";
+    icmp_ln895_13_fu_1258_p2 <= "1" when (unsigned(EnergyH_V_3_reg_1909) > unsigned(ap_port_reg_ECALClustersLowEta_8)) else "0";
+    icmp_ln895_14_fu_720_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_21)) else "0";
+    icmp_ln895_15_fu_1366_p2 <= "1" when (unsigned(EnergyH_V_4_fu_1201_p3) > unsigned(EnergyL_V_4_fu_1309_p3)) else "0";
+    icmp_ln895_16_fu_764_p2 <= "1" when (unsigned(ECALClustersLowEta_8_6) > unsigned(ECALClustersHighEta_22)) else "0";
+    icmp_ln895_17_fu_1526_p2 <= "1" when (unsigned(EnergyH_V_5_fu_1422_p3) > unsigned(EnergyL_V_5_fu_1472_p3)) else "0";
     icmp_ln895_1_fu_330_p2 <= "1" when (unsigned(ECALClustersHighEta_s) > unsigned(ECALClustersLowEta_6)) else "0";
-    icmp_ln895_2_fu_342_p2 <= "1" when (unsigned(ECALClustersLowEta_6_6) > unsigned(ECALClustersHighEta_21)) else "0";
-    icmp_ln895_3_fu_798_p2 <= "1" when (unsigned(EnergyL_V_fu_744_p3) < unsigned(ap_port_reg_ECALClustersHighEta_15)) else "0";
-    icmp_ln895_4_fu_392_p2 <= "1" when (unsigned(ECALClustersLowEta_6_6) > unsigned(ECALClustersHighEta_22)) else "0";
-    icmp_ln895_5_fu_1023_p2 <= "1" when (unsigned(EnergyL_V_1_reg_1850) < unsigned(ap_port_reg_ECALClustersHighEta_16)) else "0";
-    icmp_ln895_6_fu_442_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_20)) else "0";
-    icmp_ln895_7_fu_912_p2 <= "1" when (unsigned(EnergyH_V_fu_762_p3) > unsigned(ap_port_reg_ECALClustersLowEta_7)) else "0";
-    icmp_ln895_8_fu_486_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_21)) else "0";
-    icmp_ln895_9_fu_1125_p2 <= "1" when (unsigned(EnergyH_V_1_reg_1871) > unsigned(EnergyL_V_2_reg_1892)) else "0";
+    icmp_ln895_2_fu_438_p2 <= "1" when (unsigned(ECALClustersLowEta_6_6) > unsigned(ECALClustersHighEta_21)) else "0";
+    icmp_ln895_3_fu_823_p2 <= "1" when (unsigned(EnergyL_V_reg_1724) < unsigned(ap_port_reg_ECALClustersHighEta_15)) else "0";
+    icmp_ln895_4_fu_488_p2 <= "1" when (unsigned(ECALClustersLowEta_6_6) > unsigned(ECALClustersHighEta_22)) else "0";
+    icmp_ln895_5_fu_1033_p2 <= "1" when (unsigned(EnergyL_V_1_reg_1846) < unsigned(ap_port_reg_ECALClustersHighEta_16)) else "0";
+    icmp_ln895_6_fu_538_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_20)) else "0";
+    icmp_ln895_7_fu_928_p2 <= "1" when (unsigned(EnergyH_V_reg_1745) > unsigned(ap_port_reg_ECALClustersLowEta_7)) else "0";
+    icmp_ln895_8_fu_582_p2 <= "1" when (unsigned(ECALClustersLowEta_7_6) > unsigned(ECALClustersHighEta_21)) else "0";
+    icmp_ln895_9_fu_1135_p2 <= "1" when (unsigned(EnergyH_V_1_reg_1867) > unsigned(EnergyL_V_2_reg_1888)) else "0";
     icmp_ln895_fu_268_p2 <= "1" when (unsigned(ECALClustersLowEta_6_6) > unsigned(ECALClustersHighEta_20)) else "0";
-    icmp_ln899_1_fu_368_p2 <= "1" when (unsigned(select_ln160_1_fu_360_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_2_fu_418_p2 <= "1" when (unsigned(select_ln160_2_fu_410_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_3_fu_468_p2 <= "1" when (unsigned(select_ln160_3_fu_460_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_4_fu_512_p2 <= "1" when (unsigned(select_ln160_4_fu_504_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_5_fu_556_p2 <= "1" when (unsigned(select_ln160_5_fu_548_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_6_fu_606_p2 <= "1" when (unsigned(select_ln160_6_fu_598_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_7_fu_650_p2 <= "1" when (unsigned(select_ln160_7_fu_642_p3) < unsigned(ap_const_lv5_3)) else "0";
-    icmp_ln899_8_fu_694_p2 <= "1" when (unsigned(select_ln160_8_fu_686_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_1_fu_464_p2 <= "1" when (unsigned(select_ln160_1_fu_456_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_2_fu_514_p2 <= "1" when (unsigned(select_ln160_2_fu_506_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_3_fu_564_p2 <= "1" when (unsigned(select_ln160_3_fu_556_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_4_fu_608_p2 <= "1" when (unsigned(select_ln160_4_fu_600_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_5_fu_652_p2 <= "1" when (unsigned(select_ln160_5_fu_644_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_6_fu_702_p2 <= "1" when (unsigned(select_ln160_6_fu_694_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_7_fu_746_p2 <= "1" when (unsigned(select_ln160_7_fu_738_p3) < unsigned(ap_const_lv5_3)) else "0";
+    icmp_ln899_8_fu_790_p2 <= "1" when (unsigned(select_ln160_8_fu_782_p3) < unsigned(ap_const_lv5_3)) else "0";
     icmp_ln899_fu_294_p2 <= "1" when (unsigned(select_ln160_fu_286_p3) < unsigned(ap_const_lv5_3)) else "0";
-    select_ln160_1_fu_360_p3 <= 
-        sub_ln214_2_fu_348_p2 when (icmp_ln895_2_fu_342_p2(0) = '1') else 
-        sub_ln214_3_fu_354_p2;
-    select_ln160_2_fu_410_p3 <= 
-        sub_ln214_4_fu_398_p2 when (icmp_ln895_4_fu_392_p2(0) = '1') else 
-        sub_ln214_5_fu_404_p2;
-    select_ln160_3_fu_460_p3 <= 
-        sub_ln214_6_fu_448_p2 when (icmp_ln895_6_fu_442_p2(0) = '1') else 
-        sub_ln214_7_fu_454_p2;
-    select_ln160_4_fu_504_p3 <= 
-        sub_ln214_8_fu_492_p2 when (icmp_ln895_8_fu_486_p2(0) = '1') else 
-        sub_ln214_9_fu_498_p2;
-    select_ln160_5_fu_548_p3 <= 
-        sub_ln214_10_fu_536_p2 when (icmp_ln895_10_fu_530_p2(0) = '1') else 
-        sub_ln214_11_fu_542_p2;
-    select_ln160_6_fu_598_p3 <= 
-        sub_ln214_12_fu_586_p2 when (icmp_ln895_12_fu_580_p2(0) = '1') else 
-        sub_ln214_13_fu_592_p2;
-    select_ln160_7_fu_642_p3 <= 
-        sub_ln214_14_fu_630_p2 when (icmp_ln895_14_fu_624_p2(0) = '1') else 
-        sub_ln214_15_fu_636_p2;
-    select_ln160_8_fu_686_p3 <= 
-        sub_ln214_16_fu_674_p2 when (icmp_ln895_16_fu_668_p2(0) = '1') else 
-        sub_ln214_17_fu_680_p2;
+    select_ln160_1_fu_456_p3 <= 
+        sub_ln214_2_fu_444_p2 when (icmp_ln895_2_fu_438_p2(0) = '1') else 
+        sub_ln214_3_fu_450_p2;
+    select_ln160_2_fu_506_p3 <= 
+        sub_ln214_4_fu_494_p2 when (icmp_ln895_4_fu_488_p2(0) = '1') else 
+        sub_ln214_5_fu_500_p2;
+    select_ln160_3_fu_556_p3 <= 
+        sub_ln214_6_fu_544_p2 when (icmp_ln895_6_fu_538_p2(0) = '1') else 
+        sub_ln214_7_fu_550_p2;
+    select_ln160_4_fu_600_p3 <= 
+        sub_ln214_8_fu_588_p2 when (icmp_ln895_8_fu_582_p2(0) = '1') else 
+        sub_ln214_9_fu_594_p2;
+    select_ln160_5_fu_644_p3 <= 
+        sub_ln214_10_fu_632_p2 when (icmp_ln895_10_fu_626_p2(0) = '1') else 
+        sub_ln214_11_fu_638_p2;
+    select_ln160_6_fu_694_p3 <= 
+        sub_ln214_12_fu_682_p2 when (icmp_ln895_12_fu_676_p2(0) = '1') else 
+        sub_ln214_13_fu_688_p2;
+    select_ln160_7_fu_738_p3 <= 
+        sub_ln214_14_fu_726_p2 when (icmp_ln895_14_fu_720_p2(0) = '1') else 
+        sub_ln214_15_fu_732_p2;
+    select_ln160_8_fu_782_p3 <= 
+        sub_ln214_16_fu_770_p2 when (icmp_ln895_16_fu_764_p2(0) = '1') else 
+        sub_ln214_17_fu_776_p2;
     select_ln160_fu_286_p3 <= 
         sub_ln214_fu_274_p2 when (icmp_ln895_fu_268_p2(0) = '1') else 
         sub_ln214_1_fu_280_p2;
-    select_ln176_10_fu_836_p3 <= 
-        add_ln209_4_fu_786_p2 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
+    select_ln176_10_fu_858_p3 <= 
+        add_ln209_4_fu_813_p2 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_24;
-    select_ln176_11_fu_844_p3 <= 
-        add_ln209_5_fu_792_p2 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
+    select_ln176_11_fu_866_p3 <= 
+        add_ln209_5_fu_818_p2 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_27;
-    select_ln176_12_fu_1028_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
-        add_ln209_6_fu_1008_p2;
-    select_ln176_13_fu_1036_p3 <= 
-        EnergyL5x5_V_1_reg_1857 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
-        add_ln209_7_fu_1013_p2;
-    select_ln176_14_fu_1043_p3 <= 
-        EnergyL2x5_V_1_reg_1864 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
-        add_ln209_8_fu_1018_p2;
-    select_ln176_15_fu_1050_p3 <= 
-        add_ln209_6_fu_1008_p2 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
+    select_ln176_12_fu_1038_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
+        add_ln209_6_fu_1018_p2;
+    select_ln176_13_fu_1046_p3 <= 
+        EnergyL5x5_V_1_reg_1853 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
+        add_ln209_7_fu_1023_p2;
+    select_ln176_14_fu_1053_p3 <= 
+        EnergyL2x5_V_1_reg_1860 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
+        add_ln209_8_fu_1028_p2;
+    select_ln176_15_fu_1060_p3 <= 
+        add_ln209_6_fu_1018_p2 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_16_fu_1058_p3 <= 
-        add_ln209_7_fu_1013_p2 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
+    select_ln176_16_fu_1068_p3 <= 
+        add_ln209_7_fu_1023_p2 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_25;
-    select_ln176_17_fu_1066_p3 <= 
-        add_ln209_8_fu_1018_p2 when (icmp_ln895_5_fu_1023_p2(0) = '1') else 
+    select_ln176_17_fu_1076_p3 <= 
+        add_ln209_8_fu_1028_p2 when (icmp_ln895_5_fu_1033_p2(0) = '1') else 
         ap_port_reg_ECALClustersHighEta_28;
-    select_ln176_18_fu_918_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
-        add_ln209_9_fu_894_p2;
-    select_ln176_19_fu_926_p3 <= 
-        ap_port_reg_ECALClustersLowEta_7_7 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
-        add_ln209_10_fu_900_p2;
-    select_ln176_1_fu_718_p3 <= 
-        ECALClustersLowEta_6_10_reg_1721 when (icmp_ln895_1_reg_1760(0) = '1') else 
-        add_ln209_1_reg_1748;
-    select_ln176_20_fu_934_p3 <= 
-        ap_port_reg_ECALClustersLowEta_7_8 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
-        add_ln209_11_fu_906_p2;
-    select_ln176_21_fu_942_p3 <= 
-        add_ln209_9_fu_894_p2 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
+    select_ln176_18_fu_933_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
+        add_ln209_9_fu_913_p2;
+    select_ln176_19_fu_941_p3 <= 
+        ap_port_reg_ECALClustersLowEta_7_7 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
+        add_ln209_10_fu_918_p2;
+    select_ln176_1_fu_344_p3 <= 
+        ECALClustersLowEta_6_7 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
+        add_ln209_1_fu_318_p2;
+    select_ln176_20_fu_949_p3 <= 
+        ap_port_reg_ECALClustersLowEta_7_8 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
+        add_ln209_11_fu_923_p2;
+    select_ln176_21_fu_957_p3 <= 
+        add_ln209_9_fu_913_p2 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_22_fu_950_p3 <= 
-        add_ln209_10_fu_900_p2 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
-        EnergyH5x5_V_fu_768_p3;
-    select_ln176_23_fu_958_p3 <= 
-        add_ln209_11_fu_906_p2 when (icmp_ln895_7_fu_912_p2(0) = '1') else 
-        EnergyH2x5_V_fu_774_p3;
-    select_ln176_24_fu_1129_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
-        add_ln209_12_fu_1113_p2;
-    select_ln176_25_fu_1137_p3 <= 
-        EnergyL5x5_V_2_reg_1899 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
-        add_ln209_13_fu_1117_p2;
-    select_ln176_26_fu_1144_p3 <= 
-        EnergyL2x5_V_2_reg_1906 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
-        add_ln209_14_fu_1121_p2;
-    select_ln176_27_fu_1151_p3 <= 
-        add_ln209_12_fu_1113_p2 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
+    select_ln176_22_fu_965_p3 <= 
+        add_ln209_10_fu_918_p2 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
+        EnergyH5x5_V_reg_1752;
+    select_ln176_23_fu_972_p3 <= 
+        add_ln209_11_fu_923_p2 when (icmp_ln895_7_fu_928_p2(0) = '1') else 
+        EnergyH2x5_V_reg_1759;
+    select_ln176_24_fu_1139_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
+        add_ln209_12_fu_1123_p2;
+    select_ln176_25_fu_1147_p3 <= 
+        EnergyL5x5_V_2_reg_1895 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
+        add_ln209_13_fu_1127_p2;
+    select_ln176_26_fu_1154_p3 <= 
+        EnergyL2x5_V_2_reg_1902 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
+        add_ln209_14_fu_1131_p2;
+    select_ln176_27_fu_1161_p3 <= 
+        add_ln209_12_fu_1123_p2 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_28_fu_1159_p3 <= 
-        add_ln209_13_fu_1117_p2 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
-        EnergyH5x5_V_1_reg_1878;
-    select_ln176_29_fu_1166_p3 <= 
-        add_ln209_14_fu_1121_p2 when (icmp_ln895_9_fu_1125_p2(0) = '1') else 
-        EnergyH2x5_V_1_reg_1885;
-    select_ln176_2_fu_723_p3 <= 
-        ECALClustersLowEta_6_9_reg_1715 when (icmp_ln895_1_reg_1760(0) = '1') else 
-        add_ln209_2_reg_1754;
-    select_ln176_30_fu_1330_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
-        add_ln209_15_fu_1314_p2;
-    select_ln176_31_fu_1338_p3 <= 
-        EnergyL5x5_V_3_reg_1977 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
-        add_ln209_16_fu_1318_p2;
-    select_ln176_32_fu_1345_p3 <= 
-        EnergyL2x5_V_3_reg_1984 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
-        add_ln209_17_fu_1322_p2;
-    select_ln176_33_fu_1352_p3 <= 
-        add_ln209_15_fu_1314_p2 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
+    select_ln176_28_fu_1169_p3 <= 
+        add_ln209_13_fu_1127_p2 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
+        EnergyH5x5_V_1_reg_1874;
+    select_ln176_29_fu_1176_p3 <= 
+        add_ln209_14_fu_1131_p2 when (icmp_ln895_9_fu_1135_p2(0) = '1') else 
+        EnergyH2x5_V_1_reg_1881;
+    select_ln176_2_fu_352_p3 <= 
+        ECALClustersLowEta_6_8 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
+        add_ln209_2_fu_324_p2;
+    select_ln176_30_fu_1372_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_11_reg_2014(0) = '1') else 
+        add_ln209_15_reg_1996;
+    select_ln176_31_fu_1378_p3 <= 
+        EnergyL5x5_V_3_reg_1967 when (icmp_ln895_11_reg_2014(0) = '1') else 
+        add_ln209_16_reg_2002;
+    select_ln176_32_fu_1383_p3 <= 
+        EnergyL2x5_V_3_reg_1973 when (icmp_ln895_11_reg_2014(0) = '1') else 
+        add_ln209_17_reg_2008;
+    select_ln176_33_fu_1388_p3 <= 
+        add_ln209_15_reg_1996 when (icmp_ln895_11_reg_2014(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_34_fu_1360_p3 <= 
-        add_ln209_16_fu_1318_p2 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
-        EnergyH5x5_V_2_reg_1956;
-    select_ln176_35_fu_1367_p3 <= 
-        add_ln209_17_fu_1322_p2 when (icmp_ln895_11_fu_1326_p2(0) = '1') else 
-        EnergyH2x5_V_2_reg_1963;
-    select_ln176_36_fu_1229_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
-        add_ln209_18_fu_1209_p2;
-    select_ln176_37_fu_1237_p3 <= 
-        ap_port_reg_ECALClustersLowEta_8_7 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
-        add_ln209_19_fu_1214_p2;
-    select_ln176_38_fu_1245_p3 <= 
-        ap_port_reg_ECALClustersLowEta_8_8 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
-        add_ln209_20_fu_1219_p2;
-    select_ln176_39_fu_1253_p3 <= 
-        add_ln209_18_fu_1209_p2 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
+    select_ln176_34_fu_1394_p3 <= 
+        add_ln209_16_reg_2002 when (icmp_ln895_11_reg_2014(0) = '1') else 
+        EnergyH5x5_V_2_reg_1950;
+    select_ln176_35_fu_1399_p3 <= 
+        add_ln209_17_reg_2008 when (icmp_ln895_11_reg_2014(0) = '1') else 
+        EnergyH2x5_V_2_reg_1956;
+    select_ln176_36_fu_1263_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
+        add_ln209_18_fu_1243_p2;
+    select_ln176_37_fu_1271_p3 <= 
+        ap_port_reg_ECALClustersLowEta_8_7 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
+        add_ln209_19_fu_1248_p2;
+    select_ln176_38_fu_1279_p3 <= 
+        ap_port_reg_ECALClustersLowEta_8_8 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
+        add_ln209_20_fu_1253_p2;
+    select_ln176_39_fu_1287_p3 <= 
+        add_ln209_18_fu_1243_p2 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_3_fu_728_p3 <= 
-        add_ln209_reg_1742 when (icmp_ln895_1_reg_1760(0) = '1') else 
+    select_ln176_3_fu_360_p3 <= 
+        add_ln209_fu_312_p2 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_40_fu_1261_p3 <= 
-        add_ln209_19_fu_1214_p2 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
-        EnergyH5x5_V_3_reg_1920;
-    select_ln176_41_fu_1268_p3 <= 
-        add_ln209_20_fu_1219_p2 when (icmp_ln895_13_fu_1224_p2(0) = '1') else 
-        EnergyH2x5_V_3_reg_1927;
-    select_ln176_42_fu_1426_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
-        add_ln209_21_fu_1410_p2;
-    select_ln176_43_fu_1434_p3 <= 
-        EnergyL5x5_V_4_reg_2019 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
-        add_ln209_22_fu_1414_p2;
-    select_ln176_44_fu_1441_p3 <= 
-        EnergyL2x5_V_4_reg_2026 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
-        add_ln209_23_fu_1418_p2;
-    select_ln176_45_fu_1448_p3 <= 
-        add_ln209_21_fu_1410_p2 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
+    select_ln176_40_fu_1295_p3 <= 
+        add_ln209_19_fu_1248_p2 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
+        EnergyH5x5_V_3_reg_1916;
+    select_ln176_41_fu_1302_p3 <= 
+        add_ln209_20_fu_1253_p2 when (icmp_ln895_13_fu_1258_p2(0) = '1') else 
+        EnergyH2x5_V_3_reg_1923;
+    select_ln176_42_fu_1440_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_15_reg_2074(0) = '1') else 
+        add_ln209_21_reg_2056;
+    select_ln176_43_fu_1446_p3 <= 
+        EnergyL5x5_V_4_reg_2029 when (icmp_ln895_15_reg_2074(0) = '1') else 
+        add_ln209_22_reg_2062;
+    select_ln176_44_fu_1451_p3 <= 
+        EnergyL2x5_V_4_reg_2035 when (icmp_ln895_15_reg_2074(0) = '1') else 
+        add_ln209_23_reg_2068;
+    select_ln176_45_fu_1456_p3 <= 
+        add_ln209_21_reg_2056 when (icmp_ln895_15_reg_2074(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_46_fu_1456_p3 <= 
-        add_ln209_22_fu_1414_p2 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
-        EnergyH5x5_V_4_reg_1998;
-    select_ln176_47_fu_1463_p3 <= 
-        add_ln209_23_fu_1418_p2 when (icmp_ln895_15_fu_1422_p2(0) = '1') else 
-        EnergyH2x5_V_4_reg_2005;
-    select_ln176_48_fu_1522_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
-        add_ln209_24_fu_1506_p2;
-    select_ln176_49_fu_1530_p3 <= 
-        EnergyL5x5_V_5_reg_2091 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
-        add_ln209_25_fu_1510_p2;
-    select_ln176_4_fu_734_p3 <= 
-        add_ln209_1_reg_1748 when (icmp_ln895_1_reg_1760(0) = '1') else 
-        ECALClustersHighEta_34_reg_1704;
-    select_ln176_50_fu_1537_p3 <= 
-        EnergyL2x5_V_5_reg_2098 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
-        add_ln209_26_fu_1514_p2;
-    select_ln176_51_fu_1544_p3 <= 
-        add_ln209_24_fu_1506_p2 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
+    select_ln176_46_fu_1462_p3 <= 
+        add_ln209_22_reg_2062 when (icmp_ln895_15_reg_2074(0) = '1') else 
+        EnergyH5x5_V_4_reg_1984;
+    select_ln176_47_fu_1467_p3 <= 
+        add_ln209_23_reg_2068 when (icmp_ln895_15_reg_2074(0) = '1') else 
+        EnergyH2x5_V_4_reg_1990;
+    select_ln176_48_fu_1532_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
+        add_ln209_24_fu_1508_p2;
+    select_ln176_49_fu_1540_p3 <= 
+        EnergyL5x5_V_5_fu_1478_p3 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
+        add_ln209_25_fu_1514_p2;
+    select_ln176_4_fu_368_p3 <= 
+        add_ln209_1_fu_318_p2 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
+        ECALClustersHighEta_23;
+    select_ln176_50_fu_1548_p3 <= 
+        EnergyL2x5_V_5_fu_1484_p3 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
+        add_ln209_26_fu_1520_p2;
+    select_ln176_51_fu_1556_p3 <= 
+        add_ln209_24_fu_1508_p2 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_52_fu_1552_p3 <= 
-        add_ln209_25_fu_1510_p2 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
-        EnergyH5x5_V_5_reg_2070;
-    select_ln176_53_fu_1559_p3 <= 
-        add_ln209_26_fu_1514_p2 when (icmp_ln895_17_fu_1518_p2(0) = '1') else 
-        EnergyH2x5_V_5_reg_2077;
-    select_ln176_5_fu_739_p3 <= 
-        add_ln209_2_reg_1754 when (icmp_ln895_1_reg_1760(0) = '1') else 
-        ECALClustersHighEta_31_reg_1698;
-    select_ln176_6_fu_804_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
-        add_ln209_3_fu_780_p2;
-    select_ln176_7_fu_812_p3 <= 
-        EnergyL5x5_V_fu_750_p3 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
-        add_ln209_4_fu_786_p2;
-    select_ln176_8_fu_820_p3 <= 
-        EnergyL2x5_V_fu_756_p3 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
-        add_ln209_5_fu_792_p2;
-    select_ln176_9_fu_828_p3 <= 
-        add_ln209_3_fu_780_p2 when (icmp_ln895_3_fu_798_p2(0) = '1') else 
+    select_ln176_52_fu_1564_p3 <= 
+        add_ln209_25_fu_1514_p2 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
+        EnergyH5x5_V_5_fu_1428_p3;
+    select_ln176_53_fu_1572_p3 <= 
+        add_ln209_26_fu_1520_p2 when (icmp_ln895_17_fu_1526_p2(0) = '1') else 
+        EnergyH2x5_V_5_fu_1434_p3;
+    select_ln176_5_fu_376_p3 <= 
+        add_ln209_2_fu_324_p2 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
+        ECALClustersHighEta_26;
+    select_ln176_6_fu_828_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
+        add_ln209_3_fu_808_p2;
+    select_ln176_7_fu_836_p3 <= 
+        EnergyL5x5_V_reg_1731 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
+        add_ln209_4_fu_813_p2;
+    select_ln176_8_fu_843_p3 <= 
+        EnergyL2x5_V_reg_1738 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
+        add_ln209_5_fu_818_p2;
+    select_ln176_9_fu_850_p3 <= 
+        add_ln209_3_fu_808_p2 when (icmp_ln895_3_fu_823_p2(0) = '1') else 
         ap_const_lv12_0;
-    select_ln176_fu_712_p3 <= 
-        ap_const_lv12_0 when (icmp_ln895_1_reg_1760(0) = '1') else 
-        add_ln209_reg_1742;
-    select_ln879_11_fu_1080_p3 <= 
-        select_ln176_13_fu_1036_p3 when (and_ln879_5_reg_1780(0) = '1') else 
-        EnergyL5x5_V_1_reg_1857;
-    select_ln879_12_fu_1086_p3 <= 
-        select_ln176_14_fu_1043_p3 when (and_ln879_5_reg_1780(0) = '1') else 
-        EnergyL2x5_V_1_reg_1864;
-    select_ln879_28_fu_1374_p3 <= 
-        select_ln176_30_fu_1330_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyL_V_3_reg_1970;
-    select_ln879_29_fu_1380_p3 <= 
-        select_ln176_31_fu_1338_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyL5x5_V_3_reg_1977;
-    select_ln879_30_fu_1386_p3 <= 
-        select_ln176_32_fu_1345_p3 when (and_ln879_11_reg_1810(0) = '1') else 
-        EnergyL2x5_V_3_reg_1984;
-    select_ln879_37_fu_1296_p3 <= 
-        select_ln176_39_fu_1253_p3 when (and_ln879_13_reg_1820(0) = '1') else 
-        EnergyH_V_3_reg_1913;
-    select_ln879_38_fu_1302_p3 <= 
-        select_ln176_40_fu_1261_p3 when (and_ln879_13_reg_1820(0) = '1') else 
-        EnergyH5x5_V_3_reg_1920;
-    select_ln879_39_fu_1308_p3 <= 
-        select_ln176_41_fu_1268_p3 when (and_ln879_13_reg_1820(0) = '1') else 
-        EnergyH2x5_V_3_reg_1927;
-    select_ln879_43_fu_1488_p3 <= 
-        select_ln176_45_fu_1448_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyH_V_4_reg_1991;
-    select_ln879_44_fu_1494_p3 <= 
-        select_ln176_46_fu_1456_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyH5x5_V_4_reg_1998;
-    select_ln879_45_fu_1500_p3 <= 
-        select_ln176_47_fu_1463_p3 when (and_ln879_15_reg_1830(0) = '1') else 
-        EnergyH2x5_V_4_reg_2005;
-    select_ln879_46_fu_1566_p3 <= 
-        select_ln176_48_fu_1522_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyL_V_5_reg_2084;
-    select_ln879_47_fu_1572_p3 <= 
-        select_ln176_49_fu_1530_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyL5x5_V_5_reg_2091;
-    select_ln879_48_fu_1578_p3 <= 
-        select_ln176_50_fu_1537_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyL2x5_V_5_reg_2098;
-    select_ln879_49_fu_1584_p3 <= 
-        select_ln176_51_fu_1544_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyH_V_5_reg_2063;
-    select_ln879_50_fu_1590_p3 <= 
-        select_ln176_52_fu_1552_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyH5x5_V_5_reg_2070;
-    select_ln879_51_fu_1596_p3 <= 
-        select_ln176_53_fu_1559_p3 when (and_ln879_17_reg_1840(0) = '1') else 
-        EnergyH2x5_V_5_reg_2077;
-    select_ln879_fu_1074_p3 <= 
-        select_ln176_12_fu_1028_p3 when (and_ln879_5_reg_1780(0) = '1') else 
-        EnergyL_V_1_reg_1850;
-    sub_ln214_10_fu_536_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_22));
-    sub_ln214_11_fu_542_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_7_6));
-    sub_ln214_12_fu_586_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_20));
-    sub_ln214_13_fu_592_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_20) - unsigned(ECALClustersLowEta_8_6));
-    sub_ln214_14_fu_630_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_21));
-    sub_ln214_15_fu_636_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_8_6));
-    sub_ln214_16_fu_674_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_22));
-    sub_ln214_17_fu_680_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_8_6));
+    select_ln176_fu_336_p3 <= 
+        ap_const_lv12_0 when (icmp_ln895_1_fu_330_p2(0) = '1') else 
+        add_ln209_fu_312_p2;
+    select_ln879_11_fu_1090_p3 <= 
+        select_ln176_13_fu_1046_p3 when (and_ln879_5_reg_1776(0) = '1') else 
+        EnergyL5x5_V_1_reg_1853;
+    select_ln879_12_fu_1096_p3 <= 
+        select_ln176_14_fu_1053_p3 when (and_ln879_5_reg_1776(0) = '1') else 
+        EnergyL2x5_V_1_reg_1860;
+    select_ln879_28_fu_1404_p3 <= 
+        select_ln176_30_fu_1372_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyL_V_3_reg_1962;
+    select_ln879_29_fu_1410_p3 <= 
+        select_ln176_31_fu_1378_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyL5x5_V_3_reg_1967;
+    select_ln879_30_fu_1416_p3 <= 
+        select_ln176_32_fu_1383_p3 when (and_ln879_11_reg_1806(0) = '1') else 
+        EnergyL2x5_V_3_reg_1973;
+    select_ln879_37_fu_1330_p3 <= 
+        select_ln176_39_fu_1287_p3 when (and_ln879_13_reg_1816(0) = '1') else 
+        EnergyH_V_3_reg_1909;
+    select_ln879_38_fu_1336_p3 <= 
+        select_ln176_40_fu_1295_p3 when (and_ln879_13_reg_1816(0) = '1') else 
+        EnergyH5x5_V_3_reg_1916;
+    select_ln879_39_fu_1342_p3 <= 
+        select_ln176_41_fu_1302_p3 when (and_ln879_13_reg_1816(0) = '1') else 
+        EnergyH2x5_V_3_reg_1923;
+    select_ln879_43_fu_1490_p3 <= 
+        select_ln176_45_fu_1456_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyH_V_4_reg_1979;
+    select_ln879_44_fu_1496_p3 <= 
+        select_ln176_46_fu_1462_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyH5x5_V_4_reg_1984;
+    select_ln879_45_fu_1502_p3 <= 
+        select_ln176_47_fu_1467_p3 when (and_ln879_15_reg_1826(0) = '1') else 
+        EnergyH2x5_V_4_reg_1990;
+    select_ln879_46_fu_1580_p3 <= 
+        select_ln176_48_fu_1532_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyL_V_5_fu_1472_p3;
+    select_ln879_47_fu_1587_p3 <= 
+        select_ln176_49_fu_1540_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyL5x5_V_5_fu_1478_p3;
+    select_ln879_48_fu_1594_p3 <= 
+        select_ln176_50_fu_1548_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyL2x5_V_5_fu_1484_p3;
+    select_ln879_49_fu_1601_p3 <= 
+        select_ln176_51_fu_1556_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyH_V_5_fu_1422_p3;
+    select_ln879_50_fu_1608_p3 <= 
+        select_ln176_52_fu_1564_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyH5x5_V_5_fu_1428_p3;
+    select_ln879_51_fu_1615_p3 <= 
+        select_ln176_53_fu_1572_p3 when (and_ln879_17_reg_1836(0) = '1') else 
+        EnergyH2x5_V_5_fu_1434_p3;
+    select_ln879_fu_1084_p3 <= 
+        select_ln176_12_fu_1038_p3 when (and_ln879_5_reg_1776(0) = '1') else 
+        EnergyL_V_1_reg_1846;
+    sub_ln214_10_fu_632_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_22));
+    sub_ln214_11_fu_638_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_7_6));
+    sub_ln214_12_fu_682_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_20));
+    sub_ln214_13_fu_688_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_20) - unsigned(ECALClustersLowEta_8_6));
+    sub_ln214_14_fu_726_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_21));
+    sub_ln214_15_fu_732_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_8_6));
+    sub_ln214_16_fu_770_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_8_6) - unsigned(ECALClustersHighEta_22));
+    sub_ln214_17_fu_776_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_8_6));
     sub_ln214_1_fu_280_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_20) - unsigned(ECALClustersLowEta_6_6));
-    sub_ln214_2_fu_348_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_6_6) - unsigned(ECALClustersHighEta_21));
-    sub_ln214_3_fu_354_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_6_6));
-    sub_ln214_4_fu_398_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_6_6) - unsigned(ECALClustersHighEta_22));
-    sub_ln214_5_fu_404_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_6_6));
-    sub_ln214_6_fu_448_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_20));
-    sub_ln214_7_fu_454_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_20) - unsigned(ECALClustersLowEta_7_6));
-    sub_ln214_8_fu_492_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_21));
-    sub_ln214_9_fu_498_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_7_6));
+    sub_ln214_2_fu_444_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_6_6) - unsigned(ECALClustersHighEta_21));
+    sub_ln214_3_fu_450_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_6_6));
+    sub_ln214_4_fu_494_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_6_6) - unsigned(ECALClustersHighEta_22));
+    sub_ln214_5_fu_500_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_22) - unsigned(ECALClustersLowEta_6_6));
+    sub_ln214_6_fu_544_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_20));
+    sub_ln214_7_fu_550_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_20) - unsigned(ECALClustersLowEta_7_6));
+    sub_ln214_8_fu_588_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_7_6) - unsigned(ECALClustersHighEta_21));
+    sub_ln214_9_fu_594_p2 <= std_logic_vector(unsigned(ECALClustersHighEta_21) - unsigned(ECALClustersLowEta_7_6));
     sub_ln214_fu_274_p2 <= std_logic_vector(unsigned(ECALClustersLowEta_6_6) - unsigned(ECALClustersHighEta_20));
 end behav;

@@ -214,9 +214,9 @@ signal axiStreamOutIP2D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP2-1);
 signal axiStreamOutIP2D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP2-1);
 
 signal axiStreamInIP3    : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP3-1);
-signal axiStreamOutIP3   : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP3-1);
-signal axiStreamOutIP3D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP3-1);
-signal axiStreamOutIP3D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP3-1);
+signal axiStreamOutIP3   : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
+signal axiStreamOutIP3D0 : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
+signal axiStreamOutIP3D1 : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
 
 attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutSLR1D2, axiStreamOutSLR1D3, axiStreamOutSLR1D4, axiStreamOutSLR1D5, axiStreamOutSLR1D6, axiStreamOutSLR1D7, axiStreamOutSLR1D8, axiStreamOutSLR1D9: signal is "no";
 attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6, axiStreamOutSLR2D7, axiStreamOutSLR2D8, axiStreamOutSLR2D9: signal is "no";
@@ -701,7 +701,7 @@ end process;
 ALGO_IP3_SLR0: entity work.IP3TopWrapper
   generic map(
     N_INPUT_STREAMS  => N_INPUT_STREAMS_IP3,
-    N_OUTPUT_STREAMS => N_OUTPUT_STREAMS_IP3
+    N_OUTPUT_STREAMS => N_IP3_OUTPUTS
     )
   port map(
     -- Algo Control/Status Signals

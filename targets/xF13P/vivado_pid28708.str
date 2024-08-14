@@ -1,0 +1,168 @@
+/*
+
+Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
+SW Build: 3247384 on Thu Jun 10 19:36:07 MDT 2021
+IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
+
+Process ID (PID): 28708
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Wed Aug 14 02:35:32 CDT 2024
+Time zone: 	Central Standard Time (America/Chicago)
+
+OS: CentOS Linux release 7.9.2009 (Core)
+OS Version: 5.4.243-1.el7.elrepo.x86_64
+OS Architecture: amd64
+Available processors (cores): 36
+
+Display: 3
+Screen size: 1280x720
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	/opt/Xilinx/Vivado/2021.1/tps/lnx64/jre11.0.2
+Java executable: 	/opt/Xilinx/Vivado/2021.1/tps/lnx64/jre11.0.2/bin/java
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	23pmmt11
+User home directory: /afs/hep.wisc.edu/user/23pmmt11
+User working directory: /scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2021.1
+RDI_DATADIR: /opt/Xilinx/Vivado/2021.1/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2021.1/bin
+
+Vivado preferences file: /afs/hep.wisc.edu/home/23pmmt11/.Xilinx/Vivado/2021.1/vivado.xml
+Vivado preferences directory: /afs/hep.wisc.edu/home/23pmmt11/.Xilinx/Vivado/2021.1/
+Vivado layouts directory: /afs/hep.wisc.edu/user/23pmmt11/.Xilinx/Vivado/2021.1/data/layouts
+PlanAhead jar file: 	/opt/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
+Vivado log file: 	/scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P/vivado.log
+Vivado journal file: 	/scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-28708-beck.hep.wisc.edu
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /opt/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2100@xilinxlm.physics.wisc.edu
+XILINX_DSP: /opt/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_HLS: /opt/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: /opt/Xilinx/Vivado/2021.1
+XILINX_SDK: /opt/Xilinx/Vitis/2021.1
+XILINX_VITIS: /opt/Xilinx/Vitis/2021.1
+XILINX_VIVADO: /opt/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: /opt/Xilinx/Vivado/2021.1
+
+
+GUI allocated memory:	308 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,851 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 82 MB (+83458kb) [00:00:05]
+// [Engine Memory]: 1,837 MB (+1774381kb) [00:00:05]
+// bz (cs):  Open Project : addNotify
+// Opening Vivado Project: /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/xF13P_top_project.xpr. Version: Vivado v2021.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/xF13P_top_project.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,807 MB. GUI used memory: 56 MB. Current time: 8/14/24, 2:35:33 AM CDT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 115 MB (+30292kb) [00:00:13]
+// [Engine Memory]: 1,995 MB (+69921kb) [00:00:15]
+// [GUI Memory]: 124 MB (+2953kb) [00:00:20]
+// [GUI Memory]: 138 MB (+8702kb) [00:00:20]
+// [GUI Memory]: 150 MB (+4792kb) [00:00:20]
+// WARNING: HEventQueue.dispatchEvent() is taking  8095 ms.
+// Tcl Message: open_project /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/xF13P_top_project.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/ip_repo'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2021.1/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:44 ; elapsed = 00:00:16 . Memory (MB): peak = 7892.055 ; gain = 244.734 ; free physical = 132634 ; free virtual = 214333 
+// Project name: xF13P_top_project; location: /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top; part: xcvu13p-flga2577-2-e
+dismissDialog("Open Project"); // bz
+// [GUI Memory]: 163 MB (+6744kb) [00:00:23]
+// HMemoryUtils.trashcanNow. Engine heap size: 2,081 MB. GUI used memory: 109 MB. Current time: 8/14/24, 2:35:48 AM CDT
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// [Engine Memory]: 2,251 MB (+163947kb) [00:00:40]
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 172 MB (+211kb) [00:00:40]
+// Tcl Message: update_compile_order -fileset sources_1 
+// [GUI Memory]: 181 MB (+308kb) [00:00:42]

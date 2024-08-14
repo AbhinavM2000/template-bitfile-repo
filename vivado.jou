@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Tue Aug 13 02:52:07 2024
+# Process ID: 2803
+# Current directory: /scratch/abnv/rct_fork/rct-17-x-6-abnv
+# Command line: vivado /build/xF13P_top/xF13P_top_project.xpr
+# Log file: /scratch/abnv/rct_fork/rct-17-x-6-abnv/vivado.log
+# Journal file: /scratch/abnv/rct_fork/rct-17-x-6-abnv/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /build/xF13P_top/xF13P_top_project.xpr
