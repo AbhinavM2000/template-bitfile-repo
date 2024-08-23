@@ -1,14 +1,14 @@
 #-----------------------------------------------------------
-# Vivado v2021.1 (64-bit)
-# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
-# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Wed Aug 14 02:35:14 2024
-# Process ID: 28708
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed Aug 21 11:57:06 2024
+# Process ID: 5688
 # Current directory: /scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P
-# Command line: vivado /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/xF13P_top_project.xpr
+# Command line: vivado tclapp::reset_tclstore
 # Log file: /scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P/vivado.log
 # Journal file: /scratch/abnv/rct_fork/rct-17-x-6-abnv/targets/xF13P/vivado.jou
+# Running On: superbock.hep.wisc.edu, OS: Linux, CPU Frequency: 1200.030 MHz, CPU Physical cores: 18, Host memory: 134742 MB
 #-----------------------------------------------------------
 start_gui
-open_project /scratch/abnv/rct_fork/rct-17-x-6-abnv/build/xF13P_top/xF13P_top_project.xpr
-update_compile_order -fileset sources_1

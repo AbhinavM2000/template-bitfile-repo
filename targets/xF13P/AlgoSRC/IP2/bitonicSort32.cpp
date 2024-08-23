@@ -137,6 +137,8 @@ void SixteenGreatFir(ecalcluster &x0, ecalcluster &x1, ecalcluster &x2, ecalclus
 
 
 void bitonicSort32(ecalcluster in[N],ecalcluster out[N]){
+#pragma HLS INLINE
+
 #pragma HLS ARRAY_PARTITION variable=in
 #pragma HLS ARRAY_PARTITION variable=out
 

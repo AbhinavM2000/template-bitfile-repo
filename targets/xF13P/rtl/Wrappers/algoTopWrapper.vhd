@@ -218,6 +218,12 @@ signal axiStreamOutIP3   : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
 signal axiStreamOutIP3D0 : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
 signal axiStreamOutIP3D1 : AxiStreamMasterArray(0 to N_IP3_OUTPUTS-1);
 
+signal axiStreamOutD1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1);
+signal axiStreamOutD0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1);
+
+
+signal axiStreamOut_internal : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1);
+
 attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutSLR1D2, axiStreamOutSLR1D3, axiStreamOutSLR1D4, axiStreamOutSLR1D5, axiStreamOutSLR1D6, axiStreamOutSLR1D7, axiStreamOutSLR1D8, axiStreamOutSLR1D9: signal is "no";
 attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6, axiStreamOutSLR2D7, axiStreamOutSLR2D8, axiStreamOutSLR2D9: signal is "no";
 attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6, axiStreamOutSLR3D7, axiStreamOutSLR3D8, axiStreamOutSLR3D9: signal is "no";
@@ -721,12 +727,22 @@ axiStreamOutIP3D0 <= axiStreamOutIP3   when rising_edge(algoClk);
 axiStreamOutIP3D1 <= axiStreamOutIP3D0 when rising_edge(algoClk);
 
 
+
+-- Generate block for duplication with pattern a,a,b,b,c,c,d,d
 GEN_OUT_LINKS_SLR0: for idx in 0 to N_OUTPUTS_IP3_PLUS_DUP-1 generate
-    axiStreamOut(XLA_OUTPUT_MAP_C_SLR0(idx)) <= 
-        axiStreamOutIP3D1(idx mod N_IP3_OUTPUTS);
+begin
+    -- Calculate the correct input index for the duplication
+    axiStreamOut_internal(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx / 2);
 end generate;
 
+-- Pipeline duplicate signal
+axiStreamOutD0 <= axiStreamOut_internal when rising_edge(algoClk);
+axiStreamOutD1 <= axiStreamOutD0 when rising_edge(algoClk);
 
+-- Assign the final pipelined signal to the output port
+axiStreamOut <= axiStreamOutD1;
 
 end rtl;
+
+
 
