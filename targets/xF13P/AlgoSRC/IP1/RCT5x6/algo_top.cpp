@@ -1,4 +1,4 @@
-#include "algo_topIP1.h"
+#include "algo_top.h"
 
 void processOutputLinks(ecalcluster ECALClustersH1[N_CLUSTERS], ecalcluster ECALClustersH2[N_CLUSTERS], ecalcluster ECALClustersH3[N_CLUSTERS], ecaltower ECALTowers[TOWERS_IN_ETA*TOWERS_IN_PHI], ap_uint<576> link_out[N_OUTPUT_LINKS]){
 #pragma HLS ARRAY_PARTITION variable=ECALClustersH1 complete dim=0
