@@ -201,11 +201,11 @@ class rctecalcluster{
     	this->satur = i.range(57, 57);
     	this->brems = i.range(59, 58);
     }
-
-    void fillrctecalcluster2(ecalcluster i, ap_uint<7> eta){
-
+   
+    void fillrctecalcluster2(ecalcluster i, ap_uint<7> eta,ap_uint<16> ss_fun[25]){
+    #pragma HLS interface ap_none port=ss_fun
 	ap_uint<7> WPs=1 ;
-	ap_uint<7> SS_fun[25] = {126, 125, 125, 124, 123, 123, 122, 122, 121, 121, 121, 121, 121, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120} ;
+	//ap_uint<7> SS_fun[25] = {126, 125, 125, 124, 123, 123, 122, 122, 121, 121, 121, 121, 121, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120} ;
 
 	for(loop j=0; j<25; j++){
 	#pragma unroll
