@@ -353,12 +353,11 @@ constant XLA_INPUT_MAP_C_SLR0 : IntegerArray(0 to N_INPUT_STREAMS_IP1_2x6-1) := 
 );
 
 constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := (
-  --sector 4
+  --sector 4 org + dup
   0  => 64,
   1  => 65,
   2  => 66,
   3  => 67,
-  --duplicate outputs
   4  => 68,
   5  => 69,
   6  => 70,
