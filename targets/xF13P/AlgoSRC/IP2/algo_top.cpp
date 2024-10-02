@@ -1,5 +1,6 @@
 #include "algo_top.h"
 #include "bitonicSort32.h"
+#include "global.h"
 
 void processOutLinks(ecalcluster ECALClustersOut[N_CLUSTERS],
                      ecaltower ECALTowersSLR0[TOWERS_IN_ETA2*TOWERS_IN_PHI],
@@ -274,7 +275,10 @@ for(loop i=0; i<TOWERS_IN_ETA5*TOWERS_IN_PHI; i++){
 
 }
 
-void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS]){
+void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS], ap_uint<16> ss_fun[25]){
+
+#pragma HLS INTERFACE ap_none port=ss_fun
+
 #pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
 #pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
 #pragma HLS PIPELINE II=9
