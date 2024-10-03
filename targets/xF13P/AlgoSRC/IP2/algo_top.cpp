@@ -29,7 +29,7 @@ void processOutLinks(ecalcluster ECALClustersOut[N_CLUSTERS],
 		ap_uint<7> slr =  ECALClustersOut[i+23].spare ;
         	ap_uint<7> etatmp = ECALClustersOut[i+23].eta ;
         	ap_uint<7> rctEta = etatmp + ((ap_uint<7>)slr<<4) + ((ap_uint<7>)slr<<3) + slr ;
-		RCTECALClusters[i].fillrctecalcluster2(ECALClustersOut[i+23],rctEta) ;
+		RCTECALClusters[i].fillrctecalcluster2(ECALClustersOut[i+23],rctEta,ss_fun) ;
 	  }
 
         for(loop i=0 ; i<N_CLUSTERS_OUT; i++)
@@ -275,9 +275,33 @@ for(loop i=0; i<TOWERS_IN_ETA5*TOWERS_IN_PHI; i++){
 
 }
 
-void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS], ap_uint<16> ss_fun[25]){
+void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS], ap_uint<16> ss_fun0,ap_uint<16> ss_fun1,ap_uint<16> ss_fun2,ap_uint<16> ss_fun3,ap_uint<16> ss_fun4,ap_uint<16> ss_fun5,ap_uint<16> ss_fun6,ap_uint<16> ss_fun7,ap_uint<16> ss_fun8,ap_uint<16> ss_fun9,ap_uint<16> ss_fun10,ap_uint<16> ss_fun11,ap_uint<16> ss_fun12,ap_uint<16> ss_fun13,ap_uint<16> ss_fun14,ap_uint<16> ss_fun15,ap_uint<16> ss_fun16,ap_uint<16> ss_fun17,ap_uint<16> ss_fun18,ap_uint<16> ss_fun19,ap_uint<16> ss_fun20,ap_uint<16> ss_fun21,ap_uint<16> ss_fun22,ap_uint<16> ss_fun23,ap_uint<16> ss_fun24){
 
-#pragma HLS INTERFACE ap_none port=ss_fun
+#pragma HLS INTERFACE ap_none port=ss_fun0
+#pragma HLS INTERFACE ap_none port=ss_fun1
+#pragma HLS INTERFACE ap_none port=ss_fun2
+#pragma HLS INTERFACE ap_none port=ss_fun3
+#pragma HLS INTERFACE ap_none port=ss_fun4
+#pragma HLS INTERFACE ap_none port=ss_fun5
+#pragma HLS INTERFACE ap_none port=ss_fun6
+#pragma HLS INTERFACE ap_none port=ss_fun7
+#pragma HLS INTERFACE ap_none port=ss_fun8
+#pragma HLS INTERFACE ap_none port=ss_fun9
+#pragma HLS INTERFACE ap_none port=ss_fun10
+#pragma HLS INTERFACE ap_none port=ss_fun11
+#pragma HLS INTERFACE ap_none port=ss_fun12
+#pragma HLS INTERFACE ap_none port=ss_fun13
+#pragma HLS INTERFACE ap_none port=ss_fun14
+#pragma HLS INTERFACE ap_none port=ss_fun15
+#pragma HLS INTERFACE ap_none port=ss_fun16
+#pragma HLS INTERFACE ap_none port=ss_fun17
+#pragma HLS INTERFACE ap_none port=ss_fun18
+#pragma HLS INTERFACE ap_none port=ss_fun19
+#pragma HLS INTERFACE ap_none port=ss_fun20
+#pragma HLS INTERFACE ap_none port=ss_fun21
+#pragma HLS INTERFACE ap_none port=ss_fun22
+#pragma HLS INTERFACE ap_none port=ss_fun23
+#pragma HLS INTERFACE ap_none port=ss_fun24
 
 #pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
 #pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
@@ -291,6 +315,7 @@ ecalcluster ECALClustersSLR3[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR2[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR1[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR0[N_CLUSTERS_2x6] ;
+ap_uint<16> ss_fun[25];
 
 #pragma HLS ARRAY_PARTITION variable=ECALClusters complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALClustersOut complete dim=0
@@ -307,6 +332,37 @@ ecaltower ECALTowersSLR0[TOWERS_IN_ETA2*TOWERS_IN_PHI];
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR2 complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 complete dim=0
+
+#pragma HLS ARRAY_PARTITION variable=ss_fun complete dim=0
+
+ // Pack the individual ss_fun variables into the array
+ ss_fun[0] = ss_fun0;
+ ss_fun[1] = ss_fun1;
+ ss_fun[2] = ss_fun2;
+ ss_fun[3] = ss_fun3;
+ ss_fun[4] = ss_fun4;
+ ss_fun[5] = ss_fun5;
+ ss_fun[6] = ss_fun6;
+ ss_fun[7] = ss_fun7;
+ ss_fun[8] = ss_fun8;
+ ss_fun[9] = ss_fun9;
+ ss_fun[10] = ss_fun10;
+ ss_fun[11] = ss_fun11;
+ ss_fun[12] = ss_fun12;
+ ss_fun[13] = ss_fun13;
+ ss_fun[14] = ss_fun14;
+ ss_fun[15] = ss_fun15;
+ ss_fun[16] = ss_fun16;
+ ss_fun[17] = ss_fun17;
+ ss_fun[18] = ss_fun18;
+ ss_fun[19] = ss_fun19;
+ ss_fun[20] = ss_fun20;
+ ss_fun[21] = ss_fun21;
+ ss_fun[22] = ss_fun22;
+ ss_fun[23] = ss_fun23;
+ ss_fun[24] = ss_fun24;
+
+
 
 //reading clusters and towers
 
