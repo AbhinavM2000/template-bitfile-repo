@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <utility>
 #include <stdint.h>
-#include "global.h"
+
 #define N_INPUT_LINKS  8 
 #define N_OUTPUT_LINKS  5	
 
@@ -306,7 +306,8 @@ class ecaltower{
 
 };
 
-void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS]);
+//void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS]);
+void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS], ap_uint<16> ss_fun0,ap_uint<16> ss_fun1,ap_uint<16> ss_fun2,ap_uint<16> ss_fun3,ap_uint<16> ss_fun4,ap_uint<16> ss_fun5,ap_uint<16> ss_fun6,ap_uint<16> ss_fun7,ap_uint<16> ss_fun8,ap_uint<16> ss_fun9,ap_uint<16> ss_fun10,ap_uint<16> ss_fun11,ap_uint<16> ss_fun12,ap_uint<16> ss_fun13,ap_uint<16> ss_fun14,ap_uint<16> ss_fun15,ap_uint<16> ss_fun16,ap_uint<16> ss_fun17,ap_uint<16> ss_fun18,ap_uint<16> ss_fun19,ap_uint<16> ss_fun20,ap_uint<16> ss_fun21,ap_uint<16> ss_fun22,ap_uint<16> ss_fun23,ap_uint<16> ss_fun24);
 
 
 #endif

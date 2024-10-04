@@ -1,13 +1,13 @@
 #include "algo_top.h"
 #include "bitonicSort32.h"
-#include "global.h"
+
 
 void processOutLinks(ecalcluster ECALClustersOut[N_CLUSTERS],
                      ecaltower ECALTowersSLR0[TOWERS_IN_ETA2*TOWERS_IN_PHI],
                      ecaltower ECALTowersSLR1[TOWERS_IN_ETA2*TOWERS_IN_PHI],
                      ecaltower ECALTowersSLR2[TOWERS_IN_ETA2*TOWERS_IN_PHI],
                      ecaltower ECALTowersSLR3[TOWERS_IN_ETA2*TOWERS_IN_PHI],
-                     ap_uint<576> link_out[N_OUTPUT_LINKS]){
+                     ap_uint<576> link_out[N_OUTPUT_LINKS],ap_uint<16> SS_fun[25]){
 #pragma HLS ARRAY_PARTITION variable=ECALClustersOut complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 complete dim=0
@@ -29,7 +29,7 @@ void processOutLinks(ecalcluster ECALClustersOut[N_CLUSTERS],
 		ap_uint<7> slr =  ECALClustersOut[i+23].spare ;
         	ap_uint<7> etatmp = ECALClustersOut[i+23].eta ;
         	ap_uint<7> rctEta = etatmp + ((ap_uint<7>)slr<<4) + ((ap_uint<7>)slr<<3) + slr ;
-		RCTECALClusters[i].fillrctecalcluster2(ECALClustersOut[i+23],rctEta,ss_fun) ;
+		RCTECALClusters[i].fillrctecalcluster2(ECALClustersOut[i+23],rctEta,SS_fun) ;
 	  }
 
         for(loop i=0 ; i<N_CLUSTERS_OUT; i++)
@@ -315,7 +315,7 @@ ecalcluster ECALClustersSLR3[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR2[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR1[N_CLUSTERS_5x6] ;
 ecalcluster ECALClustersSLR0[N_CLUSTERS_2x6] ;
-ap_uint<16> ss_fun[25];
+ap_uint<16> SS_fun[25];
 
 #pragma HLS ARRAY_PARTITION variable=ECALClusters complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALClustersOut complete dim=0
@@ -336,31 +336,31 @@ ecaltower ECALTowersSLR0[TOWERS_IN_ETA2*TOWERS_IN_PHI];
 #pragma HLS ARRAY_PARTITION variable=ss_fun complete dim=0
 
  // Pack the individual ss_fun variables into the array
- ss_fun[0] = ss_fun0;
- ss_fun[1] = ss_fun1;
- ss_fun[2] = ss_fun2;
- ss_fun[3] = ss_fun3;
- ss_fun[4] = ss_fun4;
- ss_fun[5] = ss_fun5;
- ss_fun[6] = ss_fun6;
- ss_fun[7] = ss_fun7;
- ss_fun[8] = ss_fun8;
- ss_fun[9] = ss_fun9;
- ss_fun[10] = ss_fun10;
- ss_fun[11] = ss_fun11;
- ss_fun[12] = ss_fun12;
- ss_fun[13] = ss_fun13;
- ss_fun[14] = ss_fun14;
- ss_fun[15] = ss_fun15;
- ss_fun[16] = ss_fun16;
- ss_fun[17] = ss_fun17;
- ss_fun[18] = ss_fun18;
- ss_fun[19] = ss_fun19;
- ss_fun[20] = ss_fun20;
- ss_fun[21] = ss_fun21;
- ss_fun[22] = ss_fun22;
- ss_fun[23] = ss_fun23;
- ss_fun[24] = ss_fun24;
+SS_fun[0] = ss_fun0;
+SS_fun[1] = ss_fun1;
+SS_fun[2] = ss_fun2;
+SS_fun[3] = ss_fun3;
+SS_fun[4] = ss_fun4;
+SS_fun[5] = ss_fun5;
+SS_fun[6] = ss_fun6;
+SS_fun[7] = ss_fun7;
+SS_fun[8] = ss_fun8;
+SS_fun[9] = ss_fun9;
+SS_fun[10] = ss_fun10;
+SS_fun[11] = ss_fun11;
+SS_fun[12] = ss_fun12;
+SS_fun[13] = ss_fun13;
+SS_fun[14] = ss_fun14;
+SS_fun[15] = ss_fun15;
+SS_fun[16] = ss_fun16;
+SS_fun[17] = ss_fun17;
+SS_fun[18] = ss_fun18;
+SS_fun[19] = ss_fun19;
+SS_fun[20] = ss_fun20;
+SS_fun[21] = ss_fun21;
+SS_fun[22] = ss_fun22;
+SS_fun[23] = ss_fun23;
+SS_fun[24] = ss_fun24;
 
 
 
@@ -439,7 +439,7 @@ link_out[2] = 0;
 link_out[3] = 0;
 link_out[4] = 0;
 
-processOutLinks(ECALClustersOut, ECALTowersSLR0, ECALTowersSLR1, ECALTowersSLR2, ECALTowersSLR3, link_out);
+processOutLinks(ECALClustersOut, ECALTowersSLR0, ECALTowersSLR1, ECALTowersSLR2, ECALTowersSLR3, link_out,SS_fun);
 
 }
 
