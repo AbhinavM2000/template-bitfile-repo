@@ -333,7 +333,7 @@ ecaltower ECALTowersSLR0[TOWERS_IN_ETA2*TOWERS_IN_PHI];
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 complete dim=0
 
-#pragma HLS ARRAY_PARTITION variable=ss_fun complete dim=0
+#pragma HLS ARRAY_PARTITION variable=SS_fun complete dim=0
 
  // Pack the individual ss_fun variables into the array
 SS_fun[0] = ss_fun0;
