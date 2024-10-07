@@ -97,7 +97,7 @@ architecture rtl of xF13P_top is
   constant TCDS_INDEX_C            : natural := 1;
   constant APX_SECTOR_CTRL_INDEX_C : natural := 2;
   constant ALGO_CTRL_INDEX_C       : natural := 3;
-
+  constant ALGO_BLOCK_INDEX_C       : natural := 4;
 
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
     APX_INFO_INDEX_C        => (
@@ -115,7 +115,12 @@ architecture rtl of xF13P_top is
     APX_SECTOR_CTRL_INDEX_C => (
       baseAddr              => APX_SECTOR_CTRL_BASE_ADDR_C,
       addrBits              => 23,
-      connectivity          => x"FFFF")
+      connectivity          => x"FFFF"),
+    ALGO_BLOCK_INDEX_C => (
+      baseAddr              => ALGO_BLOCK_BASE_ADDR_C,
+      addrBits              => 18,
+      connectivity          => x"FFFF"    )  
+
 
     );
 
