@@ -710,7 +710,7 @@ port map(
   algoDone  => open,
   algoIdle  => open,
   algoReady => open,
-  ----calib map to algo_top wrapper----
+  ----calib map to IP2top wrapper----
   calibIP2 => regsSLR0,
   
   -- AXI-Stream In/Out Ports
