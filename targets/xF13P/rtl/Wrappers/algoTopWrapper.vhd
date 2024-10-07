@@ -366,42 +366,61 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := 
 
 --- calibration for IP2 ----
 
-  signal axiAlgoRstOut : slv(24 downto 0);
-  signal mAlgoAxiWriteMasters : AxiLiteWriteMasterArray(24 downto 0) := (others => AXI_LITE_WRITE_MASTER_INIT_C);
-  signal mAlgoAxiWriteSlaves  : AxiLiteWriteSlaveArray(24 downto 0)  := (others => AXI_LITE_WRITE_SLAVE_EMPTY_DECERR_C);
-  signal mAlgoAxiReadMasters  : AxiLiteReadMasterArray(24 downto 0)  := (others => AXI_LITE_READ_MASTER_INIT_C);
-  signal mAlgoAxiReadSlaves   : AxiLiteReadSlaveArray(24 downto 0)   := (others => AXI_LITE_READ_SLAVE_EMPTY_DECERR_C);
+  signal axiAlgoRstOut : slv(3 downto 0);
 
-signal regsSLR0_0  : Slv32Array;
-signal regsSLR0_1  : Slv32Array;
-signal regsSLR0_2  : Slv32Array;
-signal regsSLR0_3  : Slv32Array;
-signal regsSLR0_4  : Slv32Array;
-signal regsSLR0_5  : Slv32Array;
-signal regsSLR0_6  : Slv32Array;
-signal regsSLR0_7  : Slv32Array;
-signal regsSLR0_8  : Slv32Array;
-signal regsSLR0_9  : Slv32Array;
-signal regsSLR0_10 : Slv32Array;
-signal regsSLR0_11 : Slv32Array;
-signal regsSLR0_12 : Slv32Array;
-signal regsSLR0_13 : Slv32Array;
-signal regsSLR0_14 : Slv32Array;
-signal regsSLR0_15 : Slv32Array;
-signal regsSLR0_16 : Slv32Array;
-signal regsSLR0_17 : Slv32Array;
-signal regsSLR0_18 : Slv32Array;
-signal regsSLR0_19 : Slv32Array;
-signal regsSLR0_20 : Slv32Array;
-signal regsSLR0_21 : Slv32Array;
-signal regsSLR0_22 : Slv32Array;
-signal regsSLR0_23 : Slv32Array;
-signal regsSLR0_24 : Slv32Array;
+  signal mAlgoAxiWriteMasters : AxiLiteWriteMasterArray(3 downto 0) := (others => AXI_LITE_WRITE_MASTER_INIT_C);
+  signal mAlgoAxiWriteSlaves  : AxiLiteWriteSlaveArray(3 downto 0)  := (others => AXI_LITE_WRITE_SLAVE_EMPTY_DECERR_C);
+  signal mAlgoAxiReadMasters  : AxiLiteReadMasterArray(3 downto 0)  := (others => AXI_LITE_READ_MASTER_INIT_C);
+  signal mAlgoAxiReadSlaves   : AxiLiteReadSlaveArray(3 downto 0)   := (others => AXI_LITE_READ_SLAVE_EMPTY_DECERR_C);
 
----------------------------------
+
+  constant NUM_REG_SLR0_G : integer := 25;
+
+  signal regsSLR0 : Slv32Array(NUM_REG_SLR0_G-1 downto 0);
+
+
+
+-----------------------------
 
 begin
 
+--------------------------CALIBRATION FOR IP2-------------------------------
+ U_axiAlgoParams : entity apx_fs.axiAlgoInfra
+    port map(
+      axiClk   => axiClk,
+      axiRstIn => axiClkRst,
+
+      saxiReadMaster  => axiReadMaster,
+      saxiReadSlave   => axiReadSlave,
+      saxiWriteMaster => axiWriteMaster,
+      saxiWriteSlave  => axiWriteSlave,
+
+      axiRstOut => axiAlgoRstOut,
+
+      mAxiWriteMasters => mAlgoAxiWriteMasters,
+      mAxiWriteSlaves  => mAlgoAxiWriteSlaves,
+      mAxiReadMasters  => mAlgoAxiReadMasters,
+      mAxiReadSlaves   => mAlgoAxiReadSlaves
+      );
+
+  U_apxAxiRegsSLR0 : entity apx_fs.apxAxiRegs
+    generic map(
+      NUM_REG_G => NUM_REG_SLR0_G)
+    port map(
+      -- AXI-Lite Bus
+      -- AXI-Lite Bus
+      axiReadMaster  => mAlgoAxiReadMasters(0),
+      axiReadSlave   => mAlgoAxiReadSlaves(0),
+      axiWriteMaster => mAlgoAxiWriteMasters(0),
+      axiWriteSlave  => mAlgoAxiWriteSlaves(0),
+      axiClk         => axiClk,
+      axiClkRst      => axiAlgoRstOut(0),
+
+      -- User Read/Write registers
+      regs => regsSLR0
+      );
+
+-------------------------------------------------------
 ----------------------------------------------------------------------------
 ---------------------INPUT MAPPING
 ----------------------------------------------------------------------------
@@ -514,383 +533,7 @@ algoStartD3_SLR0 <= algoStartD2_SLR0  when rising_edge(algoClk);
 algoStartD4_SLR0 <= algoStartD3_SLR0  when rising_edge(algoClk);
 algoStartD5_SLR0 <= algoStartD4_SLR0  when rising_edge(algoClk);
 
---------------------------CALIBRATION FOR IP2-------------------------------
-U_apxAxiRegsSLR0_0 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(0),
-      axiReadSlave   => mAlgoAxiReadSlaves(0),
-      axiWriteMaster => mAlgoAxiWriteMasters(0),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(0),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(0),
-      -- User Read/Write registers
-      regs => regsSLR0_0
-      );
 
-U_apxAxiRegsSLR0_1 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(1),
-      axiReadSlave   => mAlgoAxiReadSlaves(1),
-      axiWriteMaster => mAlgoAxiWriteMasters(1),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(1),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(1),
-      -- User Read/Write registers
-      regs => regsSLR0_1
-      );
-
-U_apxAxiRegsSLR0_2 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(2),
-      axiReadSlave   => mAlgoAxiReadSlaves(2),
-      axiWriteMaster => mAlgoAxiWriteMasters(2),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(2),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(2),
-      -- User Read/Write registers
-      regs => regsSLR0_2
-      );
-
-U_apxAxiRegsSLR0_3 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(3),
-      axiReadSlave   => mAlgoAxiReadSlaves(3),
-      axiWriteMaster => mAlgoAxiWriteMasters(3),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(3),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(3),
-      -- User Read/Write registers
-      regs => regsSLR0_3
-      );
-
-U_apxAxiRegsSLR0_4 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(4),
-      axiReadSlave   => mAlgoAxiReadSlaves(4),
-      axiWriteMaster => mAlgoAxiWriteMasters(4),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(4),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(4),
-      -- User Read/Write registers
-      regs => regsSLR0_4
-      );
-
-U_apxAxiRegsSLR0_5 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(5),
-      axiReadSlave   => mAlgoAxiReadSlaves(5),
-      axiWriteMaster => mAlgoAxiWriteMasters(5),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(5),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(5),
-      -- User Read/Write registers
-      regs => regsSLR0_5
-      );
-
-U_apxAxiRegsSLR0_6 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(6),
-      axiReadSlave   => mAlgoAxiReadSlaves(6),
-      axiWriteMaster => mAlgoAxiWriteMasters(6),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(6),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(6),
-      -- User Read/Write registers
-      regs => regsSLR0_6
-      );
-
-U_apxAxiRegsSLR0_7 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(7),
-      axiReadSlave   => mAlgoAxiReadSlaves(7),
-      axiWriteMaster => mAlgoAxiWriteMasters(7),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(7),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(7),
-      -- User Read/Write registers
-      regs => regsSLR0_7
-      );
-
-U_apxAxiRegsSLR0_8 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(8),
-      axiReadSlave   => mAlgoAxiReadSlaves(8),
-      axiWriteMaster => mAlgoAxiWriteMasters(8),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(8),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(8),
-      -- User Read/Write registers
-      regs => regsSLR0_8
-      );
-
-U_apxAxiRegsSLR0_9 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(9),
-      axiReadSlave   => mAlgoAxiReadSlaves(9),
-      axiWriteMaster => mAlgoAxiWriteMasters(9),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(9),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(9),
-      -- User Read/Write registers
-      regs => regsSLR0_9
-      );
-
-U_apxAxiRegsSLR0_10 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(10),
-      axiReadSlave   => mAlgoAxiReadSlaves(10),
-      axiWriteMaster => mAlgoAxiWriteMasters(10),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(10),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(10),
-      -- User Read/Write registers
-      regs => regsSLR0_10
-      );
-
-U_apxAxiRegsSLR0_11 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(11),
-      axiReadSlave   => mAlgoAxiReadSlaves(11),
-      axiWriteMaster => mAlgoAxiWriteMasters(11),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(11),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(11),
-      -- User Read/Write registers
-      regs => regsSLR0_11
-      );
-
-U_apxAxiRegsSLR0_12 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(12),
-      axiReadSlave   => mAlgoAxiReadSlaves(12),
-      axiWriteMaster => mAlgoAxiWriteMasters(12),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(12),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(12),
-      -- User Read/Write registers
-      regs => regsSLR0_12
-      );
-
-U_apxAxiRegsSLR0_13 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(13),
-      axiReadSlave   => mAlgoAxiReadSlaves(13),
-      axiWriteMaster => mAlgoAxiWriteMasters(13),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(13),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(13),
-      -- User Read/Write registers
-      regs => regsSLR0_13
-      );
-
-U_apxAxiRegsSLR0_14 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(14),
-      axiReadSlave   => mAlgoAxiReadSlaves(14),
-      axiWriteMaster => mAlgoAxiWriteMasters(14),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(14),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(14),
-      -- User Read/Write registers
-      regs => regsSLR0_14
-      );
-
-U_apxAxiRegsSLR0_15 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(15),
-      axiReadSlave   => mAlgoAxiReadSlaves(15),
-      axiWriteMaster => mAlgoAxiWriteMasters(15),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(15),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(15),
-      -- User Read/Write registers
-      regs => regsSLR0_15
-      );
-
-U_apxAxiRegsSLR0_16 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(16),
-      axiReadSlave   => mAlgoAxiReadSlaves(16),
-      axiWriteMaster => mAlgoAxiWriteMasters(16),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(16),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(16),
-      -- User Read/Write registers
-      regs => regsSLR0_16
-      );
-
-U_apxAxiRegsSLR0_17 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(17),
-      axiReadSlave   => mAlgoAxiReadSlaves(17),
-      axiWriteMaster => mAlgoAxiWriteMasters(17),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(17),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(17),
-      -- User Read/Write registers
-      regs => regsSLR0_17
-      );
-
-U_apxAxiRegsSLR0_18 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(18),
-      axiReadSlave   => mAlgoAxiReadSlaves(18),
-      axiWriteMaster => mAlgoAxiWriteMasters(18),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(18),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(18),
-      -- User Read/Write registers
-      regs => regsSLR0_18
-      );
-
-U_apxAxiRegsSLR0_19 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(19),
-      axiReadSlave   => mAlgoAxiReadSlaves(19),
-      axiWriteMaster => mAlgoAxiWriteMasters(19),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(19),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(19),
-      -- User Read/Write registers
-      regs => regsSLR0_19
-      );
-
-U_apxAxiRegsSLR0_20 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(20),
-      axiReadSlave   => mAlgoAxiReadSlaves(20),
-      axiWriteMaster => mAlgoAxiWriteMasters(20),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(20),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(20),
-      -- User Read/Write registers
-      regs => regsSLR0_20
-      );
-
-U_apxAxiRegsSLR0_21 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(21),
-      axiReadSlave   => mAlgoAxiReadSlaves(21),
-      axiWriteMaster => mAlgoAxiWriteMasters(21),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(21),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(21),
-      -- User Read/Write registers
-      regs => regsSLR0_21
-      );
-
-U_apxAxiRegsSLR0_22 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(22),
-      axiReadSlave   => mAlgoAxiReadSlaves(22),
-      axiWriteMaster => mAlgoAxiWriteMasters(22),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(22),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(22),
-      -- User Read/Write registers
-      regs => regsSLR0_22
-      );
-
-U_apxAxiRegsSLR0_23 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(23),
-      axiReadSlave   => mAlgoAxiReadSlaves(23),
-      axiWriteMaster => mAlgoAxiWriteMasters(23),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(23),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(23),
-      -- User Read/Write registers
-      regs => regsSLR0_23
-      );
-
-U_apxAxiRegsSLR0_24 : entity apx_fs.apxAxiRegs
-    generic map(
-      NUM_REG_G => 1)
-    port map(
-      -- AXI-Lite Bus
-      axiReadMaster  => mAlgoAxiReadMasters(24),
-      axiReadSlave   => mAlgoAxiReadSlaves(24),
-      axiWriteMaster => mAlgoAxiWriteMasters(24),
-      axiWriteSlave  => mAlgoAxiWriteSlaves(24),
-      axiClk         => axiClk,
-      axiClkRst      => axiAlgoRstOut(24),
-      -- User Read/Write registers
-      regs => regsSLR0_24
-      );
-
--------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
@@ -1068,31 +711,7 @@ port map(
   algoIdle  => open,
   algoReady => open,
   ----calib map to algo_top wrapper----
-  calib0 => regsSLR0_0(15 downto 0),
-  calib1 => regsSLR0_1(15 downto 0),
-  calib2 => regsSLR0_2(15 downto 0),
-  calib3 => regsSLR0_3(15 downto 0),
-  calib4 => regsSLR0_4(15 downto 0),
-  calib5 => regsSLR0_5(15 downto 0),
-  calib6 => regsSLR0_6(15 downto 0),
-  calib7 => regsSLR0_7(15 downto 0),
-  calib8 => regsSLR0_8(15 downto 0),
-  calib9 => regsSLR0_9(15 downto 0),
-  calib10 => regsSLR0_10(15 downto 0),
-  calib11 => regsSLR0_11(15 downto 0),
-  calib12 => regsSLR0_12(15 downto 0),
-  calib13 => regsSLR0_13(15 downto 0),
-  calib14 => regsSLR0_14(15 downto 0),
-  calib15 => regsSLR0_15(15 downto 0),
-  calib16 => regsSLR0_16(15 downto 0),
-  calib17 => regsSLR0_17(15 downto 0),
-  calib18 => regsSLR0_18(15 downto 0),
-  calib19 => regsSLR0_19(15 downto 0),
-  calib20 => regsSLR0_20(15 downto 0),
-  calib21 => regsSLR0_21(15 downto 0),
-  calib22 => regsSLR0_22(15 downto 0),
-  calib23 => regsSLR0_23(15 downto 0),
-  calib24 => regsSLR0_24(15 downto 0),
+  calibIP2 => regsSLR0,
   
   -- AXI-Stream In/Out Ports
   axiStreamIn  => axiStreamInIP2,

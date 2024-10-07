@@ -21,31 +21,8 @@ entity IP2AlgoWrapper is
     algoIdle  : out std_logic := '0';
     algoReady : out std_logic := '0';
 
-    calib0 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib1 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib2 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib3 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib4 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib5 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib6 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib7 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib8 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib9 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib10 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib11 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib12 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib13 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib14 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib15 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib16 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib17 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib18 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib19 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib20 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib21 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib22 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib23 : IN STD_LOGIC_VECTOR (15 downto 0);
-    calib24 : IN STD_LOGIC_VECTOR (15 downto 0);
+    calibIP2 : IN Slv32Array (24 downto 0);
+  
 
     -- AXI-Stream In/Out Ports
     axiStreamIn  : in  AxiStreamMasterArray(0 TO N_INPUT_STREAMS-1);
@@ -200,31 +177,31 @@ begin
         link_in_6_V  => link_in_reg(6),
         link_in_7_V  => link_in_reg(7),
 
-        ss_fun0_V  => calib0,  -- 126
-        ss_fun1_V  => calib1,  -- 125
-        ss_fun2_V  => calib2,  -- 125
-        ss_fun3_V  => calib3,  -- 124
-        ss_fun4_V  => calib4,  -- 123
-        ss_fun5_V  => calib5,  -- 123
-        ss_fun6_V  => calib6,  -- 122
-        ss_fun7_V  => calib7,  -- 122
-        ss_fun8_V  => calib8,  -- 121
-        ss_fun9_V  => calib9,  -- 121
-        ss_fun10_V => calib10,  -- 121
-        ss_fun11_V => calib12,  -- 121
-        ss_fun12_V => calib13,  -- 121
-        ss_fun13_V => calib13,  -- 120
-        ss_fun14_V => calib14,  -- 120
-        ss_fun15_V => calib15,  -- 120
-        ss_fun16_V => calib16,  -- 120
-        ss_fun17_V => calib17,  -- 120
-        ss_fun18_V => calib18,  -- 120
-        ss_fun19_V => calib19,  -- 120
-        ss_fun20_V => calib20,  -- 120
-        ss_fun21_V => calib21,  -- 120
-        ss_fun22_V => calib22,  -- 120
-        ss_fun23_V => calib23,  -- 120
-        ss_fun24_V => calib24,  -- 120
+        ss_fun0_V  => calibIP2(0)(15 downto 0),  -- 126
+        ss_fun1_V  => calibIP2(1)(15 downto 0),  -- 125
+        ss_fun2_V  => calibIP2(2)(15 downto 0),  -- 125
+        ss_fun3_V  => calibIP2(3)(15 downto 0),  -- 124
+        ss_fun4_V  => calibIP2(4)(15 downto 0),  -- 123
+        ss_fun5_V  => calibIP2(5)(15 downto 0),  -- 123
+        ss_fun6_V  => calibIP2(6)(15 downto 0),  -- 122
+        ss_fun7_V  => calibIP2(7)(15 downto 0),  -- 122
+        ss_fun8_V  => calibIP2(8)(15 downto 0),  -- 121
+        ss_fun9_V  => calibIP2(9)(15 downto 0),  -- 121
+        ss_fun10_V => calibIP2(10)(15 downto 0),  -- 121
+        ss_fun11_V => calibIP2(12)(15 downto 0),  -- 121
+        ss_fun12_V => calibIP2(13)(15 downto 0),  -- 121
+        ss_fun13_V => calibIP2(13)(15 downto 0),  -- 120
+        ss_fun14_V => calibIP2(14)(15 downto 0),  -- 120
+        ss_fun15_V => calibIP2(15)(15 downto 0),  -- 120
+        ss_fun16_V => calibIP2(16)(15 downto 0),  -- 120
+        ss_fun17_V => calibIP2(17)(15 downto 0),  -- 120
+        ss_fun18_V => calibIP2(18)(15 downto 0),  -- 120
+        ss_fun19_V => calibIP2(19)(15 downto 0),  -- 120
+        ss_fun20_V => calibIP2(20)(15 downto 0),  -- 120
+        ss_fun21_V => calibIP2(21)(15 downto 0),  -- 120
+        ss_fun22_V => calibIP2(22)(15 downto 0),  -- 120
+        ss_fun23_V => calibIP2(23)(15 downto 0),  -- 120
+        ss_fun24_V => calibIP2(24)(15 downto 0),  -- 120
 
         link_out_0_V  => link_out(0),
         link_out_1_V  => link_out(1),
