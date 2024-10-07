@@ -99,6 +99,8 @@ architecture rtl of xF13P_top is
   constant ALGO_CTRL_INDEX_C       : natural := 3;
   constant ALGO_BLOCK_INDEX_C       : natural := 4;
 
+  constant ALGO_BLOCK_BASE_ADDR_C  : slv(31 downto 0) := x"6C00_0000";
+
   constant AXI_CONFIG_C : AxiLiteCrossbarMasterConfigArray(NUM_AXI_MASTERS_C-1 downto 0) := (
     APX_INFO_INDEX_C        => (
       baseAddr              => APX_INFO_BASE_ADDR_C,
