@@ -29,6 +29,15 @@ entity algoTopWrapper is
     clkLHC     : in sl;
     bc0_clkLHC : in sl;
 
+    -- AXI-Lite Bus
+    axiClk         : in  sl;
+    axiClkRst      : in  sl;
+    axiReadMaster  : in  AxiLiteReadMasterType;
+    axiReadSlave   : out AxiLiteReadSlaveType;
+    axiWriteMaster : in  AxiLiteWriteMasterType;
+    axiWriteSlave  : out AxiLiteWriteSlaveType;
+
+
     -- AXI-Stream In/Out Ports
     axiStreamIn  : in  AxiStreamMasterArray(0 to N_INPUT_STREAMS-1);
     axiStreamOut : out AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1) := (others => AXI_STREAM_MASTER_INIT_C)
