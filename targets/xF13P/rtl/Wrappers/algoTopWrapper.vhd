@@ -364,6 +364,8 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := 
   7  => 71
 );
 
+--- calibration for IP2 ----
+
   signal axiAlgoRstOut : slv(24 downto 0);
   signal mAlgoAxiWriteMasters : AxiLiteWriteMasterArray(24 downto 0) := (others => AXI_LITE_WRITE_MASTER_INIT_C);
   signal mAlgoAxiWriteSlaves  : AxiLiteWriteSlaveArray(24 downto 0)  := (others => AXI_LITE_WRITE_SLAVE_EMPTY_DECERR_C);
@@ -396,6 +398,7 @@ signal regsSLR0_22 : Slv32Array;
 signal regsSLR0_23 : Slv32Array;
 signal regsSLR0_24 : Slv32Array;
 
+---------------------------------
 
 begin
 
@@ -887,7 +890,7 @@ U_apxAxiRegsSLR0_24 : entity apx_fs.apxAxiRegs
       regs => regsSLR0_24
       );
 
-
+-------------------------------------------------------
 
 
 ----------------------------------------------------------------------------
