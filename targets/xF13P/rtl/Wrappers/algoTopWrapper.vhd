@@ -377,9 +377,6 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := 
   constant NUM_REG_SLR0_G : integer := 25;
 
   signal regsSLR0 : Slv32Array(NUM_REG_SLR0_G-1 downto 0);
-
-
-
 -----------------------------
 
 begin
