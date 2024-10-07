@@ -129,7 +129,6 @@ architecture rtl of xF13P_top is
   signal mAxilReadMaster  : AxiLiteReadMasterType;
   signal mAxilReadSlave   : AxiLiteReadSlaveType;
 
-
   signal secAxiRst : slv(SECTOR_CNT_C-1 downto 0);
 
   signal secAxiWriteMasters : AxiLiteWriteMasterArray(SECTOR_CNT_C-1 downto 0) := (others => AXI_LITE_WRITE_MASTER_INIT_C);
@@ -487,13 +486,14 @@ begin
 
       tcdsCmds => tcdsCmds,
 
-      -- AXI-Lite Bus
+ -- AXI-Lite Bus
       axiReadMaster  => mAxilReadMasters(ALGO_CTRL_INDEX_C),
       axiReadSlave   => mAxilReadSlaves(ALGO_CTRL_INDEX_C),
       axiWriteMaster => mAxilWriteMasters(ALGO_CTRL_INDEX_C),
       axiWriteSlave  => mAxilWriteSlaves(ALGO_CTRL_INDEX_C),
       axiClk         => axi_lite_clk,
       axiClkRst      => axi_lite_reset);
+
 
 
   U_algoTopWrapper : entity work.algoTopWrapper
@@ -514,12 +514,13 @@ begin
       clkLHC     => fsClk40,
       bc0_clkLHC => tcdsCmds.bc0,
       -- AXI-Lite Bus
-      axiClk      =>   axiClk,
-      axiClkRst   =>   axiClkRst,
-      axiReadMaster => axiReadMaster,
-      axiReadSlave  => axiReadSlave,
-      axiWriteMaster => axiWriteMaster,
-      axiWriteSlave => axiWriteSlave,
+      axiClk         => axi_lite_clk,
+      axiClkRst      => axi_lite_reset,
+      axiReadMaster  => mAxilReadMasters(ALGO_BLOCK_INDEX_C),
+      axiReadSlave   => mAxilReadSlaves(ALGO_BLOCK_INDEX_C),
+      axiWriteMaster => mAxilWriteMasters(ALGO_BLOCK_INDEX_C),
+      axiWriteSlave  => mAxilWriteSlaves(ALGO_BLOCK_INDEX_C),
+
 
       -- AXI-Stream In/Out Ports
       axiStreamIn  => axiStreamAlgoIn,
