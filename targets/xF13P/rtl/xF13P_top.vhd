@@ -6,6 +6,9 @@ use ieee.std_logic_misc.all;
 library UNISIM;
 use UNISIM.vcomponents.all;
 
+library xpm;
+use xpm.vcomponents.all;
+
 library surf;
 use surf.StdRtlPkg.all;
 use surf.AxiLitePkg.all;
