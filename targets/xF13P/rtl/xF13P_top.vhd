@@ -514,12 +514,12 @@ begin
       clkLHC     => fsClk40,
       bc0_clkLHC => tcdsCmds.bc0,
       -- AXI-Lite Bus
-      axiClk         : in  sl;
-      axiClkRst      : in  sl;
-      axiReadMaster  : in  AxiLiteReadMasterType;
-      axiReadSlave   : out AxiLiteReadSlaveType;
-      axiWriteMaster : in  AxiLiteWriteMasterType;
-      axiWriteSlave  : out AxiLiteWriteSlaveType;
+      axiClk      =>   axiClk,
+      axiClkRst   =>   axiClkRst,
+      axiReadMaster => axiReadMaster,
+      axiReadSlave  => axiReadSlave,
+      axiWriteMaster => axiWriteMaster,
+      axiWriteSlave => axiWriteSlave,
 
       -- AXI-Stream In/Out Ports
       axiStreamIn  => axiStreamAlgoIn,
