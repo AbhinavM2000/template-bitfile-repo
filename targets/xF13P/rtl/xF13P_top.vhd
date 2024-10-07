@@ -91,7 +91,7 @@ architecture rtl of xF13P_top is
 
   constant AXI_CLK_FREQUENCY_G : real := 50.00E+6;
 
-  constant NUM_AXI_MASTERS_C : natural := 4;
+  constant NUM_AXI_MASTERS_C : natural := 5;
 
   constant APX_INFO_INDEX_C        : natural := 0;
   constant TCDS_INDEX_C            : natural := 1;
