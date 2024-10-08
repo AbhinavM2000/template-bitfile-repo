@@ -18,6 +18,8 @@ loadRuckusTcl $::env(TOP_DIR)/submodules/apx-fs
 # Load local source Code and constraints
 # Load local source Code and constraints
 loadSource -path "$::DIR_PATH/rtl/xF13P_top.vhd"
+loadSource -lib apx_fs -path "$::DIR_PATH/rtl/apxAxiRegs.vhd"
+loadSource -lib apx_fs -path "$::DIR_PATH/rtl/axiAlgoInfra.vhd"
 #loadSource -path "$::DIR_PATH/rtl/algoTopWrapper.vhd"
 loadSource -dir "$::DIR_PATH/rtl/AlgoRTL/"
 loadSource -dir "$::DIR_PATH/rtl/Wrappers/"
