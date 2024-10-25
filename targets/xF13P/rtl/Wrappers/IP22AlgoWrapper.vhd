@@ -182,7 +182,7 @@ begin
         link_out_0_V_ap_vld  => link_out_ap_vld(0),
         link_out_1_V_ap_vld  => link_out_ap_vld(1),
         link_out_2_V_ap_vld  => link_out_ap_vld(2),
-        link_out_3_V_ap_vld  => link_out_ap_vld(3),
+        link_out_3_V_ap_vld  => link_out_ap_vld(3)
 );
 
 end Behavioral;
