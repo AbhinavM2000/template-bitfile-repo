@@ -174,31 +174,32 @@ begin
         link_in_3_V  => link_in_reg(3),
  
 
-        ss_fun0_V  => calibIP2(0)(15 downto 0),  -- 126
-        ss_fun1_V  => calibIP2(1)(15 downto 0),  -- 125
-        ss_fun2_V  => calibIP2(2)(15 downto 0),  -- 125
-        ss_fun3_V  => calibIP2(3)(15 downto 0),  -- 124
-        ss_fun4_V  => calibIP2(4)(15 downto 0),  -- 123
-        ss_fun5_V  => calibIP2(5)(15 downto 0),  -- 123
-        ss_fun6_V  => calibIP2(6)(15 downto 0),  -- 122
-        ss_fun7_V  => calibIP2(7)(15 downto 0),  -- 122
-        ss_fun8_V  => calibIP2(8)(15 downto 0),  -- 121
-        ss_fun9_V  => calibIP2(9)(15 downto 0),  -- 121
-        ss_fun10_V => calibIP2(10)(15 downto 0),  -- 121
-        ss_fun11_V => calibIP2(12)(15 downto 0),  -- 121
-        ss_fun12_V => calibIP2(13)(15 downto 0),  -- 121
-        ss_fun13_V => calibIP2(13)(15 downto 0),  -- 120
-        ss_fun14_V => calibIP2(14)(15 downto 0),  -- 120
-        ss_fun15_V => calibIP2(15)(15 downto 0),  -- 120
-        ss_fun16_V => calibIP2(16)(15 downto 0),  -- 120
-        ss_fun17_V => calibIP2(17)(15 downto 0),  -- 120
-        ss_fun18_V => calibIP2(18)(15 downto 0),  -- 120
-        ss_fun19_V => calibIP2(19)(15 downto 0),  -- 120
-        ss_fun20_V => calibIP2(20)(15 downto 0),  -- 120
-        ss_fun21_V => calibIP2(21)(15 downto 0),  -- 120
-        ss_fun22_V => calibIP2(22)(15 downto 0),  -- 120
-        ss_fun23_V => calibIP2(23)(15 downto 0),  -- 120
-        ss_fun24_V => calibIP2(24)(15 downto 0),  -- 120
+
+        ss_fun0_V  => calibIP2(0)(6 downto 0),  -- 126
+        ss_fun1_V  => calibIP2(1)(6 downto 0),  -- 125
+        ss_fun2_V  => calibIP2(2)(6 downto 0),  -- 125
+        ss_fun3_V  => calibIP2(3)(6 downto 0),  -- 124
+        ss_fun4_V  => calibIP2(4)(6 downto 0),  -- 123
+        ss_fun5_V  => calibIP2(5)(6 downto 0),  -- 123
+        ss_fun6_V  => calibIP2(6)(6 downto 0),  -- 122
+        ss_fun7_V  => calibIP2(7)(6 downto 0),  -- 122
+        ss_fun8_V  => calibIP2(8)(6 downto 0),  -- 121
+        ss_fun9_V  => calibIP2(9)(6 downto 0),  -- 121
+        ss_fun10_V => calibIP2(10)(6 downto 0),  -- 121
+        ss_fun11_V => calibIP2(12)(6 downto 0),  -- 121
+        ss_fun12_V => calibIP2(13)(6 downto 0),  -- 121
+        ss_fun13_V => calibIP2(13)(6 downto 0),  -- 120
+        ss_fun14_V => calibIP2(14)(6 downto 0),  -- 120
+        ss_fun15_V => calibIP2(15)(6 downto 0),  -- 120
+        ss_fun16_V => calibIP2(16)(6 downto 0),  -- 120
+        ss_fun17_V => calibIP2(17)(6 downto 0),  -- 120
+        ss_fun18_V => calibIP2(18)(6 downto 0),  -- 120
+        ss_fun19_V => calibIP2(19)(6 downto 0),  -- 120
+        ss_fun20_V => calibIP2(20)(6 downto 0),  -- 120
+        ss_fun21_V => calibIP2(21)(6 downto 0),  -- 120
+        ss_fun22_V => calibIP2(22)(6 downto 0),  -- 120
+        ss_fun23_V => calibIP2(23)(6 downto 0),  -- 120
+        ss_fun24_V => calibIP2(24)(6 downto 0),  -- 120
 
         link_out_0_V  => link_out(0),
         link_out_1_V  => link_out(1),
