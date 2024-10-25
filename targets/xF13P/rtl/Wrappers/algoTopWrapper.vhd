@@ -737,7 +737,7 @@ port map(
   algoIdle  => open,
   algoReady => open,
   ----calib map to IP21top wrapper----
-  calibIP21 => regsSLR0,
+  calibIP2 => regsSLR0,
   
   -- AXI-Stream In/Out Ports
   axiStreamIn  => axiStreamInIP21,
