@@ -816,10 +816,10 @@ end process;
 end generate;
 
 gen_InputMappingIP3_0:      axiStreamInIP3(0) <= axiStreamOutIP21D1(0);
-gen_InputMappingIP3_1:      axiStreamInIP3(1) <= axiStreamOutIP22D1(1);
-gen_InputMappingIP3_2:      axiStreamInIP3(2) <= axiStreamOutIP22D1(2);
-gen_InputMappingIP3_3:      axiStreamInIP3(3) <= axiStreamOutIP22D1(3);
-gen_InputMappingIP3_4:      axiStreamInIP3(4) <= axiStreamOutIP22D1(4);
+gen_InputMappingIP3_1:      axiStreamInIP3(1) <= axiStreamOutIP22D1(0);
+gen_InputMappingIP3_2:      axiStreamInIP3(2) <= axiStreamOutIP22D1(1);
+gen_InputMappingIP3_3:      axiStreamInIP3(3) <= axiStreamOutIP22D1(2);
+gen_InputMappingIP3_4:      axiStreamInIP3(4) <= axiStreamOutIP22D1(3);
 
 gen_InputMappingIP3_HCAL_0: axiStreamInIP3(5) <= axiStreamInHCALD0(0);
 gen_InputMappingIP3_HCAL_1: axiStreamInIP3(6) <= axiStreamInHCALD0(1);
