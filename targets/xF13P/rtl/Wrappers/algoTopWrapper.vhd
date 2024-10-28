@@ -763,7 +763,7 @@ GEN_START_SIG_IP22: process(algoClk)
 begin
   IF(rising_edge(algoClk)) THEN
       IF(axiStreamInIP22(0).tValid = '1') THEN
-          algoStartIP2D0   <= '1';
+          algoStartIP22D0   <= '1';
           algoStartIP22D1   <= algoStartIP22D0;
           algoStartIP22D2   <= algoStartIP22D1;
           algoStartIP22D3   <= algoStartIP22D2;
@@ -883,6 +883,3 @@ axiStreamOutD1 <= axiStreamOutD0 when rising_edge(algoClk);
 axiStreamOut <= axiStreamOutD1;
 
 end rtl;
-
-
-
