@@ -387,32 +387,35 @@ resize_pblock [get_pblocks SS_7_3] -add {CLOCKREGION_X7Y15:CLOCKREGION_X7Y15}
 
 create_pblock pblock_RCT5x6_ALGO_SLR3
 add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR3]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] -add {CLOCKREGION_X2Y13:CLOCKREGION_X4Y15}
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR3] -add {CLOCKREGION_X2Y12:CLOCKREGION_X3Y15}
 set_property IS_SOFT TRUE [get_pblocks pblock_RCT5x6_ALGO_SLR3]
 
 
 create_pblock pblock_RCT5x6_ALGO_SLR2
 add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR2]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] -add {CLOCKREGION_X2Y9:CLOCKREGION_X4Y11}
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR2] -add {CLOCKREGION_X2Y8:CLOCKREGION_X3Y11}
 set_property IS_SOFT TRUE [get_pblocks pblock_RCT5x6_ALGO_SLR2]
 
 
 create_pblock pblock_RCT5x6_ALGO_SLR1
 add_cells_to_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] [get_cells -quiet [list U_algoTopWrapper/RCT5x6_ALGO_SLR1]]
-resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] -add {CLOCKREGION_X2Y5:CLOCKREGION_X4Y7}
+resize_pblock [get_pblocks pblock_RCT5x6_ALGO_SLR1] -add {CLOCKREGION_X2Y4:CLOCKREGION_X3Y7}
 set_property IS_SOFT TRUE [get_pblocks pblock_RCT5x6_ALGO_SLR1]
 
 
 
---create_pblock pblock_RCT2x6_ALGO_SLR0
---add_cells_to_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] [get_cells -quiet [list U_algoTopWrapper/RCT2x6_ALGO_SLR0]]
---resize_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] -add {CLOCKREGION_X2Y1:CLOCKREGION_X4Y3}
---set_property IS_SOFT TRUE [get_pblocks pblock_RCT2x6_ALGO_SLR0]
+create_pblock pblock_RCT2x6_ALGO_SLR0
+add_cells_to_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] [get_cells -quiet [list U_algoTopWrapper/RCT2x6_ALGO_SLR0]]
+resize_pblock [get_pblocks pblock_RCT2x6_ALGO_SLR0] -add {CLOCKREGION_X2Y0:CLOCKREGION_X3Y3}
+set_property IS_SOFT TRUE [get_pblocks pblock_RCT2x6_ALGO_SLR0]
+
+set_property USER_SLR_ASSIGNMENT SLR0 [get_cells -quiet [list  U_algoTopWrapper/ALGO_IP3_SLR0]]
+set_property USER_SLR_ASSIGNMENT SLR1 [get_cells -quiet [list U_algoTopWrapper/ALGO_IP21_SLR0]]
 
 
---create_pblock pblock_IP2_IP3
---add_cells_to_pblock [get_pblocks pblock_IP2_IP3] [get_cells -quiet [list U_algoTopWrapper/ALGO_IP2_SLR0 U_algoTopWrapper/ALGO_IP3_SLR0]]
---resize_pblock [get_pblocks pblock_IP2_IP3] -add {CLOCKREGION_X4Y1:CLOCKREGION_X6Y3}
+create_pblock pblock_IP21
+add_cells_to_pblock [get_pblocks pblock_IP21] [get_cells -quiet [list U_algoTopWrapper/ALGO_IP21_SLR0]]
+resize_pblock [get_pblocks pblock_IP21] -add {CLOCKREGION_X4Y5:CLOCKREGION_X5Y7}
 
 create_pblock pblock_DAQ_left
 resize_pblock pblock_DAQ_left -add {SLICE_X31Y60:SLICE_X41Y959 RAMB18_X2Y24:RAMB18_X2Y383 RAMB36_X2Y12:RAMB36_X2Y191 URAM288_X0Y16:URAM288_X0Y255}
