@@ -239,7 +239,7 @@ class rcttower{
     }
 
     void uploadECAL(ecaltower &ecaltower){
-    	this->energy = (ecaltower.energy > 1023) ? (ap_uint<10>) 0x3FF : (ap_uint<10>) energy;
+    	this->energy = (ecaltower.energy > 1023) ? (ap_uint<10>) 0x3FF : (ap_uint<10>) ecaltower.energy;
     	if(ecaltower.timing >= 5) this->flags = 1 ;
     }
 
