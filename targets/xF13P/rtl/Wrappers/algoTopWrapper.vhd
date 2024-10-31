@@ -196,6 +196,9 @@ signal axiStreamInSLR0D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP1_2x6-1);
 
 signal axiStreamOutSLR0D0   : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR0BUFF : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
+signal axiStreamOut26_1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
+signal axiStreamOut26_2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
+signal axiStreamOut26_3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 
 signal axiStreamOutSLR1D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR1D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
@@ -237,6 +240,8 @@ signal axiStreamInIP22 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP22-1);
 signal axiStreamOutIP21   : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
 signal axiStreamOutIP21D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
 signal axiStreamOutIP21D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
+signal axiStreamOutIP21D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
+
 
 signal axiStreamOutIP22   : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP22-1);
 signal axiStreamOutIP22D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP22-1);
@@ -255,7 +260,7 @@ signal axiStreamOut_internal : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS-1);
 
 attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutSLR1D2, axiStreamOutSLR1D3, axiStreamOutSLR1D4, axiStreamOutSLR1D5, axiStreamOutSLR1D6, axiStreamOutSLR1D7, axiStreamOutSLR1D8, axiStreamOutSLR1D9: signal is "no";
 attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6, axiStreamOutSLR2D7, axiStreamOutSLR2D8, axiStreamOutSLR2D9: signal is "no";
-attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6, axiStreamOutSLR3D7, axiStreamOutSLR3D8, axiStreamOutSLR3D9: signal is "no";
+attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6, axiStreamOutSLR3D7, axiStreamOutSLR3D8, axiStreamOutSLR3D9, axiStreamOut26_1,axiStreamOut26_2,axiStreamOut26_3: signal is "no";
 
 constant XLA_INPUT_MAP_C_SLR3 : IntegerArray(0 to N_INPUT_STREAMS_IP1_5x6-1) := (
   --sector 3
@@ -694,6 +699,11 @@ RCT_2x6_SLR0_OUTPUT_BUFFERING: for idx in 0 to N_OUTPUT_STREAMS_IP1-1 generate
   );
 end generate;
 
+--axiStreamOut26_1 <= axiStreamOutSLR0BUFF when rising_edge(algoClk);
+--axiStreamOut26_2 <= axiStreamOut26_1 when rising_edge(algoClk);
+--axiStreamOut26_3 <= axiStreamOut26_2 when rising_edge(algoClk);
+
+
 --------------------------------------------------------------------------------
 ---- PREPARING INPUT STREAM AND START SIGNAL FOR IP21 -- PLUS IP21 INSTANTIATION
 --------------------------------------------------------------------------------
@@ -746,7 +756,7 @@ port map(
 
 axiStreamOutIP21D0 <= axiStreamOutIP21   when rising_edge(algoClk);
 axiStreamOutIP21D1 <= axiStreamOutIP21D0 when rising_edge(algoClk);
-
+axiStreamOutIP21D2 <= axiStreamOutIP21D1 when rising_edge(algoClk);
 --------------------------------------------------------------------------------
 ---- PREPARING INPUT STREAM AND START SIGNAL FOR IP22 -- PLUS IP22 INSTANTIATION
 --------------------------------------------------------------------------------
@@ -755,9 +765,9 @@ axiStreamInIP22(0) <= axiStreamOutSLR3D9(1) when rising_edge(algoClk);
 axiStreamInIP22(1) <= axiStreamOutSLR2D9(1) when rising_edge(algoClk);
 axiStreamInIP22(2) <= axiStreamOutSLR1D9(1) when rising_edge(algoClk);
 axiStreamInIP22(3) <= axiStreamOutSLR0BUFF(1) when rising_edge(algoClk);
-axiStreamInIP22(4) <= axiStreamOutIP21D1(1) when rising_edge(algoClk);
-axiStreamInIP22(5) <= axiStreamOutIP21D1(2) when rising_edge(algoClk);
-axiStreamInIP22(6) <= axiStreamOutIP21D1(3) when rising_edge(algoClk);
+axiStreamInIP22(4) <= axiStreamOutIP21D2(1) when rising_edge(algoClk);
+axiStreamInIP22(5) <= axiStreamOutIP21D2(2) when rising_edge(algoClk);
+axiStreamInIP22(6) <= axiStreamOutIP21D2(3) when rising_edge(algoClk);
 
 GEN_START_SIG_IP22: process(algoClk)
 begin
@@ -815,7 +825,7 @@ begin
 end process;
 end generate;
 
-gen_InputMappingIP3_0:      axiStreamInIP3(0) <= axiStreamOutIP21D1(0);
+gen_InputMappingIP3_0:      axiStreamInIP3(0) <= axiStreamOutIP21D2(0);
 gen_InputMappingIP3_1:      axiStreamInIP3(1) <= axiStreamOutIP22D1(0);
 gen_InputMappingIP3_2:      axiStreamInIP3(2) <= axiStreamOutIP22D1(1);
 gen_InputMappingIP3_3:      axiStreamInIP3(3) <= axiStreamOutIP22D1(2);
