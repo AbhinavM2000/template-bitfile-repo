@@ -100,6 +100,7 @@ class rctecalcluster{
     	this->spike = i.range(56, 56);
     	this->satur = i.range(57, 57);
     	this->brems = i.range(59, 58);
+    	this->spare = i.range(63,60);
     }
 
  rctecalcluster(ap_uint<10> seedEnergy, ap_uint<12> energy, ap_uint<7> eta, ap_uint<5> phi, ap_uint<10> et5x5, ap_uint<7> wps, ap_uint<5> timing, ap_uint<1> spike, ap_uint<1> satur, ap_uint<2> brems, ap_uint<4> spare){
@@ -118,7 +119,7 @@ class rctecalcluster{
 
 //    seedEnergy() {return seedEnergy;}
     ap_uint<12> Energy(void) {return energy;}
-    ap_uint<5> Eta(void) {return eta;}
+    ap_uint<7> Eta(void) {return eta;}
     ap_uint<5> Phi(void) {return phi;}
 //    et5x5() {return et5x5;}
 //    et2x5() {return et2x5;}
@@ -241,6 +242,7 @@ class rcttower{
     void uploadECAL(ecaltower &ecaltower){
     	this->energy = (ecaltower.energy > 1023) ? (ap_uint<10>) 0x3FF : (ap_uint<10>) ecaltower.energy;
     	if(ecaltower.timing >= 5) this->flags = 1 ;
+    	//cout<<ecaltower.energy;cout<<" twr uploadecal";
     }
 
     ap_uint<4> gethoe(ap_uint<10> ECAL, ap_uint<10> HCAL){
