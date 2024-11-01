@@ -22,7 +22,8 @@ port (
     ap_return_6 : OUT STD_LOGIC_VECTOR (4 downto 0);
     ap_return_7 : OUT STD_LOGIC_VECTOR (0 downto 0);
     ap_return_8 : OUT STD_LOGIC_VECTOR (0 downto 0);
-    ap_return_9 : OUT STD_LOGIC_VECTOR (1 downto 0) );
+    ap_return_9 : OUT STD_LOGIC_VECTOR (1 downto 0);
+    ap_return_10 : OUT STD_LOGIC_VECTOR (3 downto 0) );
 end;
 
 
@@ -45,9 +46,11 @@ architecture behav of IP3_fillrctecalcluster is
     constant ap_const_lv32_39 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111001";
     constant ap_const_lv32_3A : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111010";
     constant ap_const_lv32_3B : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111011";
+    constant ap_const_lv32_3C : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111100";
+    constant ap_const_lv32_3F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111111";
     constant ap_const_logic_0 : STD_LOGIC := '0';
 
-    signal trunc_ln647_fu_56_p1 : STD_LOGIC_VECTOR (9 downto 0);
+    signal trunc_ln647_fu_62_p1 : STD_LOGIC_VECTOR (9 downto 0);
 
 
 begin
@@ -55,8 +58,9 @@ begin
 
 
     ap_ready <= ap_const_logic_1;
-    ap_return_0 <= trunc_ln647_fu_56_p1;
+    ap_return_0 <= trunc_ln647_fu_62_p1;
     ap_return_1 <= i_V(21 downto 10);
+    ap_return_10 <= i_V(63 downto 60);
     ap_return_2 <= i_V(28 downto 22);
     ap_return_3 <= i_V(33 downto 29);
     ap_return_4 <= i_V(43 downto 34);
@@ -65,5 +69,5 @@ begin
     ap_return_7 <= i_V(56 downto 56);
     ap_return_8 <= i_V(57 downto 57);
     ap_return_9 <= i_V(59 downto 58);
-    trunc_ln647_fu_56_p1 <= i_V(10 - 1 downto 0);
+    trunc_ln647_fu_62_p1 <= i_V(10 - 1 downto 0);
 end behav;
