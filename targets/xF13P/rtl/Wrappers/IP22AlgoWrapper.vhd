@@ -9,8 +9,8 @@ use surf.AxiStreamPkg.all;
 
 entity IP22AlgoWrapper is
   generic (
-    N_INPUT_STREAMS  : integer := 7;
-    N_OUTPUT_STREAMS : integer := 4
+    N_INPUT_STREAMS  : integer := 8;
+    N_OUTPUT_STREAMS : integer := 5
     );
   port (
     -- Algo Control/Status Signals
@@ -172,17 +172,20 @@ begin
         link_in_4_V  => link_in_reg(4),
         link_in_5_V  => link_in_reg(5),
         link_in_6_V  => link_in_reg(6),
+	link_in_7_V  => link_in_reg(7), 
 
         link_out_0_V  => link_out(0),
         link_out_1_V  => link_out(1),
         link_out_2_V  => link_out(2),
         link_out_3_V  => link_out(3),
+	link_out_4_V  => link_out(4),
 
         
         link_out_0_V_ap_vld  => link_out_ap_vld(0),
         link_out_1_V_ap_vld  => link_out_ap_vld(1),
         link_out_2_V_ap_vld  => link_out_ap_vld(2),
-        link_out_3_V_ap_vld  => link_out_ap_vld(3)
+        link_out_3_V_ap_vld  => link_out_ap_vld(3),
+	link_out_4_V_ap_vld  => link_out_ap_vld(4)
 );
 
 end Behavioral;

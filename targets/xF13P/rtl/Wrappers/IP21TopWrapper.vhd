@@ -9,8 +9,8 @@ use surf.AxiStreamPkg.all;
 
 entity IP21TopWrapper is
  generic (
-    N_INPUT_STREAMS  : integer := 4;
-    N_OUTPUT_STREAMS : integer := 4
+    N_INPUT_STREAMS  : integer := 8;
+    N_OUTPUT_STREAMS : integer := 8
     );
   port (
     -- Algo Control/Status Signals

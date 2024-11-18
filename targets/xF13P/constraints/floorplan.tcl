@@ -412,6 +412,12 @@ set_property IS_SOFT TRUE [get_pblocks pblock_RCT2x6_ALGO_SLR0]
 set_property USER_SLR_ASSIGNMENT SLR0 [get_cells -quiet [list  U_algoTopWrapper/ALGO_IP3_SLR0]]
 set_property USER_SLR_ASSIGNMENT SLR1 [get_cells -quiet [list U_algoTopWrapper/ALGO_IP21_SLR0]]
 
+create_pblock pblock_IP3
+add_cells_to_pblock [get_pblocks pblock_IP3] [get_cells -quiet [list U_algoTopWrapper/ALGO_IP3_SLR0]]
+resize_pblock [get_pblocks pblock_IP3] -add {CLOCKREGION_X4Y0:CLOCKREGION_X5Y3}
+set_property IS_SOFT TRUE [get_pblocks pblock_IP3]
+
+
 
 create_pblock pblock_IP21
 add_cells_to_pblock [get_pblocks pblock_IP21] [get_cells -quiet [list U_algoTopWrapper/ALGO_IP21_SLR0]]
