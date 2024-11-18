@@ -433,3 +433,4 @@ resize_pblock pblock_DAQ_right -add {SLICE_X195Y0:SLICE_X205Y959 URAM288_X4Y0:UR
 set_property IS_SOFT TRUE [get_pblocks pblock_DAQ_right]
 
 set_property PROHIBIT TRUE [get_sites {RAMB18_X11Y* RAMB36_X11Y*}]
+
