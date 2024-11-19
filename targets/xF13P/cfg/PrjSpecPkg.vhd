@@ -205,7 +205,7 @@ package PrjSpecPkg is
     68 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     69 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     70 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    71 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),--64-71 for IP3 op
+    71 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),--65-71 for duplicate op IP3
     72 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     73 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     74 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
