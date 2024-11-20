@@ -1,4 +1,4 @@
-cd $AP_FW_BASE_DIR/
+
 
 source /opt/Xilinx/Vivado/2023.1/settings64.sh
 
@@ -6,6 +6,7 @@ git clone --branch rct-latest --recurse-submodules ssh://git@gitlab.cern.ch:7999
 
 
 cd rct-17-x-6-abnv-calibration
+
 mkdir build
 
 cd rct-17-x-6-abnv-calibration/submodules/cms-tcds2-firmware/components/tcds2_interface/firmware/hdl/
