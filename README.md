@@ -1,20 +1,20 @@
 cd $AP_FW_BASE_DIR/
 
-source /opt/Xilinx/Vivado/2021.1/settings64.sh
+source /opt/Xilinx/Vivado/2023.1/settings64.sh
 
-git clone --recursive ssh://git@gitlab.cern.ch:7999/rct17x6/rct-17x6.git
+git clone --branch rct-latest --recurse-submodules ssh://git@gitlab.cern.ch:7999/amohan/rct-17-x-6-abnv-calibration.git
 
-cd $AP_FW_BASE_DIR/rct-17x6
 
+cd rct-17-x-6-abnv-calibration
 mkdir build
 
-cd $AP_FW_BASE_DIR/rct-17x6/submodules/cms-tcds2-firmware/components/tcds2_interface/firmware/hdl/
+cd rct-17-x-6-abnv-calibration/submodules/cms-tcds2-firmware/components/tcds2_interface/firmware/hdl/
 
 rm -rf tcds2_interface_pkg.vhd
 
 cp /afs/hep.wisc.edu/home/piyushkumar/Public/TCDS/tcds2_interface_pkg.vhd ./
 
-cd $AP_FW_BASE_DIR/rct-17x6/targets/xF13P/
+cd rct-17-x-6-abnv-calibration/targets/xF13P/
 
 make
 
@@ -25,6 +25,10 @@ In any case a rebuild is required: use the following command
 make clean
 
 make
+
+
+
+
 
 To test the bitfile, please copy the following directory in your area (the scratch area of the beck machine is preferable as it is directly accessible from the Falcon's ELM)
 
