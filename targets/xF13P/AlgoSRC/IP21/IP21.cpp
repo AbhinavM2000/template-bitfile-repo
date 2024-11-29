@@ -1,5 +1,5 @@
 #include "algo_top.h"
-
+#include "oe.h"
 #include "bitonicSort32.h"
 
 
@@ -35,6 +35,7 @@ void processOutLinks(ecalcluster ECALClustersSorted[N_CLUSTERS],
       #pragma HLS UNROLL
       start = i * 64;
       end = start + 63;
+      cout<<RCTECALClusters[i].energy<<endl; //<<-------------------------------------------------------------
       link_out[0].range(end, start) = RCTECALClusters[i].getrctecalcluster();
    }
 
@@ -284,7 +285,7 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
    #pragma HLS ARRAY_PARTITION variable = link_out complete dim = 0
    #pragma HLS PIPELINE II = 9
    #pragma HLS INTERFACE ap_ctrl_hs port =return
-   //#pragma HLS latency min=145
+   #pragma HLS latency min=37
 
    ecalcluster ECALClusters[N_CLUSTERS];
    ecalcluster ECALClustersSorted[N_CLUSTERS];
@@ -359,7 +360,9 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
       ECALClusters[3 * N_CLUSTERS_5x6 + i].spare = 0;
    }
 
-   bitonicSort32(ECALClusters, ECALClustersSorted);
+   //bitonicSort32(ECALClusters, ECALClustersSorted);
+
+   minimal_bubble_sort(ECALClusters, ECALClustersSorted);
 
    /*---------------------------------link 0------------------------------------*/
 
