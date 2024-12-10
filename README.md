@@ -34,6 +34,7 @@ make
 To test the bitfile, please copy the following directory in your area (the scratch area of the beck machine is preferable as it is directly accessible from the Falcon's ELM)
 
 /afs/hep.wisc.edu/home/23pmmt11/Public/apx-fs/bittest/apx-pattern-testing-xF
+
 (you can also clone from here : https://gitlab.cern.ch/amohan/apx-rct-bitfile-test)
 
 The folder inside this directory named "RCT17x6_ALL_IPs" contains Rx, Tx config files, input test vector (for one LHC event). Please copy your bitfile in this area. 
