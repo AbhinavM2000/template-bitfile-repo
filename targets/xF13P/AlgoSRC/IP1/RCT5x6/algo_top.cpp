@@ -185,7 +185,7 @@ value = tmpValue ;
 
 void zerrocrystals(ecalcrystal ECALCrystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcrystal Seed, ap_uint<2> brems) {
 #pragma HLS ARRAY_PARTITION variable=ECALCrystals complete dim=0
-#pragma HLS latency min=3
+#pragma HLS latency min=5
 
 ecalcrystalmask mask[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI] ;
 ecalcrystalmask maskN[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI] ;
@@ -257,7 +257,7 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	}
 }
 }
-         	
+
 for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -272,7 +272,7 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 
 void getcluster(ecalcrystal ECALCrystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcrystal Seed, ecalcluster &output) {
 #pragma HLS ARRAY_PARTITION variable=ECALCrystals complete dim=0
-#pragma HLS latency min=16
+#pragma HLS latency min=18
 
 ap_uint<2> brems = 0 ;
 ap_uint<12> NegValue=0, CntrValue=0, PosValue=0 ;
@@ -324,7 +324,7 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
            		#pragma HLS UNROLL
         		extendedcrystals1D[j+5].energy = extendedcrystals[i+k+1][j].energy ;
 			}
-	        getslice(extendedcrystals1D, Seed, NegSlice[k+1]) ; 
+	        getslice(extendedcrystals1D, Seed, NegSlice[k+1]) ;
 		}
 	}
 	else { }
@@ -366,7 +366,7 @@ else if(PosValue > clusterEnergyDiv8){
     brems  = 2;
 }
 else { brems = 0;}
-         	
+
 s2x5 = (s2x5n > s2x5p) ? s2x5n:s2x5p ;
 
 output.seedEnergy = Seed.energy ;
@@ -556,4 +556,3 @@ link_out[1] = 0;
 processOutputLinks(ECALClustersH1, ECALClustersH2, ECALClustersH3, ECALTowers, link_out);
 
 }
-

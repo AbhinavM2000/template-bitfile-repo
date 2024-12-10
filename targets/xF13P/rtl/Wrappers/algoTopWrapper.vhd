@@ -719,7 +719,7 @@ axiStreamOutSLR0D0_3 <= axiStreamOutSLR0D0_2 when rising_edge(algoClk);
 RCT_2x6_SLR0_OUTPUT_BUFFERING: for idx in 0 to N_OUTPUT_STREAMS_IP1-1 generate
   BUFFERING: entity work.AxiStreamBuffer
   GENERIC MAP(
-      BUFFER_DEPTH => 21
+      BUFFER_DEPTH => 11
   )
   PORT MAP( 
   algoClk =>  algoClk,

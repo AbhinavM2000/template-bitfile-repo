@@ -719,6 +719,7 @@ architecture behav of IP1_2x6_zerrocrystals is
     signal ap_CS_fsm_pp0_stage2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_pp0_stage2 : signal is "none";
     signal ap_block_state3_pp0_stage2_iter0 : BOOLEAN;
+    signal ap_block_state6_pp0_stage2_iter1 : BOOLEAN;
     signal ap_block_pp0_stage2_11001 : BOOLEAN;
     signal and_ln209_fu_6706_p2 : STD_LOGIC_VECTOR (9 downto 0);
     signal and_ln209_reg_12398 : STD_LOGIC_VECTOR (9 downto 0);
@@ -1321,11 +1322,10 @@ architecture behav of IP1_2x6_zerrocrystals is
     signal and_ln209_299_fu_10892_p2 : STD_LOGIC_VECTOR (9 downto 0);
     signal and_ln209_299_reg_13893 : STD_LOGIC_VECTOR (9 downto 0);
     signal ap_enable_reg_pp0_iter0_reg : STD_LOGIC := '0';
-    signal ap_block_state1_pp0_stage0_iter0 : BOOLEAN;
-    signal ap_block_state4_pp0_stage0_iter1 : BOOLEAN;
-    signal ap_block_pp0_stage0_subdone : BOOLEAN;
     signal ap_block_pp0_stage2_subdone : BOOLEAN;
     signal ap_port_reg_ECALCrystals_0_0_e : STD_LOGIC_VECTOR (9 downto 0);
+    signal ap_block_state1_pp0_stage0_iter0 : BOOLEAN;
+    signal ap_block_state4_pp0_stage0_iter1 : BOOLEAN;
     signal ap_block_pp0_stage0_11001 : BOOLEAN;
     signal ap_port_reg_ECALCrystals_0_1_e : STD_LOGIC_VECTOR (9 downto 0);
     signal ap_port_reg_ECALCrystals_0_2_e : STD_LOGIC_VECTOR (9 downto 0);
@@ -2602,11 +2602,14 @@ architecture behav of IP1_2x6_zerrocrystals is
     signal maskI_9_29_energy_s_fu_4610_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal select_ln209_299_fu_10884_p3 : STD_LOGIC_VECTOR (9 downto 0);
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
-    signal ap_idle_pp0_0to0 : STD_LOGIC;
-    signal ap_reset_idle_pp0 : STD_LOGIC;
+    signal ap_block_pp0_stage0_subdone : BOOLEAN;
     signal ap_idle_pp0_1to1 : STD_LOGIC;
     signal ap_block_state2_pp0_stage1_iter0 : BOOLEAN;
+    signal ap_block_state5_pp0_stage1_iter1 : BOOLEAN;
     signal ap_block_pp0_stage1_subdone : BOOLEAN;
+    signal ap_idle_pp0_0to0 : STD_LOGIC;
+    signal ap_reset_idle_pp0 : STD_LOGIC;
+    signal ap_reset_start_pp0 : STD_LOGIC;
     signal ap_enable_pp0 : STD_LOGIC;
 
 
@@ -2649,8 +2652,6 @@ begin
             else
                 if (((ap_const_logic_1 = ap_CS_fsm_pp0_stage2) and (ap_const_boolean_0 = ap_block_pp0_stage2_subdone))) then 
                     ap_enable_reg_pp0_iter1 <= ap_enable_reg_pp0_iter0;
-                elsif (((ap_enable_reg_pp0_iter0 = ap_const_logic_0) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0) and (ap_const_boolean_0 = ap_block_pp0_stage0_subdone))) then 
-                    ap_enable_reg_pp0_iter1 <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
@@ -3274,14 +3275,12 @@ begin
         end if;
     end process;
 
-    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_block_pp0_stage0_subdone, ap_block_pp0_stage2_subdone, ap_reset_idle_pp0, ap_idle_pp0_1to1, ap_block_pp0_stage1_subdone)
+    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, ap_block_pp0_stage2_subdone, ap_block_pp0_stage0_subdone, ap_idle_pp0_1to1, ap_block_pp0_stage1_subdone, ap_reset_idle_pp0, ap_reset_start_pp0)
     begin
         case ap_CS_fsm is
             when ap_ST_fsm_pp0_stage0 => 
-                if ((not(((ap_start = ap_const_logic_0) and (ap_idle_pp0_1to1 = ap_const_logic_1))) and (ap_reset_idle_pp0 = ap_const_logic_0) and (ap_const_boolean_0 = ap_block_pp0_stage0_subdone))) then
+                if ((not(((ap_start = ap_const_logic_0) and (ap_idle_pp0_1to1 = ap_const_logic_1))) and (ap_const_boolean_0 = ap_block_pp0_stage0_subdone))) then
                     ap_NS_fsm <= ap_ST_fsm_pp0_stage1;
-                elsif (((ap_reset_idle_pp0 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage0_subdone))) then
-                    ap_NS_fsm <= ap_ST_fsm_pp0_stage0;
                 else
                     ap_NS_fsm <= ap_ST_fsm_pp0_stage0;
                 end if;
@@ -3292,7 +3291,7 @@ begin
                     ap_NS_fsm <= ap_ST_fsm_pp0_stage1;
                 end if;
             when ap_ST_fsm_pp0_stage2 => 
-                if ((ap_const_boolean_0 = ap_block_pp0_stage2_subdone)) then
+                if ((((ap_reset_start_pp0 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage2_subdone)) or (not(((ap_reset_start_pp0 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage2_subdone))) and (ap_reset_idle_pp0 = ap_const_logic_0) and (ap_const_boolean_0 = ap_block_pp0_stage2_subdone)) or ((ap_reset_idle_pp0 = ap_const_logic_1) and (ap_const_boolean_0 = ap_block_pp0_stage2_subdone)))) then
                     ap_NS_fsm <= ap_ST_fsm_pp0_stage0;
                 else
                     ap_NS_fsm <= ap_ST_fsm_pp0_stage2;
@@ -3698,10 +3697,12 @@ begin
         ap_block_state2_pp0_stage1_iter0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_state3_pp0_stage2_iter0 <= not((ap_const_boolean_1 = ap_const_boolean_1));
         ap_block_state4_pp0_stage0_iter1 <= not((ap_const_boolean_1 = ap_const_boolean_1));
+        ap_block_state5_pp0_stage1_iter1 <= not((ap_const_boolean_1 = ap_const_boolean_1));
+        ap_block_state6_pp0_stage2_iter1 <= not((ap_const_boolean_1 = ap_const_boolean_1));
 
-    ap_done_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter0, ap_block_pp0_stage0, ap_enable_reg_pp0_iter1, ap_ce, ap_block_pp0_stage0_11001)
+    ap_done_assign_proc : process(ap_start, ap_CS_fsm_pp0_stage0, ap_enable_reg_pp0_iter0, ap_block_pp0_stage0, ap_enable_reg_pp0_iter1, ap_CS_fsm_pp0_stage2, ap_block_pp0_stage2_11001, ap_ce)
     begin
-        if ((((ap_const_logic_1 = ap_ce) and (ap_enable_reg_pp0_iter1 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0) and (ap_const_boolean_0 = ap_block_pp0_stage0_11001)) or ((ap_start = ap_const_logic_0) and (ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_enable_reg_pp0_iter0 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)))) then 
+        if ((((ap_const_logic_1 = ap_ce) and (ap_const_boolean_0 = ap_block_pp0_stage2_11001) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage2) and (ap_enable_reg_pp0_iter1 = ap_const_logic_1)) or ((ap_start = ap_const_logic_0) and (ap_const_boolean_0 = ap_block_pp0_stage0) and (ap_enable_reg_pp0_iter0 = ap_const_logic_1) and (ap_const_logic_1 = ap_CS_fsm_pp0_stage0)))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -3776,6 +3777,16 @@ begin
             ap_reset_idle_pp0 <= ap_const_logic_1;
         else 
             ap_reset_idle_pp0 <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    ap_reset_start_pp0_assign_proc : process(ap_start, ap_idle_pp0_0to0)
+    begin
+        if (((ap_start = ap_const_logic_1) and (ap_idle_pp0_0to0 = ap_const_logic_1))) then 
+            ap_reset_start_pp0 <= ap_const_logic_1;
+        else 
+            ap_reset_start_pp0 <= ap_const_logic_0;
         end if; 
     end process;
 
