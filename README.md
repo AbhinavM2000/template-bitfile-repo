@@ -49,9 +49,19 @@ bitfile="$AP_FW_BASE_DIR/apx-pattern-testing-xF/RCT17x6_ALL_IPs/xF13P_top.bit"
 
 apx-prime -H localhost -c config.ini -s "device fpga.bitfile=$bitfile" 
 
+cd RCT17x6_ALL_IPs
+
+Run calibScript.sh to load the threshold calibration into memory for IP21
+
+cd ..
+
 sh pattern_test.sh falcon5-linux RCT17x6_ALL_IPs/buf_cfg_rx_playback_RCT17x6.txt RCT17x6_ALL_IPs/buf_cfg_tx_capture_RCT17x6.txt RCT17x6_ALL_IPs/RCT17x6_TV_1BX_RTL.txt RCT17x6_ALL_IPs/RCT17x6_OUT.txt 2 9
 
-RCT17x6_OUT.txt is the output test vector printed. You can compare the values of this file with reference output file "RCT17x6_REFOUT1BX.txt". This refernece output is captured and verified at the following level:
+RCT17x6_OUT.txt is the output test vector printed. 
+
+To see actual output you have to scroll down since BC0 delay is not set.
+
+You can compare the values of this file with reference output file "RCT17x6_REFOUT1BX.txt". This refernece output is captured and verified at the following level:
 
 HLS == RTL == bitfile
 
