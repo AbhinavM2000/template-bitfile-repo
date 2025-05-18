@@ -91,9 +91,9 @@ Follow these steps to test the generated bitfile on a Falcon machine.
     Copy the test directory to your scratch area on the beck machine (accessible from Falcon's ELM).
     You can copy from:
     ```bash
-    /afs/hep.wisc.edu/home/23pmmt11/Public/apx-fs/bittest/apx-pattern-testing-xF
+    /afs/hep.wisc.edu/home/23pmmt11/Public/apx-pattern-testing-xF
     ```
-    Alternatively, clone it:
+    Alternatively, clone it (recommended):
     ```bash
     git clone https://gitlab.cern.ch/amohan/apx-rct-bitfile-test.git apx-pattern-testing-xF
     ```
