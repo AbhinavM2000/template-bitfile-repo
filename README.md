@@ -207,7 +207,7 @@ Follow these steps to test the generated bitfile on a Falcon machine.
 0.  *Good practice to reissue AFS token once every day by running `kinit` followed by `aklog` in terminal to avoid write access issues on token expiry. <br>This can cause various glitches with HLS and Vivado if token expires and write access is gone. In this case VNC server has to be restarted.*
 1.  **[Some automation tools can be found here](https://abhinavm2000.github.io/fpga-automation-toolkit/)**
 2.  **[Physoptloop script can be found here](https://gitlab.cern.ch/amohan/gct_vu13p/-/blob/master/targets/xF13P/poloop.tcl)**
-3.  **[Instructions for bitfile and FEAST tests can be found here](https://example.com)**
+3.  **[Instructions for FEAST tests can be found here](https://example.com)**
 4.  **[RTL simulation project can be found here](https://example.com)**
 5.  **[Phase2 L1 Calo Twiki](https://twiki.cern.ch/twiki/bin/view/CMS/L1TriggerPhase2Calorimeter)**
 
