@@ -100,7 +100,7 @@ Follow these steps to test the generated bitfile on a Falcon machine.
     Place your generated bitfile (e.g., `xF13P_top.bit`) into the `apx-pattern-testing-xF/RCT17x6_ALL_IPs/` subdirectory.
 
 2.  **Access Falcon Machine:**
-    Login to a Falcon machine equipped with a -2 VU13P FPGA (e.g., falcon5-linux).
+    Login to a Falcon machine equipped with a -2 VU13P FPGA (e.g., falcon5-linux).<br>
     **Important:** Ping Ales before testing to avoid conflicts with other users.
     ```bash
     ssh falcon5-linux
