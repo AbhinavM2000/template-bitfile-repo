@@ -1,4 +1,4 @@
-# Project Build Guide: rct-17-x-6-abnv-calibration
+# Project Build Guide: rct-17-x-6
 
 | **Document Version**              | **Author(s)**                  | **Last Updated** | **Branch**       |
 |-----------------------------------|--------------------------------|------------------|------------------|
