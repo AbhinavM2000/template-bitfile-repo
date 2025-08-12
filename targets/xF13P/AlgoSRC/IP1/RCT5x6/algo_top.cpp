@@ -132,7 +132,20 @@ ecalcrystal crystals1D[CRYSTALS_IN_PHI];
 
 ecalcrystal tmp ;
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+int loop_var =0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var +=1;
+	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+    	#pragma HLS UNROLL
+        tmp = crystals[i][j] ;
+        crystals1D[j] = tmp ;
+	}
+	getseedEta(crystals1D, EtaSlices[i]) ;
+}
+
+for(loop i=loop_var; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
     	#pragma HLS UNROLL
@@ -161,7 +174,22 @@ for(loop j=0; j<CRYSTALS_IN_PHI; j++){
     mask[j].energy = 0 ;
 }
 
-for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+int loop_var =0;
+for(loop j=0; j<1; j++){
+	#pragma HLS UNROLL
+	loop_var +=1;
+	if(j == Seed.phi){
+		mask[j+0].energy = 1;
+        mask[j+1].energy = 1;
+        mask[j+2].energy = 1;
+        mask[j+3].energy = 1;
+        mask[j+4].energy = 1;
+
+    }
+else {}
+}
+
+for(loop j=loop_var; j<CRYSTALS_IN_PHI; j++){
 	#pragma HLS UNROLL
 	if(j == Seed.phi){
 		mask[j+0].energy = 1;
@@ -173,7 +201,17 @@ for(loop j=0; j<CRYSTALS_IN_PHI; j++){
 else {}
 }
 
-for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
+int loop_var_1=0;
+for(loop j=0; j<1; j++){
+	#pragma HLS UNROLL
+    ap_uint<10> energytmp = crystals[j].energy ;
+    ap_uint<10> energy = energytmp *  mask[j].energy ;
+    ap_uint<12> tmp = tmpValue + energy ;
+    tmpValue = tmp  ;
+    loop_var_1+=1;
+}
+
+for(loop j=loop_var_1; j<CRYSTALS_IN_PHI+4; j++){
 	#pragma HLS UNROLL
     ap_uint<10> energytmp = crystals[j].energy ;
     ap_uint<10> energy = energytmp *  mask[j].energy ;
@@ -198,7 +236,24 @@ ecalcrystalmask maskI[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI] ;
 
 ap_uint<5> eta = Seed.eta ;
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+//*************" loop 1"*******************************
+
+
+int loop_var_1=0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_1 +=0;
+	if(i+1 >= eta && i <= eta+1){
+    for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+        #pragma HLS UNROLL
+    	if(j+7 >= Seed.phi && j+3 <= Seed.phi ) maskN[i][j].energy=1 ;
+        }
+	}
+}
+
+
+for(loop i=loop_var_1; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	if(i+1 >= eta && i <= eta+1){
     for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -208,7 +263,22 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+//*************" loop 2"*******************************
+
+
+int loop_var_2 =0;
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_2 += 1;
+	if(i+1 >= eta && i <= eta+1){
+	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+        #pragma HLS UNROLL
+		if(j+2 >= Seed.phi && j <= Seed.phi+2 ) mask[i][j].energy =1 ;
+		}
+	}
+}
+
+for(loop i=loop_var_2; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	if(i+1 >= eta && i <= eta+1){
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -218,7 +288,24 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+//*************" loop 3"*******************************
+
+int loop_var_3 = 0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_3 += 1;
+	if(i+1 >= eta && i <= eta+1){
+        for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+        #pragma HLS UNROLL
+        if(j >= Seed.phi+3 && j <= Seed.phi+7 ) maskP[i][j].energy=1 ;
+        }
+	}
+}
+
+
+for(loop i=loop_var_3; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	if(i+1 >= eta && i <= eta+1){
         for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -228,7 +315,21 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+//*************" loop 4"*******************************
+
+int loop_var_4 =0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_4 += 1;
+	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+    	#pragma HLS UNROLL
+        maskI[i][j].energy = ((ap_uint<1>)1 - mask[i][j].energy) ;
+    }
+}
+
+for(loop i=loop_var_4; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
     	#pragma HLS UNROLL
@@ -236,8 +337,24 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
     }
 }
 
+
+//*************" loop 5"*******************************
+
 if(brems == 1){
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+	int loop_var_5 =0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_5 += 1;
+	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+    	#pragma HLS UNROLL
+		ap_uint<1> mask0 = maskI[i][j].energy * ((ap_uint<1>)1 - maskN[i][j].energy) ;
+        maskI[i][j].energy = mask0 ;
+       	}
+	}
+
+for(loop i=loop_var_5; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
     	#pragma HLS UNROLL
@@ -245,20 +362,53 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
         maskI[i][j].energy = mask0 ;
        	}
 	}
+
 }
 
+
+//*************" loop 6"*******************************
+
 if(brems == 2){
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+	int loop_var_6=0;
+
+
+for(loop i=0; i<1; i++){
 	#pragma HLS UNROLL
+	loop_var_6 += 1;
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
 		#pragma HLS UNROLL
 		ap_uint<1> mask0 = maskI[i][j].energy * ((ap_uint<1>)1 - maskP[i][j].energy) ;
 		maskI[i][j].energy = mask0 ;
 	}
 }
+
+	for(loop i=loop_var_6; i<CRYSTALS_IN_ETA23; i++){
+		#pragma HLS UNROLL
+		for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+			#pragma HLS UNROLL
+			ap_uint<1> mask0 = maskI[i][j].energy * ((ap_uint<1>)1 - maskP[i][j].energy) ;
+			maskI[i][j].energy = mask0 ;
+		}
+	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+//*************" loop 7"*******************************
+int loop_var_7 =0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_7 += 1;
+	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+		#pragma HLS UNROLL
+		ap_uint<10> tmp = ECALCrystals[i][j].energy ;
+		ap_uint<10> energy = tmp * maskI[i][j].energy  ;
+        ECALCrystals[i][j].energy = energy ;
+	}
+}
+
+for(loop i=loop_var_7; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
 		#pragma HLS UNROLL
@@ -287,7 +437,12 @@ ap_uint<12> PosSlice[5] ;
 ecalcrystal extendedcrystals[CRYSTALS_IN_ETA23+4][CRYSTALS_IN_PHI+4] ;
 #pragma HLS ARRAY_PARTITION variable=extendedcrystals complete dim=0
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+
+
+//************1st loop*********************
+int loop_var_1=0;
+for(loop i=0; i<1; i++){
+	loop_var_1 += 1;
 	#pragma HLS UNROLL
     for(loop j=0; j<CRYSTALS_IN_PHI; j++){
 		#pragma HLS UNROLL
@@ -295,7 +450,37 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
+for(loop i=loop_var_1; i<CRYSTALS_IN_ETA23; i++){
+	#pragma HLS UNROLL
+    for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+		#pragma HLS UNROLL
+        extendedcrystals[i+2][j+2].energy = ECALCrystals[i][j].energy ;
+	}
+}
+
+
+//**************2nd loop**************
+int loop_var_2=0;
+
+for(loop i=0; i<1; i++){
+	#pragma HLS UNROLL
+	loop_var_2 += 1;
+	if(i == Seed.eta){
+		for(loop k=0; k<5; k++){
+           #pragma HLS UNROLL
+		   ecalcrystal extendedcrystals1D[CRYSTALS_IN_PHI+4] ;
+           #pragma HLS ARRAY_PARTITION variable=extendedcrystals1D complete dim=0
+		   	   for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
+           	   	   #pragma HLS UNROLL
+		   		   extendedcrystals1D[j].energy = extendedcrystals[i+k][j].energy ;
+		   	   }
+	       getslice(extendedcrystals1D, Seed, CntrSlice[k]) ;
+         }
+	}
+	else { }
+}
+
+for(loop i=loop_var_2; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
 	if(i == Seed.eta){
 		for(loop k=0; k<5; k++){
@@ -312,6 +497,10 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	else { }
 }
 
+
+
+
+//***************3rd loop*************
 
 for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 	#pragma HLS UNROLL
@@ -387,11 +576,21 @@ void createClusters1(ecalcrystal crystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], e
 
 ecalcrystal Seed ;
 
-for(loop k=0; k<N_CLUSTERS; k++){
+int loop_var =0;
+
+for(loop k=0; k<1; k++){
+	loop_var += 1;
 	getseedposition(crystals, Seed) ;
 	getcluster(crystals,Seed,ECALClusters[k]) ;
 	zerrocrystals(crystals, Seed, ECALClusters[k].brems) ;
 }
+
+for(loop k=loop_var; k<N_CLUSTERS; k++){
+	getseedposition(crystals, Seed) ;
+	getcluster(crystals,Seed,ECALClusters[k]) ;
+	zerrocrystals(crystals, Seed, ECALClusters[k].brems) ;
+}
+
 
 }
 
