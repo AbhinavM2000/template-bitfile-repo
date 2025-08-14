@@ -3,9 +3,10 @@
 void processOutLinks(rctecalcluster RCTECALClusters[N_CLUSTERS],
                      rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA],
                      ap_uint<576> link_out[N_OUTPUT_LINKS]){
-#pragma HLS ARRAY_PARTITION variable=RCTECALClusters complete dim=0
-#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI complete dim=0
-#pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
+#pragma HLS ARRAY_PARTITION variable=RCTECALClusters cyclic factor=3 dim=1
+#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=5 dim=2
+#pragma HLS ARRAY_PARTITION variable=link_out complete dim=1
 //#pragma HLS PIPELINE II=9
 #pragma HLS LATENCY min=9
 
@@ -15,13 +16,13 @@ ap_uint<10> start1 ;
 ap_uint<10> end1 ;
 
 for(loop i=0 ; i<N_CLUSTERS; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=3
 	start=i*64 ; end=start+63;
 	link_out[0].range(end, start) = RCTECALClusters[i].getrctecalcluster() ;
 }
 
 for(loop i=0; i<N_TOWERS_IN_ETA; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=5
 	start=i*16 ; end=start+15;
 	start1=start+272 ; end1=start1+15;
 	link_out[1].range(end, start) = RCTTowersPHI[0][i].getrcttower() ;
@@ -37,14 +38,14 @@ for(loop i=0; i<N_TOWERS_IN_ETA; i++){
 }
 
 void getECAL(ap_uint<576> link_in[N_INPUT_LINKS],ecaltower ECALTowersSLR3[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI],ecaltower ECALTowersSLR2[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI],ecaltower ECALTowersSLR1[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI],ecaltower ECALTowersSLR0[N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI]){
-#pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR3 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR2 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 complete dim=0
+#pragma HLS ARRAY_PARTITION variable=link_in complete dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR3 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR2 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 cyclic factor=6 dim=1
 
 for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=6
     ap_uint<10> start   = i*18;
     ap_uint<10> end = start + 17;
     ECALTowersSLR3[i].fillecaltower(link_in[1].range(end, start));
@@ -54,7 +55,7 @@ for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
 
   }
 for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=6
     ap_uint<10> start   = i*18;
     ap_uint<10> end = start + 17;
     ECALTowersSLR2[i].fillecaltower(link_in[2].range(end, start));
@@ -63,7 +64,7 @@ for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
 
   }
 for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=6
     ap_uint<10> start   = i*18;
     ap_uint<10> end = start + 17;
     ECALTowersSLR1[i].fillecaltower(link_in[3].range(end, start));
@@ -72,7 +73,7 @@ for(loop i=0; i<N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI; i++){
 
   }
 for(loop i=0; i<N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=6
     ap_uint<10> start   = i*18;
     ap_uint<10> end = start + 17;
     ECALTowersSLR0[i].fillecaltower(link_in[4].range(end, start));
@@ -86,32 +87,33 @@ for(loop i=0; i<N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI; i++){
 }
 
 void processInputLinks(ap_uint<576> link_in[N_INPUT_LINKS], rctecalcluster RCTECALClusters[N_CLUSTERS], rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA], bool HCALsecondhalfstarts){
-	#pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
-	#pragma HLS ARRAY_PARTITION variable=RCTECALClusters complete dim=0
-	#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=link_in complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=RCTECALClusters cyclic factor=3 dim=1
+	#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=6 dim=1
+	#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=5 dim=2
 #pragma HLS latency min=9
 
 ecaltower ECALTowersSLR3[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI];
 ecaltower ECALTowersSLR2[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI];
 ecaltower ECALTowersSLR1[N_TOWERS_IN_ETA5*N_TOWERS_IN_PHI];
 ecaltower ECALTowersSLR0[N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI];
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR3 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR2 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 complete dim=0
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR3 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR2 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR1 cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=ECALTowersSLR0 cyclic factor=6 dim=1
 
 
 hcaltower HCALTowersR0[N_TOWERS_IN_HCAL_REGION];
 hcaltower HCALTowersR1[N_TOWERS_IN_HCAL_REGION];
 hcaltower HCALTowersR2[N_TOWERS_IN_HCAL_REGION];
 hcaltower HCALTowersR3[N_TOWERS_IN_HCAL_REGION];
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR0 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR1 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR2 complete dim=0
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR3 complete dim=0
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR0 cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR1 cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR2 cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR3 cyclic factor=4 dim=1
 
 for(loop i=0; i<N_CLUSTERS; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=3
     ap_uint<10> start   = i*64;
     ap_uint<10> end = start + 63;
     RCTECALClusters[i].fillrctecalcluster(link_in[0].range(end, start));
@@ -130,25 +132,25 @@ getECAL(link_in,ECALTowersSLR3, ECALTowersSLR2, ECALTowersSLR1, ECALTowersSLR0);
 //cout<<RCTECALClusters[0].eta<<endl;
 
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=4
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR0[i].fillhcaltower(link_in[5].range(end, start));
   }
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=4
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR1[i].fillhcaltower(link_in[6].range(end, start));
   }
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=4
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR2[i].fillhcaltower(link_in[7].range(end, start));
   }
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL
+    #pragma HLS UNROLL factor=4
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR3[i].fillhcaltower(link_in[8].range(end, start));
@@ -238,17 +240,18 @@ RCTTowersPHI[j+2][i+8].uploadHCAL(HCALTowersR1[i*4+j]) ;
 }
 
 void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS]){
-#pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
-#pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
+#pragma HLS ARRAY_PARTITION variable=link_in complete dim=1
+#pragma HLS ARRAY_PARTITION variable=link_out complete dim=1
 #pragma HLS PIPELINE II=9
 #pragma HLS INTERFACE ap_ctrl_hs port=return
 //#pragma HLS latency min=145
 
 rctecalcluster RCTECALClusters[N_CLUSTERS] ;
-#pragma HLS ARRAY_PARTITION variable=RCTECALClusters complete dim=0
+#pragma HLS ARRAY_PARTITION variable=RCTECALClusters cyclic factor=3 dim=1
 
 rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA];
-#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI complete dim=0
+#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=6 dim=1
+#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=5 dim=2
 
 //reading clusters and towers
 // order of HCAL tower
