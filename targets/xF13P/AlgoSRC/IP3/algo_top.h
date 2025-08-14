@@ -285,4 +285,3 @@ void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPU
 
 
 #endif
-
