@@ -1,6 +1,5 @@
 #include "algo_top.h"
-#include "oe.h"
-#include "bitonicSort32.h"
+#include "bubl_sorter.h"
 
 
 void processOutLinks(ecalcluster ECALClustersSorted[N_CLUSTERS],
