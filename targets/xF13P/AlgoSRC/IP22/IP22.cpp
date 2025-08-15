@@ -8,19 +8,18 @@ void processOutLinks(
    ecaltower ECALTowersSLR3[TOWERS_IN_ETA5 * TOWERS_IN_PHI],
    ap_uint < 576 > link_out[N_OUTPUT_LINKS]) {
 
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = link_out complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = link_out complete dim = 1
    #pragma HLS PIPELINE II = 9
-   #pragma HLS LATENCY min = 9
 
    ap_uint < 10 > start;
    ap_uint < 10 > end;
 //packing towers for IP3
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       start = i * 18;
       end = start + 17;
       link_out[1].range(end, start) = ECALTowersSLR3[i].getecaltower();
@@ -29,7 +28,7 @@ void processOutLinks(
    }
 
    for (loop i = 0; i < TOWERS_IN_ETA2 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       start = i * 18;
       end = start + 17;
       link_out[4].range(end, start) = ECALTowersSLR0[i].getecaltower();
@@ -38,35 +37,34 @@ void processOutLinks(
 }
 
 void processInputLinks(ap_uint < 576 > link_in[N_INPUT_LINKS], ecaltower ECALTowersSLR3[TOWERS_IN_ETA5 * TOWERS_IN_PHI], ecaltower ECALTowersSLR2[TOWERS_IN_ETA5 * TOWERS_IN_PHI], ecaltower ECALTowersSLR1[TOWERS_IN_ETA5 * TOWERS_IN_PHI], ecaltower ECALTowersSLR0[TOWERS_IN_ETA2 * TOWERS_IN_PHI], ecalcluster ECALClustersRejected[27]) {
-   #pragma HLS ARRAY_PARTITION variable = link_in complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALClustersRejected complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 complete dim = 0
-   //#pragma HLS latency min=9
+   #pragma HLS ARRAY_PARTITION variable = link_in complete dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALClustersRejected cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 cyclic factor = 2 dim = 1
 
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 10 > start = i * 18;
       ap_uint < 10 > end = start + 17;
       ECALTowersSLR3[i].fillecaltower(link_in[4].range(end, start));
    }
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 10 > start = i * 18;
       ap_uint < 10 > end = start + 17;
       ECALTowersSLR2[i].fillecaltower(link_in[5].range(end, start));
    }
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 10 > start = i * 18;
       ap_uint < 10 > end = start + 17;
       ECALTowersSLR1[i].fillecaltower(link_in[6].range(end, start));
    }
 
    for (loop i = 0; i < TOWERS_IN_ETA2 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 10 > start = i * 18;
       ap_uint < 10 > end = start + 17;
       ECALTowersSLR0[i].fillecaltower(link_in[7].range(end, start));
@@ -74,7 +72,7 @@ void processInputLinks(ap_uint < 576 > link_in[N_INPUT_LINKS], ecaltower ECALTow
 
 //unpack rejected clusters received from IP21
    for (loop i = 0; i < 9; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 10 > start = i * 64;
       ap_uint < 10 > end = start + 63;
       ECALClustersRejected[i].fillecalcluster(link_in[1].range(end, start));
@@ -84,53 +82,56 @@ void processInputLinks(ap_uint < 576 > link_in[N_INPUT_LINKS], ecaltower ECALTow
 
 }
 void putbackintower2x6(ecalcluster ECALCluster, ecaltower ECALTowers[TOWERS_IN_ETA2 * TOWERS_IN_PHI]) {
-   #pragma HLS ARRAY_PARTITION variable = ECALTowers complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALTowers cyclic factor = 2 dim = 1
    #pragma HLS INLINE
    loop id = (ECALCluster.eta) * 6 + (ECALCluster.phi);
 
    for (loop i = 0; i < TOWERS_IN_ETA2 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 12 > sum = ECALTowers[i].energy + ECALCluster.energy;
-      if (id == i * 5) {
+      if (id == i) {
          ECALTowers[i].energy = sum;
       }
    }
 }
 
 void putbackintower(ecalcluster ECALCluster, ecaltower ECALTowers[TOWERS_IN_ETA5 * TOWERS_IN_PHI]) {
-   #pragma HLS ARRAY_PARTITION variable = ECALTowers complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALTowers cyclic factor = 2 dim = 1
    #pragma HLS INLINE
 
    loop id = (ECALCluster.eta) * 6 + (ECALCluster.phi);
 
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 12 > sum = ECALTowers[i].energy + ECALCluster.energy;
-      if (id == i * 5) {
+      if (id == i) {
          ECALTowers[i].energy = sum;
       }
    }
 
 }
-
+void dummy_pass_through(ap_uint<576> in, ap_uint<576> &out) {
+#pragma HLS PIPELINE II=9
+#pragma HLS LATENCY min=30
+out = in;
+}
 void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N_OUTPUT_LINKS]) {
 
-   #pragma HLS ARRAY_PARTITION variable = link_in complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = link_out complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = link_in complete dim = 1
+   #pragma HLS ARRAY_PARTITION variable = link_out complete dim = 1
    #pragma HLS PIPELINE II = 9
    #pragma HLS INTERFACE ap_ctrl_hs port = return
-   //#pragma HLS latency min=145
 
    ecalcluster ECALClustersRejected[27];
-   #pragma HLS ARRAY_PARTITION variable = ECALClustersRejected complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALClustersRejected cyclic factor = 2 dim = 1
    ecaltower ECALTowersSLR3[TOWERS_IN_ETA5 * TOWERS_IN_PHI];
    ecaltower ECALTowersSLR2[TOWERS_IN_ETA5 * TOWERS_IN_PHI];
    ecaltower ECALTowersSLR1[TOWERS_IN_ETA5 * TOWERS_IN_PHI];
    ecaltower ECALTowersSLR0[TOWERS_IN_ETA2 * TOWERS_IN_PHI];
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1 cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0 cyclic factor = 2 dim = 1
 
    //reading clusters and towers
 
@@ -140,12 +141,12 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
    ecaltower ECALTowersSLR2C[TOWERS_IN_ETA5 * TOWERS_IN_PHI];
    ecaltower ECALTowersSLR1C[TOWERS_IN_ETA5 * TOWERS_IN_PHI];
    ecaltower ECALTowersSLR0C[TOWERS_IN_ETA2 * TOWERS_IN_PHI];
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3C complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2C complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1C complete dim = 0
-   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0C complete dim = 0
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR3C cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR2C cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR1C cyclic factor = 2 dim = 1
+   #pragma HLS ARRAY_PARTITION variable = ECALTowersSLR0C cyclic factor = 2 dim = 1
    for (loop i = 0; i < 21; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
 
       if (ECALClustersRejected[i].spare == 0) putbackintower2x6(ECALClustersRejected[i], ECALTowersSLR0C);
       if (ECALClustersRejected[i].spare == 1) putbackintower(ECALClustersRejected[i], ECALTowersSLR1C);
@@ -154,7 +155,7 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
    }
 
    for (loop i = 0; i < TOWERS_IN_ETA5 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 12 > energy3 = ECALTowersSLR3[i].energy + ECALTowersSLR3C[i].energy;
       ECALTowersSLR3[i].energy = energy3;
       ap_uint < 12 > energy2 = ECALTowersSLR2[i].energy + ECALTowersSLR2C[i].energy;
@@ -164,7 +165,7 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
    }
 
    for (loop i = 0; i < TOWERS_IN_ETA2 * TOWERS_IN_PHI; i++) {
-      #pragma HLS UNROLL
+      #pragma HLS PIPELINE II = 1
       ap_uint < 12 > energy = ECALTowersSLR0[i].energy + ECALTowersSLR0C[i].energy;
       ECALTowersSLR0[i].energy = energy;
    }
@@ -178,6 +179,6 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
    link_out[4] = 0;
 
    processOutLinks(ECALTowersSLR0, ECALTowersSLR1, ECALTowersSLR2, ECALTowersSLR3, link_out);
-   link_out[0]=link_in[0];
+   dummy_pass_through(link_in[0], link_out[0]);
 
 }
