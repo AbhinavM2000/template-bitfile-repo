@@ -362,7 +362,7 @@ void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N
 
    //bitonicSort32(ECALClusters, ECALClustersSorted);
 
-   minimal_bubble_sort(ECALClusters, ECALClustersSorted);
+   bubl_sorter(ECALClusters, ECALClustersSorted);
 
    /*---------------------------------link 0------------------------------------*/
 
