@@ -214,37 +214,6 @@ void stitchClusters(ecalcluster ECALClustersLowEta[N_CLUSTERS_5x6], ecalcluster 
 
 }
 
-const int DELAY_CYCLES = 30;  // Number of clock cycles for the delay
-
-void delay_specific_links(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_INPUT_LINKS]) {
-    // Shift register arrays for links 4, 5, 6, and 7
-    ap_uint<576> shift_registers[4][DELAY_CYCLES];
-
-#pragma HLS ARRAY_PARTITION variable=shift_registers dim=1 complete  // Complete partition on link indices
-#pragma HLS ARRAY_PARTITION variable=shift_registers dim=2 complete  // Complete partition on delay stages
-
-    // Delay logic for specific links 4, 5, 6, and 7
-    for (int i = 0; i < 4; i++) {
-#pragma HLS UNROLL  // Unroll loop to process all links in parallel
-        // Shift register logic for each delayed link
-        for (int j = DELAY_CYCLES - 1; j > 0; j--) {
-            shift_registers[i][j] = shift_registers[i][j - 1];
-        }
-        // Load the current input value into the first stage
-        shift_registers[i][0] = link_in[i + 4];
-
-        // Assign the delayed output from the last stage of the shift register to link_out
-        link_out[i + 4] = shift_registers[i][DELAY_CYCLES - 1];
-    }
-
-    // Pass through other links without delay
-    for (int i = 0; i < N_INPUT_LINKS; i++) {
-#pragma HLS UNROLL  // Unroll to parallelize non-delayed links as well
-        if (i < 4 || i > 7) {
-            link_out[i] = link_in[i];
-        }
-    }
-}
 
 void algo_top(ap_uint < 576 > link_in[N_INPUT_LINKS], ap_uint < 576 > link_out[N_OUTPUT_LINKS],
    ap_uint < 7 > ss_fun0, ap_uint < 7 > ss_fun1, ap_uint < 7 > ss_fun2, ap_uint < 7 > ss_fun3,
