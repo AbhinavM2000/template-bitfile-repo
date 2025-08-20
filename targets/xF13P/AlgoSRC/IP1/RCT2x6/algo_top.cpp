@@ -5,17 +5,20 @@ void processOutputLinks(ecalcluster ECALClustersH1[N_CLUSTERS], ecaltower ECALTo
 #pragma HLS ARRAY_PARTITION variable=ECALTowers complete dim=0
 #pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
 #pragma HLS PIPELINE II=9
-#pragma HLS LATENCY min=9
 
 ap_uint<10> start ;
 ap_uint<10> end ;
 
+
 for(loop i=0; i<N_CLUSTERS; i++){
+#pragma HLS unroll
 	start=i*64 ; end=start+63;
 	link_out[0].range(end, start) = ECALClustersH1[i].getecalcluster() ;
 }
 
+
 for(loop i=0; i<TOWERS_IN_ETA*TOWERS_IN_PHI; i++){
+#pragma HLS unroll
 	start=i*18 ; end=start+17;
 	link_out[1].range(end, start) = ECALTowers[i].getecaltower() ;
 }
@@ -26,7 +29,6 @@ for(loop i=0; i<TOWERS_IN_ETA*TOWERS_IN_PHI; i++){
 void processInputLinks(ap_uint<576> link_in[N_INPUT_LINKS], ecalcrystal ECALCrystals[CRYSTALS_IN_ETA][CRYSTALS_IN_PHI]){
 #pragma HLS ARRAY_PARTITION variable=link_in complete dim=0
 #pragma HLS ARRAY_PARTITION variable=ECALCrystals complete dim=0
-//#pragma HLS latency min=9
 
 ap_uint<6> wordId;
 ap_uint<6> startId;
@@ -46,7 +48,8 @@ for(loop i=0; i<CRYSTALS_IN_ETA; i++){
 }
 
 ecalcrystal  bestOf2(const ecalcrystal& ecaltp0, const ecalcrystal& ecaltp1) {
-#pragma HLS latency min=1
+//#pragma HLS latency min=1
+#pragma HLS inline
 
 ecalcrystal x;
     x = (ecaltp0.energy > ecaltp1.energy)?ecaltp0:ecaltp1;
@@ -55,7 +58,7 @@ ecalcrystal x;
 
 void getseedEta(ecalcrystal crystals[CRYSTALS_IN_PHI], ecalcrystal &EtaMax){
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
-#pragma HLS inline off
+#pragma HLS inline
 //#pragma HLS latency min=5
 
 
@@ -84,14 +87,14 @@ for(loop k=0; k<CRYSTALS_IN_PHI/4+1; k=k+2){
 
 ecalcrystal x1 = bestOf2(Step3[0], Step3[1]) ;
 ecalcrystal x2 = bestOf2(Step3[2], Step3[3]) ;
-        
+
 EtaMax  = bestOf2(x1,x2) ;
 
 }
 
 void getseedMax(ecalcrystal crystals[CRYSTALS_IN_ETA23], ecalcrystal &Seed) {
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
-#pragma HLS inline off
+#pragma HLS inline
 
 ecalcrystal Step1[CRYSTALS_IN_ETA23/2] ;
 ecalcrystal Step2[CRYSTALS_IN_ETA23/4] ;
@@ -110,12 +113,12 @@ for(loop k=0; k<CRYSTALS_IN_ETA23/2-1; k=k+2){
 
 ecalcrystal x1 = bestOf2(Step2[0], Step2[1]);
 Seed  = bestOf2(x1, Step1[4]);
-   
+
 }
 
 void getseedposition(ecalcrystal crystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcrystal &Seed){
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
-#pragma HLS inline off
+#pragma HLS inline
 //#pragma HLS latency min=11
 
 
@@ -143,42 +146,71 @@ getseedMax(EtaSlices, Seed) ;
 
 void getslice(ecalcrystal crystals[CRYSTALS_IN_PHI+4], const ecalcrystal& Seed, ap_uint<12> &value) {
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
-#pragma HLS latency min=4
-
-ap_uint<12> tmpValue = 0 ;
+#pragma HLS inline
+//#pragma HLS latency min=4
 
 ecalcrystalmask mask[CRYSTALS_IN_PHI+4] ;
 #pragma HLS ARRAY_PARTITION variable=mask complete dim=0
 
-for(loop j=0; j<CRYSTALS_IN_PHI; j++){
+for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
 	#pragma HLS UNROLL
-	mask[j].energy = 0 ;	
+	mask[j].energy = 0 ;
 }
 
 for(loop j=0; j<CRYSTALS_IN_PHI; j++){
     #pragma HLS UNROLL
 	if(j == Seed.phi) {
-        mask[j+0].energy = 1 ;	
-        mask[j+1].energy = 1 ;	
-        mask[j+2].energy = 1 ;	
-        mask[j+3].energy = 1 ;	
-        mask[j+4].energy = 1 ;	
+        mask[j+0].energy = 1 ;
+        mask[j+1].energy = 1 ;
+        mask[j+2].energy = 1 ;
+        mask[j+3].energy = 1 ;
+        mask[j+4].energy = 1 ;
     }
 	else { }
 	}
-	for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
-        #pragma HLS UNROLL
-        ap_uint<10> energytmp = crystals[j].energy ;
-        ap_uint<10> energy = energytmp *  mask[j].energy ;
-        ap_uint<12> tmp = tmpValue + energy ;
-        tmpValue = tmp  ;
-	}
-	value = tmpValue ;
+
+ap_uint<12> sumA = 0;
+for(loop j=0; j<9; j++){
+    #pragma HLS UNROLL
+    ap_uint<10> energytmp = crystals[j].energy;
+    ap_uint<10> energy = energytmp * mask[j].energy;
+    sumA = sumA + energy;
+}
+
+ap_uint<12> sumB = 0;
+for(loop j=9; j<18; j++){
+    #pragma HLS UNROLL
+    ap_uint<10> energytmp = crystals[j].energy;
+    ap_uint<10> energy = energytmp * mask[j].energy;
+    sumB = sumB + energy;
+}
+
+ap_uint<12> sumC = 0;
+for(loop j=18; j<27; j++){
+    #pragma HLS UNROLL
+    ap_uint<10> energytmp = crystals[j].energy;
+    ap_uint<10> energy = energytmp * mask[j].energy;
+    sumC = sumC + energy;
+}
+
+ap_uint<12> sumD = 0;
+for(loop j=27; j<34; j++){
+    #pragma HLS UNROLL
+    ap_uint<10> energytmp = crystals[j].energy;
+    ap_uint<10> energy = energytmp * mask[j].energy;
+    sumD = sumD + energy;
+}
+
+ap_uint<13> sumAB = sumA + sumB;
+ap_uint<13> sumCD = sumC + sumD;
+value = sumAB + sumCD;
+
 }
 
 void zerrocrystals(ecalcrystal ECALCrystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcrystal Seed, ap_uint<2> brems) {
 #pragma HLS ARRAY_PARTITION variable=ECALCrystals complete dim=0
-#pragma HLS latency min=5
+#pragma HLS inline
+//#pragma HLS latency min=5
 
 ecalcrystalmask mask[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI] ;
 ecalcrystalmask maskN[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI] ;
@@ -250,7 +282,7 @@ if(brems == 2){
         }
 	}
 }
-         	
+
 for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
     #pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -265,7 +297,8 @@ for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
 
 void getcluster(ecalcrystal ECALCrystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcrystal Seed, ecalcluster &output) {
 #pragma HLS ARRAY_PARTITION variable=ECALCrystals complete dim=0
-#pragma HLS latency min=18
+#pragma HLS inline
+//#pragma HLS latency min=18
 
 ap_uint<2> brems = 0 ;
 ap_uint<12> NegValue=0, CntrValue=0, PosValue=0 ;
@@ -279,6 +312,17 @@ ap_uint<12> PosSlice[5] ;
 
 ecalcrystal extendedcrystals[CRYSTALS_IN_ETA23+4][CRYSTALS_IN_PHI+4] ;
     #pragma HLS ARRAY_PARTITION variable=extendedcrystals complete dim=0
+
+for(loop ii=0; ii<CRYSTALS_IN_ETA23+4; ii++){
+    #pragma HLS UNROLL
+    for(loop jj=0; jj<CRYSTALS_IN_PHI+4; jj++){
+        #pragma HLS UNROLL
+        extendedcrystals[ii][jj].energy = 0;
+        extendedcrystals[ii][jj].timing = 0;
+        extendedcrystals[ii][jj].spike = 0;
+    }
+}
+
 for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
     #pragma HLS UNROLL
 for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -287,55 +331,54 @@ for(loop j=0; j<CRYSTALS_IN_PHI; j++){
 	}
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
-    #pragma HLS UNROLL
-if(i == Seed.eta){
+ap_uint<5> seed_eta = Seed.eta;
+
+// Compute CntrSlice
 for(loop k=0; k<5; k++){
     #pragma HLS UNROLL
 	ecalcrystal extendedcrystals1D[CRYSTALS_IN_PHI+4] ;
     #pragma HLS ARRAY_PARTITION variable=extendedcrystals1D complete dim=0
 for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
     #pragma HLS UNROLL
-    extendedcrystals1D[j].energy = extendedcrystals[i+k][j].energy ;
+    extendedcrystals1D[j].energy = extendedcrystals[seed_eta + k][j].energy ;
 }
-	getslice(extendedcrystals1D, Seed, CntrSlice[k]) ; 
-    }
-	}
-	else { }	
+	getslice(extendedcrystals1D, Seed, CntrSlice[k]) ;
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
-    #pragma HLS UNROLL
-	if(i == Seed.eta){
+// Compute NegSlice
+NegSlice[0] = 0;
+NegSlice[4] = 0;
 for(loop k=0; k<3; k++){
     #pragma HLS UNROLL
 ecalcrystal extendedcrystals1D[CRYSTALS_IN_PHI+4] ;
     #pragma HLS ARRAY_PARTITION variable=extendedcrystals1D complete dim=0
+    for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
+        #pragma HLS UNROLL
+        extendedcrystals1D[j].energy = 0;
+    }
 	for(loop j=0; j<CRYSTALS_IN_PHI-1; j++){
        	#pragma HLS UNROLL
-    	extendedcrystals1D[j+5].energy = extendedcrystals[i+k+1][j].energy ;
+    	extendedcrystals1D[j+5].energy = extendedcrystals[seed_eta + k +1][j].energy ;
 	}
-    getslice(extendedcrystals1D, Seed, NegSlice[k+1]) ; 
-    }
-}
-	else {}
+    getslice(extendedcrystals1D, Seed, NegSlice[k+1]) ;
 }
 
-for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
-	#pragma HLS UNROLL
-if(i == Seed.eta){
+// Compute PosSlice
+PosSlice[0] = 0;
+PosSlice[4] = 0;
 for(loop k=0; k<3; k++){
     #pragma HLS UNROLL
 	ecalcrystal extendedcrystals1D[CRYSTALS_IN_PHI+4] ;
     #pragma HLS ARRAY_PARTITION variable=extendedcrystals1D complete dim=0
+    for(loop j=0; j<CRYSTALS_IN_PHI+4; j++){
+        #pragma HLS UNROLL
+        extendedcrystals1D[j].energy = 0;
+    }
 	for(loop j=0; j<CRYSTALS_IN_PHI-1; j++){
         #pragma HLS UNROLL
-        extendedcrystals1D[j].energy = extendedcrystals[i+k+1][j+5].energy ;
+        extendedcrystals1D[j].energy = extendedcrystals[seed_eta + k +1][j+5].energy ;
 	}
-	getslice(extendedcrystals1D, Seed, PosSlice[k+1]) ; 
-    }
-}
-else {}
+	getslice(extendedcrystals1D, Seed, PosSlice[k+1]) ;
 }
 
 CntrValue = CntrSlice[1] + CntrSlice[2] + CntrSlice[3] ;
@@ -357,7 +400,7 @@ else if(PosValue > clusterEnergyDiv8){
 brems  = 2;
 }
 else { brems = 0;}
-         	
+
 s2x5 = (s2x5n > s2x5p) ? s2x5n:s2x5p ;
 
 output.seedEnergy = Seed.energy ;
@@ -375,23 +418,28 @@ output.et5x5 = s5x5 ;
 void createClusters1(ecalcrystal crystals[CRYSTALS_IN_ETA23][CRYSTALS_IN_PHI], ecalcluster ECALClusters[N_CLUSTERS]) {
 #pragma HLS ARRAY_PARTITION variable=ECALClusters complete dim=0
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
-//#pragma HLS latency min=132
-//#pragma HLS inline off
- 
+#pragma HLS inline
+
 ecalcrystal Seed ;
 
-for(loop k=0; k<N_CLUSTERS; k++){
-    getseedposition(crystals, Seed);
-	getcluster(crystals,Seed,ECALClusters[k]) ;
-	zerrocrystals(crystals, Seed, ECALClusters[k].brems);
-}
+getseedposition(crystals, Seed);
+getcluster(crystals, Seed, ECALClusters[0]) ;
+zerrocrystals(crystals, Seed, ECALClusters[0].brems);
+
+getseedposition(crystals, Seed);
+getcluster(crystals, Seed, ECALClusters[1]) ;
+zerrocrystals(crystals, Seed, ECALClusters[1].brems);
+
+getseedposition(crystals, Seed);
+getcluster(crystals, Seed, ECALClusters[2]) ;
+zerrocrystals(crystals, Seed, ECALClusters[2].brems);
+
 }
 
 void createTowers(ecalcrystal crystals[CRYSTALS_IN_ETA][CRYSTALS_IN_PHI],ecaltower ECALTowers[TOWERS_IN_ETA*TOWERS_IN_PHI]){
 #pragma HLS ARRAY_PARTITION variable=ECALTowers complete dim=0
 #pragma HLS ARRAY_PARTITION variable=crystals complete dim=0
 #pragma HLS INLINE
-//#pragma HLS latency min=3
 
 for(loop i=0; i<CRYSTALS_IN_ETA; i++){
 	#pragma HLS UNROLL
@@ -410,7 +458,6 @@ void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPU
 #pragma HLS ARRAY_PARTITION variable=link_out complete dim=0
 #pragma HLS PIPELINE II=9
 #pragma HLS INTERFACE ap_ctrl_hs port=return
-//#pragma HLS latency min=145
 
 ecalcluster ECALClusters[N_CLUSTERS] ;
 ecalcluster ECALClustersH1[N_CLUSTERS] ;
@@ -427,14 +474,14 @@ ecaltower ECALTowers[TOWERS_IN_ETA*TOWERS_IN_PHI];
 //creating 25x30 crystals matrix
 
 processInputLinks(link_in, ECALCrystals) ;
-          
+
 // 25 crystals in eta are divided into 3 regions
 // to create 3 regions, 11 eta each, with 2 eta overlap
 // ETA23 = 11
 //       11             11               11
 //      9+2    -      2+7+2       -     2+9
-//  0...8 9.10 - 7.8 9...15 16.17 - 14.15 16...24 
-  
+//  0...8 9.10 - 7.8 9...15 16.17 - 14.15 16...24
+
 for(loop i=0; i<CRYSTALS_IN_ETA23; i++){
     #pragma HLS UNROLL
 	for(loop j=0; j<CRYSTALS_IN_PHI; j++){
@@ -451,11 +498,10 @@ createClusters1(ECALCrystals, ECALClustersH1) ;
 createTowers(ECALCrystals, ECALTowers) ;
 
 /*---------------------------------link 0------------------------------------*/
-        
+
 link_out[0] = 0;
 link_out[1] = 0;
 
 processOutputLinks(ECALClustersH1, ECALTowers, link_out);
 
 }
-
