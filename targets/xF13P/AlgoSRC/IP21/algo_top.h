@@ -210,14 +210,14 @@ class rctecalcluster{
 	//ap_uint<7> SS_fun[25] = {126, 125, 125, 124, 123, 123, 122, 122, 121, 121, 121, 121, 121, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120} ;
 
 	for(loop j=0; j<25; j++){
-	#pragma unroll
+	#pragma HLS unroll
 	bool one = ( i.energy >= ((loop)j<<2)) ? true : false ;
 	bool two = ( i.energy < ((loop)j<<2)+4) ? true : false ;
 	ap_uint<18> left = ((ap_uint<18>)i.et2x5<<7) ;
 	ap_uint<18> right = 0  ;
 
 		for(loop k=0; k<7; k++){
-		#pragma unroll
+		#pragma HLS unroll
 		ap_uint<18> tmp = 0  ;
         	if ((SS_fun[j]&(1<<k)) != 0) tmp = ((ap_uint<18>)i.et5x5<<k);
                 right += tmp ;}
