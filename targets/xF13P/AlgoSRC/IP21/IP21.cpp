@@ -19,7 +19,9 @@ void processOutLinks(ecalcluster ECALClustersSorted[N_CLUSTERS],
    for (loop i = 0; i < N_CLUSTERS_OUT; i++) {
       #pragma HLS UNROLL
       ap_uint < 7 > slr = ECALClustersSorted[i + 23].spare;
-      ap_uint < 7 > etatmp = 3 - ECALClustersSorted[i + 23].eta;
+      //ap_uint < 7 > etatmp = 3 - ECALClustersSorted[i + 23].eta;
+      ap_uint < 7 > etatmp = ECALClustersSorted[i + 23].eta;
+
       ap_uint < 7 >  rctEta = etatmp + ((ap_uint < 7 > ) slr << 4) + ((ap_uint < 7 > ) slr << 3) + slr;
       //rctEta = etatmp + (slr == 0 ? 0 : (slr == 1 ? 9 : (slr == 2 ? 24 : 59)));
 
