@@ -196,8 +196,7 @@ signal axiStreamInSLR0D1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP1_2x6-1);
 
 signal axiStreamOutSLR0D0   : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR0BUFF : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
-signal axiStreamOutIP22Dbufd : AxiStreamMasterArray(0 to 3);
-signal axiStreamOutSLR0D14 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
+
 
 signal axiStreamOutSLR1D0 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR1D1 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
@@ -232,10 +231,7 @@ signal axiStreamOutSLR3D7 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR3D8 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 signal axiStreamOutSLR3D9 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 
-signal axiStreamOutSLR1D9buff: AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
-signal axiStreamOutSLR2D9buff: AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
-signal axiStreamOutSLR3D9buff: AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
-signal axiStreamOutSLR0D14buff: AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
+
 
 signal axiStreamInIP21 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP21-1);
 signal axiStreamInIP22 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP22-1);
@@ -262,7 +258,6 @@ signal axiStreamOutIP21D4 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
 signal axiStreamOutIP21D3 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
 signal axiStreamOutIP21D2 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP21-1);
 signal axiStreamOutIP22D1buff: AxiStreamMasterArray(0 to 0);
-signal axiStreamOutIP21D2buff : AxiStreamMasterArray(0 to 0);
 
 
 signal axiStreamInIP3    : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP3-1);
