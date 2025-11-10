@@ -932,11 +932,9 @@ begin
     axiStreamOut_internal(XLA_OUTPUT_MAP_C_SLR0(idx)) <= axiStreamOutIP3D1(idx / 2);
 end generate;
 
--- Pipeline duplicate signal
 axiStreamOutD0 <= axiStreamOut_internal when rising_edge(algoClk);
 axiStreamOutD1 <= axiStreamOutD0 when rising_edge(algoClk);
 
--- Assign the final pipelined signal to the output port
 axiStreamOut <= axiStreamOutD1;
 
 end rtl;
