@@ -66,8 +66,7 @@ Follow these steps precisely to build the bitfile for the project.
     ```
     This will launch the project build in CLI mode; the terminal window should be kept open until the build is done and the bitfile is generated. 
 
-    **Important:** Always build with CLI for the first time. After this, you can use `make clean && make gui` as well if you want.<br> Launching a GUI build for the first time will result in errors. <br>
-    **Every time the MGT configuration is updated in `ProjSpecPkg.vhd`, run this command from the parent folder to generate the ROM file:**
+    **Important: Every time the MGT configuration is updated in `ProjSpecPkg.vhd`, run this command from the parent folder to generate the ROM file (If you don't do this, Bitfile test will fail as tx and rx buffers will be misconfigured):**
 
     ```bash
     /usr/bin/python3 submodules/apx-fs/scripts/apxfs_romgen.pyz \
