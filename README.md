@@ -8,6 +8,8 @@
 
 This document provides instructions for building the `rct-17x6` project, achieving timing closure, and testing the generated bitfile.
 
+- [You can find the baseline build reference here](https://gitlab.cern.ch/amohan/fw_status_dashboard/-/blob/master/build_reference.pdf)
+
 ## Prerequisites
 1.  **Xilinx Vivado:** Version **2021.1** (This is the version recommended to build this project).
 2.  **HLS Vivado:** Version **2020.1** (This is the version used to export the C++ code into IPs).
