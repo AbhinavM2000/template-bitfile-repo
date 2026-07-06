@@ -165,27 +165,27 @@ begin
         ap_idle     => algoIdle,
         ap_ready    => algoReady,
 
-        link_in_0_V  => link_in_reg(0),
-        link_in_1_V  => link_in_reg(1),
-        link_in_2_V  => link_in_reg(2),
-        link_in_3_V  => link_in_reg(3),
-        link_in_4_V  => link_in_reg(4),
-        link_in_5_V  => link_in_reg(5),
-        link_in_6_V  => link_in_reg(6),
-	link_in_7_V  => link_in_reg(7), 
+        link_in_0  => link_in_reg(0),
+        link_in_1  => link_in_reg(1),
+        link_in_2  => link_in_reg(2),
+        link_in_3  => link_in_reg(3),
+        link_in_4  => link_in_reg(4),
+        link_in_5  => link_in_reg(5),
+        link_in_6  => link_in_reg(6),
+	link_in_7  => link_in_reg(7), 
 
-        link_out_0_V  => link_out(0),
-        link_out_1_V  => link_out(1),
-        link_out_2_V  => link_out(2),
-        link_out_3_V  => link_out(3),
-	link_out_4_V  => link_out(4),
+        link_out_0  => link_out(0),
+        link_out_1  => link_out(1),
+        link_out_2  => link_out(2),
+        link_out_3  => link_out(3),
+	link_out_4  => link_out(4),
 
         
-        link_out_0_V_ap_vld  => link_out_ap_vld(0),
-        link_out_1_V_ap_vld  => link_out_ap_vld(1),
-        link_out_2_V_ap_vld  => link_out_ap_vld(2),
-        link_out_3_V_ap_vld  => link_out_ap_vld(3),
-	link_out_4_V_ap_vld  => link_out_ap_vld(4)
+        link_out_0_ap_vld  => link_out_ap_vld(0),
+        link_out_1_ap_vld  => link_out_ap_vld(1),
+        link_out_2_ap_vld  => link_out_ap_vld(2),
+        link_out_3_ap_vld  => link_out_ap_vld(3),
+	link_out_4_ap_vld  => link_out_ap_vld(4)
 );
 
 end Behavioral;

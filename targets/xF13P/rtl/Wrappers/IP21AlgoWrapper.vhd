@@ -168,61 +168,61 @@ begin
         ap_idle     => algoIdle,
         ap_ready    => algoReady,
 
-        link_in_0_V  => link_in_reg(0),
-        link_in_1_V  => link_in_reg(1),
-        link_in_2_V  => link_in_reg(2),
-        link_in_3_V  => link_in_reg(3),
-        link_in_4_V  => link_in_reg(4),
-        link_in_5_V  => link_in_reg(5),
-        link_in_6_V  => link_in_reg(6),
-        link_in_7_V  => link_in_reg(7),
+        link_in_0  => link_in_reg(0),
+        link_in_1  => link_in_reg(1),
+        link_in_2  => link_in_reg(2),
+        link_in_3  => link_in_reg(3),
+        link_in_4  => link_in_reg(4),
+        link_in_5  => link_in_reg(5),
+        link_in_6  => link_in_reg(6),
+        link_in_7  => link_in_reg(7),
 
 
 
-        ss_fun0_V  => calibIP2(0)(6 downto 0),  -- 126
-        ss_fun1_V  => calibIP2(1)(6 downto 0),  -- 125
-        ss_fun2_V  => calibIP2(2)(6 downto 0),  -- 125
-        ss_fun3_V  => calibIP2(3)(6 downto 0),  -- 124
-        ss_fun4_V  => calibIP2(4)(6 downto 0),  -- 123
-        ss_fun5_V  => calibIP2(5)(6 downto 0),  -- 123
-        ss_fun6_V  => calibIP2(6)(6 downto 0),  -- 122
-        ss_fun7_V  => calibIP2(7)(6 downto 0),  -- 122
-        ss_fun8_V  => calibIP2(8)(6 downto 0),  -- 121
-        ss_fun9_V  => calibIP2(9)(6 downto 0),  -- 121
-        ss_fun10_V => calibIP2(10)(6 downto 0),  -- 121
-        ss_fun11_V => calibIP2(12)(6 downto 0),  -- 121
-        ss_fun12_V => calibIP2(13)(6 downto 0),  -- 121
-        ss_fun13_V => calibIP2(13)(6 downto 0),  -- 120
-        ss_fun14_V => calibIP2(14)(6 downto 0),  -- 120
-        ss_fun15_V => calibIP2(15)(6 downto 0),  -- 120
-        ss_fun16_V => calibIP2(16)(6 downto 0),  -- 120
-        ss_fun17_V => calibIP2(17)(6 downto 0),  -- 120
-        ss_fun18_V => calibIP2(18)(6 downto 0),  -- 120
-        ss_fun19_V => calibIP2(19)(6 downto 0),  -- 120
-        ss_fun20_V => calibIP2(20)(6 downto 0),  -- 120
-        ss_fun21_V => calibIP2(21)(6 downto 0),  -- 120
-        ss_fun22_V => calibIP2(22)(6 downto 0),  -- 120
-        ss_fun23_V => calibIP2(23)(6 downto 0),  -- 120
-        ss_fun24_V => calibIP2(24)(6 downto 0),  -- 120
+        ss_fun0  => calibIP2(0)(6 downto 0),  -- 126
+        ss_fun1  => calibIP2(1)(6 downto 0),  -- 125
+        ss_fun2  => calibIP2(2)(6 downto 0),  -- 125
+        ss_fun3  => calibIP2(3)(6 downto 0),  -- 124
+        ss_fun4  => calibIP2(4)(6 downto 0),  -- 123
+        ss_fun5  => calibIP2(5)(6 downto 0),  -- 123
+        ss_fun6  => calibIP2(6)(6 downto 0),  -- 122
+        ss_fun7  => calibIP2(7)(6 downto 0),  -- 122
+        ss_fun8  => calibIP2(8)(6 downto 0),  -- 121
+        ss_fun9  => calibIP2(9)(6 downto 0),  -- 121
+        ss_fun10 => calibIP2(10)(6 downto 0),  -- 121
+        ss_fun11 => calibIP2(12)(6 downto 0),  -- 121
+        ss_fun12 => calibIP2(13)(6 downto 0),  -- 121
+        ss_fun13 => calibIP2(13)(6 downto 0),  -- 120
+        ss_fun14 => calibIP2(14)(6 downto 0),  -- 120
+        ss_fun15 => calibIP2(15)(6 downto 0),  -- 120
+        ss_fun16 => calibIP2(16)(6 downto 0),  -- 120
+        ss_fun17 => calibIP2(17)(6 downto 0),  -- 120
+        ss_fun18 => calibIP2(18)(6 downto 0),  -- 120
+        ss_fun19 => calibIP2(19)(6 downto 0),  -- 120
+        ss_fun20 => calibIP2(20)(6 downto 0),  -- 120
+        ss_fun21 => calibIP2(21)(6 downto 0),  -- 120
+        ss_fun22 => calibIP2(22)(6 downto 0),  -- 120
+        ss_fun23 => calibIP2(23)(6 downto 0),  -- 120
+        ss_fun24 => calibIP2(24)(6 downto 0),  -- 120
 
-        link_out_0_V  => link_out(0),
-        link_out_1_V  => link_out(1),
-        link_out_2_V  => link_out(2),
-        link_out_3_V  => link_out(3),
-        link_out_4_V  => link_out(4),
-        link_out_5_V  => link_out(5),
-        link_out_6_V  => link_out(6),
-        link_out_7_V  => link_out(7),
+        link_out_0  => link_out(0),
+        link_out_1  => link_out(1),
+        link_out_2  => link_out(2),
+        link_out_3  => link_out(3),
+        link_out_4  => link_out(4),
+        link_out_5  => link_out(5),
+        link_out_6  => link_out(6),
+        link_out_7  => link_out(7),
 
         
-        link_out_0_V_ap_vld  => link_out_ap_vld(0),
-        link_out_1_V_ap_vld  => link_out_ap_vld(1),
-        link_out_2_V_ap_vld  => link_out_ap_vld(2),
-        link_out_3_V_ap_vld  => link_out_ap_vld(3),
-        link_out_4_V_ap_vld  => link_out_ap_vld(4),
-        link_out_5_V_ap_vld  => link_out_ap_vld(5),
-        link_out_6_V_ap_vld  => link_out_ap_vld(6),
-        link_out_7_V_ap_vld  => link_out_ap_vld(7)
+        link_out_0_ap_vld  => link_out_ap_vld(0),
+        link_out_1_ap_vld  => link_out_ap_vld(1),
+        link_out_2_ap_vld  => link_out_ap_vld(2),
+        link_out_3_ap_vld  => link_out_ap_vld(3),
+        link_out_4_ap_vld  => link_out_ap_vld(4),
+        link_out_5_ap_vld  => link_out_ap_vld(5),
+        link_out_6_ap_vld  => link_out_ap_vld(6),
+        link_out_7_ap_vld  => link_out_ap_vld(7)
 );
 
 end Behavioral;
