@@ -179,10 +179,7 @@ attribute shreg_extract of algoStartD_SLR3, algoStartD1_SLR3, algoStartD2_SLR3, 
 
 signal axiStreamInHCAL     : AxiStreamMasterArray(0 to N_INPUT_STREAMS_HCAL-1);
 signal axiStreamInHCALD0   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_HCAL-1);
--- >>> HCAL ALIGNMENT: delayed copies of the HCAL links (output of the
--- 297-clock alignment buffers). Deliberately NO dont_touch / shreg_extract
--- attributes here: a 297-deep delay must be free to infer SRLs/BRAM inside
--- AxiStreamBuffer rather than being forced into discrete flip-flops.
+
 signal axiStreamInHCALbuff : AxiStreamMasterArray(0 to N_INPUT_STREAMS_HCAL-1);
 
 signal axiStreamInSLR3   : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP1_5x6-1);
@@ -841,12 +838,7 @@ axiStreamInIP22pre(5) <= axiStreamOutIP21D5(5) when rising_edge(algoClk);
 axiStreamInIP22pre(6) <= axiStreamOutIP21D5(6) when rising_edge(algoClk);
 axiStreamInIP22pre(7) <= axiStreamOutIP21D5(7) when rising_edge(algoClk);
 
--- >>> OPTION A (IP22): alignment register chain <<<
--- Measured in sim: with 1 stage the first payload word arrived at
--- in_cyc = 3, so 6 ADDITIONAL cycles are needed: 7 stages total after
--- ...pre. (Verified: 6 stages gave in_cyc = 8, i.e. one short.)
--- If upstream latency changes, re-measure c = in_cyc at first tValid and
--- add/remove (9 - c) mod 9 stages from this chain.
+
 axiStreamInIP22al1 <= axiStreamInIP22pre when rising_edge(algoClk);
 axiStreamInIP22al2 <= axiStreamInIP22al1 when rising_edge(algoClk);
 axiStreamInIP22al3 <= axiStreamInIP22al2 when rising_edge(algoClk);
@@ -900,9 +892,7 @@ axiStreamOutIP22D2 <= axiStreamOutIP22D1 when rising_edge(algoClk);
 axiStreamOutIP22D3 <= axiStreamOutIP22D2 when rising_edge(algoClk);
 axiStreamOutIP22D4 <= axiStreamOutIP22D3 when rising_edge(algoClk);
 
--- All 5 IP22-derived IP3 input links go through the SAME depth-8 buffer,
--- so links 1-4 pick up the identical 8-clock delay link 0 already had and
--- all five arrive at IP3 mutually aligned by construction.
+
 links_inp_ip3_BUFFERING: for idx in 0 to 4 generate
 BUFFERING: entity work.AxiStreamBuffer
 GENERIC MAP(
@@ -919,13 +909,7 @@ end generate;
 ---- PREPARING INPUT STREAM AND START SIGNAL FOR IP3 -- PLUS IP3 INSTANTIATION
 --------------------------------------------------------------------------------
 
--- >>> HCAL ALIGNMENT: HCAL arrives at the top-level input ~297 clocks
--- (825 ns @ 360 MHz) earlier than the ECAL-derived data reaches IP3, because
--- HCAL bypasses the whole RCT -> IP21 -> IP22 pipeline. Each HCAL link is
--- therefore delayed by HCAL_ALIGN_DELAY clocks through an AxiStreamBuffer
--- (same component and BUFFER_DEPTH = clocks-of-delay convention as the
--- depth-8 / depth-11 buffers above) so that HCAL and the IP22-derived links
--- belong to the same event at the IP3 input.
+
 GEN_HCAL_IN_buff: for idx in 0 to N_INPUT_STREAMS_HCAL-1 generate
 process(algoClk)
 begin
@@ -948,24 +932,20 @@ axiStreamBuffOut => axiStreamInHCALbuff(idx)
 end generate;
 
 
--- >>> OPTION A (IP3): existing (combinational) mapping now targets ...pre <<<
--- Links 0-4 all come from the depth-8 buffers now (mutually aligned).
+
 gen_InputMappingIP3_0:      axiStreamInIP3pre(0) <= axiStreamOutip22D1buff(0);
 gen_InputMappingIP3_1:      axiStreamInIP3pre(1) <= axiStreamOutIP22D1buff(1);
 gen_InputMappingIP3_2:      axiStreamInIP3pre(2) <= axiStreamOutIP22D1buff(2);
 gen_InputMappingIP3_3:      axiStreamInIP3pre(3) <= axiStreamOutIP22D1buff(3);
 gen_InputMappingIP3_4:      axiStreamInIP3pre(4) <= axiStreamOutIP22D1buff(4);
 
--- HCAL links now take the 297-clock delayed copies (event-aligned with 0-4).
+
 gen_InputMappingIP3_HCAL_0: axiStreamInIP3pre(5) <= axiStreamInHCALbuff(0);
 gen_InputMappingIP3_HCAL_1: axiStreamInIP3pre(6) <= axiStreamInHCALbuff(1);
 gen_InputMappingIP3_HCAL_2: axiStreamInIP3pre(7) <= axiStreamInHCALbuff(2);
 gen_InputMappingIP3_HCAL_3: axiStreamInIP3pre(8) <= axiStreamInHCALbuff(3);
 
--- >>> OPTION A (IP3): one extra alignment register stage, uniform on all
--- 9 links (IP22 outputs AND HCAL) so their relative timing is preserved.
--- If sim shows in_cyc = c (not 0) at the first valid word inside the IP3
--- wrapper, chain (9 - c) mod 9 of these stages instead of one.
+
 axiStreamInIP3 <= axiStreamInIP3pre when rising_edge(algoClk);
 
 GEN_START_IP3: process(algoClk)
