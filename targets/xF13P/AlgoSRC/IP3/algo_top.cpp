@@ -86,7 +86,7 @@ for(loop i=0; i<N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI; i++){
   // cout<<"zero zero en";
 }
 
-void processInputLinks(ap_uint<576> link_in[N_INPUT_LINKS], rctecalcluster RCTECALClusters[N_CLUSTERS], rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA], bool HCALsecondhalfstarts){
+void processInputLinks(ap_uint<576> link_in[N_INPUT_LINKS], rctecalcluster RCTECALClusters[N_CLUSTERS], rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA]){
 	#pragma HLS ARRAY_PARTITION variable=link_in complete dim=1
 	#pragma HLS ARRAY_PARTITION variable=RCTECALClusters cyclic factor=3 dim=1
 	#pragma HLS ARRAY_PARTITION variable=RCTTowersPHI cyclic factor=6 dim=1
@@ -106,11 +106,9 @@ ecaltower ECALTowersSLR0[N_TOWERS_IN_ETA2*N_TOWERS_IN_PHI];
 hcaltower HCALTowersR0[N_TOWERS_IN_HCAL_REGION];
 hcaltower HCALTowersR1[N_TOWERS_IN_HCAL_REGION];
 hcaltower HCALTowersR2[N_TOWERS_IN_HCAL_REGION];
-hcaltower HCALTowersR3[N_TOWERS_IN_HCAL_REGION];
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR0 cyclic factor=4 dim=1
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR1 cyclic factor=4 dim=1
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR2 cyclic factor=4 dim=1
-#pragma HLS ARRAY_PARTITION variable=HCALTowersR3 cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR0 cyclic factor=2 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR1 cyclic factor=2 dim=1
+#pragma HLS ARRAY_PARTITION variable=HCALTowersR2 cyclic factor=2 dim=1
 
 for(loop i=0; i<N_CLUSTERS; i++){
     #pragma HLS UNROLL factor=3
@@ -132,28 +130,22 @@ getECAL(link_in,ECALTowersSLR3, ECALTowersSLR2, ECALTowersSLR1, ECALTowersSLR0);
 //cout<<RCTECALClusters[0].eta<<endl;
 
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL factor=4
+    #pragma HLS UNROLL factor=2
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR0[i].fillhcaltower(link_in[5].range(end, start));
   }
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL factor=4
+    #pragma HLS UNROLL factor=2
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR1[i].fillhcaltower(link_in[6].range(end, start));
   }
 for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL factor=4
+    #pragma HLS UNROLL factor=2
     ap_uint<10> start   = i*16;
     ap_uint<10> end = start + 15;
     HCALTowersR2[i].fillhcaltower(link_in[7].range(end, start));
-  }
-for(loop i=0; i<N_TOWERS_IN_HCAL_REGION; i++){
-    #pragma HLS UNROLL factor=4
-    ap_uint<10> start   = i*16;
-    ap_uint<10> end = start + 15;
-    HCALTowersR3[i].fillhcaltower(link_in[8].range(end, start));
   }
 
 for(loop j=0; j<N_TOWERS_IN_PHI; j++){
@@ -182,61 +174,31 @@ for(loop i=0; i<N_TOWERS_IN_ETA2; i++){
 RCTTowersPHI[j][i+15].uploadECAL(ECALTowersSLR0[i*6+j]) ;
 }}
 
-if(!HCALsecondhalfstarts){
+/* Each HCAL fiber is one 16x2 BCP region
+ * slot = phi*N_TOWERS_HCAL_IN_ETA + eta  (0:0, 1:0, ... 15:0, 0:1, ... 15:1)
+ * Three fibers cover the RCT card at phi offsets 0, 2, 4.
+ */
 for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
     #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j][i].uploadHCAL(HCALTowersR0[i*4+j]) ;
+for(loop i=0; i<N_TOWERS_HCAL_IN_ETA; i++){
+    #pragma HLS UNROLL
+RCTTowersPHI[j+0][i].uploadHCAL(HCALTowersR0[j*N_TOWERS_HCAL_IN_ETA+i]) ;
 }}
 
 for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
     #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j][i+8].uploadHCAL(HCALTowersR1[i*4+j]) ;
+for(loop i=0; i<N_TOWERS_HCAL_IN_ETA; i++){
+    #pragma HLS UNROLL
+RCTTowersPHI[j+2][i].uploadHCAL(HCALTowersR1[j*N_TOWERS_HCAL_IN_ETA+i]) ;
 }}
 
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI/2; j++){
+for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
     #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j+4][i].uploadHCAL(HCALTowersR2[i*4+j]) ;
-}}
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI/2; j++){
+for(loop i=0; i<N_TOWERS_HCAL_IN_ETA; i++){
     #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j+4][i+8].uploadHCAL(HCALTowersR3[i*4+j]) ;
+RCTTowersPHI[j+4][i].uploadHCAL(HCALTowersR2[j*N_TOWERS_HCAL_IN_ETA+i]) ;
 }}
 
-}
-else{
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI/2; j++){
-    #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j][i].uploadHCAL(HCALTowersR2[i*4+j+2]);
-}}
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI/2; j++){
-    #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j][i+8].uploadHCAL(HCALTowersR3[i*4+j+2]);
-}}
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
-    #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j+2][i].uploadHCAL(HCALTowersR0[i*4+j]) ;
-}}
-for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
-    #pragma HLS UNROLL
-for(loop i=0; i<N_TOWERS_HCAL_IN_ETA/2; i++){
-//    #pragma HLS UNROLL
-RCTTowersPHI[j+2][i+8].uploadHCAL(HCALTowersR1[i*4+j]) ;
-}}
-}
 }
 
 void algo_top(ap_uint<576> link_in[N_INPUT_LINKS], ap_uint<576> link_out[N_OUTPUT_LINKS]){
@@ -256,9 +218,7 @@ rcttower RCTTowersPHI[N_TOWERS_IN_PHI][N_TOWERS_IN_ETA];
 //reading clusters and towers
 // order of HCAL tower
 
-bool HCALsecondhalfstarts = 0 ;
-
-processInputLinks(link_in, RCTECALClusters, RCTTowersPHI, HCALsecondhalfstarts) ;
+processInputLinks(link_in, RCTECALClusters, RCTTowersPHI) ;
 //out<< RCTTowersPHI[0][0].energy<<endl;
 //cout<<"RCTTowersPHI[0][0]";
 //cout<< RCTTowersPHI[5][0].energy<<endl;

@@ -1,0 +1,611 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user '23pmmt11' on host 'superbock.hep.wisc.edu' (Linux_x86_64 version 5.4.278-1.el7.elrepo.x86_64) on Tue Sep 08 05:47:53 CDT 2026
+INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
+INFO: [HLS 200-10] In directory '/scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3'
+Sourcing Tcl script '/scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: source /scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/csynth.tcl
+INFO: [HLS 200-1510] Running: open_project ip3-update 
+INFO: [HLS 200-10] Opening project '/scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update'.
+INFO: [HLS 200-1510] Running: set_top algo_top 
+INFO: [HLS 200-1510] Running: add_files algo_top.cpp 
+INFO: [HLS 200-10] Adding design file 'algo_top.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files algo_top.h 
+INFO: [HLS 200-10] Adding design file 'algo_top.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb algo_top_tb.cpp 
+INFO: [HLS 200-10] Adding test bench file 'algo_top_tb.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vivado 
+INFO: [HLS 200-10] Opening solution '/scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 2.778ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.833ns.
+INFO: [HLS 200-1611] Setting target device to 'xcvu13p-flga2577-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_export -flow=impl
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=vhdl
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_clock=360MHz
+INFO: [HLS 200-1464] Running solution command: config_export -vivado_phys_opt=all
+INFO: [HLS 200-1464] Running solution command: config_rtl -module_prefix=IP3_
+INFO: [HLS 200-1510] Running: set_part xcvu13p-flga2577-2-e 
+INFO: [HLS 200-1510] Running: create_clock -period 360MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 2.778ns.
+INFO: [HLS 200-1510] Running: config_export -flow impl -rtl vhdl -vivado_clock 360MHz -vivado_phys_opt all 
+INFO: [HLS 200-1510] Running: config_rtl -module_prefix IP3_ 
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 30% 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 217.906 MB.
+INFO: [HLS 200-10] Analyzing design file 'algo_top.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4.68 seconds. CPU system time: 0.58 seconds. Elapsed time: 5.25 seconds; current allocated memory: 219.828 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 20,836 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 28,282 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 17,880 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 16,692 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /scratch/abnv/DSP_calib/test_impl/rct-17-x-6-abnv-calibration/targets/xF13P/AlgoSRC/IP3/ip3-update/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadHCAL(hcaltower&)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:199:22)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadHCAL(hcaltower&)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:192:22)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadHCAL(hcaltower&)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:185:22)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadECAL(ecaltower)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:174:23)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadECAL(ecaltower)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:167:23)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadECAL(ecaltower)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:161:22)
+INFO: [HLS 214-131] Inlining function 'rcttower::uploadECAL(ecaltower)' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:155:22)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:214:10)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:211:16)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_24_2' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:24:18)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_18_1' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:18:18)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_195_17' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:195:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_197_18' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:197:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_188_15' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:188:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_190_16' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:190:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_181_13' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:181:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_183_14' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:183:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_170_11' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:170:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_172_12' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:172:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_163_9' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:163:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_165_10' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:165:20)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_157_7' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:157:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_159_8' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:159:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_151_5' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:151:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_153_6' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:153:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_144_4' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:144:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_138_3' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:138:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_132_2' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:132:19)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_113_1' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:113:19)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:108:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:107:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:106:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:99:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:98:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:97:11)
+INFO: [HLS 214-291] Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:96:11)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_265_1' is marked as complete unroll implied by the pipeline pragma (./algo_top.h:265:27)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_75_4' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:75:18)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_66_3' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:66:18)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_57_2' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:57:18)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_47_1' is marked as complete unroll implied by the pipeline pragma (algo_top.cpp:47:18)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:214:10) in function 'algo_top' completely with a factor of 6 (algo_top.cpp:204:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:214:10) in function 'algo_top' completely with a factor of 17 (algo_top.cpp:204:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:211:16) in function 'algo_top' completely with a factor of 9 (algo_top.cpp:204:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_24_2' (algo_top.cpp:24:18) in function 'processOutLinks' completely with a factor of 17 (algo_top.cpp:5:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (algo_top.cpp:18:18) in function 'processOutLinks' completely with a factor of 9 (algo_top.cpp:5:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_195_17' (algo_top.cpp:195:20) in function 'processInputLinks' completely with a factor of 2 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_197_18' (algo_top.cpp:197:20) in function 'processInputLinks' completely with a factor of 16 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_188_15' (algo_top.cpp:188:20) in function 'processInputLinks' completely with a factor of 2 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_190_16' (algo_top.cpp:190:20) in function 'processInputLinks' completely with a factor of 16 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_181_13' (algo_top.cpp:181:20) in function 'processInputLinks' completely with a factor of 2 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_183_14' (algo_top.cpp:183:20) in function 'processInputLinks' completely with a factor of 16 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_170_11' (algo_top.cpp:170:20) in function 'processInputLinks' completely with a factor of 6 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_172_12' (algo_top.cpp:172:20) in function 'processInputLinks' completely with a factor of 2 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_163_9' (algo_top.cpp:163:19) in function 'processInputLinks' completely with a factor of 6 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_165_10' (algo_top.cpp:165:20) in function 'processInputLinks' completely with a factor of 5 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_157_7' (algo_top.cpp:157:19) in function 'processInputLinks' completely with a factor of 6 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_159_8' (algo_top.cpp:159:19) in function 'processInputLinks' completely with a factor of 5 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_151_5' (algo_top.cpp:151:19) in function 'processInputLinks' completely with a factor of 6 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_153_6' (algo_top.cpp:153:19) in function 'processInputLinks' completely with a factor of 5 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_144_4' (algo_top.cpp:144:19) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_138_3' (algo_top.cpp:138:19) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_132_2' (algo_top.cpp:132:19) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_113_1' (algo_top.cpp:113:19) in function 'processInputLinks' completely with a factor of 9 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:108:11) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:107:11) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:106:11) in function 'processInputLinks' completely with a factor of 32 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:99:11) in function 'processInputLinks' completely with a factor of 12 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:98:11) in function 'processInputLinks' completely with a factor of 30 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:97:11) in function 'processInputLinks' completely with a factor of 30 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'anonymous' (algo_top.cpp:96:11) in function 'processInputLinks' completely with a factor of 30 (algo_top.cpp:89:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_265_1' (./algo_top.h:265:27) in function 'rcttower::gethoe' completely with a factor of 7 (./algo_top.h:250:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_75_4' (algo_top.cpp:75:18) in function 'getECAL' completely with a factor of 12 (algo_top.cpp:40:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_66_3' (algo_top.cpp:66:18) in function 'getECAL' completely with a factor of 30 (algo_top.cpp:40:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_57_2' (algo_top.cpp:57:18) in function 'getECAL' completely with a factor of 30 (algo_top.cpp:40:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_47_1' (algo_top.cpp:47:18) in function 'getECAL' completely with a factor of 30 (algo_top.cpp:40:0)
+INFO: [HLS 214-178] Inlining function 'ecaltower::ecaltower()' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:89:0)
+INFO: [HLS 214-178] Inlining function 'hcaltower::hcaltower()' into 'processInputLinks(ap_uint<576>*, rctecalcluster*, rcttower (*) [17])' (algo_top.cpp:89:0)
+INFO: [HLS 214-178] Inlining function 'rctecalcluster::rctecalcluster()' into 'algo_top(ap_uint<576>*, ap_uint<576>*)' (algo_top.cpp:204:0)
+INFO: [HLS 214-178] Inlining function 'rcttower::rcttower()' into 'algo_top(ap_uint<576>*, ap_uint<576>*)' (algo_top.cpp:204:0)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR3.energy': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:96:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR3.timing': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:96:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR3.spike': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:96:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR3.data': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:96:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR2.energy': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:97:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR2.timing': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:97:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR2.spike': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:97:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR2.data': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:97:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR1.energy': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:98:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR1.timing': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:98:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR1.spike': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:98:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR1.data': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:98:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR0.energy': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:99:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR0.timing': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:99:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR0.spike': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:99:11)
+INFO: [HLS 214-248] Applying array_partition to 'ECALTowersSLR0.data': Cyclic partitioning with factor 6 on dimension 1. (algo_top.cpp:99:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR0.energy': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:106:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR0.fb': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:106:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR0.data': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:106:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR1.energy': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:107:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR1.fb': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:107:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR1.data': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:107:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR2.energy': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:108:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR2.fb': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:108:11)
+INFO: [HLS 214-248] Applying array_partition to 'HCALTowersR2.data': Cyclic partitioning with factor 2 on dimension 1. (algo_top.cpp:108:11)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.seedEnergy': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.energy': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.eta': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.phi': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.et5x5': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.wps': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.timing': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.spike': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.satur': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.brems': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.spare': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTECALClusters.data': Cyclic partitioning with factor 3 on dimension 1. (algo_top.cpp:211:16)
+INFO: [HLS 214-248] Applying array_partition to 'RCTTowersPHI.energy': Complete partitioning on dimension 1. Cyclic partitioning with factor 5 on dimension 2. (algo_top.cpp:214:10)
+INFO: [HLS 214-248] Applying array_partition to 'RCTTowersPHI.hoe': Complete partitioning on dimension 1. Cyclic partitioning with factor 5 on dimension 2. (algo_top.cpp:214:10)
+INFO: [HLS 214-248] Applying array_partition to 'RCTTowersPHI.flags': Complete partitioning on dimension 1. Cyclic partitioning with factor 5 on dimension 2. (algo_top.cpp:214:10)
+INFO: [HLS 214-248] Applying array_partition to 'RCTTowersPHI.data': Complete partitioning on dimension 1. Cyclic partitioning with factor 5 on dimension 2. (algo_top.cpp:214:10)
+INFO: [HLS 214-248] Applying array_partition to 'link_in': Complete partitioning on dimension 1. (algo_top.cpp:204:0)
+INFO: [HLS 214-248] Applying array_partition to 'link_out': Complete partitioning on dimension 1. (algo_top.cpp:204:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 28.01 seconds. CPU system time: 0.54 seconds. Elapsed time: 33.35 seconds; current allocated memory: 223.105 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 223.105 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 6.48 seconds. CPU system time: 0.01 seconds. Elapsed time: 6.49 seconds; current allocated memory: 235.430 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.51 seconds. CPU system time: 0 seconds. Elapsed time: 0.51 seconds; current allocated memory: 243.848 MB.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy.1' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy.2' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy.3' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy.4' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.energy.5' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing.1' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing.2' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing.3' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing.4' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.timing.5' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike.1' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike.2' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike.3' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike.4' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR3.spike.5' (algo_top.cpp:96) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy.1' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy.2' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy.3' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy.4' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.energy.5' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing.1' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing.2' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing.3' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing.4' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.timing.5' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike.1' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike.2' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike.3' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike.4' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR2.spike.5' (algo_top.cpp:97) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy.1' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy.2' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy.3' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy.4' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.energy.5' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing.1' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing.2' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing.3' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing.4' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.timing.5' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike.1' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike.2' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike.3' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike.4' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR1.spike.5' (algo_top.cpp:98) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy.1' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy.2' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy.3' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy.4' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.energy.5' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing.1' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing.2' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing.3' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing.4' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.timing.5' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike.1' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike.2' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike.3' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike.4' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'ECALTowersSLR0.spike.5' (algo_top.cpp:99) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.seedEnergy' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.seedEnergy.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.seedEnergy.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.energy' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.energy.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.energy.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.eta' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.eta.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.eta.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.phi' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.phi.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.phi.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.et5x5' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.et5x5.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.et5x5.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.wps' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.wps.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.wps.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.timing' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.timing.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.timing.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spike' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spike.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spike.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.satur' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.satur.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.satur.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.brems' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.brems.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.brems.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spare' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spare.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.spare.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.data' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.data.1' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTECALClusters.data.2' (algo_top.cpp:211) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.1' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.2' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.3' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.4' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.5' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.6' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.7' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.8' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.9' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.10' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.11' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.12' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.13' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.14' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.15' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.16' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.17' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.18' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.19' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.20' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.21' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.22' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.23' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.24' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.25' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.26' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.27' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.28' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.energy.29' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.1' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.2' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.3' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.4' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.5' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.6' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.7' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.8' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.9' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.10' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.11' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.12' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.13' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.14' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.15' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.16' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.17' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.18' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.19' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.20' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.21' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.22' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.23' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.24' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.25' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.26' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.27' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.28' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.hoe.29' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.1' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.2' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.3' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.4' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.5' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.6' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.7' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.8' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.9' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.10' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.11' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.12' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.13' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.14' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.15' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.16' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.17' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.18' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.19' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.20' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.21' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.22' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.23' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.24' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.25' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.26' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.27' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.28' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.flags.29' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.1' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.2' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.3' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.4' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.5' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.6' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.7' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.8' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.9' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.10' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.11' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.12' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.13' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.14' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.15' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.16' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.17' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.18' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.19' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.20' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.21' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.22' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.23' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.24' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.25' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.26' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.27' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.28' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'RCTTowersPHI.data.29' (algo_top.cpp:214) automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR2.fb_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR2.fb_0' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR2.energy_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR2.energy_0' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR1.fb_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR1.fb_0' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR1.energy_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR1.energy_0' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR0.fb_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR0.fb_0' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR0.energy_1' automatically.
+INFO: [XFORM 203-102] Partitioning array 'HCALTowersR0.energy_0' automatically.
+INFO: [XFORM 203-602] Inlining function 'rctecalcluster::getrctecalcluster' into 'processOutLinks' (algo_top.cpp:21) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (./algo_top.h:258:12) to (./algo_top.h:273:4) in function 'rcttower::gethoe'... converting 8 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 6.31 seconds. CPU system time: 0.03 seconds. Elapsed time: 6.34 seconds; current allocated memory: 286.578 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.71 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.73 seconds; current allocated memory: 414.973 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'algo_top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fillrctecalcluster' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'fillrctecalcluster'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, function 'fillrctecalcluster'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.11 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.13 seconds; current allocated memory: 416.520 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 416.680 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fillecaltower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'fillecaltower'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 0, Final II = 1, Depth = 1, function 'fillecaltower'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 416.840 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 416.879 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'getECAL' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'getECAL'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 9, Final II = 9, Depth = 9, function 'getECAL'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.34 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 420.020 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.19 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.2 seconds; current allocated memory: 420.387 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fillhcaltower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'fillhcaltower'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 0, Final II = 1, Depth = 1, function 'fillhcaltower'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 420.711 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 420.750 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'gethoe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'gethoe'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 0, Final II = 1, Depth = 2, function 'gethoe'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 421.848 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 421.848 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'processInputLinks' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'processInputLinks'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 9, Final II = 9, Depth = 19, function 'processInputLinks'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 4.57 seconds. CPU system time: 0.01 seconds. Elapsed time: 4.58 seconds; current allocated memory: 456.527 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.89 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'getrcttower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'getrcttower'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 0, Final II = 1, Depth = 1, function 'getrcttower'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.28 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.29 seconds; current allocated memory: 456.527 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'processOutLinks' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'processOutLinks'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 9, Final II = 9, Depth = 10, function 'processOutLinks'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.25 seconds. CPU system time: 0 seconds. Elapsed time: 0.25 seconds; current allocated memory: 456.527 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.17 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'algo_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'algo_top'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 9, Final II = 9, Depth = 28, function 'algo_top'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.31 seconds; current allocated memory: 456.527 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.39 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.4 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fillrctecalcluster' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fillrctecalcluster'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.21 seconds. CPU system time: 0 seconds. Elapsed time: 0.22 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fillecaltower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fillecaltower'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 456.527 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'getECAL' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'getECAL'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.99 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.04 seconds; current allocated memory: 584.051 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fillhcaltower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fillhcaltower'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.26 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.28 seconds; current allocated memory: 584.051 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'gethoe' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'gethoe'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 584.051 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'processInputLinks' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'processInputLinks' pipeline 'processInputLinks' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'processInputLinks'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 12.66 seconds. CPU system time: 0.22 seconds. Elapsed time: 12.89 seconds; current allocated memory: 1.139 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'getrcttower' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'getrcttower'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 3.63 seconds. CPU system time: 0.09 seconds. Elapsed time: 3.73 seconds; current allocated memory: 1.154 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'processOutLinks' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'processOutLinks' pipeline 'processOutLinks' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'processOutLinks'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.16 seconds; current allocated memory: 1.154 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'algo_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_3' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_4' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_5' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_6' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_in_7' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_out_0' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_out_1' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_out_2' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'algo_top/link_out_3' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'algo_top' to 'ap_ctrl_hs'.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'algo_top' pipeline 'algo_top' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'algo_top'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 5.99 seconds. CPU system time: 0.08 seconds. Elapsed time: 6.08 seconds; current allocated memory: 1.357 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.3 seconds. CPU system time: 0.03 seconds. Elapsed time: 2.33 seconds; current allocated memory: 1.357 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.58 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.6 seconds; current allocated memory: 1.357 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for algo_top with prefix IP3_.
+INFO: [VLOG 209-307] Generating Verilog RTL for algo_top with prefix IP3_.
+INFO: [HLS 200-789] **** Estimated Fmax: 570.45 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 82.7 seconds. CPU system time: 1.79 seconds. Elapsed time: 89.29 seconds; current allocated memory: 1.144 GB.
+INFO: [HLS 200-112] Total CPU user time: 84.71 seconds. Total CPU system time: 1.98 seconds. Total elapsed time: 91.33 seconds; peak allocated memory: 1.357 GB.

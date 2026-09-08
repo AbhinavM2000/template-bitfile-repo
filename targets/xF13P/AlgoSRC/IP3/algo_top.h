@@ -8,8 +8,8 @@
 #include <stdint.h>
 
 #define N_INPUT_LINKS_ECAL  5 
-#define N_INPUT_LINKS_HCAL  4 
-#define N_INPUT_LINKS  9 
+#define N_INPUT_LINKS_HCAL  3
+#define N_INPUT_LINKS  (N_INPUT_LINKS_ECAL + N_INPUT_LINKS_HCAL)
 #define N_OUTPUT_LINKS  4	
 
 #define N_TOWERS_IN_ETA5 5
@@ -19,7 +19,8 @@
 
 #define N_CLUSTERS 9 
 
-#define N_TOWERS_HCAL_IN_PHI 4 
+
+#define N_TOWERS_HCAL_IN_PHI 2
 #define N_TOWERS_HCAL_IN_ETA 16
 
 #define N_TOWERS_IN_HCAL_REGION 32
@@ -40,7 +41,7 @@ class rctecalcluster{
     ap_uint<1> spike;
     ap_uint<1> satur;
     ap_uint<2> brems;
-    ap_uint<3> spare;
+    ap_uint<4> spare;
     ap_uint<64> data;
 
     rctecalcluster(){
@@ -100,10 +101,10 @@ class rctecalcluster{
     	this->spike = i.range(56, 56);
     	this->satur = i.range(57, 57);
     	this->brems = i.range(59, 58);
-    	this->spare = i.range(62,60);
+    	this->spare = i.range(63,60);
     }
 
- rctecalcluster(ap_uint<10> seedEnergy, ap_uint<12> energy, ap_uint<7> eta, ap_uint<5> phi, ap_uint<10> et5x5, ap_uint<7> wps, ap_uint<5> timing, ap_uint<1> spike, ap_uint<1> satur, ap_uint<2> brems, ap_uint<3> spare){
+ rctecalcluster(ap_uint<10> seedEnergy, ap_uint<12> energy, ap_uint<7> eta, ap_uint<5> phi, ap_uint<10> et5x5, ap_uint<7> wps, ap_uint<5> timing, ap_uint<1> spike, ap_uint<1> satur, ap_uint<2> brems, ap_uint<4> spare){
         data = (seedEnergy) | 
       (((ap_uint<64>) energy)  << 10) | 
       (((ap_uint<64>) eta)  << 22) | 
