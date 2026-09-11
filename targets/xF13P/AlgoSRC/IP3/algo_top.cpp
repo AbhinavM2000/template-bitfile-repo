@@ -15,24 +15,34 @@ ap_uint<10> end ;
 ap_uint<10> start1 ;
 ap_uint<10> end1 ;
 
+ap_uint<576> out_tmp[N_OUTPUT_LINKS];
+#pragma HLS ARRAY_PARTITION variable=out_tmp complete dim=1
+for(loop i=0; i<N_OUTPUT_LINKS; i++){
+    #pragma HLS UNROLL
+    out_tmp[i] = 0;
+}
+
 for(loop i=0 ; i<N_CLUSTERS; i++){
     #pragma HLS UNROLL factor=3
 	start=i*64 ; end=start+63;
-	link_out[0].range(end, start) = RCTECALClusters[i].getrctecalcluster() ;
+	out_tmp[0].range(end, start) = RCTECALClusters[i].getrctecalcluster() ;
 }
 
 for(loop i=0; i<N_TOWERS_IN_ETA; i++){
     #pragma HLS UNROLL factor=5
 	start=i*16 ; end=start+15;
 	start1=start+272 ; end1=start1+15;
-	link_out[1].range(end, start) = RCTTowersPHI[0][i].getrcttower() ;
-	link_out[1].range(end1, start1) = RCTTowersPHI[1][i].getrcttower() ;
-	link_out[2].range(end, start) = RCTTowersPHI[2][i].getrcttower() ;
-	link_out[2].range(end1, start1) = RCTTowersPHI[3][i].getrcttower() ;
-	link_out[3].range(end, start) = RCTTowersPHI[4][i].getrcttower() ;
-	link_out[3].range(end1, start1) = RCTTowersPHI[5][i].getrcttower() ;
-	 //cout << hex <<link_out[3]<<endl;
-	 //cout<<"link out 3 ";
+	out_tmp[1].range(end, start) = RCTTowersPHI[0][i].getrcttower() ;
+	out_tmp[1].range(end1, start1) = RCTTowersPHI[1][i].getrcttower() ;
+	out_tmp[2].range(end, start) = RCTTowersPHI[2][i].getrcttower() ;
+	out_tmp[2].range(end1, start1) = RCTTowersPHI[3][i].getrcttower() ;
+	out_tmp[3].range(end, start) = RCTTowersPHI[4][i].getrcttower() ;
+	out_tmp[3].range(end1, start1) = RCTTowersPHI[5][i].getrcttower() ;
+}
+
+for(loop i=0; i<N_OUTPUT_LINKS; i++){
+    #pragma HLS UNROLL
+    link_out[i] = out_tmp[i];
 }
 
 }
@@ -174,10 +184,6 @@ for(loop i=0; i<N_TOWERS_IN_ETA2; i++){
 RCTTowersPHI[j][i+15].uploadECAL(ECALTowersSLR0[i*6+j]) ;
 }}
 
-/* Each HCAL fiber is one 16x2 BCP region
- * slot = phi*N_TOWERS_HCAL_IN_ETA + eta  (0:0, 1:0, ... 15:0, 0:1, ... 15:1)
- * Three fibers cover the RCT card at phi offsets 0, 2, 4.
- */
 for(loop j=0; j<N_TOWERS_HCAL_IN_PHI; j++){
     #pragma HLS UNROLL
 for(loop i=0; i<N_TOWERS_HCAL_IN_ETA; i++){
@@ -225,11 +231,6 @@ processInputLinks(link_in, RCTECALClusters, RCTTowersPHI) ;
 //cout<<"RCTTowersPHI[5][0]";
 /*---------------------------------link 0------------------------------------*/
         
-link_out[0] = 0;
-link_out[1] = 0;
-link_out[2] = 0;
-link_out[3] = 0;
-
 processOutLinks(RCTECALClusters, RCTTowersPHI, link_out);
 
 }
