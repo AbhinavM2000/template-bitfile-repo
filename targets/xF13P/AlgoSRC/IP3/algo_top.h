@@ -9,7 +9,7 @@
 
 #define N_INPUT_LINKS_ECAL  5 
 #define N_INPUT_LINKS_HCAL  3
-#define N_INPUT_LINKS  (N_INPUT_LINKS_ECAL + N_INPUT_LINKS_HCAL)
+#define N_INPUT_LINKS  8
 #define N_OUTPUT_LINKS  4	
 
 #define N_TOWERS_IN_ETA5 5
@@ -18,7 +18,6 @@
 #define N_TOWERS_IN_PHI 6
 
 #define N_CLUSTERS 9 
-
 
 #define N_TOWERS_HCAL_IN_PHI 2
 #define N_TOWERS_HCAL_IN_ETA 16
