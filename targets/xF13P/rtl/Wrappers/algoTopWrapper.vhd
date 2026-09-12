@@ -57,13 +57,11 @@ CONSTANT N_OUTPUT_STREAMS_IP21 : NATURAL := 8;
 CONSTANT N_INPUT_STREAMS_IP22  : NATURAL := 8;
 CONSTANT N_OUTPUT_STREAMS_IP22 : NATURAL := 5;
 CONSTANT N_OUTPUT_STREAMS_IP3 : INTEGER := 4;
-CONSTANT N_INPUT_STREAMS_IP3  : NATURAL := 9;
+CONSTANT N_INPUT_STREAMS_IP3  : NATURAL := 8;
 CONSTANT N_IP3_OUTPUTS : NATURAL := 4; -- Number of original IP3 outputs
 CONSTANT N_OUTPUTS_IP3_PLUS_DUP : NATURAL := 8; -- Total number of outputs after duplication
 
-CONSTANT N_INPUT_STREAMS_HCAL : NATURAL := 4;
-
-CONSTANT HCAL_LINK_INIT : NATURAL := 102;
+CONSTANT N_INPUT_STREAMS_HCAL : NATURAL := 3;
 
 SIGNAL algoRstD_SLR0    : std_logic := '1';
 SIGNAL algoRstD1_SLR0   : std_logic := '1';
@@ -237,18 +235,9 @@ signal axiStreamOutSLR3D9 : AxiStreamMasterArray(0 to N_OUTPUT_STREAMS_IP1-1);
 
 
 
--- >>> OPTION A CHANGE #1: pre-alignment stage for IP21 inputs <<<
--- axiStreamInIP21pre holds the existing register stage; axiStreamInIP21 adds
--- ONE extra alignment register so that the first payload word reaches the
--- IP21 deserializer when its free-running in_cyc counter is at 0.
--- INVARIANT: latency from algoRstD5_SLR0 release to the first IP21 payload
--- word must be = 0 mod 9. If upstream latency changes (RCT recompile, added
--- pipeline stages, buffer depth change), re-check in_cyc(0) at first tValid
--- in simulation and adjust N_ALIGN_REGS_IP21 accordingly.
 signal axiStreamInIP21pre : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP21-1);
 signal axiStreamInIP21    : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP21-1);
 
--- Same alignment scheme for IP22 and IP3 (see IP21 note above).
 signal axiStreamInIP22pre : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP22-1);
 signal axiStreamInIP22al1 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP22-1);
 signal axiStreamInIP22al2 : AxiStreamMasterArray(0 to N_INPUT_STREAMS_IP22-1);
@@ -296,8 +285,6 @@ attribute shreg_extract of axiStreamOutSLR1D0, axiStreamOutSLR1D1, axiStreamOutS
 attribute shreg_extract of axiStreamOutSLR2D0, axiStreamOutSLR2D1, axiStreamOutSLR2D2, axiStreamOutSLR2D3, axiStreamOutSLR2D4, axiStreamOutSLR2D5, axiStreamOutSLR2D6, axiStreamOutSLR2D7, axiStreamOutSLR2D8, axiStreamOutSLR2D9: signal is "no";
 attribute shreg_extract of axiStreamOutSLR3D0, axiStreamOutSLR3D1, axiStreamOutSLR3D2, axiStreamOutSLR3D3, axiStreamOutSLR3D4, axiStreamOutSLR3D5, axiStreamOutSLR3D6, axiStreamOutSLR3D7, axiStreamOutSLR3D8, axiStreamOutSLR3D9: signal is "no";
 
--- Keep the alignment registers out of SRL inference so timing/placement
--- doesn't silently change the latency they were added to fix.
 attribute dont_touch of axiStreamInIP21pre, axiStreamInIP21 : signal is "yes";
 attribute shreg_extract of axiStreamInIP21pre, axiStreamInIP21 : signal is "no";
 attribute dont_touch of axiStreamInIP22pre, axiStreamInIP22al1, axiStreamInIP22al2, axiStreamInIP22al3, axiStreamInIP22al4, axiStreamInIP22al5, axiStreamInIP22al6, axiStreamInIP22 : signal is "yes";
@@ -444,8 +431,7 @@ constant XLA_OUTPUT_MAP_C_SLR0 : IntegerArray(0 to N_OUTPUTS_IP3_PLUS_DUP-1) := 
 constant XLA_INPUT_HCAL_SLR0 :IntegerArray(0 to N_INPUT_STREAMS_HCAL-1) := (
   0  => 68,
   1  => 69,
-  2  => 70,
-  3  => 71
+  2  => 70
   );
 
 --- calibration for IP2 ----
@@ -758,7 +744,6 @@ end generate;
 --------------------------------------------------------------------------------
 ---- PREPARING INPUT STREAM AND START SIGNAL FOR IP21 -- PLUS IP21 INSTANTIATION
 --------------------------------------------------------------------------------
--- >>> OPTION A CHANGE #2: existing register stage now targets ...pre <<<
 axiStreamInIP21pre(0) <= axiStreamOutSLR3D9(0) when rising_edge(algoClk);
 axiStreamInIP21pre(1) <= axiStreamOutSLR2D9(0) when rising_edge(algoClk);
 axiStreamInIP21pre(2) <= axiStreamOutSLR1D9(0) when rising_edge(algoClk);
@@ -769,12 +754,6 @@ axiStreamInIP21pre(5) <= axiStreamOutSLR2D9(1) when rising_edge(algoClk);
 axiStreamInIP21pre(6) <= axiStreamOutSLR1D9(1) when rising_edge(algoClk);
 axiStreamInIP21pre(7) <= axiStreamOutSLR0BUFF(1) when rising_edge(algoClk);
 
--- >>> OPTION A CHANGE #3: one extra alignment register stage <<<
--- Adds 1 clock so that (data-path latency - reset-path latency) mod 9 = 0
--- at the IP21 wrapper boundary. Determined from sim: first payload word was
--- landing at in_cyc = 8 (one cycle early), so delay data by 1.
--- If sim shows a different in_cyc value c at first payload word, chain
--- (9 - c) mod 9 of these stages instead.
 axiStreamInIP21 <= axiStreamInIP21pre when rising_edge(algoClk);
 
 
@@ -828,7 +807,6 @@ axiStreamOutIP21D5 <= axiStreamOutIP21D4 when rising_edge(algoClk);
 --------------------------------------------------------------------------------
 ---- PREPARING INPUT STREAM AND START SIGNAL FOR IP22 -- PLUS IP22 INSTANTIATION
 --------------------------------------------------------------------------------
--- >>> OPTION A (IP22): existing register stage now targets ...pre <<<
 axiStreamInIP22pre(0) <= axiStreamOutIP21D5(0) when rising_edge(algoClk);
 axiStreamInIP22pre(1) <= axiStreamOutIP21D5(1) when rising_edge(algoClk);
 axiStreamInIP22pre(2) <= axiStreamOutIP21D5(2) when rising_edge(algoClk);
@@ -943,7 +921,6 @@ gen_InputMappingIP3_4:      axiStreamInIP3pre(4) <= axiStreamOutIP22D1buff(4);
 gen_InputMappingIP3_HCAL_0: axiStreamInIP3pre(5) <= axiStreamInHCALbuff(0);
 gen_InputMappingIP3_HCAL_1: axiStreamInIP3pre(6) <= axiStreamInHCALbuff(1);
 gen_InputMappingIP3_HCAL_2: axiStreamInIP3pre(7) <= axiStreamInHCALbuff(2);
-gen_InputMappingIP3_HCAL_3: axiStreamInIP3pre(8) <= axiStreamInHCALbuff(3);
 
 
 axiStreamInIP3 <= axiStreamInIP3pre when rising_edge(algoClk);
