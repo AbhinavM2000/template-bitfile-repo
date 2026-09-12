@@ -46,7 +46,8 @@ Follow these steps precisely to build the bitfile for the project.
     ```bash
     cd submodules/cms-tcds2-firmware/components/tcds2_interface/firmware/hdl/
     rm -rf tcds2_interface_pkg.vhd
-    cp /afs/hep.wisc.edu/home/piyushkumar/Public/TCDS/tcds2_interface_pkg.vhd ./
+    cp /afs/hep.wisc.edu/home/23pmmt11/Public/tcds2_interface_pkg.vhd ./
+
     ```
     **Note:** If you miss this step, the build will crash.
 
