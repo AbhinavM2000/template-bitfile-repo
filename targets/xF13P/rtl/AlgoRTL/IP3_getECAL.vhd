@@ -637,12 +637,12 @@ attribute shreg_extract : string;
     signal grp_fillecaltower_fu_215_i_val : STD_LOGIC_VECTOR (16 downto 0);
     signal grp_fillecaltower_fu_215_ap_return_0 : STD_LOGIC_VECTOR (11 downto 0);
     signal grp_fillecaltower_fu_215_ap_return_1 : STD_LOGIC_VECTOR (4 downto 0);
-    signal trunc_ln51_fu_316_p1 : STD_LOGIC_VECTOR (16 downto 0);
-    signal trunc_ln70_fu_922_p1 : STD_LOGIC_VECTOR (16 downto 0);
+    signal trunc_ln61_fu_316_p1 : STD_LOGIC_VECTOR (16 downto 0);
+    signal trunc_ln80_fu_922_p1 : STD_LOGIC_VECTOR (16 downto 0);
     signal ap_CS_fsm_state9 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state9 : signal is "none";
-    signal trunc_ln61_fu_622_p1 : STD_LOGIC_VECTOR (16 downto 0);
-    signal trunc_ln79_fu_1228_p1 : STD_LOGIC_VECTOR (16 downto 0);
+    signal trunc_ln71_fu_622_p1 : STD_LOGIC_VECTOR (16 downto 0);
+    signal trunc_ln89_fu_1228_p1 : STD_LOGIC_VECTOR (16 downto 0);
     signal ap_NS_fsm : STD_LOGIC_VECTOR (8 downto 0);
     signal ap_ST_fsm_state1_blk : STD_LOGIC;
     signal ap_ST_fsm_state2_blk : STD_LOGIC;
@@ -1381,7 +1381,7 @@ begin
     ap_return_98 <= newret403_reg_3085;
     ap_return_99 <= newret428_reg_3145;
 
-    grp_fillecaltower_fu_160_i_val_assign_proc : process(ap_CS_fsm_state1, tmp_210_cast_reg_2500, tmp_222_cast_reg_2560, ap_CS_fsm_state2, ap_CS_fsm_state3, tmp_234_cast_reg_2830, tmp_246_cast_reg_2890, ap_CS_fsm_state4, ap_CS_fsm_state5, ap_CS_fsm_state6, tmp_270_cast_reg_3310, tmp_282_cast_reg_3370, ap_CS_fsm_state7, ap_CS_fsm_state8, tmp_294_cast_reg_3640, trunc_ln51_fu_316_p1, trunc_ln70_fu_922_p1, ap_CS_fsm_state9)
+    grp_fillecaltower_fu_160_i_val_assign_proc : process(ap_CS_fsm_state1, tmp_210_cast_reg_2500, tmp_222_cast_reg_2560, ap_CS_fsm_state2, ap_CS_fsm_state3, tmp_234_cast_reg_2830, tmp_246_cast_reg_2890, ap_CS_fsm_state4, ap_CS_fsm_state5, ap_CS_fsm_state6, tmp_270_cast_reg_3310, tmp_282_cast_reg_3370, ap_CS_fsm_state7, ap_CS_fsm_state8, tmp_294_cast_reg_3640, trunc_ln61_fu_316_p1, trunc_ln80_fu_922_p1, ap_CS_fsm_state9)
     begin
         if ((ap_const_logic_1 = ap_CS_fsm_state9)) then 
             grp_fillecaltower_fu_160_i_val <= tmp_294_cast_reg_3640;
@@ -1390,7 +1390,7 @@ begin
         elsif ((ap_const_logic_1 = ap_CS_fsm_state7)) then 
             grp_fillecaltower_fu_160_i_val <= tmp_270_cast_reg_3310;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state6)) then 
-            grp_fillecaltower_fu_160_i_val <= trunc_ln70_fu_922_p1;
+            grp_fillecaltower_fu_160_i_val <= trunc_ln80_fu_922_p1;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state5)) then 
             grp_fillecaltower_fu_160_i_val <= tmp_246_cast_reg_2890;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
@@ -1400,7 +1400,7 @@ begin
         elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
             grp_fillecaltower_fu_160_i_val <= tmp_210_cast_reg_2500;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state1)) then 
-            grp_fillecaltower_fu_160_i_val <= trunc_ln51_fu_316_p1;
+            grp_fillecaltower_fu_160_i_val <= trunc_ln61_fu_316_p1;
         else 
             grp_fillecaltower_fu_160_i_val <= "XXXXXXXXXXXXXXXXX";
         end if; 
@@ -1537,10 +1537,10 @@ begin
     end process;
 
 
-    grp_fillecaltower_fu_190_i_val_assign_proc : process(ap_CS_fsm_state1, link_in_1_val, tmp_216_cast_reg_2530, ap_CS_fsm_state2, ap_CS_fsm_state3, tmp_240_cast_reg_2860, tmp_252_cast_reg_2920, ap_CS_fsm_state4, ap_CS_fsm_state5, ap_CS_fsm_state6, tmp_276_cast_reg_3340, ap_CS_fsm_state7, ap_CS_fsm_state8, ap_port_reg_link_in_3_val, trunc_ln61_fu_622_p1, trunc_ln79_fu_1228_p1)
+    grp_fillecaltower_fu_190_i_val_assign_proc : process(ap_CS_fsm_state1, link_in_1_val, tmp_216_cast_reg_2530, ap_CS_fsm_state2, ap_CS_fsm_state3, tmp_240_cast_reg_2860, tmp_252_cast_reg_2920, ap_CS_fsm_state4, ap_CS_fsm_state5, ap_CS_fsm_state6, tmp_276_cast_reg_3340, ap_CS_fsm_state7, ap_CS_fsm_state8, ap_port_reg_link_in_3_val, trunc_ln71_fu_622_p1, trunc_ln89_fu_1228_p1)
     begin
         if ((ap_const_logic_1 = ap_CS_fsm_state8)) then 
-            grp_fillecaltower_fu_190_i_val <= trunc_ln79_fu_1228_p1;
+            grp_fillecaltower_fu_190_i_val <= trunc_ln89_fu_1228_p1;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state7)) then 
             grp_fillecaltower_fu_190_i_val <= tmp_276_cast_reg_3340;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state6)) then 
@@ -1550,7 +1550,7 @@ begin
         elsif ((ap_const_logic_1 = ap_CS_fsm_state4)) then 
             grp_fillecaltower_fu_190_i_val <= tmp_240_cast_reg_2860;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state3)) then 
-            grp_fillecaltower_fu_190_i_val <= trunc_ln61_fu_622_p1;
+            grp_fillecaltower_fu_190_i_val <= trunc_ln71_fu_622_p1;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state2)) then 
             grp_fillecaltower_fu_190_i_val <= tmp_216_cast_reg_2530;
         elsif ((ap_const_logic_1 = ap_CS_fsm_state1)) then 
@@ -1680,8 +1680,8 @@ begin
         end if; 
     end process;
 
-    trunc_ln51_fu_316_p1 <= link_in_1_val(17 - 1 downto 0);
-    trunc_ln61_fu_622_p1 <= ap_port_reg_link_in_2_val(17 - 1 downto 0);
-    trunc_ln70_fu_922_p1 <= ap_port_reg_link_in_3_val(17 - 1 downto 0);
-    trunc_ln79_fu_1228_p1 <= ap_port_reg_link_in_4_val(17 - 1 downto 0);
+    trunc_ln61_fu_316_p1 <= link_in_1_val(17 - 1 downto 0);
+    trunc_ln71_fu_622_p1 <= ap_port_reg_link_in_2_val(17 - 1 downto 0);
+    trunc_ln80_fu_922_p1 <= ap_port_reg_link_in_3_val(17 - 1 downto 0);
+    trunc_ln89_fu_1228_p1 <= ap_port_reg_link_in_4_val(17 - 1 downto 0);
 end behav;

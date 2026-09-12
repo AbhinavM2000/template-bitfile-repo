@@ -50,7 +50,7 @@ architecture behav of IP3_fillrctecalcluster is
     constant ap_const_logic_0 : STD_LOGIC := '0';
 
 attribute shreg_extract : string;
-    signal trunc_ln94_fu_62_p1 : STD_LOGIC_VECTOR (9 downto 0);
+    signal trunc_ln93_fu_62_p1 : STD_LOGIC_VECTOR (9 downto 0);
 
 
 begin
@@ -58,7 +58,7 @@ begin
 
 
     ap_ready <= ap_const_logic_1;
-    ap_return_0 <= trunc_ln94_fu_62_p1;
+    ap_return_0 <= trunc_ln93_fu_62_p1;
     ap_return_1 <= i_val(21 downto 10);
     ap_return_10 <= i_val(63 downto 60);
     ap_return_2 <= i_val(28 downto 22);
@@ -69,5 +69,5 @@ begin
     ap_return_7 <= i_val(56 downto 56);
     ap_return_8 <= i_val(57 downto 57);
     ap_return_9 <= i_val(59 downto 58);
-    trunc_ln94_fu_62_p1 <= i_val(10 - 1 downto 0);
+    trunc_ln93_fu_62_p1 <= i_val(10 - 1 downto 0);
 end behav;

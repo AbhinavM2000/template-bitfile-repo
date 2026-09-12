@@ -25,7 +25,7 @@ architecture behav of IP3_fillecaltower is
     constant ap_const_logic_0 : STD_LOGIC := '0';
 
 attribute shreg_extract : string;
-    signal trunc_ln201_fu_18_p1 : STD_LOGIC_VECTOR (11 downto 0);
+    signal trunc_ln200_fu_18_p1 : STD_LOGIC_VECTOR (11 downto 0);
 
 
 begin
@@ -33,7 +33,7 @@ begin
 
 
     ap_ready <= ap_const_logic_1;
-    ap_return_0 <= trunc_ln201_fu_18_p1;
+    ap_return_0 <= trunc_ln200_fu_18_p1;
     ap_return_1 <= i_val(16 downto 12);
-    trunc_ln201_fu_18_p1 <= i_val(12 - 1 downto 0);
+    trunc_ln200_fu_18_p1 <= i_val(12 - 1 downto 0);
 end behav;
