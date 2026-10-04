@@ -9,7 +9,7 @@ use surf.AxiStreamPkg.all;
 
 entity IP3AlgoWrapper is
   generic (
-    N_INPUT_STREAMS  : integer := 9;
+    N_INPUT_STREAMS  : integer := 8;
     N_OUTPUT_STREAMS : integer := 4
     );
   port (
