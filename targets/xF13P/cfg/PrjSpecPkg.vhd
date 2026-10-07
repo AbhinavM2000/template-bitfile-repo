@@ -202,13 +202,13 @@ package PrjSpecPkg is
     65 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     66 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     67 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    68 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    69 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    70 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    71 => (enabled => "11111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),--65-71 for duplicate op IP3
-    72 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    73 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
-    74 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    68 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    69 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    70 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    71 => (enabled => "11100", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),--65-71 for duplicate op IP3
+    72 => (enabled => "00111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    73 => (enabled => "00111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
+    74 => (enabled => "00111", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
     75 => (enabled => "00000", sector => 4, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
 
     76 => (enabled => "00000", sector => 5, MgtCfg => MGT_SYM_25G_6467, TxProtocolCfg => CSP_PL18_PI18, RxProtocolCfg => CSP_PL18_PI18),
