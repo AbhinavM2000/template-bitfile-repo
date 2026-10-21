@@ -1,0 +1,161 @@
+At : 50 ns(17clocks),====================================================================
+At : 50 ns(17clocks),           Data Generator Config                                    
+At : 50 ns(17clocks),====================================================================
+At : 50 ns(17clocks), TM                  : 1
+At : 50 ns(17clocks), CLOCK RATIO         : 8
+At : 50 ns(17clocks), FRAME LENGTH        : 8
+At : 50 ns(17clocks), THROTTLE VECTOR     : 000000000
+At : 50 ns(17clocks),====================================================================
+At : 50 ns(17clocks),3564 Frames per Orbit
+At : 50 ns(17clocks),====================================================================
+At : 100 ns(35clocks),====================================================================
+At : 100 ns(35clocks),8 Data Words  and 0 Idle Words  per frame
+At : 100 ns(35clocks),====================================================================
+At : 100 ns(35clocks),====================================================================
+At : 100 ns(35clocks),Set  IridisTxCtrl config
+At : 100 ns(35clocks),====================================================================
+At : 100 ns(35clocks), Idle Method    : 2
+At : 100 ns(35clocks), Resync Dly     : 00FF
+At : 100 ns(35clocks), Link Info 1    : ABDC1234
+At : 100 ns(35clocks), Link Info 2    : FFFF4321
+At : 100 ns(35clocks),====================================================================
+At : 110 ns(39clocks),====================================================================
+At : 110 ns(39clocks),Set default IridisRxCtrl config
+At : 110 ns(39clocks),====================================================================
+At : 110 ns(39clocks), Index Corrector           : Disabled 
+At : 110 ns(39clocks), MGT reset on Resync       : Disabled 
+At : 110 ns(39clocks), Automatic Orbit Alignment : Enabled 
+At : 110 ns(39clocks), Resync Command            : Enabled 
+At : 110 ns(39clocks), Resync Dly               : 01FF
+At : 110 ns(39clocks), Release Dly              : 0118
+At : 110 ns(39clocks),====================================================================
+At : 120 ns(43clocks),Set Tx Resync Command
+At : 133.89 ns(48clocks),Set Rx Resync Command
+At : 178569.1295 ns(64279clocks),====================================================================
+At : 178569.1295 ns(64279clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 178569.1295 ns(64279clocks),====================================================================
+At : 178569.1295 ns(64279clocks),First Position of Orbit detected  at: 65535 counts
+At : 178570.1295 ns(64280clocks),Number of CRC Errors: 0
+At : 178571.1295 ns(64280clocks),Number or IC Error: 0
+At : 178572.1295 ns(64280clocks), Link  Resync  Counter: 0
+At : 178572.1295 ns(64280clocks),====================================================================
+At : 179472.1295 ns(64604clocks),====================================================================
+At : 179472.1295 ns(64604clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 179472.1295 ns(64604clocks),====================================================================
+At : 179472.1295 ns(64604clocks),First Position of Orbit detected  at: 31 counts
+At : 179473.1295 ns(64605clocks),Number of CRC Errors: 1
+At : 179474.1295 ns(64605clocks),Number or IC Error: 0
+At : 179475.1295 ns(64605clocks), Link  Resync  Counter: 1
+At : 179475.1295 ns(64605clocks),====================================================================
+At : 180375.1295 ns(64929clocks),====================================================================
+At : 180375.1295 ns(64929clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 180375.1295 ns(64929clocks),====================================================================
+At : 180375.1295 ns(64929clocks),First Position of Orbit detected  at: 65535 counts
+At : 180376.1295 ns(64930clocks),Number of CRC Errors: 32
+At : 180377.1295 ns(64930clocks),Number or IC Error: 0
+At : 180378.1295 ns(64930clocks), Link  Resync  Counter: 1
+At : 180378.1295 ns(64930clocks),====================================================================
+At : 181278.1295 ns(65254clocks),====================================================================
+At : 181278.1295 ns(65254clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 181278.1295 ns(65254clocks),====================================================================
+At : 181278.1295 ns(65254clocks),First Position of Orbit detected  at: 65535 counts
+At : 181279.1295 ns(65255clocks),Number of CRC Errors: 64
+At : 181280.1295 ns(65255clocks),Number or IC Error: 0
+At : 181281.1295 ns(65255clocks), Link  Resync  Counter: 1
+At : 181281.1295 ns(65255clocks),====================================================================
+At : 182181.1295 ns(65579clocks),====================================================================
+At : 182181.1295 ns(65579clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 182181.1295 ns(65579clocks),====================================================================
+At : 182181.1295 ns(65579clocks),First Position of Orbit detected  at: 65535 counts
+At : 182182.1295 ns(65580clocks),Number of CRC Errors: 96
+At : 182183.1295 ns(65580clocks),Number or IC Error: 0
+At : 182184.1295 ns(65581clocks), Link  Resync  Counter: 1
+At : 182184.1295 ns(65581clocks),====================================================================
+At : 183084.1295 ns(65905clocks),====================================================================
+At : 183084.1295 ns(65905clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 183084.1295 ns(65905clocks),====================================================================
+At : 183084.1295 ns(65905clocks),First Position of Orbit detected  at: 65535 counts
+At : 183085.1295 ns(65905clocks),Number of CRC Errors: 128
+At : 183086.1295 ns(65905clocks),Number or IC Error: 0
+At : 183087.1295 ns(65906clocks), Link  Resync  Counter: 1
+At : 183087.1295 ns(65906clocks),====================================================================
+At : 183987.1295 ns(66230clocks),====================================================================
+At : 183987.1295 ns(66230clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 183987.1295 ns(66230clocks),====================================================================
+At : 183987.1295 ns(66230clocks),First Position of Orbit detected  at: 65535 counts
+At : 183988.1295 ns(66230clocks),Number of CRC Errors: 161
+At : 183989.1295 ns(66230clocks),Number or IC Error: 0
+At : 183990.1295 ns(66231clocks), Link  Resync  Counter: 1
+At : 183990.1295 ns(66231clocks),====================================================================
+At : 184890.1295 ns(66555clocks),====================================================================
+At : 184890.1295 ns(66555clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 184890.1295 ns(66555clocks),====================================================================
+At : 184890.1295 ns(66555clocks),First Position of Orbit detected  at: 65535 counts
+At : 184891.1295 ns(66555clocks),Number of CRC Errors: 193
+At : 184892.1295 ns(66555clocks),Number or IC Error: 0
+At : 184893.1295 ns(66556clocks), Link  Resync  Counter: 1
+At : 184893.1295 ns(66556clocks),====================================================================
+At : 185793.1295 ns(66880clocks),====================================================================
+At : 185793.1295 ns(66880clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 185793.1295 ns(66880clocks),====================================================================
+At : 185793.1295 ns(66880clocks),First Position of Orbit detected  at: 65535 counts
+At : 185794.1295 ns(66880clocks),Number of CRC Errors: 225
+At : 185795.1295 ns(66880clocks),Number or IC Error: 0
+At : 185796.1295 ns(66881clocks), Link  Resync  Counter: 1
+At : 185796.1295 ns(66881clocks),====================================================================
+At : 186696.1295 ns(67205clocks),====================================================================
+At : 186696.1295 ns(67205clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 186696.1295 ns(67205clocks),====================================================================
+At : 186696.1295 ns(67205clocks),First Position of Orbit detected  at: 65535 counts
+At : 186697.1295 ns(67205clocks),Number of CRC Errors: 257
+At : 186698.1295 ns(67205clocks),Number or IC Error: 0
+At : 186699.1295 ns(67206clocks), Link  Resync  Counter: 1
+At : 186699.1295 ns(67206clocks),====================================================================
+At : 187599.1295 ns(67530clocks),====================================================================
+At : 187599.1295 ns(67530clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 187599.1295 ns(67530clocks),====================================================================
+At : 187599.1295 ns(67530clocks),First Position of Orbit detected  at: 65535 counts
+At : 187600.1295 ns(67530clocks),Number of CRC Errors: 289
+At : 187601.1295 ns(67531clocks),Number or IC Error: 0
+At : 187602.1295 ns(67531clocks), Link  Resync  Counter: 1
+At : 187602.1295 ns(67531clocks),====================================================================
+At : 188502.1295 ns(67855clocks),====================================================================
+At : 188502.1295 ns(67855clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 188502.1295 ns(67855clocks),====================================================================
+At : 188502.1295 ns(67855clocks),First Position of Orbit detected  at: 65535 counts
+At : 188503.1295 ns(67855clocks),Number of CRC Errors: 322
+At : 188504.1295 ns(67856clocks),Number or IC Error: 0
+At : 188505.1295 ns(67856clocks), Link  Resync  Counter: 1
+At : 188505.1295 ns(67856clocks),====================================================================
+At : 189405.1295 ns(68180clocks),====================================================================
+At : 189405.1295 ns(68180clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 189405.1295 ns(68180clocks),====================================================================
+At : 189405.1295 ns(68180clocks),First Position of Orbit detected  at: 65535 counts
+At : 189406.1295 ns(68180clocks),Number of CRC Errors: 354
+At : 189407.1295 ns(68181clocks),Number or IC Error: 0
+At : 189408.1295 ns(68181clocks), Link  Resync  Counter: 1
+At : 189408.1295 ns(68181clocks),====================================================================
+At : 190308.1295 ns(68505clocks),====================================================================
+At : 190308.1295 ns(68505clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 190308.1295 ns(68505clocks),====================================================================
+At : 190308.1295 ns(68505clocks),First Position of Orbit detected  at: 65535 counts
+At : 190309.1295 ns(68505clocks),Number of CRC Errors: 386
+At : 190310.1295 ns(68506clocks),Number or IC Error: 0
+At : 190311.1295 ns(68506clocks), Link  Resync  Counter: 1
+At : 190311.1295 ns(68506clocks),====================================================================
+At : 191211.1295 ns(68830clocks),====================================================================
+At : 191211.1295 ns(68830clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 191211.1295 ns(68830clocks),====================================================================
+At : 191211.1295 ns(68830clocks),First Position of Orbit detected  at: 65535 counts
+At : 191212.1295 ns(68830clocks),Number of CRC Errors: 418
+At : 191213.1295 ns(68831clocks),Number or IC Error: 0
+At : 191214.1295 ns(68831clocks), Link  Resync  Counter: 1
+At : 191214.1295 ns(68831clocks),====================================================================
+At : 192114.1295 ns(69155clocks),====================================================================
+At : 192114.1295 ns(69155clocks),====          S T A T U S    C O U N T E R s                ======= 
+At : 192114.1295 ns(69155clocks),====================================================================
+At : 192114.1295 ns(69155clocks),First Position of Orbit detected  at: 65535 counts
+At : 192115.1295 ns(69155clocks),Number of CRC Errors: 451
+At : 192116.1295 ns(69156clocks),Number or IC Error: 0
+At : 192117.1295 ns(69156clocks), Link  Resync  Counter: 1
+At : 192117.1295 ns(69156clocks),====================================================================

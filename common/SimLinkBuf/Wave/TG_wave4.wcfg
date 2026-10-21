@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/scratch/tgorski/R2_buf/apx-fs-pilot-prj/common/SimLinkBuf/Wave/IridisSfTb_behav.wcfg.wdb" id="1">
+         <top_modules>
+            <top_module name="IridisCSPTb" />
+            <top_module name="apxlinkbufg2pkg" />
+            <top_module name="axilitepkg" />
+            <top_module name="axistreampkg" />
+            <top_module name="csprulespkg" />
+            <top_module name="cspsimctrlpkg" />
+            <top_module name="cspsimtypepkg" />
+            <top_module name="cspsimulationpkg" />
+            <top_module name="glbl" />
+            <top_module name="iridiscsppkg" />
+            <top_module name="stdrtlpkg" />
+            <top_module name="tcds2_bx_and_orbit_pkg" />
+            <top_module name="textutilpkg" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 us"></ZoomStartTime>
+      <ZoomEndTime time="364.630225081 us"></ZoomEndTime>
+      <Cursor1Time time="700.000000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="360"></NameColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject fp_name="divider2763" type="divider">
+      <obj_property name="label">Rx Protocol Sync Block</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/U_RxResetSyncCtrl/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/U_RxResetSyncCtrl/bc0">
+      <obj_property name="ElementShortName">bc0</obj_property>
+      <obj_property name="ObjectShortName">bc0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPRx/U_RxResetSyncCtrl/r">
+      <obj_property name="ElementShortName">r</obj_property>
+      <obj_property name="ObjectShortName">r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_IridisCSPRx/U_RxResetSyncCtrl/fifoRelease">
+      <obj_property name="ElementShortName">fifoRelease</obj_property>
+      <obj_property name="ObjectShortName">fifoRelease</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_IridisCSPRx/U_SidebandGen/frameFlags">
+      <obj_property name="ElementShortName">frameFlags</obj_property>
+      <obj_property name="ObjectShortName">frameFlags</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider2764" type="divider">
+      <obj_property name="label">Rx Buffer SBG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/bc0_axis">
+      <obj_property name="ElementShortName">bc0_axis</obj_property>
+      <obj_property name="ObjectShortName">bc0_axis</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/axisClk">
+      <obj_property name="ElementShortName">axisClk</obj_property>
+      <obj_property name="ObjectShortName">axisClk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/bc0Out_noOffset">
+      <obj_property name="ElementShortName">bc0Out_noOffset</obj_property>
+      <obj_property name="ObjectShortName">bc0Out_noOffset</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/r_LHCDelayFSM">
+      <obj_property name="ElementShortName">r_LHCDelayFSM</obj_property>
+      <obj_property name="ObjectShortName">r_LHCDelayFSM</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/r_FrameFSM">
+      <obj_property name="ElementShortName">r_FrameFSM</obj_property>
+      <obj_property name="ObjectShortName">r_FrameFSM</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/IridisCSPTb/U_CaptureBuffer/U_SidebandGen/frameFlags">
+      <obj_property name="ElementShortName">frameFlags</obj_property>
+      <obj_property name="ObjectShortName">frameFlags</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="awc" version="2">
+	<waveform>
+		<datasets>
+			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1658852510"/>
+		</datasets>
+		<browser type="events"/>
+		<view active="true">
+			<cursors>
+				<cursor name="Default cursor" id="-1" time="535744487304fs" lock="0" tip="1"/>
+				<active name="Default cursor" time="535744487304fs"/>
+			</cursors>
+			<signalspart>
+				<signal name="/IridisCSPTb/RxOrbitStrobe" aliasid="0"/>
+				<signal name="/IridisCSPTb/mgtRxInitDone" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/iridisSfRxCtrl" aliasid="0"/>
+				<expand value=""/>
+				<signal name="/IridisCSPTb/iridisSfRxStat" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_iCSPFSM" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#8a2be2"/>
+				<wave_coloring value="1"/>
+				<expand value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerDin" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerDout" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerSBout" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/unscramblerVout" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#228b22"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/RxHeader" aliasid="0"/>
+				<color value="#006400"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/RxDataWord" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/mgtClk" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#1e90ff"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/comb_iCSPFSM/v_fifoWriteICin" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/comb_iCSPFSM/v_CRCnibble" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/comb_iCSPFSM/v_fifoFFOflag" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/comb_iCSPFSM/v_fifoEOFflag" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<viewmode value="namedrow"/>
+				<wave_coloring value=""/>
+				<group name="IridisTxSection">
+					<bold value="1"/>
+					<color value="#008000"/>
+					<viewmode value=""/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.HdrBuf" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPTx/r_oCSPFSM.DataBuf" aliasid="0"/>
+				</group>
+				<bold value=""/>
+				<color value=""/>
+				<viewmode value="namedrow"/>
+				<wave_coloring value=""/>
+				<expand value="1"/>
+				<group name="LinkAlign">
+					<viewmode value=""/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/iFSMRst" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/resync" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/r" aliasid="0"/>
+				</group>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/resync" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#da70d6"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/bc0" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/OrbitStrobe" aliasid="0"/>
+				<expand value="1"/>
+				<array name="LinkAlignOutputs">
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/resyncOut" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/fifoRelease" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/mgtRst" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/resyncFSMDone" aliasid="0"/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/channelBC0Out" aliasid="0"/>
+				</array>
+				<record name="RxAxiStreamSignlas">
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<wave_coloring value="1"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(0)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(1)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tLast" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tValid" aliasid="0"/>
+					<color value="#da70d6"/>
+					<array name="RxAxiStreamData">
+						<bold value=""/>
+						<color value=""/>
+						<wave_coloring value=""/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(63)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(62)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(61)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(60)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(59)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(58)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(57)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(56)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(55)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(54)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(53)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(52)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(51)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(50)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(49)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(48)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(47)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(46)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(45)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(44)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(43)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(42)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(41)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(40)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(39)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(38)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(37)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(36)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(35)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(34)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(33)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(32)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(31)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(30)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(29)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(28)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(27)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(26)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(25)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(24)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(23)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(22)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(21)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(20)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(19)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(18)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(17)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(16)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(15)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(14)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(13)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(12)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(11)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(10)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(9)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(8)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(7)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(6)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(5)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(4)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(3)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(2)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(1)" aliasid="0"/>
+						<signal name="/IridisCSPTb/AxisRxMaster.tData(0)" aliasid="0"/>
+					</array>
+				</record>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM" aliasid="0">
+					<reverse value="1"/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.crcTChain" aliasid="0"/>
+				</signal>
+				<reverse value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/bc0" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/fifoDataOut" aliasid="0"/>
+				<bold value="1"/>
+				<color value="#ff1493"/>
+				<wave_coloring value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/rd_en" aliasid="0"/>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_Fifo/dout" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/oFSMRst" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/oFSMRstSync" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/iridisSfRxStat" aliasid="0"/>
+			</signalspart>
+			<firstvisiblesignal number="0"/>
+			<timesynchronization value="1"/>
+			<cursorssynchronization value="1"/>
+			<time beginvisible="0fs" endvisible="0fs"/>
+		</view>
+		<bookmarks>
+			<bookmark name="EscramberTx-DescramblerRx" time="268694380ps" from="268689573480fs" to="268705595212fs"/>
+			<bookmark name="FirstRun" time="362597050ps"/>
+			<bookmark name="RunState" time="357407216ps" from="357333973800fs" to="357822255096fs" comment="RunState afte the RxAlignment proces (FSM) was completed :) &#10;"/>
+			<bookmark name="RxAlignProcess" time="269045091ps" from="268068528405fs" to="270021653595fs"/>
+			<bookmark name="First FFO detected " time="359381496ps" from="359369288965fs" to="359491359291fs"/>
+			<bookmark name="ScreenShotAles" time="181129378ps" from="181120405832fs" to="181299849192fs"/>
+		</bookmarks>
+		<time beginvisible="299814453125fs" endvisible="300009765625fs"/>
+		<timeunit name="auto"/>
+		<grid type="signalgrid" aliasid="0" name="/IridisCSPTb/U_IridisCSPRx/U_LinkResyncCtrl/r.bcCnt" edgetype="all" color="#808080" gridname="bcCnt" starttime="268994600ps" ruler="1"/>
+		<cursors>
+			<cursor name="Default cursor" id="-1" time="268997518ps" lock="1" tip="1"/>
+			<cursor name="Cursor 2" id="-1" time="269080867056fs" lock="0" tip="1">
+				<cursor name="Cursor 1" id="-1" time="1027080867056fs" lock="0" tip="1"/>
+			</cursor>
+			<active name="Default cursor" time="268997518ps"/>
+		</cursors>
+		<hierarchy_depth value="0"/>
+	</waveform>
+</document>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="awc" version="2">
+	<waveform>
+		<datasets>
+			<dataset alias="sim" file="../../../build/APxFsCSPSim/APxFsCSPSim_project.sim/sim_1/behav/riviera/dataset.asdb" id="0" uniqueid="1658776995"/>
+		</datasets>
+		<browser type="events"/>
+		<view active="true">
+			<cursors>
+				<cursor name="Default cursor" id="-1" time="446685892136fs" lock="0" tip="1"/>
+				<active name="Default cursor" time="446685892136fs"/>
+			</cursors>
+			<signalspart>
+				<viewmode value="namedrow"/>
+				<expand value="1"/>
+				<group name="CRCForceError">
+					<bold value="1"/>
+					<color value="#ff1493"/>
+					<viewmode value=""/>
+					<wave_coloring value="1"/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/iridisSfTxCtrl.ClrMask.crcErrForce" aliasid="0"/>
+					<signal name="/IridisCSPTb/iridisSfTxCtrl.TxCtrlStrobe" aliasid="0"/>
+				</group>
+				<bold value=""/>
+				<color value=""/>
+				<wave_coloring value=""/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPTx/r_iCSPFSM" aliasid="0"/>
+				<expand value=""/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/crcErrCnt" aliasid="0"/>
+				<expand value="1"/>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM" aliasid="0">
+					<reverse value="1"/>
+					<expand value=""/>
+					<signal name="/IridisCSPTb/U_IridisCSPRx/r_oCSPFSM.crcTChain" aliasid="0"/>
+				</signal>
+				<reverse value=""/>
+				<expand value="1"/>
+				<array name="RxStreamFlags">
+					<expand value=""/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(0)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(1)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(2)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(3)" aliasid="0"/>
+					<signal name="/IridisCSPTb/AxisRxMaster.tUser(4)" aliasid="0"/>
+				</array>
+				<signal name="/IridisCSPTb/U_IridisCSPRx/U_SidebandGen/bc0OffsetOut" aliasid="0"/>
+				<signal name="/IridisCSPTb/U_SideBandGen/frameFlags" aliasid="0"/>
+			</signalspart>
+			<firstvisiblesignal number="0"/>
+			<timesynchronization value="1"/>
+			<cursorssynchronization value="1"/>
+			<time beginvisible="0fs" endvisible="0fs"/>
+		</view>
+		<bookmarks/>
+		<time beginvisible="0fs" endvisible="525us"/>
+		<timeunit name="auto"/>
+		<cursors>
+			<cursor name="Default cursor" id="-1" time="447520132ps" lock="0" tip="1">
+				<cursor name="Cursor 1" id="-1" time="0fs" lock="0" tip="1"/>
+			</cursor>
+			<active name="Cursor 1" time="0fs"/>
+		</cursors>
+		<hierarchy_depth value="0"/>
+	</waveform>
+</document>
